@@ -1,6 +1,9 @@
 import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
 import classNames from "classnames";
 import { useParams, useRouter } from "next/navigation";
+import BubbleRight from "/public/icons/bubble.right.svg";
+import HeartPoint from "/public/icons/heart.point.svg";
+import Heart from "/public/icons/heart.svg";
 
 type KanbanCardComponentType = {
   data: KanbanCardData | null;
@@ -57,14 +60,14 @@ function KanbanCardComponent({
         <div className="text-sm">{apply.join(" / ")}</div>
         <div className="flex gap-3">
           <div className="flex">
-            <img src="/icons/bubble.right.svg" alt="comment" />
+            <img src={BubbleRight} alt="comment" />
             {comment}
           </div>
           <div className="flex">
             {isHearted ? (
-              <img src="/icons/heart.point.svg" alt="heart" />
+              <img src={HeartPoint} alt="heart" />
             ) : (
-              <img src="/icons/heart.svg" alt="heart" />
+              <img src={Heart} alt="heart" />
             )}
             {heart}
           </div>

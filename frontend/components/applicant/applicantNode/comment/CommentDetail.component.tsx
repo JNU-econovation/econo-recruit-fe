@@ -5,6 +5,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ApplicantCommentEditorOrViewer from "./EditorOrViewer.component";
 import { deleteComment } from "../../../../src/apis/comment/comment";
 import { postCommentsLike } from "@/src/apis/comment/commentLike";
+import FaceSmilingFill from "/public/icons/face.smiling.fill.svg";
+import FaceSmiling from "/public/icons/face.smiling.svg";
 
 interface CommentDeleteButtonProps {
   commentId: string;
@@ -79,11 +81,7 @@ const ApplicantCommentDetail: FC<ApplicantCommentDetailProps> = ({
         </div>
         <button onClick={() => heartToggle()} className="flex gap-2 items-end">
           <img
-            src={
-              comment.isLike
-                ? "/icons/face.smiling.fill.svg"
-                : "/icons/face.smiling.svg"
-            }
+            src={comment.isLike ? FaceSmilingFill : FaceSmiling}
             alt="smile face"
           />
           <span className="text-xs text-[#808080]">{comment.likeCount}</span>

@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
-
+import ChevronBackward from "/public/icons/chevron.backward.svg";
 interface KanbanDetailBackButtonProps {
   generation: string;
 }
@@ -16,7 +16,7 @@ const KanbanDetailBackButton: FC<KanbanDetailBackButtonProps> = ({
   };
   return (
     <button onClick={onBackClick} className="w-8 ">
-      <img src="/icons/chevron.backward.svg" alt="" />
+      <img src={ChevronBackward} alt="" />
     </button>
   );
 };

@@ -5,6 +5,9 @@ import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atom
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import React, { useState } from "react";
+import EllipsisMultiply from "/public/icons/ellipsis.multiply.svg";
+import ArrowForwardCircleFill from "/public/icons/arrow.forward.circle.fill.svg";
+import EllipsisPlus from "/public/icons/ellipsis.plus.svg";
 
 function KanbanAddColumnComponent() {
   const [title, setTitle] = useState("");
@@ -42,10 +45,10 @@ function KanbanAddColumnComponent() {
           />
           <div className="flex gap-3 justify-end">
             <button type="button" onClick={() => setIsOpenAddColumn(false)}>
-              <img src="/icons/ellipsis.multiply.svg" alt="" />
+              <img src={EllipsisMultiply} alt="" />
             </button>
             <button type="submit">
-              <img src="/icons/arrow.forward.circle.fill.svg" alt="" />
+              <img src={ArrowForwardCircleFill} alt="" />
             </button>
           </div>
         </form>
@@ -55,7 +58,7 @@ function KanbanAddColumnComponent() {
           className="w-[17rem] flex gap-6 justify-start items-center text-[#828282] py-4 px-6 bg-[#EFEFEF] h-fit rounded-lg text-lg"
           onClick={() => setIsOpenAddColumn(true)}
         >
-          <img src="/icons/ellipsis.plus.svg" alt="AddColumn" />
+          <img src={EllipsisPlus} alt="AddColumn" />
           Add another list
         </button>
       )}

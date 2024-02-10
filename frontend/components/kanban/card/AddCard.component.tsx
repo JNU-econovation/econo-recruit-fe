@@ -5,6 +5,9 @@ import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atom
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import { useState } from "react";
+import EllipsisMultiply from "/public/icons/ellipsis.multiply.svg";
+import ArrowForwardCircleFill from "/public/icons/arrow.forward.circle.fill.svg";
+import EllipsisPlus from "/public/icons/ellipsis.plus.svg";
 
 type KanbanAddCardComponent = {
   columnId: number;
@@ -46,10 +49,10 @@ function KanbanAddCardComponent({ columnId }: KanbanAddCardComponent) {
           />
           <div className="flex gap-3 justify-end">
             <button type="button" onClick={() => setIsOpenAddCard(false)}>
-              <img src="/icons/ellipsis.multiply.svg" alt="" />
+              <img src={EllipsisMultiply} alt="" />
             </button>
             <button type="submit">
-              <img src="/icons/arrow.forward.circle.fill.svg" alt="" />
+              <img src={ArrowForwardCircleFill} alt="" />
             </button>
           </div>
         </form>
@@ -61,7 +64,7 @@ function KanbanAddCardComponent({ columnId }: KanbanAddCardComponent) {
             setIsOpenAddCard(true);
           }}
         >
-          <img src="/icons/ellipsis.plus.svg" alt="AddCard" />
+          <img src={EllipsisPlus} alt="AddCard" />
           Add a card
         </button>
       )}

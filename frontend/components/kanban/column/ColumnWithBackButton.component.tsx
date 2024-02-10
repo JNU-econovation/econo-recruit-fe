@@ -8,6 +8,7 @@ import { getAllKanbanData } from "@/src/apis/kanban/kanban";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import KanbanDetailBackButton from "../BackButton.component";
 import KanbanCardComponent from "../card/Card.component";
+import EllipsisBubble from "/public/icons/ellipsis.bubble.svg";
 
 interface KanbanDetailCardProps {
   columnIndex: number;
@@ -58,7 +59,7 @@ const KanbanColumnDetailCard: FC<KanbanDetailCardProps> = ({
               </div>
             </div>
             <button>
-              <img src="/icons/ellipsis.bubble.svg" alt="CardDetail" />
+              <img src={EllipsisBubble} alt="CardDetail" />
             </button>
           </div>
           <div className="flex flex-col justify-between">

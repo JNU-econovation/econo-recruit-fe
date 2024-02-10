@@ -3,6 +3,7 @@
 import classNames from "classnames";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import ChevronDown from "/public/icons/chevron-down.svg";
 
 type SortListComponent = {
   sortList: { type: string; string: string }[];
@@ -39,7 +40,7 @@ const SortListComponent = ({ sortList, selected }: SortListComponent) => {
       >
         Sort by :
         <span className="font-semibold capitalize text-[#3D3C42]">{order}</span>
-        <img src="/icons/chevron-down.svg" alt="drop_down"></img>
+        <img src={ChevronDown} alt="drop_down" />
       </button>
       {isOpen ? (
         <div className="flex flex-col absolute w-full border-[#F0F0F0] rounded-xl border-[1px] bg-white p-6 font-semibold -mt-4 text-[#3D3C42]">

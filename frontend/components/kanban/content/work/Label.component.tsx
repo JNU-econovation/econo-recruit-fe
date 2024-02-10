@@ -8,6 +8,7 @@ import {
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
 import { FC, useState } from "react";
+import EllipsisPlusBlue from "/public/icons/ellipsis.plus.blue.svg";
 
 interface WorkLabelProps {
   cardId: number;
@@ -74,7 +75,7 @@ const WorkLabel: FC<WorkLabelProps> = ({ cardId, generation }) => {
             { "rotate-45 ": openAdditional }
           )}
         >
-          <img src="/icons/ellipsis.plus.blue.svg" alt="plus" />
+          <img src={EllipsisPlusBlue} alt="plus" />
         </button>
       </div>
     </div>

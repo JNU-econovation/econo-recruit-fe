@@ -7,7 +7,7 @@ import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postComment } from "@/src/apis/comment/comment";
-
+import ArrowForwardCircleFill from "/public/icons/arrow.forward.circle.fill.svg";
 type InputCheckBoxProps = {
   name: string;
   id: string;
@@ -114,7 +114,7 @@ const ApplicantCommentInputForm: FC<ApplicantCommentInputFormProps> = ({
           <div className="text-sm">{commentLength}개</div>
         </div>
         <button>
-          <img src="/icons/arrow.forward.circle.fill.svg" alt="" />
+          <img src={ArrowForwardCircleFill} alt="" />
         </button>
       </div>
       <div className="py-4">

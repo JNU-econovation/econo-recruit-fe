@@ -3,6 +3,7 @@ import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
 import KanbanAddCardComponent from "../card/AddCard.component";
 import { FC } from "react";
 import { KanbanCard } from "../card";
+import EllipsisBubble from "/public/icons/ellipsis.bubble.svg";
 interface KanbanColumnProps {
   columnIndex: number;
   columnData: (KanbanCardData | null)[];
@@ -88,7 +89,7 @@ const KanbanColumnComponent: FC<KanbanColumnComponentProps> = ({
               </div>
             </div>
             <button>
-              <img src="/icons/ellipsis.bubble.svg" alt="ColumnDetail" />
+              <img src={EllipsisBubble} alt="ColumnDetail" />
             </button>
           </div>
           <div className="flex flex-col justify-between overflow-auto max-h-[calc(100vh-24rem)]">
