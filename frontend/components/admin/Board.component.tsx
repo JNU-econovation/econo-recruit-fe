@@ -63,7 +63,7 @@ const InterViewerUpdateButton: FC<InterViewerUpdateButtonProps> = ({
       className={classNames(
         "py-2 w-[6rem] rounded-md",
         user.role === role
-          ? "bg-[#CEDCFF] text-primary"
+          ? "bg-primary-300 text-primary"
           : "bg-light text-secondary-100"
       )}
     >

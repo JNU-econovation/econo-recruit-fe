@@ -54,7 +54,7 @@ const SortListComponent = ({ sortList, selected }: SortListComponent) => {
               }}
               className={classNames(
                 "flex justify-end py-2 px-6 capitalize cursor-pointer",
-                { "text-[#9A9A9A] cursor-auto": sort.type === selected }
+                { "text-secondary-200 cursor-auto": sort.type === selected }
               )}
             >
               {sort.type}
