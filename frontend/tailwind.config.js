@@ -22,6 +22,7 @@ module.exports = {
         secondary: {
           100: "#A7A7A7",
           200: "#666666",
+          DEFAULT: colors.secondary[200],
         },
       },
     },
