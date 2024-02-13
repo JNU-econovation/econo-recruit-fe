@@ -1,6 +1,6 @@
 const InterviewSearchComponent = () => {
   return (
-    <form className="flex items-center py-2 px-4 bg-[#F9FBFF] rounded-2xl gap-2">
+    <form className="flex items-center py-2 px-4 bg-primary-100 rounded-2xl gap-2">
       <button>
         <img src="/icons/search-icon.svg" alt="search" />
       </button>

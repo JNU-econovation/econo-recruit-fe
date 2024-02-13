@@ -15,7 +15,7 @@ const InterviewAvgScoreComponent: FC<InterviewAvgScoreProps> = ({
     <div className="flex w-full items-center mt-10 gap-9">
       <div className="flex-[0_0_6.7rem]">
         <span className="text-5xl font-extrabold text-dark relative">
-          <div className="absolute w-full h-5 bg-[#A6BFFF] top-9 -z-10"></div>
+          <div className="absolute w-full h-5 bg-primary-300 top-9 -z-10"></div>
           {clamp(totalAverage, 0, 5).toFixed(2)}
         </span>
       </div>

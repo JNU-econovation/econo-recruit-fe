@@ -31,7 +31,7 @@ const SortListComponent = ({ sortList, selected }: SortListComponent) => {
   return (
     <div className="relative">
       <button
-        className="flex items-center bg-[#F9FBFF] p-4 gap-2 rounded-2xl text-secondary-200 z-20"
+        className="flex items-center bg-primary-100 p-4 gap-2 rounded-2xl text-secondary-200 z-20"
         onClick={(e) => {
           e.preventDefault();
           setIsOpen((prev) => !prev);

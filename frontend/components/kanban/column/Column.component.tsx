@@ -83,7 +83,7 @@ const KanbanColumnComponent: FC<KanbanColumnComponentProps> = ({
           <div className="flex justify-between">
             <div className="flex gap-2 items-center">
               <div className="font-bold text-lg">{title}</div>
-              <div className="flex justify-center items-center px-3 rounded-full bg-[#E8EFFF] text-xs text-primary h-4">
+              <div className="flex justify-center items-center px-3 rounded-full bg-primary-200 text-xs text-primary h-4">
                 {columnCount}
               </div>
             </div>

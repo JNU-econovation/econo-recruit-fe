@@ -43,7 +43,7 @@ function KanbanCardComponent({
   return (
     <div
       className={classNames(
-        "border-[1px] w-[14.9rem] p-3 rounded-lg drop-shadow-md bg-white hover:border-[#7AA0FF]",
+        "border-[1px] w-[14.9rem] p-3 rounded-lg drop-shadow-md bg-white hover:border-primary-400",
         (applicantId !== "" && dataApplicantId == applicantId) ||
           `${id}` == cardId
           ? "border-primary"
