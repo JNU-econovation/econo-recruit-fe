@@ -51,9 +51,9 @@ function KanbanCardComponent({
       )}
       onClick={onClickDetail}
     >
-      <div className="text-xs text-[#666666]">{major}</div>
+      <div className="text-xs text-secondary-200">{major}</div>
       <div className="font-bold truncate">{title}</div>
-      <div className="mt-2 flex justify-between items-center text-sm text-[#666666]">
+      <div className="mt-2 flex justify-between items-center text-sm text-secondary-200">
         <div className="text-sm">{apply.join(" / ")}</div>
         <div className="flex gap-3">
           <div className="flex">

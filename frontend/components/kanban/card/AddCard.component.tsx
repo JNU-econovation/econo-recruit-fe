@@ -56,7 +56,7 @@ function KanbanAddCardComponent({ columnId }: KanbanAddCardComponent) {
       ) : (
         <button
           type="button"
-          className="flex gap-2 justify-center items-center text-[#828282]"
+          className="flex gap-2 justify-center items-center text-secondary-200"
           onClick={() => {
             setIsOpenAddCard(true);
           }}

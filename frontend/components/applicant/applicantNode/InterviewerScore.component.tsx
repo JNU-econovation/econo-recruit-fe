@@ -77,7 +77,7 @@ const ApplicantInterviewerScore: FC<ApplicantInterviewerScoreProps> = ({
       {!isShow ? (
         <button
           onClick={onClick}
-          className="text-[#666666] text-sm my-4 underline-offset-2 underline"
+          className="text-secondary-200 text-sm my-4 underline-offset-2 underline"
         >
           면접관 점수 입력
         </button>
@@ -86,7 +86,7 @@ const ApplicantInterviewerScore: FC<ApplicantInterviewerScoreProps> = ({
           <div className="flex w-full justify-between items-start">
             <button
               onClick={onClick}
-              className="text-[#666666] text-sm my-4 underline-offset-2 underline"
+              className="text-secondary-200 text-sm my-4 underline-offset-2 underline"
             >
               면접관 점수 입력
             </button>

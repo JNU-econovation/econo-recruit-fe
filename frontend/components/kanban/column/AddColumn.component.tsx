@@ -52,7 +52,7 @@ function KanbanAddColumnComponent() {
       ) : (
         <button
           type="button"
-          className="w-[17rem] flex gap-6 justify-start items-center text-[#828282] py-4 px-6 bg-light h-fit rounded-lg text-lg"
+          className="w-[17rem] flex gap-6 justify-start items-center text-secondary-200 py-4 px-6 bg-light h-fit rounded-lg text-lg"
           onClick={() => setIsOpenAddColumn(true)}
         >
           <img src="/icons/ellipsis.plus.svg" alt="AddColumn" />

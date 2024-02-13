@@ -14,10 +14,10 @@ const typographyType = {
 
 const colorType = {
   black: "text-black",
-  gray: "text-[#666]",
+  gray: "text-secondary-200",
   white: "text-white",
   blue: "text-primary",
-  light_gray: "text-[#8C8C8C]",
+  light_gray: "text-secondary-200",
 };
 
 interface TxtProps {

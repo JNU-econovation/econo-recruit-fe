@@ -22,7 +22,7 @@ const InterviewListComponent = () => {
         >
           <div className="flex w-full h-full items-center justify-between">
             <div className="font-semibold text-lg">{board.title}</div>
-            <div className="flex gap-24 text-[#8C8C8C]">
+            <div className="flex gap-24 text-secondary-200">
               <div className="flex gap-12">
                 {board.apply.map((a) => (
                   <div key={a}>{a}</div>

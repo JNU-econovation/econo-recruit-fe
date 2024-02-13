@@ -70,7 +70,7 @@ const WorkDetailLeft: FC<WorkDetailLeftProps> = ({
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <div className="flex text-sm gap-2 text-[#666666] items-center w-[4rem]">
+              <div className="flex text-sm gap-2 text-secondary-200 items-center w-[4rem]">
                 <button
                   type="submit"
                   onClick={() => setIsOpenAddCard((prev) => !prev)}
@@ -84,13 +84,13 @@ const WorkDetailLeft: FC<WorkDetailLeftProps> = ({
           )}
           <div className="flex gap-2 w-[8rem] justify-end">
             <button
-              className="text-sm text-[#666666] items-center w-fit"
+              className="text-sm text-secondary-200 items-center w-fit"
               onClick={() => setIsOpenAddCard((prev) => !prev)}
             >
               수정
             </button>
             <button
-              className="text-sm text-[#666666] items-center w-fit"
+              className="text-sm text-secondary-200 items-center w-fit"
               onClick={onDeleteWorkCard}
             >
               삭제
