@@ -3,11 +3,12 @@ import { useState } from "react";
 import InterviewScoreCellComponent from "./ScoreCell.component";
 import { ScoreRes } from "@/src/apis/score";
 
-interface InterviewScoreProps {
+interface InterviewScoreComponentProps {
   score: ScoreRes;
 }
 
-const InterviewScoreComponent = ({ score }: InterviewScoreProps) => {
+// TODO: remove postfix "Component"
+const InterviewScoreComponent = ({ score }: InterviewScoreComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const scoreData = Object.entries(score.scoreVo).slice(1);
 
