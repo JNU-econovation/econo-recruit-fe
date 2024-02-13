@@ -11,6 +11,7 @@ module.exports = {
         primary: "#2160FF",
         error: "#DC0000",
         dark: "#303030",
+        light: "#F0F0F0",
       },
     },
   },
