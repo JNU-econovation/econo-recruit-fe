@@ -16,7 +16,7 @@ import {
 } from "@/src/constants/application/26/manager";
 import {
   ApplicationNode,
-  ApplicationRadio,
+  type ApplicationRadio,
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 import {

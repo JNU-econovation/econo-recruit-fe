@@ -7,7 +7,7 @@ import { useAtomValue } from "jotai";
 import { applicationIndexAtom } from "@/src/stores/application";
 import ApplicationNextButton from "./applicationNode/NextButton.component";
 import { ApplicationLayout } from "./Layout.component";
-import { ApplicationQuestion } from "@/src/constants/application/type";
+import type { ApplicationQuestion } from "@/src/constants/application/type";
 
 interface ApplicationQuestionProps {
   className?: string;

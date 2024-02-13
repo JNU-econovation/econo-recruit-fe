@@ -1,17 +1,6 @@
-import {
-  ApplicationBar,
-  ApplicationBooleanTextarea,
-  ApplicationCheckboxWithEtcType,
-  ApplicationJustText,
-  ApplicationQuestion,
-  ApplicationRadio,
-  ApplicationRadioByTwoRank,
-  ApplicationText,
-  ApplicationTextarea,
-  BaseWithValues,
-} from "./type";
+import { ApplicationQuestion } from "./type";
 
-export const APPLICATION = [
+export const APPLICATION: ApplicationQuestion[] = [
   {
     id: 1,
     title: "프로젝트 희망 분야를 선택해주세요.",
@@ -24,24 +13,28 @@ export const APPLICATION = [
         name: "field",
         require: true,
         value: ["개발자", "디자이너", "기획자"],
-      } as ApplicationRadio,
+      },
       {
         type: "radioByTwoRank",
+        require: true,
+        name: "",
         subNodes: [
           {
             subtitle: "1순위",
             name: "field1",
             require: true,
             value: ["APP", "WEB", "GAME", "AI", "IoT", "AR/VR"],
+            splitNumber: 3,
           },
           {
             subtitle: "2순위",
             name: "field2",
             require: true,
             value: ["APP", "WEB", "GAME", "AI", "IoT", "AR/VR", "선택없음"],
+            splitNumber: 3,
           },
-        ] as BaseWithValues[],
-      } as ApplicationRadioByTwoRank,
+        ],
+      },
     ],
   },
   {
@@ -56,14 +49,14 @@ export const APPLICATION = [
         title: "이름",
         require: true,
         errorMessages: "이름을 입력해주세요.",
-      } as ApplicationText,
+      },
       {
         type: "text",
         name: "contacted",
         title: "연락처",
         require: true,
         errorMessages: "연락처를 입력해주세요.",
-      } as ApplicationText,
+      },
       {
         type: "text",
         name: "classOf",
@@ -71,16 +64,27 @@ export const APPLICATION = [
         subtitle: "ex) 123456",
         require: true,
         errorMessages: "학번을 입력해주세요.",
-      } as ApplicationText,
+      },
       {
         type: "radioByTwoRank",
         title: "학년 및 학기",
         require: true,
+        name: "",
         subNodes: [
-          { name: "grade", require: true, value: ["1", "2", "3", "4"] },
-          { name: "semester", require: true, value: ["1", "2"] },
+          {
+            name: "grade",
+            require: true,
+            value: ["1", "2", "3", "4"],
+            splitNumber: 4,
+          },
+          {
+            name: "semester",
+            require: true,
+            value: ["1", "2"],
+            splitNumber: 2,
+          },
         ],
-      } as ApplicationRadioByTwoRank,
+      },
     ],
   },
   {
@@ -97,21 +101,21 @@ export const APPLICATION = [
         maxLength: 30,
         require: true,
         errorMessages: "전공을 입력해주세요.",
-      } as ApplicationText,
+      },
       {
         type: "text",
         name: "doubleMajor",
         title: "복수전공",
         maxLength: 30,
         require: false,
-      } as ApplicationText,
+      },
       {
         type: "text",
         name: "minor",
         title: "부전공",
         maxLength: 30,
         require: false,
-      } as ApplicationText,
+      },
     ],
   },
   {
@@ -128,7 +132,7 @@ export const APPLICATION = [
           "학업 외에 병행하고 있거나 향후 계획 중에 있는 활동이 있으시다면 적어주세요.",
         maxLength: 200,
         subtitle: "(동아리, 연구실, 아르바이트, 스터디, 교환학생 등)",
-      } as ApplicationText,
+      },
       {
         name: "channel",
         require: true,
@@ -143,7 +147,7 @@ export const APPLICATION = [
           "에브리타임",
         ],
         errorMessages: "지원 경로를 선택해주세요.",
-      } as ApplicationCheckboxWithEtcType,
+      },
     ],
   },
   {
@@ -157,7 +161,7 @@ export const APPLICATION = [
         require: true,
         type: "textarea",
         errorMessages: "에코노베이션에 지원하게 된 계기를 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -172,7 +176,7 @@ export const APPLICATION = [
         require: true,
         type: "textarea",
         errorMessages: "앞으로 도전해 보고 싶은 분야를 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -186,6 +190,7 @@ export const APPLICATION = [
         name: "experience",
         require: true,
         type: "booleanTextarea",
+        value: ["있다", "없다"],
         subNodes: [
           {
             name: "experienceTrue",
@@ -206,7 +211,7 @@ export const APPLICATION = [
             type: "false",
           },
         ],
-      } as ApplicationBooleanTextarea,
+      },
     ],
   },
   {
@@ -220,7 +225,7 @@ export const APPLICATION = [
         require: true,
         type: "textarea",
         errorMessages: "목표와 학습 계획을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
     require: true,
   },
@@ -236,7 +241,7 @@ export const APPLICATION = [
         require: true,
         type: "textarea",
         errorMessages: "깊게 빠져본 경험을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -250,7 +255,7 @@ export const APPLICATION = [
         require: true,
         type: "textarea",
         errorMessages: "협업에 있어서 중요하다고 생각되는 것을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -264,31 +269,31 @@ export const APPLICATION = [
         type: "text",
         title: "참고 URL",
         subtitle: "(Github, Blog, Notion, Website 등)",
-      } as ApplicationText,
+      },
       {
         name: "fileUrl",
         require: false,
         type: "text",
         title: "파일 URL",
         subtitle: "(Google Drive 등)",
-      } as ApplicationText,
+      },
       {
         type: "bar",
-      } as ApplicationBar,
+      },
       {
         type: "justText",
         title:
           "기획자를 지원하는 경우 이번 학기에 진행하고 싶은 프로젝트의 기획서를 제출해 주세요.",
         subtitle:
           "(단, 제출한 기획을 기반으로 이번 학기에 프로젝트를 진행하지 못할 수 있습니다.)",
-      } as ApplicationJustText,
+      },
       {
         name: "fileUrlforPlanner",
         require: false,
         type: "text",
         title: "파일 URL",
         subtitle: "(Google Drive 등)",
-      } as ApplicationText,
+      },
     ],
   },
-] as ApplicationQuestion[];
+];

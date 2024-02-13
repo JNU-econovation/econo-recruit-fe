@@ -1,13 +1,6 @@
-import {
-  ApplicationBooleanTextarea,
-  ApplicationQuestion,
-  ApplicationRadioForCheck,
-  ApplicationText,
-  ApplicationTextarea,
-  ApplicationTimelineType,
-} from "../type";
+import { ApplicationQuestion } from "../type";
 
-export const APPLICATION_DEVELOPER = [
+export const APPLICATION_DEVELOPER: ApplicationQuestion[] = [
   {
     id: 5,
     title: "자기소개 및 에코노베이션에 지원하게 된 계기를 서술해 주세요.",
@@ -19,7 +12,7 @@ export const APPLICATION_DEVELOPER = [
         require: true,
         type: "textarea",
         errorMessages: "에코노베이션에 지원하게 된 계기를 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -34,7 +27,7 @@ export const APPLICATION_DEVELOPER = [
         require: true,
         type: "textarea",
         errorMessages: "개발자를 희망하는 이유를 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -65,7 +58,7 @@ export const APPLICATION_DEVELOPER = [
             type: "false",
           },
         ],
-      } as ApplicationBooleanTextarea,
+      },
     ],
   },
   {
@@ -80,7 +73,7 @@ export const APPLICATION_DEVELOPER = [
         require: true,
         type: "textarea",
         errorMessages: "도전하고 실패해 본 경험을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
     require: true,
   },
@@ -97,7 +90,7 @@ export const APPLICATION_DEVELOPER = [
         require: true,
         type: "textarea",
         errorMessages: "깊게 빠져본 경험을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -112,7 +105,7 @@ export const APPLICATION_DEVELOPER = [
         require: true,
         type: "textarea",
         errorMessages: "협업에 있어서 중요하다고 생각되는 것을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -127,7 +120,7 @@ export const APPLICATION_DEVELOPER = [
         require: true,
         type: "textarea",
         errorMessages: "목표와 학습 계획을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -143,14 +136,14 @@ export const APPLICATION_DEVELOPER = [
         type: "text",
         title: "참고 URL",
         subtitle: "Github, Blog, Notion, Website 등",
-      } as ApplicationText,
+      },
       {
         name: "fileUrl",
         require: false,
         type: "text",
         title: "파일 URL",
         subtitle: "Google Drive 등",
-      } as ApplicationText,
+      },
     ],
   },
   {
@@ -172,7 +165,7 @@ export const APPLICATION_DEVELOPER = [
             validate: "emailString",
             errorMessages: "이메일을 입력해주세요.",
             require: true,
-          } as ApplicationText,
+          },
         ],
       },
       {
@@ -188,7 +181,7 @@ export const APPLICATION_DEVELOPER = [
             validate: "confirmationString",
             errorMessages: '"확인했습니다"를 입력해주세요.',
             require: true,
-          } as ApplicationText,
+          },
         ],
       },
       {
@@ -204,14 +197,14 @@ export const APPLICATION_DEVELOPER = [
             title: "개인정보 수집(공통)에 대한 안내",
             value: ["동의합니다.", "동의하지 않습니다."],
             require: true,
-          } as ApplicationRadioForCheck,
+          },
           {
             type: "radioForCheck",
             name: "personalInformationAgreeForPortfolio",
             title: "개인정보 수집(포트폴리오)에 대한 안내",
             value: ["동의합니다.", "동의하지 않습니다."],
             require: true,
-          } as ApplicationRadioForCheck,
+          },
         ],
       },
     ],
@@ -228,10 +221,10 @@ export const APPLICATION_DEVELOPER = [
         type: "timeline",
         name: "timeline",
         require: true,
-      } as ApplicationTimelineType,
+      },
     ],
   },
-] as ApplicationQuestion[];
+];
 
 export const APPLICATION_NAVBAR_DEVELOPER = [
   {

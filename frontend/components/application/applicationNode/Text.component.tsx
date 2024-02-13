@@ -3,7 +3,7 @@
 import Txt from "@/components/common/Txt.component";
 import {
   ApplicationNode,
-  ApplicationText,
+  type ApplicationText,
 } from "@/src/constants/application/type";
 import { replacer } from "@/src/functions/replacer";
 import { validator } from "@/src/functions/validator";

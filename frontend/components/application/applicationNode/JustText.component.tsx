@@ -1,6 +1,6 @@
 import Txt from "@/components/common/Txt.component";
 import {
-  ApplicationJustText,
+  type ApplicationJustText,
   ApplicationNode,
 } from "@/src/constants/application/type";
 import { FC } from "react";

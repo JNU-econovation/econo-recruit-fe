@@ -1,37 +1,7 @@
 import { ReplacerType } from "@/src/functions/replacer";
 import { ValidatorType } from "@/src/functions/validator";
 
-interface ApplicationQuestion {
-  id: number;
-  title?: string;
-  subtitle?: string;
-  require: boolean;
-  direction:
-    | "vertical"
-    | "horizontal"
-    | "booleanTextarea"
-    | "radioForCheck"
-    | "timeline";
-  nodes: ApplicationNode[] | ApplicationQuestion[];
-}
-
-type ApplicationNodeTypes =
-  | "radio"
-  | "radioByTwoRank"
-  | "radioForCheck"
-  | "text"
-  | "textarea"
-  | "booleanTextarea"
-  | "bar"
-  | "justText"
-  | "checkboxWithEtc"
-  | "timeline";
-
-interface ApplicationNode {
-  type: ApplicationNodeTypes;
-}
-
-interface ApplicationNodeBase extends ApplicationNode {
+interface ApplicationNodeBase {
   title?: string;
   subtitle?: string;
   require: boolean;
@@ -51,11 +21,8 @@ interface BaseWithValuesWithSplitNumber extends BaseWithValues {
   splitNumber: 2 | 3 | 4;
 }
 
-interface ApplicationRadioByTwoRank extends ApplicationNode {
+interface ApplicationRadioByTwoRank extends ApplicationNodeBase {
   type: "radioByTwoRank";
-  title?: string;
-  subtitle?: string;
-  require: boolean;
   subNodes: BaseWithValuesWithSplitNumber[];
 }
 
@@ -89,11 +56,11 @@ interface ApplicationBooleanTextarea extends ApplicationNodeBase {
     name: string;
   }[];
 }
-interface ApplicationBar extends ApplicationNodeBase {
+interface ApplicationBar {
   type: "bar";
 }
 
-interface ApplicationJustText extends ApplicationNodeBase {
+interface ApplicationJustText {
   type: "justText";
   title: string;
   subtitle?: string;
@@ -124,3 +91,30 @@ interface ApplicationTimeline {
     endTime: Date;
   }[];
 }
+
+type ApplicationNode =
+  | ApplicationRadio
+  | ApplicationRadioByTwoRank
+  | ApplicationRadioForCheck
+  | ApplicationText
+  | ApplicationTextarea
+  | ApplicationBooleanTextarea
+  | ApplicationBar
+  | ApplicationJustText
+  | ApplicationCheckboxType
+  | ApplicationCheckboxWithEtcType
+  | ApplicationTimelineType;
+
+type ApplicationQuestion = {
+  id: number;
+  title?: string;
+  subtitle?: string;
+  require?: boolean;
+  direction:
+    | "vertical"
+    | "horizontal"
+    | "booleanTextarea"
+    | "radioForCheck"
+    | "timeline";
+  nodes: (ApplicationNode | ApplicationQuestion)[];
+};
