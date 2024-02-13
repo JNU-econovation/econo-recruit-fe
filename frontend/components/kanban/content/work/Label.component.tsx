@@ -112,9 +112,7 @@ const WorkLabelButton: FC<WorkLabelButtonProps> = ({
       key={label.name}
       className={classNames(
         "py-1 px-4 rounded-full w-max",
-        label.active
-          ? "text-primary bg-[#E8EFFF]"
-          : "text-[#777777] bg-[#EFEFEF]"
+        label.active ? "text-primary bg-[#E8EFFF]" : "text-[#777777] bg-light"
       )}
       onClick={onLabelClick}
     >

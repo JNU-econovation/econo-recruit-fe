@@ -64,7 +64,7 @@ const InterViewerUpdateButton: FC<InterViewerUpdateButtonProps> = ({
         "py-2 w-[6rem] rounded-md",
         user.role === role
           ? "bg-[#CEDCFF] text-primary"
-          : "bg-[#EDEDED] text-[#B5B5B5]"
+          : "bg-light text-[#B5B5B5]"
       )}
     >
       {roleTranslater(role)}

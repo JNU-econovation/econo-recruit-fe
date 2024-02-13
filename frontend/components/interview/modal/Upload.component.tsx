@@ -60,7 +60,7 @@ const InterviewUploadComponent = () => {
           />
           <div className="flex gap-2 mt-4">
             <button
-              className="flex-1 rounded-md flex justify-center items-center p-3 bg-[#EFEFEF]"
+              className="flex-1 rounded-md flex justify-center items-center p-3 bg-light"
               onClick={() => {
                 setIsOpen(false);
                 setInterviewData({

@@ -49,7 +49,7 @@ const KanbanColumnDetailCard: FC<KanbanDetailCardProps> = ({
         <KanbanDetailBackButton generation={generation} />
       </div>
       <div className="overflow-auto max-h-[calc(100vh-10em)]">
-        <div className="h-fit border-[1px] border-[#F0F0F0] w-fit p-4 rounded-lg min-w-[17rem] bg-white">
+        <div className="h-fit border-[1px] border-light w-fit p-4 rounded-lg min-w-[17rem] bg-white">
           <div className="flex justify-between">
             <div className="flex gap-2 items-center">
               <div className="font-bold text-lg">{cardTitle}</div>

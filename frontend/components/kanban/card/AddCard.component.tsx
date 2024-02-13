@@ -34,12 +34,12 @@ function KanbanAddCardComponent({ columnId }: KanbanAddCardComponent) {
     <div className="mt-2">
       {isOpenAddCard ? (
         <form
-          className="w-[17rem] border-[1px] border-[#F0F0F0] p-3 rounded-lg"
+          className="w-[17rem] border-[1px] border-light p-3 rounded-lg"
           onSubmit={(e) => addCardSubmit(e)}
         >
           <input
             type="text"
-            className="p-3 border-[1px] border-[#F0F0F0] drop-shadow-md bg-white rounded-lg w-full text-sm my-3 outline-none"
+            className="p-3 border-[1px] border-light drop-shadow-md bg-white rounded-lg w-full text-sm my-3 outline-none"
             placeholder="Enter a title for this card"
             value={title}
             onChange={(e) => setTitle(e.target.value)}

@@ -42,7 +42,7 @@ const SortListComponent = ({ sortList, selected }: SortListComponent) => {
         <img src="/icons/chevron-down.svg" alt="drop_down"></img>
       </button>
       {isOpen ? (
-        <div className="flex flex-col absolute w-full border-[#F0F0F0] rounded-xl border-[1px] bg-white p-6 font-semibold -mt-4 text-dark">
+        <div className="flex flex-col absolute w-full border-light rounded-xl border-[1px] bg-white p-6 font-semibold -mt-4 text-dark">
           {sortList.map((sort) => (
             <button
               key={sort.type}

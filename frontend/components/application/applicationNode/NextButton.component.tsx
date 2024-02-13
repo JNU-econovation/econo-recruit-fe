@@ -91,7 +91,7 @@ const ApplicationNextButton: FC<ApplicationNextButtonProps> = ({
   return (
     <div className="flex gap-2 my-4">
       <button
-        className="flex-1 rounded-md flex justify-center items-center p-4 bg-[#EFEFEF]"
+        className="flex-1 rounded-md flex justify-center items-center p-4 bg-light"
         onClick={goPrevIndex}
       >
         이전
@@ -111,7 +111,7 @@ const ApplicationNextButton: FC<ApplicationNextButtonProps> = ({
         className={
           canNext
             ? nextButtonClassName + " bg-dark text-white"
-            : nextButtonClassName + " bg-[#EFEFEF] text-[#C8C8C8]"
+            : nextButtonClassName + " bg-light text-[#C8C8C8]"
         }
       >
         {isLast

@@ -47,7 +47,7 @@ function KanbanCardComponent({
         (applicantId !== "" && dataApplicantId == applicantId) ||
           `${id}` == cardId
           ? "border-primary"
-          : "border-[#F0F0F0]"
+          : "border-light"
       )}
       onClick={onClickDetail}
     >

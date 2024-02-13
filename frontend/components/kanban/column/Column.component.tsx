@@ -75,7 +75,7 @@ const KanbanColumnComponent: FC<KanbanColumnComponentProps> = ({
     >
       {(provided) => (
         <div
-          className="h-fit border-[1px] border-[#F0F0F0] w-fit p-4 rounded-lg min-w-[17rem] bg-white"
+          className="h-fit border-[1px] border-light w-fit p-4 rounded-lg min-w-[17rem] bg-white"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
