@@ -1,16 +1,15 @@
-import { ScoreRes, scoreDetail } from "@/src/apis/score";
-import { clamp, getScoreAverage } from "@/src/functions/calculator";
-import { FC } from "react";
+import { scoreDetail } from "@/src/apis/score";
+import { clamp } from "@/src/functions/calculator";
 
 interface InterviewAvgScoreProps {
   totalAverage: number;
   average: scoreDetail[];
 }
 
-const InterviewAvgScoreComponent: FC<InterviewAvgScoreProps> = ({
+const InterviewAvgScoreComponent = ({
   totalAverage,
   average,
-}) => {
+}: InterviewAvgScoreProps) => {
   return (
     <div className="flex w-full items-center mt-10 gap-9">
       <div className="flex-[0_0_6.7rem]">

@@ -1,13 +1,13 @@
 "use client";
-import { FC, useState } from "react";
+import { useState } from "react";
 import InterviewScoreCellComponent from "./ScoreCell.component";
-import { ScoreRes, scoreDetail } from "@/src/apis/score";
+import { ScoreRes } from "@/src/apis/score";
 
 interface InterviewScoreProps {
   score: ScoreRes;
 }
 
-const InterviewScoreComponent: FC<InterviewScoreProps> = ({ score }) => {
+const InterviewScoreComponent = ({ score }: InterviewScoreProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const scoreData = Object.entries(score.scoreVo).slice(1);
 
