@@ -73,7 +73,7 @@ const InterviewUploadComponent = () => {
               취소
             </button>
             <button
-              className="flex-1 rounded-md flex justify-center items-center p-3 bg-[#303030] text-white"
+              className="flex-1 rounded-md flex justify-center items-center p-3 bg-dark text-white"
               onClick={() => {
                 setIsOpen(false);
                 interviewUpload(interviewData);

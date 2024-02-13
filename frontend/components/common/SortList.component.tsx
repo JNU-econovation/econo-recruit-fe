@@ -38,11 +38,11 @@ const SortListComponent = ({ sortList, selected }: SortListComponent) => {
         }}
       >
         Sort by :
-        <span className="font-semibold capitalize text-[#3D3C42]">{order}</span>
+        <span className="font-semibold capitalize text-dark">{order}</span>
         <img src="/icons/chevron-down.svg" alt="drop_down"></img>
       </button>
       {isOpen ? (
-        <div className="flex flex-col absolute w-full border-[#F0F0F0] rounded-xl border-[1px] bg-white p-6 font-semibold -mt-4 text-[#3D3C42]">
+        <div className="flex flex-col absolute w-full border-[#F0F0F0] rounded-xl border-[1px] bg-white p-6 font-semibold -mt-4 text-dark">
           {sortList.map((sort) => (
             <button
               key={sort.type}

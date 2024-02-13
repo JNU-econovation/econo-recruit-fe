@@ -110,7 +110,7 @@ const ApplicationNextButton: FC<ApplicationNextButtonProps> = ({
         disabled={!canNext}
         className={
           canNext
-            ? nextButtonClassName + " bg-[#303030] text-white"
+            ? nextButtonClassName + " bg-dark text-white"
             : nextButtonClassName + " bg-[#EFEFEF] text-[#C8C8C8]"
         }
       >
