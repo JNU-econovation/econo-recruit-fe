@@ -1,17 +1,16 @@
 import Txt from "@/components/common/Txt.component";
 import { ApplicantReq } from "@/src/apis/applicant/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
-import { FC } from "react";
 
 interface ApplicantCustomFieldProps {
   nodeData: ApplicantNode;
   data: ApplicantReq[];
 }
 
-const ApplicantCustomField: FC<ApplicantCustomFieldProps> = ({
+const ApplicantCustomField = ({
   nodeData,
   data,
-}) => {
+}: ApplicantCustomFieldProps) => {
   const customFieldData = nodeData as ApplicantCustomFieldNode;
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, FormEvent, use, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import React from "react";
 import { Editor } from "@toast-ui/react-editor";
 
@@ -45,12 +45,12 @@ interface ApplicantCommentInputFormProps {
   cardId: number;
 }
 
-const ApplicantCommentInputForm: FC<ApplicantCommentInputFormProps> = ({
+const ApplicantCommentInputForm = ({
   applicantId,
   commentLength,
   generation,
   cardId,
-}) => {
+}: ApplicantCommentInputFormProps) => {
   const [isNocomment, setIsNocomment] = useState(false);
   const [hasQuestion, setHasQuestion] = useState(false);
   const [content, setContent] = useState("");

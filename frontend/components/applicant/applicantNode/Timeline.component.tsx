@@ -1,6 +1,5 @@
 "use client";
 
-import { TimelineCell } from "@/components/application/applicationLayout/timeline/Timeline.component";
 import Txt from "@/components/common/Txt.component";
 import { getApplicantTimeTables } from "@/src/apis/applicant/applicant";
 import { CURRENT_GENERATION } from "@/src/constants";
@@ -9,13 +8,12 @@ import { dateSplicer } from "@/src/functions/date";
 import { minimumIntegerDigits } from "@/src/functions/replacer";
 import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames";
-import { FC } from "react";
 
 interface ApplicantTimelineNodeProps {
   postId: string;
 }
 
-const ApplicantTimelineNode: FC<ApplicantTimelineNodeProps> = ({ postId }) => {
+const ApplicantTimelineNode = ({ postId }: ApplicantTimelineNodeProps) => {
   const data = require(`@/src/constants/application/${CURRENT_GENERATION}.ts`);
   const { time, seperate } = data.APPLICATION_TIMELINE as ApplicationTimeline;
 
