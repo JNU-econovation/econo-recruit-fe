@@ -34,7 +34,7 @@ const ApplicationText: FC<ApplicationTextProps> = ({ data }) => {
       <input
         className={classNames(
           "my-2 border rounded-lg p-4 w-full",
-          isError && "border-[#DC0000]"
+          isError && "border-error"
         )}
         type="text"
         id={id}
@@ -54,7 +54,7 @@ const ApplicationText: FC<ApplicationTextProps> = ({ data }) => {
       />
       {isError && textData.errorMessages ? (
         <div className="absolute w-full translate-x-[100%]">
-          <div className="w-fit text-[#DC0000] -translate-x-[calc(100%+1rem)] -translate-y-12">
+          <div className="w-fit text-error -translate-x-[calc(100%+1rem)] -translate-y-12">
             {textData.errorMessages}
           </div>
         </div>
