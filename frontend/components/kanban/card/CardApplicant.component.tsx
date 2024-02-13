@@ -2,22 +2,21 @@
 
 import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
 import { Draggable } from "@hello-pangea/dnd";
-import { FC } from "react";
 import KanbanCardComponent from "./Card.component";
 
-interface KanbanColumnApplicant {
+interface KanbanColumnApplicantProps {
   columnIndex: number;
   cardIndex: number;
   index: number;
   column: KanbanCardData;
 }
 
-const KanbanColumnApplicant: FC<KanbanColumnApplicant> = ({
+const KanbanColumnApplicant = ({
   index,
   columnIndex,
   column,
   cardIndex,
-}) => {
+}: KanbanColumnApplicantProps) => {
   return (
     <Draggable draggableId={`${index}-${column.id}`} index={cardIndex}>
       {(provided) => (

@@ -1,17 +1,16 @@
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
 import KanbanAddCardComponent from "../card/AddCard.component";
-import { FC } from "react";
 import { KanbanCard } from "../card";
 interface KanbanColumnProps {
   columnIndex: number;
   columnData: (KanbanCardData | null)[];
 }
 
-const KanbanColumnDroppable: FC<KanbanColumnProps> = ({
+const KanbanColumnDroppable = ({
   columnIndex,
   columnData,
-}) => {
+}: KanbanColumnProps) => {
   return (
     <Droppable droppableId={`${columnIndex}`} key={columnIndex}>
       {(provided) => (
@@ -60,13 +59,13 @@ interface KanbanColumnComponentProps {
   columnId: number;
 }
 
-const KanbanColumnComponent: FC<KanbanColumnComponentProps> = ({
+const KanbanColumnComponent = ({
   columnData,
   title,
   columnCount,
   columnIndex,
   columnId,
-}) => {
+}: KanbanColumnComponentProps) => {
   return (
     <Draggable
       draggableId={`${columnIndex}`}

@@ -4,7 +4,7 @@ import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 
-import { FC, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { putWork } from "@/src/apis/work/work";
 
@@ -15,12 +15,12 @@ interface WorkEditorOrViewerProps {
   setIsEdit: (isEdit: boolean) => void;
 }
 
-const WorkEditorOrViewer: FC<WorkEditorOrViewerProps> = ({
+const WorkEditorOrViewer = ({
   content: initContent,
   isEdit = false,
   cardId,
   setIsEdit,
-}) => {
+}: WorkEditorOrViewerProps) => {
   const editorRef = useRef<Editor>(null);
   const [content, setContent] = useState(initContent);
 

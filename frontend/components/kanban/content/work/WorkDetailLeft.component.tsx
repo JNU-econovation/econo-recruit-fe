@@ -1,4 +1,4 @@
-import { FC, use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Work, deleteWork, putWork } from "@/src/apis/work/work";
 import dynamic from "next/dynamic";
 import Txt from "@/components/common/Txt.component";
@@ -17,11 +17,7 @@ const ApplicantComment = dynamic(
   { ssr: false }
 );
 
-const WorkDetailLeft: FC<WorkDetailLeftProps> = ({
-  data,
-  generation,
-  cardId,
-}) => {
+const WorkDetailLeft = ({ data, generation, cardId }: WorkDetailLeftProps) => {
   const [title, setTitle] = useState("");
   const [isOpenAddCard, setIsOpenAddCard] = useState(false);
   const queryClient = useQueryClient();
