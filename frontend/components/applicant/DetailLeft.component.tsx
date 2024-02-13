@@ -1,5 +1,4 @@
 import { ApplicantReq } from "@/src/apis/applicant/applicant";
-import { FC } from "react";
 import ApplicantResource from "./applicantNode/CustomResource.component";
 import ApplicantLabel from "./applicantNode/Label.component";
 import { applicantDataFinder } from "@/src/functions/finder";
@@ -16,11 +15,11 @@ const ApplicantComment = dynamic(
   { ssr: false }
 );
 
-const ApplicantDetailLeft: FC<ApplicantDetailLeftProps> = ({
+const ApplicantDetailLeft = ({
   data,
   cardId,
   generation,
-}) => {
+}:ApplicantDetailLeftProps) => {
   const postId = applicantDataFinder(data, "id");
 
   return (
