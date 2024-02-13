@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         primary: "#2160FF",
         error: "#DC0000",
+        dark: "#303030",
       },
     },
   },
