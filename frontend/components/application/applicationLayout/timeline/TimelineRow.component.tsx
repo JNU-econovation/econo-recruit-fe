@@ -53,7 +53,7 @@ const TimelineRow: FC<TimelineRowProps> = ({ date, isLast, index }) => {
           />
           <label
             htmlFor={date.getTime().toString()}
-            className="h-8 block peer-checked:bg-[#2160FF] bg-[#EFEFEF]"
+            className="h-8 block peer-checked:bg-primary bg-[#EFEFEF]"
           ></label>
         </>
       )}

@@ -46,7 +46,7 @@ function KanbanCardComponent({
         "border-[1px] w-[14.9rem] p-3 rounded-lg drop-shadow-md bg-white hover:border-[#7AA0FF]",
         (applicantId !== "" && dataApplicantId == applicantId) ||
           `${id}` == cardId
-          ? "border-[#2160FF]"
+          ? "border-primary"
           : "border-[#F0F0F0]"
       )}
       onClick={onClickDetail}

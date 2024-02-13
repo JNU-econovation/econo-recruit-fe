@@ -16,7 +16,7 @@ const colorType = {
   black: "text-black",
   gray: "text-[#666]",
   white: "text-white",
-  blue: "text-[#2160FF]",
+  blue: "text-primary",
   light_gray: "text-[#8C8C8C]",
 };
 

@@ -70,7 +70,7 @@ const ApplicantLabel: FC<ApplicantLabelProps> = ({ postId, generation }) => {
         <button
           onClick={toggleOpen}
           className={classNames(
-            "text-[#2160FF] bg-[#E8EFFF] translate-y-[2px] h-8 w-8 rounded-full flex items-center justify-center transition-all",
+            "text-primary bg-[#E8EFFF] translate-y-[2px] h-8 w-8 rounded-full flex items-center justify-center transition-all",
             { "rotate-45 ": openAdditional }
           )}
         >
@@ -113,7 +113,7 @@ const ApplicantLabelButton: FC<ApplicantLabelButtonProps> = ({
       className={classNames(
         "py-1 px-4 rounded-full w-max",
         label.active
-          ? "text-[#2160FF] bg-[#E8EFFF]"
+          ? "text-primary bg-[#E8EFFF]"
           : "text-[#777777] bg-[#EFEFEF]"
       )}
       onClick={onLabelClick}

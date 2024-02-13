@@ -75,7 +75,7 @@ const ApplicantTimelineNode: FC<ApplicantTimelineNodeProps> = ({ postId }) => {
                       className={classNames(
                         "h-8 block",
                         timeline.includes(index + startIndex * seperate)
-                          ? "bg-[#2160FF]"
+                          ? "bg-primary"
                           : "bg-[#EFEFEF]"
                       )}
                     ></div>

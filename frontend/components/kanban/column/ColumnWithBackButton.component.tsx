@@ -53,7 +53,7 @@ const KanbanColumnDetailCard: FC<KanbanDetailCardProps> = ({
           <div className="flex justify-between">
             <div className="flex gap-2 items-center">
               <div className="font-bold text-lg">{cardTitle}</div>
-              <div className="flex justify-center items-center px-3 rounded-full bg-[#E8EFFF] text-xs text-[#2160FF] h-4">
+              <div className="flex justify-center items-center px-3 rounded-full bg-[#E8EFFF] text-xs text-primary h-4">
                 {cardCount}
               </div>
             </div>
