@@ -1,4 +1,3 @@
-import { FC } from "react";
 import Txt from "../Txt.component";
 
 export interface BoardCellProps {
@@ -8,12 +7,7 @@ export interface BoardCellProps {
   onClick?: () => void;
 }
 
-const BoardCell: FC<BoardCellProps> = ({
-  title,
-  subElements,
-  score,
-  onClick,
-}) => {
+const BoardCell = ({ title, subElements, score, onClick }: BoardCellProps) => {
   return (
     <button className="flex border-t py-4 justify-between" onClick={onClick}>
       <Txt typography="h6" className="flex-[2_0_0] text-left truncate">
