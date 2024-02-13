@@ -9,13 +9,13 @@ import { replacer } from "@/src/functions/replacer";
 import { validator } from "@/src/functions/validator";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 import classNames from "classnames";
-import { FC, useId, useState } from "react";
+import { useId, useState } from "react";
 
 interface ApplicationTextProps {
   data: ApplicationNode;
 }
 
-const ApplicationText: FC<ApplicationTextProps> = ({ data }) => {
+const ApplicationText = ({ data }: ApplicationTextProps) => {
   const textData = data as ApplicationText;
   const id = useId();
   const [value, setValue] = useLocalStorage(textData.name, "");

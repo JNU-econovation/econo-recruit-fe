@@ -1,11 +1,9 @@
 "use client";
 
 import useApplicationIndexControll from "@/src/hooks/useApplicationIndexControll.hook";
-import { FC } from "react";
 import { postApplication } from "../sendApplication";
 import { useAtomValue } from "jotai";
 import { applicationDataAtom } from "@/src/stores/application";
-import { applicantQuestionsAtom } from "@/src/stores/applicant";
 import { ApplicationQuestion } from "@/src/constants/application/type";
 import { localStorage } from "@/src/functions/localstorage";
 
@@ -16,12 +14,12 @@ interface ApplicationNextButtonProps {
   isLast?: boolean;
 }
 
-const ApplicationNextButton: FC<ApplicationNextButtonProps> = ({
+const ApplicationNextButton = ({
   canNext,
   beforeCheckCallback,
   applicationLength,
   isLast = false,
-}) => {
+}: ApplicationNextButtonProps) => {
   const { applicationIndex, goNextIndex, goPrevIndex } =
     useApplicationIndexControll();
   const nextButtonClassName =

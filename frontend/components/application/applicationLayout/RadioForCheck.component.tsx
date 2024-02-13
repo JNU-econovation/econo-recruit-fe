@@ -6,17 +6,16 @@ import {
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 import classNames from "classnames";
 import Link from "next/link";
-import { FC } from "react";
 
 interface RadioCellProps {
   applicationQuestion: ApplicationQuestion;
   radioForCheckData: ApplicationRadioForCheck;
 }
 
-const RadioCell: FC<RadioCellProps> = ({
+const RadioCell = ({
   applicationQuestion,
   radioForCheckData,
-}) => {
+}: RadioCellProps) => {
   const [radio, setRadio] = useLocalStorage<string>(
     radioForCheckData.name,
     "동의하지 않습니다."
@@ -82,9 +81,9 @@ interface ApplicationRadioForCheckProps {
   applicationQuestion: ApplicationQuestion;
 }
 
-const ApplicationRadioForCheckLayout: FC<ApplicationRadioForCheckProps> = ({
+const ApplicationRadioForCheckLayout = ({
   applicationQuestion,
-}) => {
+}: ApplicationRadioForCheckProps) => {
   return (
     <div className={classNames(applicationQuestion.id !== -1 ? "pr-12" : "")}>
       {applicationQuestion.id !== -1 && applicationQuestion.title && (

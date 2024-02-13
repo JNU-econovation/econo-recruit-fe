@@ -6,13 +6,12 @@ import {
   ApplicationTextarea,
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
-import { FC } from "react";
 
 interface ApplicationTexareaProps {
   data: ApplicationNode;
 }
 
-const ApplicationTexarea: FC<ApplicationTexareaProps> = ({ data }) => {
+const ApplicationTexarea = ({ data }: ApplicationTexareaProps) => {
   const textData = data as ApplicationTextarea;
   const [value, setValue] = useLocalStorage(textData.name, "");
 

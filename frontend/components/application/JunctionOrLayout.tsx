@@ -4,7 +4,6 @@ import {
 } from "@/src/constants/application/type";
 import { JunctionQuestion } from "./Junction.component";
 import { ApplicationLayout } from "./Layout.component";
-import { FC } from "react";
 
 const checkQuestion = (
   node: ApplicationQuestion | ApplicationNode
@@ -12,11 +11,12 @@ const checkQuestion = (
   return "id" in node;
 };
 
+// FIXME: 타입 오타 수정 바람 (Junctin -> Junction)
 interface JunctinOrLayoutProps {
   node: ApplicationQuestion | ApplicationNode;
 }
-
-export const JunctinOrLayout: FC<JunctinOrLayoutProps> = ({ node }) => {
+// FIXME: 컴포넌트 오타 수정 바람 (Junctin -> Junction)
+export const JunctinOrLayout = ({ node }: JunctinOrLayoutProps) => {
   return checkQuestion(node) ? (
     <ApplicationLayout applicationQuestion={node} />
   ) : (

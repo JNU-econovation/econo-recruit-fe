@@ -24,13 +24,12 @@ import {
   applicationNavbarAtom,
 } from "@/src/stores/application";
 import { useSetAtom } from "jotai";
-import { FC } from "react";
 
 interface ApplicationRadioProps {
   data: ApplicationNode;
 }
 
-const ApplicationRadio: FC<ApplicationRadioProps> = ({ data }) => {
+const ApplicationRadio = ({ data }: ApplicationRadioProps) => {
   const radioData = data as ApplicationRadio;
   const [value, setValue] = useLocalStorage<string>(radioData.name, "");
   const setApplicationDate = useSetAtom(applicationDataAtom);
