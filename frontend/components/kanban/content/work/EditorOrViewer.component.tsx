@@ -52,7 +52,7 @@ const WorkEditorOrViewer: FC<WorkEditorOrViewerProps> = ({
         <>
           <div className="my-4">
             <Editor
-              className="w-full my-4 border-[1px] rounded border-[#DBDBDB] p-3 text-sm"
+              className="w-full my-4 border-[1px] rounded border-secondary-100 p-3 text-sm"
               height="24rem"
               initialEditType="markdown"
               usageStatistics={false}

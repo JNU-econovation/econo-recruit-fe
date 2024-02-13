@@ -5,7 +5,7 @@ const ApplicantSearch = () => {
         <img src="/icons/search-icon.svg" alt="search" />
       </button>
       <input
-        className="p-2 color-[#B5B7C0] bg-transparent outline-none"
+        className="p-2 color-secondary-100 bg-transparent outline-none"
         type="text"
         placeholder="search"
       ></input>

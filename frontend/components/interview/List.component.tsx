@@ -16,7 +16,7 @@ const InterviewListComponent = () => {
     <div className="flex flex-col">
       {boardData.map((board, idx) => (
         <button
-          className="flex h-[calc(14vh-6.5rem)] min-h-[4.5rem] border-t-[1px] border-[#B9B9B9]"
+          className="flex h-[calc(14vh-6.5rem)] min-h-[4.5rem] border-t-[1px] border-secondary-100"
           onClick={onBoardClick}
           key={idx}
         >

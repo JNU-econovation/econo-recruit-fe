@@ -111,7 +111,7 @@ const ApplicationNextButton: FC<ApplicationNextButtonProps> = ({
         className={
           canNext
             ? nextButtonClassName + " bg-dark text-white"
-            : nextButtonClassName + " bg-light text-[#C8C8C8]"
+            : nextButtonClassName + " bg-light text-secondary-100"
         }
       >
         {isLast

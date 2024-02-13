@@ -20,7 +20,7 @@ const CommonNavbarCellComponent = ({
   isShort,
 }: CommonNavbarCellComponent) => {
   const linkButtonClassName =
-    "flex justify-between p-4 hover:bg-[#B9B9B9] hover:text-white rounded-lg";
+    "flex justify-between p-4 hover:bg-secondary-100 hover:text-white rounded-lg";
   return (
     <a
       className={
