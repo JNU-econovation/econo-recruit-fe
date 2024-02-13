@@ -7,11 +7,11 @@ import {
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 
-interface ApplicationTexareaProps {
+interface ApplicationTextareaProps {
   data: ApplicationNode;
 }
 
-const ApplicationTexarea = ({ data }: ApplicationTexareaProps) => {
+const ApplicationTexarea = ({ data }: ApplicationTextareaProps) => {
   const textData = data as ApplicationTextarea;
   const [value, setValue] = useLocalStorage(textData.name, "");
 
