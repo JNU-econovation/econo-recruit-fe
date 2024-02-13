@@ -12,6 +12,10 @@ module.exports = {
         error: "#DC0000",
         dark: "#303030",
         light: "#F0F0F0",
+        secondary: {
+          100: "#A7A7A7",
+          200: "#666666",
+        },
       },
     },
   },
