@@ -4,6 +4,7 @@ type InterviewScoreCellComponent = {
   item: [string, scoreDetail[]];
 };
 
+// TODO: remove postfix "Component"
 const InterviewScoreCellComponent = ({ item }: InterviewScoreCellComponent) => {
   return (
     <div className="flex items-center gap-9">

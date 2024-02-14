@@ -7,14 +7,14 @@ import {
 } from "@/src/apis/work/work";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
-import { FC, useState } from "react";
+import { useState } from "react";
 
 interface WorkLabelProps {
   cardId: number;
   generation: string;
 }
 
-const WorkLabel: FC<WorkLabelProps> = ({ cardId, generation }) => {
+const WorkLabel = ({ cardId, generation }: WorkLabelProps) => {
   const [openAdditional, setOpenAdditional] = useState(false);
 
   const { data, error, isLoading } = useQuery<WorkLabelReq[]>(
@@ -87,11 +87,11 @@ interface WorkLabelButtonProps {
   generation: string;
 }
 
-const WorkLabelButton: FC<WorkLabelButtonProps> = ({
+const WorkLabelButton = ({
   label,
   cardId,
   generation,
-}) => {
+}: WorkLabelButtonProps) => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(postWorkLabel, {

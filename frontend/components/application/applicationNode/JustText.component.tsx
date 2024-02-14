@@ -3,13 +3,12 @@ import {
   ApplicationJustText,
   ApplicationNode,
 } from "@/src/constants/application/type";
-import { FC } from "react";
 
 interface ApplicationJustTextProps {
   data: ApplicationNode;
 }
 
-const ApplicationJustText: FC<ApplicationJustTextProps> = ({ data }) => {
+const ApplicationJustText = ({ data }: ApplicationJustTextProps) => {
   const justTextData = data as ApplicationJustText;
 
   return (

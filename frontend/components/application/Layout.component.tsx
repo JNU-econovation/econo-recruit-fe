@@ -2,7 +2,6 @@
 
 import { ApplicationQuestion } from "@/src/constants/application/type";
 import dynamic from "next/dynamic";
-import { FC } from "react";
 
 const ApplicationHorizontalLayout = dynamic(
   () => import("./applicationLayout/Horizontal.componet"),
@@ -33,9 +32,9 @@ interface ApplicationLayoutProps {
   applicationQuestion: ApplicationQuestion;
 }
 
-export const ApplicationLayout: FC<ApplicationLayoutProps> = ({
+export const ApplicationLayout = ({
   applicationQuestion,
-}) => {
+}: ApplicationLayoutProps) => {
   const jsxNode = {
     horizontal: (
       <ApplicationHorizontalLayout applicationQuestion={applicationQuestion} />

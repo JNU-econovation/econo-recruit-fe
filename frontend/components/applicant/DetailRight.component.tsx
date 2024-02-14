@@ -1,8 +1,7 @@
 "use client";
 
 import { ApplicantReq } from "@/src/apis/applicant/applicant";
-import { APPLICANT } from "@/src/constants/applicant/26";
-import { FC, Fragment, useEffect } from "react";
+import { Fragment, useEffect } from "react";
 
 import Txt from "../common/Txt.component";
 import ApplicantTimelineNode from "./applicantNode/Timeline.component";
@@ -18,7 +17,7 @@ interface ApplicantDetailRightProps {
   data: ApplicantReq[];
 }
 
-const ApplicantDetailRight: FC<ApplicantDetailRightProps> = ({ data }) => {
+const ApplicantDetailRight = ({ data }: ApplicantDetailRightProps) => {
   const [applicantData, setApplicantData] = useAtom(applicantQuestionsAtom);
 
   useEffect(() => {
@@ -53,7 +52,7 @@ interface ApplicantDetailProps {
   data: ApplicantReq[];
 }
 
-const ApplicantDetail: FC<ApplicantDetailProps> = ({ applicantData, data }) => {
+const ApplicantDetail = ({ applicantData, data }: ApplicantDetailProps) => {
   return (
     <>
       {applicantData.map((node, index) => (

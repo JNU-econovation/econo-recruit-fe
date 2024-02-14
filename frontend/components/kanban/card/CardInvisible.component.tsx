@@ -1,15 +1,14 @@
 import { Draggable } from "@hello-pangea/dnd";
-import { FC } from "react";
 
-interface KanbanColumnInvisible {
+interface KanbanColumnInvisibleProps {
   columnIndex: number;
   index: number;
 }
 
-const KanbanColumnInvisible: FC<KanbanColumnInvisible> = ({
+const KanbanColumnInvisible = ({
   columnIndex,
   index,
-}) => {
+}: KanbanColumnInvisibleProps) => {
   return (
     <Draggable draggableId={`${columnIndex}-${index}`} index={columnIndex}>
       {(provided) => (

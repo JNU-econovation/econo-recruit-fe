@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Txt from "../common/Txt.component";
 import classNames from "classnames";
 import { useAtomValue } from "jotai";
@@ -14,10 +14,10 @@ interface ApplicationQuestionProps {
   applicationQuestions: ApplicationQuestion[];
 }
 
-const ApplicationQuestion: FC<ApplicationQuestionProps> = ({
+const ApplicationQuestion = ({
   className,
   applicationQuestions,
-}) => {
+}: ApplicationQuestionProps) => {
   const applicationIndex = useAtomValue(applicationIndexAtom);
   const [applicationQuestion, setApplicationQuestion] = useState(
     applicationQuestions[applicationIndex]

@@ -6,7 +6,6 @@ import SortListComponent from "@/components/common/SortList.component";
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
 import { getAllInterviewer } from "@/src/apis/interview/interviewer";
 import { useQuery } from "@tanstack/react-query";
-import { FC } from "react";
 
 interface AdminPageProps {
   params: {
@@ -24,10 +23,10 @@ const orderMenu = [
   { type: "name", string: "이름순" },
 ];
 
-const AdminPage: FC<AdminPageProps> = ({
+const AdminPage = ({
   params,
   searchParams: { type = "", order = "", page = "1" },
-}) => {
+}: AdminPageProps) => {
   const { generation } = params;
 
   const {

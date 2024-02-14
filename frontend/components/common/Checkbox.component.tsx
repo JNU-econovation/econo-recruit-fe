@@ -1,7 +1,7 @@
 "use client";
 
 import classNames from "classnames";
-import { ChangeEvent, FC, useId } from "react";
+import { ChangeEvent, useId } from "react";
 
 interface CheckboxProps {
   label: string;
@@ -15,7 +15,7 @@ interface CheckboxProps {
   className?: string;
 }
 
-export const Checkbox: FC<CheckboxProps> = ({
+export const Checkbox = ({
   label,
   name,
   value,
@@ -25,7 +25,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   isLast,
   onClick,
   className,
-}) => {
+}: CheckboxProps) => {
   const id = useId();
   return (
     <div
@@ -71,7 +71,7 @@ interface CheckboxGroupProps {
   onClick?: () => void;
 }
 
-const CheckboxGroup: FC<CheckboxGroupProps> = ({
+const CheckboxGroup = ({
   name,
   value,
   onChange,
@@ -80,7 +80,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
   splitNumber = 2,
   isSpaned = false,
   onClick,
-}) => (
+}: CheckboxGroupProps) => (
   <div
     className={`grid gap-2 grid-cols-${splitNumber} col-end-auto font-semibold`}
   >

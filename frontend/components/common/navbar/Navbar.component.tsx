@@ -1,7 +1,7 @@
 "use client";
 
 import { MainNavbar } from "@/src/constants";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CommonNavbarCellComponent from "./NavbarCell.component";
 import NavbarUserInfo from "./UserInfo.component";
 import { getMyInfo } from "@/src/apis/interview/interviewer";
@@ -12,10 +12,7 @@ interface CommonNavbarProps {
   isShort?: boolean;
 }
 
-const CommonNavbar: FC<CommonNavbarProps> = ({
-  generation,
-  isShort = false,
-}) => {
+const CommonNavbar = ({ generation, isShort = false }: CommonNavbarProps) => {
   const [currentPath, setCurrcurrentPath] = useState("");
 
   useEffect(() => {

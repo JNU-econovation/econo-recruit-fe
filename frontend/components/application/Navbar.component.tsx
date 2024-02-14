@@ -5,7 +5,6 @@ import {
   applicationNavbarAtom,
 } from "@/src/stores/application";
 import { useAtom, useAtomValue } from "jotai";
-import { FC } from "react";
 import classNames from "classnames";
 import Txt from "@/components/common/Txt.component";
 
@@ -14,10 +13,10 @@ interface ApplicationNavbarProps {
   className?: string;
 }
 
-const ApplicationNavbar: FC<ApplicationNavbarProps> = ({
+const ApplicationNavbar = ({
   generation,
   className,
-}) => {
+}: ApplicationNavbarProps) => {
   const [applicationIndex, setApplicationIndex] = useAtom(applicationIndexAtom);
   const applicationNavbar = useAtomValue(applicationNavbarAtom);
 

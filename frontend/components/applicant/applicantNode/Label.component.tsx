@@ -7,14 +7,14 @@ import {
 } from "@/src/apis/applicant/applicant";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
-import { FC, useState } from "react";
+import { useState } from "react";
 
 interface ApplicantLabelProps {
   postId: string;
   generation: string;
 }
 
-const ApplicantLabel: FC<ApplicantLabelProps> = ({ postId, generation }) => {
+const ApplicantLabel = ({ postId, generation }: ApplicantLabelProps) => {
   const [openAdditional, setOpenAdditional] = useState(false);
 
   const { data, error, isLoading } = useQuery<ApplicantLabelReq[]>(
@@ -87,11 +87,11 @@ interface ApplicantLabelButtonProps {
   generation: string;
 }
 
-const ApplicantLabelButton: FC<ApplicantLabelButtonProps> = ({
+const ApplicantLabelButton = ({
   label,
   postId,
   generation,
-}) => {
+}: ApplicantLabelButtonProps) => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(postApplicantLabel, {

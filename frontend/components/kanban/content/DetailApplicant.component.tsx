@@ -3,7 +3,6 @@
 import ApplicantDetailLeft from "@/components/applicant/DetailLeft.component";
 import ApplicantDetailRight from "@/components/applicant/DetailRight.component";
 import { getApplicantByIdWithField } from "@/src/apis/applicant/applicant";
-import { FC } from "react";
 import { APPLICANT_KEYS } from "@/src/constants/";
 import { useQuery } from "@tanstack/react-query";
 
@@ -12,10 +11,10 @@ interface KanbanDetailApplicantProps {
   generation: string;
 }
 
-const KanbanDetailApplicant: FC<KanbanDetailApplicantProps> = ({
+const KanbanDetailApplicant = ({
   detailId,
   generation,
-}) => {
+}: KanbanDetailApplicantProps) => {
   const { data, isLoading, isError } = useQuery(["applicant", detailId], () =>
     getApplicantByIdWithField(detailId, APPLICANT_KEYS)
   );

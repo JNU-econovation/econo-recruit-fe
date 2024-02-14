@@ -2,16 +2,15 @@
 
 import Txt from "@/components/common/Txt.component";
 import { ApplicationQuestion } from "@/src/constants/application/type";
-import { FC } from "react";
 import { JunctinOrLayout } from "../JunctionOrLayout";
 
 interface ApplicationHorizontalLayoutProps {
   applicationQuestion: ApplicationQuestion;
 }
 
-const ApplicationHorizontalLayout: FC<ApplicationHorizontalLayoutProps> = ({
+const ApplicationHorizontalLayout = ({
   applicationQuestion,
-}) => {
+}: ApplicationHorizontalLayoutProps) => {
   return (
     <div className="flex gap-6 pr-12">
       <div className="flex-1">

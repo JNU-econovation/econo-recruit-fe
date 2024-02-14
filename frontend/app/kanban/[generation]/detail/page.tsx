@@ -1,6 +1,5 @@
 "use client";
 
-import { FC } from "react";
 import KanbanColumnDetailCard from "@/components/kanban/column/ColumnWithBackButton.component";
 import KanbanDetailApplicant from "@/components/kanban/content/DetailApplicant.component";
 import Validate from "@/components/user/Validate.component";
@@ -26,12 +25,12 @@ interface DetailContentProps {
   cardId: string;
 }
 
-const DetailContentJunction: FC<DetailContentProps> = ({
+const DetailContentJunction = ({
   applicantId,
   generation,
   cardId,
   type,
-}) => {
+}: DetailContentProps) => {
   if (type === "APPLICANT") {
     return (
       <KanbanDetailApplicant
@@ -47,10 +46,10 @@ const DetailContentJunction: FC<DetailContentProps> = ({
   return <></>;
 };
 
-const KanbanBoardDetailPage: FC<KanbanBoardDetailPageProps> = ({
+const KanbanBoardDetailPage = ({
   params: { generation },
   searchParams: { columnIndex, applicantId, type, cardId },
-}) => {
+}: KanbanBoardDetailPageProps) => {
   return (
     <main className="flex mt-8 overflow-auto pt-12 pl-12">
       <Validate />
