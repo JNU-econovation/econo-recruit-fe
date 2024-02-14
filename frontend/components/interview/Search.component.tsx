@@ -1,10 +1,10 @@
-import SearchIcon from "/public/icons/search-icon.svg";
+import Icon from "../common/Icon";
 
 const InterviewSearchComponent = () => {
   return (
     <form className="flex items-center py-2 px-4 bg-[#F9FBFF] rounded-2xl gap-2">
       <button>
-        <img src={SearchIcon} alt="search" />
+        <Icon icon="search" />
       </button>
       <input
         className="p-2 color-[#B5B7C0] bg-transparent outline-none"

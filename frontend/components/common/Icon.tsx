@@ -14,68 +14,68 @@ import Search from "/public/icons/search-icon.svg";
 import { ComponentProps } from "react";
 
 interface IconProps extends ComponentProps<"img"> {
-  className: string;
+  className?: string;
   icon: keyof typeof icons;
 }
 
 const icons = {
   arrowForwardCircleFill: {
-    src: ArrowForwardCircleFill,
+    image: ArrowForwardCircleFill,
     alt: "allow forward circle fill icon",
   },
   bubbleRight: {
-    src: BubbleRight,
+    image: BubbleRight,
     alt: "bubble right icon",
   },
   chevronBackward: {
-    src: ChevronBackward,
+    image: ChevronBackward,
     alt: "chevron backward icon",
   },
   chevronDown: {
-    src: ChevronDown,
+    image: ChevronDown,
     alt: "chevron down icon",
   },
   ellipsisBubble: {
-    src: EllipsisBubble,
+    image: EllipsisBubble,
     alt: "ellipsis bubble icon",
   },
   ellipsisMultiply: {
-    src: EllipsisMultiply,
+    image: EllipsisMultiply,
     alt: "ellipsis multiply icon",
   },
   ellipsisPlus: {
-    src: EllipsisPlus,
+    image: EllipsisPlus,
     alt: "ellipsis plus icon",
   },
   ellipsisPlusBlue: {
-    src: EllipsisPlusBlue,
+    image: EllipsisPlusBlue,
     alt: "ellipsis plus blue icon",
   },
   faceSmiling: {
-    src: FaceSmiling,
+    image: FaceSmiling,
     alt: "face smiling icon",
   },
   faceSmilingFill: {
-    src: FaceSmilingFill,
+    image: FaceSmilingFill,
     alt: "face smiling fill icon",
   },
   heart: {
-    src: Heart,
+    image: Heart,
     alt: "heart icon",
   },
   heartPoint: {
-    src: HeartPoint,
+    image: HeartPoint,
     alt: "heart point icon",
   },
   search: {
-    src: Search,
+    image: Search,
     alt: "search icon",
   },
 } as const;
 
 const Icon = ({ className, icon, ...props }: IconProps) => {
-  const { src, alt } = icons[icon];
-  return <img src={src} alt={alt} {...props} className={className} />;
+  const { image, alt } = icons[icon];
+  return <img src={image.src} alt={alt} {...props} className={className} />;
 };
 
 export default Icon;
