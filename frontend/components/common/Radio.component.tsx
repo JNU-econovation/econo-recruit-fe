@@ -30,7 +30,7 @@ const Radio = ({
         className={classNames(
           "flex items-center justify-center w-full py-4 border rounded-md cursor-pointer",
           isCheck
-            ? "bg-[#303030] text-white border-black"
+            ? "bg-dark text-white border-black"
             : "border-gray-300 text-black bg-white",
           disabled && "bg-gray-200 text-gray-400 cursor-not-allowed"
         )}

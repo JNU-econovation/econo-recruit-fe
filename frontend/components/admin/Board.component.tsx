@@ -62,8 +62,8 @@ const InterViewerUpdateButton = ({
       className={classNames(
         "py-2 w-[6rem] rounded-md",
         user.role === role
-          ? "bg-[#CEDCFF] text-[#2160FF]"
-          : "bg-[#EDEDED] text-[#B5B5B5]"
+          ? "bg-primary-300 text-primary"
+          : "bg-light text-secondary-100"
       )}
     >
       {roleTranslater(role)}
@@ -98,12 +98,12 @@ const AdminBoard = () => {
         <div className="flex py-4 justify-between">
           <Txt
             typography="h6"
-            className="flex-[1_0_0] text-left text-[#B5B7C0]"
+            className="flex-[1_0_0] text-left text-secondary-100"
           >
             Member Name
           </Txt>
-          <Txt className="flex-[2_0_0] text-left text-[#B5B7C0]">기수</Txt>
-          <Txt className="w-[28.5rem] text-left text-[#B5B7C0]">Status</Txt>
+          <Txt className="flex-[2_0_0] text-left text-secondary-100">기수</Txt>
+          <Txt className="w-[28.5rem] text-left text-secondary-100">Status</Txt>
         </div>
       </div>
       {userData.map((user, index) => (

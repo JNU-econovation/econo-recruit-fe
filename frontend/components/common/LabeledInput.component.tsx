@@ -8,7 +8,7 @@ type LabeledInputProps = {
 
 const LabeledInput = ({ label, ...props }: LabeledInputProps) => (
   <div className="flex flex-col w-full gap-1 mt-8">
-    <label htmlFor={props.id} className="text-sm text-[#3c3c3c]">
+    <label htmlFor={props.id} className="text-sm text-dark">
       {label}
     </label>
     <input

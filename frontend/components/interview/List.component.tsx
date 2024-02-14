@@ -16,13 +16,13 @@ const InterviewListComponent = () => {
     <div className="flex flex-col">
       {boardData.map((board, idx) => (
         <button
-          className="flex h-[calc(14vh-6.5rem)] min-h-[4.5rem] border-t-[1px] border-[#B9B9B9]"
+          className="flex h-[calc(14vh-6.5rem)] min-h-[4.5rem] border-t-[1px] border-secondary-100"
           onClick={onBoardClick}
           key={idx}
         >
           <div className="flex w-full h-full items-center justify-between">
             <div className="font-semibold text-lg">{board.title}</div>
-            <div className="flex gap-24 text-[#8C8C8C]">
+            <div className="flex gap-24 text-secondary-200">
               <div className="flex gap-12">
                 {board.apply.map((a) => (
                   <div key={a}>{a}</div>

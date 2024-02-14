@@ -89,7 +89,7 @@ const ApplicationNextButton = ({
   return (
     <div className="flex gap-2 my-4">
       <button
-        className="flex-1 rounded-md flex justify-center items-center p-4 bg-[#EFEFEF]"
+        className="flex-1 rounded-md flex justify-center items-center p-4 bg-light"
         onClick={goPrevIndex}
       >
         이전
@@ -108,8 +108,8 @@ const ApplicationNextButton = ({
         disabled={!canNext}
         className={
           canNext
-            ? nextButtonClassName + " bg-[#303030] text-white"
-            : nextButtonClassName + " bg-[#EFEFEF] text-[#C8C8C8]"
+            ? nextButtonClassName + " bg-dark text-white"
+            : nextButtonClassName + " bg-light text-secondary-100"
         }
       >
         {isLast

@@ -69,7 +69,7 @@ const ApplicantCommentDetail = ({
   );
 
   return (
-    <div className="border-l-4 border-[#717171] pl-3">
+    <div className="border-l-4 border-secondary-200 pl-3">
       <div className="flex justify-between mb-4">
         <div className="flex gap-4 items-end">
           <div>{comment.interviewerName}</div>
@@ -86,7 +86,9 @@ const ApplicantCommentDetail = ({
             }
             alt="smile face"
           />
-          <span className="text-xs text-[#808080]">{comment.likeCount}</span>
+          <span className="text-xs text-secondary-200">
+            {comment.likeCount}
+          </span>
         </button>
       </div>
       <ApplicantCommentEditorOrViewer
@@ -96,9 +98,9 @@ const ApplicantCommentDetail = ({
         setIsEdit={setIsEdit}
       />
       {comment.canEdit && (
-        <div className="flex text-sm gap-2 text-[#666666] items-center">
+        <div className="flex text-sm gap-2 text-secondary-200 items-center">
           <button onClick={() => setIsEdit((prev) => !prev)}>수정</button>
-          <div className="border-x-[0.5px] h-4 !w-0 border-[#666666]"></div>
+          <div className="border-x-[0.5px] h-4 !w-0 border-secondary-200"></div>
           <CommentDeleteButton
             commentId={comment.id}
             cardId={cardId}

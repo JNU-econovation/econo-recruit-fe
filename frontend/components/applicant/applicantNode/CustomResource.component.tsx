@@ -13,7 +13,7 @@ const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
   return (
     <>
       <div className="flex flex-col gap-1 mb-2">
-        <Txt className="text-xl text-[#666] font-medium">
+        <Txt className="text-xl text-secondary-200 font-medium">
           {applicantDataFinder(data, "major")}
         </Txt>
         <Txt typography="h2">{`[${applicantDataFinder(

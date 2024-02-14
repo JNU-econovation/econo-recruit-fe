@@ -21,7 +21,7 @@ const WorkDetailRight = ({ data, cardId }: WorkDetailRightProps) => {
   return (
     <>
       <Txt typography="h2">내용</Txt>
-      <div className="flex text-sm gap-2 text-[#666666] items-center">
+      <div className="flex text-sm gap-2 text-secondary-200 items-center">
         <button onClick={() => setIsEdit((prev) => !prev)}>수정</button>
       </div>
       <WorkEditorOrViewer

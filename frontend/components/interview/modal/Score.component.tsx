@@ -15,7 +15,7 @@ const InterviewScoreComponent = ({ score }: InterviewScoreComponentProps) => {
   return (
     <div className="flex flex-col w-full my-10 items-end">
       <button onClick={() => setIsOpen((prev) => !prev)}>
-        <span className="text-sm text-[#A7A7A7] underline underline-offset-2">
+        <span className="text-sm text-secondary-100 underline underline-offset-2">
           {isOpen ? "접어 두기" : "상세 보기"}
         </span>
       </button>

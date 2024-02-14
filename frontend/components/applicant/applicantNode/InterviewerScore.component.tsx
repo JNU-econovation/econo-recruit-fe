@@ -14,6 +14,7 @@ interface ApplicantInterviewerScoreProps {
   postId: string;
 }
 
+
 const ApplicantInterviewerScore = ({
   postId,
 }: ApplicantInterviewerScoreProps) => {
@@ -77,7 +78,7 @@ const ApplicantInterviewerScore = ({
       {!isShow ? (
         <button
           onClick={onClick}
-          className="text-[#666666] text-sm my-4 underline-offset-2 underline"
+          className="text-secondary-200 text-sm my-4 underline-offset-2 underline"
         >
           면접관 점수 입력
         </button>
@@ -86,7 +87,7 @@ const ApplicantInterviewerScore = ({
           <div className="flex w-full justify-between items-start">
             <button
               onClick={onClick}
-              className="text-[#666666] text-sm my-4 underline-offset-2 underline"
+              className="text-secondary-200 text-sm my-4 underline-offset-2 underline"
             >
               면접관 점수 입력
             </button>
@@ -99,7 +100,7 @@ const ApplicantInterviewerScore = ({
               />
             </button>
           </div>
-          <div className="flex justify-between text-sm text-[#4F4F4F] mb-12 mt-4 px-4">
+          <div className="flex justify-between text-sm text-dark mb-12 mt-4 px-4">
             {INTERVIEW_SCORE_KEYWOARD.map((keyword) => (
               <div key={keyword.name} className="flex flex-col items-center">
                 <input
