@@ -6,9 +6,9 @@ import {
   ApplicationTimeline,
 } from "@/src/constants/application/type";
 import { dateSplicer } from "@/src/functions/date";
-import classNames from "classnames";
 import TimelineRow from "./TimelineRow.component";
 import { CURRENT_GENERATION } from "@/src/constants";
+import { cn } from "@/src/utils/cn";
 
 interface TimelineCellProps {
   startIndex: number;
@@ -60,7 +60,7 @@ const ApplicationTimelineLayout = ({
 
   return (
     <div
-      className={classNames("w-full", {
+      className={cn("w-full", {
         "pr-12": applicationQuestion.id !== -1,
       })}
     >

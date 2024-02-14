@@ -4,7 +4,7 @@ import {
   ApplicationRadioForCheck,
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 import Link from "next/link";
 
 interface RadioCellProps {
@@ -85,7 +85,7 @@ const ApplicationRadioForCheckLayout = ({
   applicationQuestion,
 }: ApplicationRadioForCheckProps) => {
   return (
-    <div className={classNames(applicationQuestion.id !== -1 ? "pr-12" : "")}>
+    <div className={cn({ "pr-12": applicationQuestion.id !== -1 })}>
       {applicationQuestion.id !== -1 && applicationQuestion.title && (
         <>
           <Txt typography="h6">{`${applicationQuestion.id}. `}</Txt>
