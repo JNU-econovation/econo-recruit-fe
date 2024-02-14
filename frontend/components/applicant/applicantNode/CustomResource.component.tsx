@@ -2,7 +2,6 @@ import Txt from "@/components/common/Txt.component";
 import { ApplicantReq } from "@/src/apis/applicant/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
 import Link from "next/link";
-import { FC } from "react";
 import ApplicantInterviewerScore from "./InterviewerScore.component";
 
 interface ApplicantResourceProps {
@@ -10,7 +9,7 @@ interface ApplicantResourceProps {
   postId: string;
 }
 
-const ApplicantResource: FC<ApplicantResourceProps> = ({ data, postId }) => {
+const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
   return (
     <>
       <div className="flex flex-col gap-1 mb-2">

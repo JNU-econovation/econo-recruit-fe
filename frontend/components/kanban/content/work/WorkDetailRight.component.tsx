@@ -3,7 +3,7 @@
 import Txt from "@/components/common/Txt.component";
 
 import dynamic from "next/dynamic";
-import { FC, useState } from "react";
+import { useState } from "react";
 
 const WorkEditorOrViewer = dynamic(
   () => import("@/components/kanban/content/work/EditorOrViewer.component"),
@@ -15,7 +15,7 @@ interface WorkDetailRightProps {
   cardId: number;
 }
 
-const WorkDetailRight: FC<WorkDetailRightProps> = ({ data, cardId }) => {
+const WorkDetailRight = ({ data, cardId }: WorkDetailRightProps) => {
   const [isEdit, setIsEdit] = useState(false);
 
   return (

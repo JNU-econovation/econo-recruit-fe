@@ -4,7 +4,6 @@ import ApplicantSearch from "@/components/applicant/Search.component";
 import ApplicantSortList from "@/components/applicant/SortList.component";
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
 import Validate from "@/components/user/Validate.component";
-import { FC } from "react";
 
 interface ApplicantPageProps {
   params: {
@@ -12,7 +11,7 @@ interface ApplicantPageProps {
   };
 }
 
-const ApplicantPage: FC<ApplicantPageProps> = ({ params }) => {
+const ApplicantPage = ({ params }: ApplicantPageProps) => {
   const { generation } = params;
   return (
     <div className="px-24 min-w-[1280px] flex p-12">

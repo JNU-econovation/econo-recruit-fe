@@ -7,7 +7,6 @@ import {
   ApplicationQuestion,
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
-import { FC } from "react";
 
 interface TextAreaProps {
   node: {
@@ -20,7 +19,7 @@ interface TextAreaProps {
   index: number;
 }
 
-const TextArea: FC<TextAreaProps> = ({ index, node }) => {
+const TextArea = ({ index, node }: TextAreaProps) => {
   const [textValue, setTextValue] = useLocalStorage(node.name, "");
 
   return (
@@ -51,9 +50,9 @@ interface ApplicationBooleanTextareaProps {
   applicationQuestion: ApplicationQuestion;
 }
 
-const ApplicationBooleanTextareaLayout: FC<ApplicationBooleanTextareaProps> = ({
+const ApplicationBooleanTextareaLayout = ({
   applicationQuestion,
-}) => {
+}: ApplicationBooleanTextareaProps) => {
   const booleanTextareaData = applicationQuestion
     .nodes[0] as ApplicationBooleanTextarea;
   const [selectedValue, setSelectedValue] = useLocalStorage(

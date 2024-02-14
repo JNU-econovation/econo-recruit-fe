@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import BoardCell from "./BoardCell.component";
 import Modal from "react-modal";
 import Image from "next/image";
@@ -14,18 +14,18 @@ interface BoardData {
   time?: Date;
 }
 
-interface BoardProps {
+interface BoardProps extends PropsWithChildren {
   onClick?: (id: string) => void;
   wapperClassname?: string;
   boardData: BoardData[];
 }
 
-const Board: FC<PropsWithChildren<BoardProps>> = ({
+const Board = ({
   children,
   onClick,
   wapperClassname,
   boardData,
-}) => {
+}: BoardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModel = (id: string) => {

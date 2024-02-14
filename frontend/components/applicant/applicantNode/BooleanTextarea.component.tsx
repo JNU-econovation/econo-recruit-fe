@@ -1,17 +1,16 @@
 import Txt from "@/components/common/Txt.component";
 import { ApplicantReq } from "@/src/apis/applicant/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
-import { FC } from "react";
 
 interface ApplicantBooleanTextareaProps {
   nodeData: ApplicantNode;
   data: ApplicantReq[];
 }
 
-const ApplicantBooleanTextarea: FC<ApplicantBooleanTextareaProps> = ({
+const ApplicantBooleanTextarea = ({
   nodeData,
   data,
-}) => {
+}: ApplicantBooleanTextareaProps) => {
   const booleantextareaData = nodeData as ApplicantBooleanTextareaNode;
   const selectedValue = applicantDataFinder(
     data,

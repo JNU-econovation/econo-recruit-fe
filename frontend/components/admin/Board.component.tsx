@@ -9,7 +9,6 @@ import {
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Txt from "../common/Txt.component";
 import classNames from "classnames";
-import { FC } from "react";
 
 const roleKeys: (keyof typeof roleMap)[] = [
   "ROLE_OPERATION",
@@ -39,10 +38,10 @@ interface InterViewerUpdateButtonProps {
   user: InterviewerReq;
 }
 
-const InterViewerUpdateButton: FC<InterViewerUpdateButtonProps> = ({
+const InterViewerUpdateButton = ({
   role,
   user,
-}) => {
+}: InterViewerUpdateButtonProps) => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(

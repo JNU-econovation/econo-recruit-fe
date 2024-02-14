@@ -4,7 +4,6 @@ import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import { KanbanColumnData } from "@/src/stores/kanban/Kanban.atoms";
 import KanbanAddColumnComponent from "./column/AddColumn.component";
 import { useQuery } from "@tanstack/react-query";
-import { FC } from "react";
 import { getAllKanbanData } from "@/src/apis/kanban/kanban";
 import KanbanColumnComponent from "./column/Column.component";
 import { useAtom, useAtomValue } from "jotai";
@@ -50,9 +49,9 @@ interface KanbanBoardDragDropProps {
   generation: string;
 }
 
-const KanbanBoardDragDropComponent: FC<KanbanBoardDragDropProps> = ({
+const KanbanBoardDragDropComponent = ({
   generation,
-}) => {
+}: KanbanBoardDragDropProps) => {
   const [navbarId] = useAtom(KanbanSelectedButtonNumberState);
   const { onDragEnd } = useDragDrop();
 

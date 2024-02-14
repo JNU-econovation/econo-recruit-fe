@@ -8,15 +8,16 @@ import {
 import { replacer } from "@/src/functions/replacer";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 
 interface ApplicantInterviewerScoreProps {
   postId: string;
 }
 
-const ApplicantInterviewerScore: FC<ApplicantInterviewerScoreProps> = ({
+
+const ApplicantInterviewerScore = ({
   postId,
-}) => {
+}: ApplicantInterviewerScoreProps) => {
   const [isShow, setIsShow] = useState(false);
   const [scores, setScores] = useState<Scores>({
     실천력: "",

@@ -2,9 +2,12 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
-import { FC, PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 
-const Providers: FC<PropsWithChildren> = ({ children }) => {
+// TODO: DECLARE HOW?
+interface ProvidersProps extends PropsWithChildren {}
+
+const Providers = ({ children }: ProvidersProps) => {
   const [client] = useState(() => new QueryClient());
 
   return (

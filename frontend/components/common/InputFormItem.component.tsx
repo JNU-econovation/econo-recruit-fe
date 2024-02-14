@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, FC, useId } from "react";
+import { ComponentPropsWithoutRef, useId } from "react";
 
 type InputProps = ComponentPropsWithoutRef<"input">;
 
@@ -36,7 +36,7 @@ interface InputFormItemProps extends InputProps {
  * wrongMessage="이메일 형식이 잘못되었습니다."
  * />
  */
-const InputFormItem: FC<InputFormItemProps> = ({
+const InputFormItem = ({
   label = "",
   type,
   placeholder = "",
@@ -45,7 +45,7 @@ const InputFormItem: FC<InputFormItemProps> = ({
   isWrong,
   wrongMessage,
   ...inputProps
-}) => {
+}: InputFormItemProps) => {
   const uid = useId();
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ApplicantCommentEditorOrViewer from "./EditorOrViewer.component";
 import { deleteComment } from "../../../../src/apis/comment/comment";
@@ -12,11 +12,11 @@ interface CommentDeleteButtonProps {
   generation: string;
 }
 
-const CommentDeleteButton: FC<CommentDeleteButtonProps> = ({
+const CommentDeleteButton = ({
   commentId,
   cardId,
   generation,
-}) => {
+}: CommentDeleteButtonProps) => {
   const queryClient = useQueryClient();
 
   const { mutate: onDelete } = useMutation(() => deleteComment(commentId), {
@@ -43,17 +43,17 @@ interface ApplicantCommentReq {
   canEdit: boolean;
 }
 
-type ApplicantCommentDetailProps = {
+interface ApplicantCommentDetailProps {
   comment: ApplicantCommentReq;
   cardId: number;
   generation: string;
-};
+}
 
-const ApplicantCommentDetail: FC<ApplicantCommentDetailProps> = ({
+const ApplicantCommentDetail = ({
   comment,
   generation,
   cardId,
-}) => {
+}: ApplicantCommentDetailProps) => {
   const queryClient = useQueryClient();
   const [isEdit, setIsEdit] = useState(false);
 

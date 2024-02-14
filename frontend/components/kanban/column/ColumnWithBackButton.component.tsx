@@ -2,7 +2,6 @@
 
 import { KanbanColumnData } from "@/src/stores/kanban/Kanban.atoms";
 import { useAtom } from "jotai";
-import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllKanbanData } from "@/src/apis/kanban/kanban";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
@@ -16,12 +15,12 @@ interface KanbanDetailCardProps {
   applicantId: string;
 }
 
-const KanbanColumnDetailCard: FC<KanbanDetailCardProps> = ({
+const KanbanColumnDetailCard = ({
   columnIndex,
   generation,
   cardId,
   applicantId,
-}) => {
+}: KanbanDetailCardProps) => {
   const [navbarId] = useAtom(KanbanSelectedButtonNumberState);
 
   const {
