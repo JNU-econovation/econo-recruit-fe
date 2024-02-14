@@ -11,55 +11,71 @@ import FaceSmilingFill from "/public/icons/face.smiling.fill.svg";
 import Heart from "/public/icons/heart.svg";
 import HeartPoint from "/public/icons/heart.point.svg";
 import Search from "/public/icons/search-icon.svg";
+import { ComponentProps } from "react";
 
-interface IconProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface IconProps extends ComponentProps<"img"> {
   className: string;
-  icon: string; // TODO: need to change specific type
+  icon: keyof typeof icons;
 }
 
 const icons = {
   arrowForwardCircleFill: {
     src: ArrowForwardCircleFill,
+    alt: "allow forward circle fill icon",
   },
   bubbleRight: {
     src: BubbleRight,
+    alt: "bubble right icon",
   },
   chevronBackward: {
     src: ChevronBackward,
+    alt: "chevron backward icon",
   },
   chevronDown: {
     src: ChevronDown,
+    alt: "chevron down icon",
   },
   ellipsisBubble: {
     src: EllipsisBubble,
+    alt: "ellipsis bubble icon",
   },
   ellipsisMultiply: {
     src: EllipsisMultiply,
+    alt: "ellipsis multiply icon",
   },
   ellipsisPlus: {
     src: EllipsisPlus,
+    alt: "ellipsis plus icon",
   },
   ellipsisPlusBlue: {
     src: EllipsisPlusBlue,
+    alt: "ellipsis plus blue icon",
   },
   faceSmiling: {
     src: FaceSmiling,
+    alt: "face smiling icon",
   },
   faceSmilingFill: {
     src: FaceSmilingFill,
+    alt: "face smiling fill icon",
   },
   heart: {
     src: Heart,
+    alt: "heart icon",
   },
   heartPoint: {
     src: HeartPoint,
+    alt: "heart point icon",
   },
   search: {
     src: Search,
+    alt: "search icon",
   },
-};
+} as const;
+
 const Icon = ({ className, icon, ...props }: IconProps) => {
-  return <img />;
+  const { src, alt } = icons[icon];
+  return <img src={src} alt={alt} {...props} className={className} />;
 };
 
 export default Icon;
