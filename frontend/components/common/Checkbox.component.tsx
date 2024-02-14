@@ -1,7 +1,7 @@
 "use client";
 
-import classNames from "classnames";
 import { ChangeEvent, useId } from "react";
+import { cn } from "@/src/utils/cn";
 
 interface CheckboxProps {
   label: string;
@@ -28,17 +28,16 @@ export const Checkbox = ({
 }: CheckboxProps) => {
   const id = useId();
   return (
-    <div
-      className={classNames(isLast && "col-start-1 col-end-[-1]", className)}
-    >
+    <div className={cn(isLast && "col-start-1 col-end-[-1]", className)}>
       <label
         htmlFor={id}
-        className={classNames(
+        className={cn(
           "flex items-center justify-center w-full py-4 border rounded-md cursor-pointer",
-          checked
-            ? "bg-dark text-white border-black"
-            : "border-gray-300 text-black bg-white",
-          disabled && "bg-gray-200 text-gray-400 cursor-not-allowed"
+          {
+            "bg-dark text-white border-black": checked,
+            "text-black bg-white border-gray-300": !checked,
+          },
+          { "bg-gray-200 text-gray-400 cursor-not-allowed": disabled }
         )}
         onClick={() => {
           if (typeof onClick === "function") onClick();
