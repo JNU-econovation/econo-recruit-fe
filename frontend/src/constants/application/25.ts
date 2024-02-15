@@ -39,7 +39,7 @@ export const APPLICATION: ApplicationQuestion[] = [
   },
   {
     id: 2,
-    title: "기본 인적 사항을 입력해주세요.",
+    title: "학적 상태를 입력해주세요.",
     direction: "vertical",
     require: false,
     nodes: [
@@ -89,7 +89,7 @@ export const APPLICATION: ApplicationQuestion[] = [
   },
   {
     id: 3,
-    title: "기본 인적 사항을 입력해주세요.",
+    title: "학적 상태를 입력해주세요.",
     subtitle: "복수 전공과 부전공은 선택 입력사항입니다.",
     direction: "vertical",
     require: false,
