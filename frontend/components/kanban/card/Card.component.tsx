@@ -41,7 +41,8 @@ function KanbanCardComponent({
   };
 
   const isSelected =
-    (applicantId !== "" && dataApplicantId == applicantId) || `${id}` == cardId;
+    (applicantId && dataApplicantId === applicantId) ||
+    id.toString() === cardId;
 
   return (
     <div
