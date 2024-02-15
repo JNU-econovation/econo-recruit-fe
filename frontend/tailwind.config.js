@@ -14,7 +14,7 @@ module.exports = {
           300: "#A6BFFF",
           400: "#7AA0FF",
           500: "#2160FF",
-          DEFAULT: colors.primary[500],
+          DEFAULT: "#2160FF",
         },
         error: "#DC0000",
         dark: "#303030",
@@ -22,7 +22,7 @@ module.exports = {
         secondary: {
           100: "#A7A7A7",
           200: "#666666",
-          DEFAULT: colors.secondary[200],
+          DEFAULT: "#666666",
         },
       },
     },
