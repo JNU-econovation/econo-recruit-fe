@@ -111,7 +111,7 @@ const ApplicantLabelButton = ({
     <button
       key={label.name}
       className={cn("py-1 px-4 rounded-full w-max", {
-        "bg-[#2160FF] text-white": label.active,
+        "bg-primary-200 text-primary": label.active,
         "bg-primary-200 text-primary-500": !label.active,
       })}
       onClick={onLabelClick}

@@ -40,14 +40,17 @@ function KanbanCardComponent({
     );
   };
 
+  const isSelected =
+    (applicantId !== "" && dataApplicantId == applicantId) || `${id}` == cardId;
+
   return (
     <div
       className={cn(
-        "border-[1px] w-[14.9rem] p-3 rounded-lg drop-shadow-md bg-white hover:border-primary-400",
-        (applicantId !== "" && dataApplicantId == applicantId) ||
-          `${id}` == cardId
-          ? "border-primary"
-          : "border-light"
+        "border-[1px] w-[14.9rem] p-3 rounded-lg drop-shadow-md bg-white hover:border-[#7AA0FF]",
+        {
+          "border-primary": isSelected,
+          "border-light": !isSelected,
+        }
       )}
       onClick={onClickDetail}
     >

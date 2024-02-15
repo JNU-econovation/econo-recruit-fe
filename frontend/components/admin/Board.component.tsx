@@ -59,8 +59,8 @@ const InterViewerUpdateButton = ({
         mutate();
       }}
       className={cn("py-2 w-[6rem] rounded-md", {
-        "bg-[#CEDCFF] text-[#2160FF]": user.role === role,
-        "bg-[#EDEDED] text-[#B5B5B5]": user.role !== role,
+        "bg-primary-300 text-primary": user.role === role,
+        "bg-light text-secondary-100": user.role !== role,
       })}
     >
       {roleTranslater(role)}

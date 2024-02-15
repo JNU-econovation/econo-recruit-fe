@@ -35,7 +35,7 @@ export const Checkbox = ({
           "flex items-center justify-center w-full py-4 border rounded-md cursor-pointer",
           {
             "bg-dark text-white border-black": checked,
-            "text-black bg-white border-gray-300": !checked,
+            "bg-white text-black border-gray-300": !checked,
           },
           { "bg-gray-200 text-gray-400 cursor-not-allowed": disabled }
         )}
