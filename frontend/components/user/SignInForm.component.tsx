@@ -56,7 +56,7 @@ const SignInForm = ({ onSubmit, data, setForm }: SignInProps) => {
   return (
     <form className="flex flex-col gap-4 w-[40rem]" onSubmit={onSubmitPrevent}>
       <InputFormItem
-        placeholder={"example@econovarion.kr"}
+        placeholder={"example@econovation.kr"}
         type="text"
         value={email}
         onChange={(e) => setForm({ name: "email", value: e.target.value })}
