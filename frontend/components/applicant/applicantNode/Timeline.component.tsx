@@ -70,14 +70,12 @@ const ApplicantTimelineNode = ({ postId }: ApplicantTimelineNodeProps) => {
                     .length !==
                     index + 1 && (
                     <div
-                      className={cn("h-8 block", {
-                        "bg-primary": timeline.includes(
-                          index + startIndex * seperate
-                        ),
-                        "bg-light": !timeline.includes(
-                          index + startIndex * seperate
-                        ),
-                      })}
+                      className={cn(
+                        "h-8 block",
+                        timeline.includes(index + startIndex * seperate)
+                          ? "bg-primary"
+                          : "bg-light"
+                      )}
                     ></div>
                   )}
                 </span>

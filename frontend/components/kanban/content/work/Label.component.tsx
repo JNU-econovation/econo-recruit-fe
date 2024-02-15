@@ -110,10 +110,12 @@ const WorkLabelButton = ({
   return (
     <button
       key={label.name}
-      className={cn("py-1 px-4 rounded-full w-max", {
-        "text-primary bg-primary-200": label.active,
-        "text-secondary-200 bg-light": !label.active,
-      })}
+      className={cn(
+        "py-1 px-4 rounded-full w-max",
+        label.active
+          ? "text-primary bg-primary-200"
+          : "text-secondary-200 bg-light"
+      )}
       onClick={onLabelClick}
     >
       {label.name}

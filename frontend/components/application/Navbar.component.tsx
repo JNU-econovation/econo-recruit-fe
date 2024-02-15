@@ -33,22 +33,18 @@ const ApplicationNavbar = ({
             <div
               className={cn(
                 "absolute border-l-2 h-full -left-[13px] top-8 -z-10",
-                {
-                  "border-black": applicationIndex > navItem.id - 1,
-                  "border-gray-300": applicationIndex <= navItem.id - 1,
-                }
+                applicationIndex > navItem.id - 1
+                  ? "border-black"
+                  : "border-gray-300"
               )}
             ></div>
           )}
           <Txt
             className={cn(
               "relative transition-all before:h-2 before:w-2 before:rounded-full before:absolute before:translate-y-full before:-translate-x-8",
-              {
-                "before:bg-black text-black":
-                  applicationIndex >= navItem.id - 1,
-                "before:bg-gray-300 text-gray-300":
-                  applicationIndex < navItem.id - 1,
-              }
+              applicationIndex >= navItem.id - 1
+                ? "before:bg-black text-black"
+                : "before:bg-gray-300 text-gray-300"
             )}
           >
             {navItem.title}

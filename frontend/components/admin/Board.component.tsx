@@ -58,10 +58,12 @@ const InterViewerUpdateButton = ({
       onClick={() => {
         mutate();
       }}
-      className={cn("py-2 w-[6rem] rounded-md", {
-        "bg-primary-300 text-primary": user.role === role,
-        "bg-light text-secondary-100": user.role !== role,
-      })}
+      className={cn(
+        "py-2 w-[6rem] rounded-md",
+        user.role === role
+          ? "bg-primary-300 text-primary"
+          : "bg-light text-secondary-100"
+      )}
     >
       {roleTranslater(role)}
     </button>

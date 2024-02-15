@@ -47,10 +47,7 @@ function KanbanCardComponent({
     <div
       className={cn(
         "border-[1px] w-[14.9rem] p-3 rounded-lg drop-shadow-md bg-white hover:border-primary-400",
-        {
-          "border-primary": isSelected,
-          "border-light": !isSelected,
-        }
+        isSelected ? "border-primary" : "border-light"
       )}
       onClick={onClickDetail}
     >

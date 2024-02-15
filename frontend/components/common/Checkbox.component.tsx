@@ -28,15 +28,14 @@ export const Checkbox = ({
 }: CheckboxProps) => {
   const id = useId();
   return (
-    <div className={cn(isLast && "col-start-1 col-end-[-1]", className)}>
+    <div className={cn({ "col-start-1 col-end-[-1]": isLast }, className)}>
       <label
         htmlFor={id}
         className={cn(
           "flex items-center justify-center w-full py-4 border rounded-md cursor-pointer",
-          {
-            "bg-dark text-white border-black": checked,
-            "bg-white text-black border-gray-300": !checked,
-          },
+          checked
+            ? "bg-dark text-white border-black"
+            : "bg-white text-black border-gray-300",
           { "bg-gray-200 text-gray-400 cursor-not-allowed": disabled }
         )}
         onClick={() => {

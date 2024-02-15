@@ -8,6 +8,7 @@ import {
 import { replacer } from "@/src/functions/replacer";
 import { validator } from "@/src/functions/validator";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
+import { cn } from "@/src/utils/cn";
 import { useId, useState } from "react";
 
 interface ApplicationTextProps {

@@ -29,10 +29,9 @@ const Radio = ({
         htmlFor={id}
         className={cn(
           "flex items-center justify-center w-full py-4 border rounded-md cursor-pointer",
-          {
-            "bg-dark text-white border-black": isCheck,
-            "border-gray-300 text-black bg-white": !isCheck,
-          },
+          isCheck
+            ? "bg-dark text-white border-black"
+            : "border-gray-300 text-black bg-white",
           { "bg-gray-200 text-gray-400 cursor-not-allowed": disabled }
         )}
         onClick={() => {
