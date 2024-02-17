@@ -1,5 +1,5 @@
 import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 import { useParams, useRouter } from "next/navigation";
 
 type KanbanCardComponentType = {
@@ -40,14 +40,15 @@ function KanbanCardComponent({
     );
   };
 
+  const isSelected =
+    (applicantId && dataApplicantId === applicantId) ||
+    id.toString() === cardId;
+
   return (
     <div
-      className={classNames(
+      className={cn(
         "border-[1px] w-[14.9rem] p-3 rounded-lg drop-shadow-md bg-white hover:border-primary-400",
-        (applicantId !== "" && dataApplicantId == applicantId) ||
-          `${id}` == cardId
-          ? "border-primary"
-          : "border-light"
+        isSelected ? "border-primary" : "border-light"
       )}
       onClick={onClickDetail}
     >

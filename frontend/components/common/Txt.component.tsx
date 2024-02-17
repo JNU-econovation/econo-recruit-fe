@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 
 const typographyType = {
   head: "text-6xl",
@@ -33,9 +33,10 @@ const Txt = ({
   className,
 }: TxtProps) => (
   <span
-    className={classNames(
-      colorType[color],
-      typographyType[typography],
+    className={cn(
+      "text-black text-base",
+      { [colorType[color]]: color !== "black" },
+      { [typographyType[typography]]: typography !== "p" },
       className
     )}
   >
