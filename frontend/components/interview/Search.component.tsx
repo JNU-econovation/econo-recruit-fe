@@ -1,6 +1,6 @@
 import Icon from "../common/Icon";
 
-const InterviewSearchComponent = () => {
+const InterviewSearch = () => {
   return (
     <form className="flex items-center py-2 px-4 bg-primary-100 rounded-2xl gap-2">
       <button>
@@ -14,4 +14,4 @@ const InterviewSearchComponent = () => {
     </form>
   );
 };
-export default InterviewSearchComponent;
+export default InterviewSearch;
