@@ -1,4 +1,4 @@
-interface BaseApplicantNode {
+interface ApplicantNodeBase {
   id: number;
   title: string;
 }
@@ -8,13 +8,13 @@ interface ApplicantValue {
   title?: string;
 }
 
-interface ApplicantCustomFieldNode extends BaseApplicantNode {
+interface ApplicantCustomFieldNode extends ApplicantNodeBase {
   type: "customField";
   value: ApplicantValue;
   subValue: ApplicantValue[];
 }
 
-interface ApplicantCustomHumanNode extends BaseApplicantNode {
+interface ApplicantCustomHumanNode extends ApplicantNodeBase {
   type: "customHuman";
   value: {
     hunamName: ApplicantValue;
@@ -24,24 +24,24 @@ interface ApplicantCustomHumanNode extends BaseApplicantNode {
   };
 }
 
-interface ApplicantShortSplitNode extends BaseApplicantNode {
+interface ApplicantShortSplitNode extends ApplicantNodeBase {
   type: "shortSplit";
   value: ApplicantValue[];
 }
 
-interface ApplicantTextareaNode extends BaseApplicantNode {
+interface ApplicantTextareaNode extends ApplicantNodeBase {
   type: "textarea";
   value: ApplicantValue;
 }
 
-interface ApplicantBooleanTextareaNode extends BaseApplicantNode {
+interface ApplicantBooleanTextareaNode extends ApplicantNodeBase {
   type: "booleanTextarea";
   subtitle: string[];
   booleanValue: ApplicantValue;
   value: ApplicantValue;
 }
 
-interface ApplicantTimelineNode extends BaseApplicantNode {
+interface ApplicantTimelineNode extends ApplicantNodeBase {
   type: "timeline";
   name: string;
 }
