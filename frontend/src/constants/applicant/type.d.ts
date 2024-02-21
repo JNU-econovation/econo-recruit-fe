@@ -1,15 +1,7 @@
-type ApplicantNodeType =
-  | "customField"
-  | "customHuman"
-  | "shortSplit"
-  | "textarea"
-  | "booleanTextarea"
-  | "timeline";
-
-interface ApplicantNode {
-  type: ApplicantNodeType;
-  title: string;
+interface ApplicantNodeBase {
   id: number;
+  title: string;
+  type: string;
 }
 
 interface ApplicantValue {
@@ -17,13 +9,13 @@ interface ApplicantValue {
   title?: string;
 }
 
-interface ApplicantCustomFieldNode extends ApplicantNode {
+interface ApplicantCustomFieldNode extends ApplicantNodeBase {
   type: "customField";
   value: ApplicantValue;
   subValue: ApplicantValue[];
 }
 
-interface ApplicantCustomHumanNode extends ApplicantNode {
+interface ApplicantCustomHumanNode extends ApplicantNodeBase {
   type: "customHuman";
   value: {
     hunamName: ApplicantValue;
@@ -33,24 +25,32 @@ interface ApplicantCustomHumanNode extends ApplicantNode {
   };
 }
 
-interface ApplicantShortSplitNode extends ApplicantNode {
+interface ApplicantShortSplitNode extends ApplicantNodeBase {
   type: "shortSplit";
   value: ApplicantValue[];
 }
 
-interface ApplicantTextareaNode extends ApplicantNode {
+interface ApplicantTextareaNode extends ApplicantNodeBase {
   type: "textarea";
   value: ApplicantValue;
 }
 
-interface ApplicantBooleanTextareaNode extends ApplicantNode {
+interface ApplicantBooleanTextareaNode extends ApplicantNodeBase {
   type: "booleanTextarea";
   subtitle: string[];
   booleanValue: ApplicantValue;
   value: ApplicantValue;
 }
 
-interface ApplicantTimelineNode extends ApplicantNode {
+interface ApplicantTimelineNode extends ApplicantNodeBase {
   type: "timeline";
   name: string;
 }
+
+type ApplicantNode =
+  | ApplicantCustomFieldNode
+  | ApplicantCustomHumanNode
+  | ApplicantShortSplitNode
+  | ApplicantTextareaNode
+  | ApplicantBooleanTextareaNode
+  | ApplicantTimelineNode;

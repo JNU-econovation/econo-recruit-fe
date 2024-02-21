@@ -4,7 +4,7 @@ import RadioGroup from "@/components/common/Radio.component";
 import Txt from "@/components/common/Txt.component";
 import {
   ApplicationNode,
-  ApplicationRadioByTwoRank,
+  type ApplicationRadioByTwoRank,
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 

@@ -1,6 +1,6 @@
 import Txt from "@/components/common/Txt.component";
 import {
-  ApplicationJustText,
+  ApplicationJustText as ApplicationJustTextType,
   ApplicationNode,
 } from "@/src/constants/application/type";
 
@@ -9,7 +9,7 @@ interface ApplicationJustTextProps {
 }
 
 const ApplicationJustText = ({ data }: ApplicationJustTextProps) => {
-  const justTextData = data as ApplicationJustText;
+  const justTextData = data as ApplicationJustTextType;
 
   return (
     <>

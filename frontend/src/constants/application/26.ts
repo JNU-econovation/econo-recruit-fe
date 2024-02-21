@@ -1,13 +1,6 @@
-import {
-  ApplicationCheckboxWithEtcType,
-  ApplicationQuestion,
-  ApplicationRadio,
-  ApplicationRadioByTwoRank,
-  ApplicationText,
-  ApplicationTimeline,
-} from "./type";
+import type { ApplicationQuestion, ApplicationTimeline } from "./type";
 
-export const APPLICATION = [
+export const APPLICATION: ApplicationQuestion[] = [
   {
     id: 1,
     title: "프로젝트 희망 분야를 선택해주세요.",
@@ -20,10 +13,11 @@ export const APPLICATION = [
         name: "field",
         require: true,
         value: ["개발자", "디자이너", "기획자"],
-      } as ApplicationRadio,
+      },
       {
         type: "radioByTwoRank",
         require: true,
+        name: "",
         subNodes: [
           {
             splitNumber: 3,
@@ -40,7 +34,7 @@ export const APPLICATION = [
             value: ["APP", "WEB", "GAME", "AI", "선택없음"],
           },
         ],
-      } as ApplicationRadioByTwoRank,
+      },
     ],
   },
   {
@@ -56,7 +50,7 @@ export const APPLICATION = [
         maxLength: 5,
         require: true,
         errorMessages: "이름을 입력해주세요.",
-      } as ApplicationText,
+      },
       {
         type: "text",
         name: "contacted",
@@ -68,7 +62,7 @@ export const APPLICATION = [
         validate: "cellPhoneNumber",
         errorMessages: "연락처를 입력해주세요.",
         maxLength: 13,
-      } as ApplicationText,
+      },
       {
         type: "text",
         name: "classOf",
@@ -79,7 +73,7 @@ export const APPLICATION = [
         validate: "undergradeNumber",
         maxLength: 6,
         errorMessages: "학번을 입력해주세요.",
-      } as ApplicationText,
+      },
       {
         type: "text",
         name: "registered",
@@ -87,10 +81,11 @@ export const APPLICATION = [
         subtitle: "'휴학'일 경우 복학 예정 시기를 기재해 주세요.",
         require: true,
         errorMessages: "학적상태를 입력해주세요.",
-      } as ApplicationText,
+      },
       {
         type: "radioByTwoRank",
         title: "학년 및 학기",
+        name: "",
         require: true,
         subtitle: "'휴학'일 경우 휴학 직전 학기를 선택해 주세요.",
         subNodes: [
@@ -107,7 +102,7 @@ export const APPLICATION = [
             value: ["1학기", "2학기"],
           },
         ],
-      } as ApplicationRadioByTwoRank,
+      },
     ],
   },
   {
@@ -123,19 +118,19 @@ export const APPLICATION = [
         title: "전공",
         require: true,
         errorMessages: "전공을 입력해주세요.",
-      } as ApplicationText,
+      },
       {
         type: "text",
         name: "doubleMajor",
         title: "복수전공",
         require: false,
-      } as ApplicationText,
+      },
       {
         type: "text",
         name: "minor",
         title: "부전공",
         require: false,
-      } as ApplicationText,
+      },
     ],
   },
   {
@@ -152,7 +147,7 @@ export const APPLICATION = [
           "학업 외에 병행하고 있거나 향후 계획 중에 있는 활동이 있으시다면 서술해 주세요.",
         subtitle:
           "(동아리, 연구실, 아르바이트, 스터디, 교환학생 등), 없을 경우, 없음으로 기재해 주세요.",
-      } as ApplicationText,
+      },
       {
         name: "channel",
         require: true,
@@ -167,10 +162,10 @@ export const APPLICATION = [
           "에브리타임",
         ],
         errorMessages: "지원 경로를 선택해주세요.",
-      } as ApplicationCheckboxWithEtcType,
+      },
     ],
   },
-] as ApplicationQuestion[];
+];
 
 export const APPLICATION_NAVBAR = [
   { id: 1, title: "프로젝트 희망 분야를 선택해주세요." },
@@ -179,7 +174,7 @@ export const APPLICATION_NAVBAR = [
   { id: 4, title: "기타 질문 사항에 답변해주세요." },
 ];
 
-export const APPLICATION_TIMELINE = {
+export const APPLICATION_TIMELINE: ApplicationTimeline = {
   seperate: 30,
   time: [
     {
@@ -196,7 +191,7 @@ export const APPLICATION_TIMELINE = {
     },
   ],
   disableTime: [],
-} as ApplicationTimeline;
+};
 
 export const END_DATE = {
   month: 9,

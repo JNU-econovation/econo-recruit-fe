@@ -1,6 +1,6 @@
 "use client";
 
-import { ApplicationQuestion } from "@/src/constants/application/type";
+import type { ApplicationQuestion } from "@/src/constants/application/type";
 import dynamic from "next/dynamic";
 
 const ApplicationHorizontalLayout = dynamic(

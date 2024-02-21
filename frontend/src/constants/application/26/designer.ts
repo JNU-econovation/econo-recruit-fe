@@ -1,12 +1,6 @@
-import {
-  ApplicationQuestion,
-  ApplicationRadioForCheck,
-  ApplicationText,
-  ApplicationTextarea,
-  ApplicationTimelineType,
-} from "../type";
+import type { ApplicationQuestion } from "../type";
 
-export const APPLICATION_DESIGN = [
+export const APPLICATION_DESIGN: ApplicationQuestion[] = [
   {
     id: 5,
     title: "자기소개 및 에코노베이션에 지원하게 된 계기를 서술해 주세요.",
@@ -18,7 +12,7 @@ export const APPLICATION_DESIGN = [
         require: true,
         type: "textarea",
         errorMessages: "에코노베이션에 지원하게 된 계기를 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -33,7 +27,7 @@ export const APPLICATION_DESIGN = [
         require: true,
         type: "textarea",
         errorMessages: "디자이너를 희망하는 이유를 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -47,7 +41,7 @@ export const APPLICATION_DESIGN = [
         require: true,
         type: "textarea",
         errorMessages: "디자인 작업물을 설명해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
     require: true,
   },
@@ -62,7 +56,7 @@ export const APPLICATION_DESIGN = [
         require: true,
         type: "textarea",
         errorMessages: "가장 중요한 것을 서술해 주세요.",
-      } as ApplicationTextarea,
+      },
     ],
     require: true,
   },
@@ -77,7 +71,7 @@ export const APPLICATION_DESIGN = [
         require: true,
         type: "textarea",
         errorMessages: "개선하고 싶은 서비스를 서술해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -92,7 +86,7 @@ export const APPLICATION_DESIGN = [
         require: true,
         type: "textarea",
         errorMessages: "협업에 있어서 중요하다고 생각되는 것을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -107,7 +101,7 @@ export const APPLICATION_DESIGN = [
         require: true,
         type: "textarea",
         errorMessages: "깊게 빠져본 경험을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -121,7 +115,7 @@ export const APPLICATION_DESIGN = [
         require: true,
         type: "textarea",
         errorMessages: "협업에 있어서 중요하다고 생각되는 것을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -135,7 +129,7 @@ export const APPLICATION_DESIGN = [
         require: true,
         type: "textarea",
         errorMessages: "목표와 학습 계획을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -151,14 +145,14 @@ export const APPLICATION_DESIGN = [
         type: "text",
         title: "참고 URL",
         subtitle: "Github, Blog, Notion, Website 등",
-      } as ApplicationText,
+      },
       {
         name: "fileUrl",
         require: true,
         type: "text",
         title: "파일 URL",
         subtitle: "Google Drive 등",
-      } as ApplicationText,
+      },
     ],
   },
   {
@@ -180,7 +174,7 @@ export const APPLICATION_DESIGN = [
             validate: "emailString",
             errorMessages: "이메일을 입력해주세요.",
             require: true,
-          } as ApplicationText,
+          },
         ],
       },
       {
@@ -196,7 +190,7 @@ export const APPLICATION_DESIGN = [
             validate: "confirmationString",
             errorMessages: '"확인했습니다"를 입력해주세요.',
             require: true,
-          } as ApplicationText,
+          },
         ],
       },
       {
@@ -212,14 +206,14 @@ export const APPLICATION_DESIGN = [
             title: "개인정보 수집(공통)에 대한 안내",
             value: ["동의합니다.", "동의하지 않습니다."],
             require: true,
-          } as ApplicationRadioForCheck,
+          },
           {
             type: "radioForCheck",
             name: "personalInformationAgreeForPortfolio",
             title: "개인정보 수집(포트폴리오)에 대한 안내",
             value: ["동의합니다.", "동의하지 않습니다."],
             require: true,
-          } as ApplicationRadioForCheck,
+          },
         ],
       },
     ],
@@ -236,10 +230,10 @@ export const APPLICATION_DESIGN = [
         type: "timeline",
         name: "timeline",
         require: true,
-      } as ApplicationTimelineType,
+      },
     ],
   },
-] as ApplicationQuestion[];
+];
 
 export const APPLICATION_NAVBAR_DESIGN = [
   {

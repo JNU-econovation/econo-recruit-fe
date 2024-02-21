@@ -1,6 +1,6 @@
 import {
   ApplicationNode,
-  ApplicationQuestion,
+  type ApplicationQuestion,
 } from "@/src/constants/application/type";
 import { JunctionQuestion } from "./Junction.component";
 import { ApplicationLayout } from "./Layout.component";

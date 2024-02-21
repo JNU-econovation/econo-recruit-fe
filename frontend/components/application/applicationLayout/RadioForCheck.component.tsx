@@ -1,5 +1,5 @@
 import Txt from "@/components/common/Txt.component";
-import {
+import type {
   ApplicationQuestion,
   ApplicationRadioForCheck,
 } from "@/src/constants/application/type";

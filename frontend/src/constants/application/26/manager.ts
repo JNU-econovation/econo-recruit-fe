@@ -1,15 +1,6 @@
-import {
-  ApplicationBar,
-  ApplicationBooleanTextarea,
-  ApplicationJustText,
-  ApplicationQuestion,
-  ApplicationRadioForCheck,
-  ApplicationText,
-  ApplicationTextarea,
-  ApplicationTimelineType,
-} from "../type";
+import type { ApplicationQuestion } from "../type";
 
-export const APPLICATION_MANAGER = [
+export const APPLICATION_MANAGER: ApplicationQuestion[] = [
   {
     id: 5,
     title: "자기소개 및 에코노베이션에 지원하게 된 계기를 서술해 주세요.",
@@ -21,7 +12,7 @@ export const APPLICATION_MANAGER = [
         require: true,
         type: "textarea",
         errorMessages: "에코노베이션에 지원하게 된 계기를 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -36,7 +27,7 @@ export const APPLICATION_MANAGER = [
         require: true,
         type: "textarea",
         errorMessages: "진로가 무엇인지 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
   },
   {
@@ -52,7 +43,7 @@ export const APPLICATION_MANAGER = [
         require: true,
         type: "textarea",
         errorMessages: "아이디어를 구체적으로 전달한 경험을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
     require: true,
   },
@@ -84,7 +75,7 @@ export const APPLICATION_MANAGER = [
             type: "false",
           },
         ],
-      } as ApplicationBooleanTextarea,
+      },
     ],
   },
   {
@@ -99,8 +90,9 @@ export const APPLICATION_MANAGER = [
         require: true,
         type: "textarea",
         errorMessages: "도전하고 실패해 본 경험을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
+    require: true,
   },
   {
     id: 10,
@@ -114,8 +106,9 @@ export const APPLICATION_MANAGER = [
         require: true,
         type: "textarea",
         errorMessages: "깊게 빠져본 경험을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
+    require: true,
   },
   {
     id: 11,
@@ -128,8 +121,9 @@ export const APPLICATION_MANAGER = [
         require: true,
         type: "textarea",
         errorMessages: "협업에 있어서 중요하다고 생각되는 것을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
+    require: true,
   },
   {
     id: 12,
@@ -142,8 +136,9 @@ export const APPLICATION_MANAGER = [
         require: true,
         type: "textarea",
         errorMessages: "목표와 학습 계획을 입력해주세요.",
-      } as ApplicationTextarea,
+      },
     ],
+    require: true,
   },
   {
     id: 13,
@@ -158,32 +153,33 @@ export const APPLICATION_MANAGER = [
         type: "text",
         title: "참고 URL",
         subtitle: "Github, Blog, Notion, Website 등",
-      } as ApplicationText,
+      },
       {
         name: "fileUrl",
         require: false,
         type: "text",
         title: "파일 URL",
         subtitle: "Google Drive 등",
-      } as ApplicationText,
+      },
       {
         type: "bar",
-      } as ApplicationBar,
+      },
       {
         type: "justText",
         title:
           "기획자를 지원하는 경우 이번 학기에 진행하고 싶은 프로젝트의 기획서를 제출해 주세요.",
         subtitle:
           "단, 제출한 기획을 기반으로 이번 학기에 프로젝트를 진행하지 못할 수 있습니다.",
-      } as ApplicationJustText,
+      },
       {
         name: "fileUrlforPlanner",
         require: false,
         type: "text",
         title: "파일 URL",
         subtitle: "Google Drive 등",
-      } as ApplicationText,
+      },
     ],
+    require: false,
   },
   {
     id: -1,
@@ -204,7 +200,7 @@ export const APPLICATION_MANAGER = [
             validate: "emailString",
             errorMessages: "이메일을 입력해주세요.",
             require: true,
-          } as ApplicationText,
+          },
         ],
       },
       {
@@ -220,7 +216,7 @@ export const APPLICATION_MANAGER = [
             validate: "confirmationString",
             errorMessages: '"확인했습니다"를 입력해주세요.',
             require: true,
-          } as ApplicationText,
+          },
         ],
       },
       {
@@ -236,14 +232,14 @@ export const APPLICATION_MANAGER = [
             title: "개인정보 수집(공통)에 대한 안내",
             value: ["동의합니다.", "동의하지 않습니다."],
             require: true,
-          } as ApplicationRadioForCheck,
+          },
           {
             type: "radioForCheck",
             name: "personalInformationAgreeForPortfolio",
             title: "개인정보 수집(포트폴리오)에 대한 안내",
             value: ["동의합니다.", "동의하지 않습니다."],
             require: true,
-          } as ApplicationRadioForCheck,
+          },
         ],
       },
     ],
@@ -260,10 +256,10 @@ export const APPLICATION_MANAGER = [
         type: "timeline",
         name: "timeline",
         require: true,
-      } as ApplicationTimelineType,
+      },
     ],
   },
-] as ApplicationQuestion[];
+];
 
 export const APPLICATION_NAVBAR_MANAGER = [
   { id: 5, title: "에코노베이션에 지원하게 된 계기는 무엇인가요?" },
