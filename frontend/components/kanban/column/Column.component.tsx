@@ -2,6 +2,7 @@ import { Draggable, Droppable } from "@hello-pangea/dnd";
 import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
 import KanbanAddCardComponent from "../card/AddCard.component";
 import { KanbanCard } from "../card";
+import Icon from "@/components/common/Icon";
 interface KanbanColumnProps {
   columnIndex: number;
   columnData: (KanbanCardData | null)[];
@@ -87,7 +88,7 @@ const KanbanColumnComponent = ({
               </div>
             </div>
             <button>
-              <img src="/icons/ellipsis.bubble.svg" alt="ColumnDetail" />
+              <Icon icon="ellipsisBubble" />
             </button>
           </div>
           <div className="flex flex-col justify-between overflow-auto max-h-[calc(100vh-24rem)]">

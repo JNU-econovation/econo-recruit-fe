@@ -1,6 +1,7 @@
 import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
 import { cn } from "@/src/utils/cn";
 import { useParams, useRouter } from "next/navigation";
+import Icon from "@/components/common/Icon";
 
 type KanbanCardComponentType = {
   data: KanbanCardData | null;
@@ -58,15 +59,11 @@ function KanbanCardComponent({
         <div className="text-sm">{apply.join(" / ")}</div>
         <div className="flex gap-3">
           <div className="flex">
-            <img src="/icons/bubble.right.svg" alt="comment" />
+            <Icon icon="bubbleRight" />
             {comment}
           </div>
           <div className="flex">
-            {isHearted ? (
-              <img src="/icons/heart.point.svg" alt="heart" />
-            ) : (
-              <img src="/icons/heart.svg" alt="heart" />
-            )}
+            {isHearted ? <Icon icon="heartPoint" /> : <Icon icon="heart" />}
             {heart}
           </div>
         </div>

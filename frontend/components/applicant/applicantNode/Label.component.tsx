@@ -7,6 +7,7 @@ import {
 } from "@/src/apis/applicant/applicant";
 import { cn } from "@/src/utils/cn";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import Icon from "@/components/common/Icon";
 import { useState } from "react";
 
 interface ApplicantLabelProps {
@@ -74,7 +75,7 @@ const ApplicantLabel = ({ postId, generation }: ApplicantLabelProps) => {
             { "rotate-45 ": openAdditional }
           )}
         >
-          <img src="/icons/ellipsis.plus.blue.svg" alt="plus" />
+          <Icon icon="ellipsisPlusBlue" />
         </button>
       </div>
     </div>
