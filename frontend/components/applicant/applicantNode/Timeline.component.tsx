@@ -6,8 +6,8 @@ import { CURRENT_GENERATION } from "@/src/constants";
 import { ApplicationTimeline } from "@/src/constants/application/type";
 import { dateSplicer } from "@/src/functions/date";
 import { minimumIntegerDigits } from "@/src/functions/replacer";
+import { cn } from "@/src/utils/cn";
 import { useQuery } from "@tanstack/react-query";
-import classNames from "classnames";
 
 interface ApplicantTimelineNodeProps {
   postId: string;
@@ -53,7 +53,7 @@ const ApplicantTimelineNode = ({ postId }: ApplicantTimelineNodeProps) => {
                   key={index}
                 >
                   <Txt
-                    className={classNames(
+                    className={cn(
                       "-translate-x-1/2 block w-fit -translate-y-6 h-2",
                       {
                         "opacity-0":
@@ -70,7 +70,7 @@ const ApplicantTimelineNode = ({ postId }: ApplicantTimelineNodeProps) => {
                     .length !==
                     index + 1 && (
                     <div
-                      className={classNames(
+                      className={cn(
                         "h-8 block",
                         timeline.includes(index + startIndex * seperate)
                           ? "bg-primary"

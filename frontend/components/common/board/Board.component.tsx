@@ -5,7 +5,7 @@ import BoardCell from "./BoardCell.component";
 import Modal from "react-modal";
 import Image from "next/image";
 import CloseImage from "/public/icons/ellipsis.multiply.svg";
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 
 interface BoardData {
   id: string;
@@ -71,7 +71,7 @@ const Board = ({
           <Image src={CloseImage} alt="close" />
         </button>
         <div
-          className={classNames(
+          className={cn(
             "flex pt-8 absolute h-[calc(100%-6rem)] w-[calc(100%-6rem)]",
             wapperClassname
           )}

@@ -1,6 +1,6 @@
 "use client";
 
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -52,7 +52,7 @@ const SortListComponent = ({ sortList, selected }: SortListComponent) => {
                 onOrderChange(sort.type);
                 setIsOpen(false);
               }}
-              className={classNames(
+              className={cn(
                 "flex justify-end py-2 px-6 capitalize cursor-pointer",
                 { "text-secondary-200 cursor-auto": sort.type === selected }
               )}

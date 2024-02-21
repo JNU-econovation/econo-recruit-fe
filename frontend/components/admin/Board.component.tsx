@@ -8,7 +8,7 @@ import {
 } from "@/src/apis/interview/interviewer";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Txt from "../common/Txt.component";
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 
 const roleKeys: (keyof typeof roleMap)[] = [
   "ROLE_OPERATION",
@@ -53,13 +53,12 @@ const InterViewerUpdateButton = ({
       },
     }
   );
-
   return (
     <button
       onClick={() => {
         mutate();
       }}
-      className={classNames(
+      className={cn(
         "py-2 w-[6rem] rounded-md",
         user.role === role
           ? "bg-primary-300 text-primary"

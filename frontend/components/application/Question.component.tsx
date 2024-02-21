@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Txt from "../common/Txt.component";
-import classNames from "classnames";
 import { useAtomValue } from "jotai";
 import { applicationIndexAtom } from "@/src/stores/application";
 import ApplicationNextButton from "./applicationNode/NextButton.component";
 import { ApplicationLayout } from "./Layout.component";
 import type { ApplicationQuestion } from "@/src/constants/application/type";
+import { cn } from "@/src/utils/cn";
 
 interface ApplicationQuestionProps {
   className?: string;
@@ -28,7 +28,7 @@ const ApplicationQuestion = ({
   }, [applicationIndex]);
 
   return (
-    <article className={classNames("flex flex-col justify-between", className)}>
+    <article className={cn("flex flex-col justify-between", className)}>
       <div>
         <Txt typography="h1" className="uppercase">
           ECONOVATION 신입모집 신청

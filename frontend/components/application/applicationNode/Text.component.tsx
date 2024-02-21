@@ -8,7 +8,7 @@ import {
 import { replacer } from "@/src/functions/replacer";
 import { validator } from "@/src/functions/validator";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 import { useId, useState } from "react";
 
 interface ApplicationTextProps {
@@ -32,10 +32,9 @@ const ApplicationText = ({ data }: ApplicationTextProps) => {
         </label>
       )}
       <input
-        className={classNames(
-          "my-2 border rounded-lg p-4 w-full",
-          isError && "border-error"
-        )}
+        className={cn("my-2 border rounded-lg p-4 w-full", {
+          "border-error": isError,
+        })}
         type="text"
         id={id}
         value={value}
