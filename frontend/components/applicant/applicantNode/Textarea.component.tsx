@@ -1,14 +1,13 @@
 import Txt from "@/components/common/Txt.component";
 import { ApplicantReq } from "@/src/apis/applicant/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
-import { FC } from "react";
 
 interface ApplicantTextareaProps {
   nodeData: ApplicantNode;
   data: ApplicantReq[];
 }
 
-const ApplicantTextarea: FC<ApplicantTextareaProps> = ({ nodeData, data }) => {
+const ApplicantTextarea = ({ nodeData, data }: ApplicantTextareaProps) => {
   const textareaData = nodeData as ApplicantTextareaNode;
 
   return (

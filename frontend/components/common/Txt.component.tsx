@@ -1,5 +1,5 @@
-import { FC, PropsWithChildren } from "react";
-import classNames from "classnames";
+import { PropsWithChildren } from "react";
+import { cn } from "@/src/utils/cn";
 
 const typographyType = {
   head: "text-6xl",
@@ -14,28 +14,29 @@ const typographyType = {
 
 const colorType = {
   black: "text-black",
-  gray: "text-[#666]",
+  gray: "text-secondary-200",
   white: "text-white",
-  blue: "text-[#2160FF]",
-  light_gray: "text-[#8C8C8C]",
+  blue: "text-primary",
+  light_gray: "text-secondary-200",
 };
 
-interface TxtProps {
+interface TxtProps extends PropsWithChildren {
   typography?: keyof typeof typographyType;
   color?: keyof typeof colorType;
   className?: string;
 }
 
-const Txt: FC<PropsWithChildren<TxtProps>> = ({
+const Txt = ({
   color = "black",
   typography = "p",
   children,
   className,
-}) => (
+}: TxtProps) => (
   <span
-    className={classNames(
-      colorType[color],
-      typographyType[typography],
+    className={cn(
+      "text-black text-base",
+      { [colorType[color]]: color !== "black" },
+      { [typographyType[typography]]: typography !== "p" },
       className
     )}
   >

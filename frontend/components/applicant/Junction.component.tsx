@@ -1,6 +1,5 @@
 import { ApplicantReq } from "@/src/apis/applicant/applicant";
 import dynamic from "next/dynamic";
-import { FC } from "react";
 
 const ApplicantCustomField = dynamic(
   () => import("./applicantNode/CustomField.component")
@@ -27,10 +26,10 @@ interface JunctionApplicantProps {
   data: ApplicantReq[];
 }
 
-export const JunctionApplicant: FC<JunctionApplicantProps> = ({
+export const JunctionApplicant = ({
   applicantNodeData,
   data: applicantData,
-}) => {
+}: JunctionApplicantProps) => {
   const jsxNode = {
     customField: (
       <ApplicantCustomField nodeData={applicantNodeData} data={applicantData} />

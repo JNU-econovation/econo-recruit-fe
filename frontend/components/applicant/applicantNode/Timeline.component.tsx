@@ -1,21 +1,19 @@
 "use client";
 
-import { TimelineCell } from "@/components/application/applicationLayout/timeline/Timeline.component";
 import Txt from "@/components/common/Txt.component";
 import { getApplicantTimeTables } from "@/src/apis/applicant/applicant";
 import { CURRENT_GENERATION } from "@/src/constants";
 import { ApplicationTimeline } from "@/src/constants/application/type";
 import { dateSplicer } from "@/src/functions/date";
 import { minimumIntegerDigits } from "@/src/functions/replacer";
+import { cn } from "@/src/utils/cn";
 import { useQuery } from "@tanstack/react-query";
-import classNames from "classnames";
-import { FC } from "react";
 
 interface ApplicantTimelineNodeProps {
   postId: string;
 }
 
-const ApplicantTimelineNode: FC<ApplicantTimelineNodeProps> = ({ postId }) => {
+const ApplicantTimelineNode = ({ postId }: ApplicantTimelineNodeProps) => {
   const data = require(`@/src/constants/application/${CURRENT_GENERATION}.ts`);
   const { time, seperate } = data.APPLICATION_TIMELINE as ApplicationTimeline;
 
@@ -55,7 +53,7 @@ const ApplicantTimelineNode: FC<ApplicantTimelineNodeProps> = ({ postId }) => {
                   key={index}
                 >
                   <Txt
-                    className={classNames(
+                    className={cn(
                       "-translate-x-1/2 block w-fit -translate-y-6 h-2",
                       {
                         "opacity-0":
@@ -72,11 +70,11 @@ const ApplicantTimelineNode: FC<ApplicantTimelineNodeProps> = ({ postId }) => {
                     .length !==
                     index + 1 && (
                     <div
-                      className={classNames(
+                      className={cn(
                         "h-8 block",
                         timeline.includes(index + startIndex * seperate)
-                          ? "bg-[#2160FF]"
-                          : "bg-[#EFEFEF]"
+                          ? "bg-primary"
+                          : "bg-light"
                       )}
                     ></div>
                   )}

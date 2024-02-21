@@ -1,23 +1,23 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Txt from "../common/Txt.component";
-import classNames from "classnames";
 import { useAtomValue } from "jotai";
 import { applicationIndexAtom } from "@/src/stores/application";
 import ApplicationNextButton from "./applicationNode/NextButton.component";
 import { ApplicationLayout } from "./Layout.component";
 import { ApplicationQuestion } from "@/src/constants/application/type";
+import { cn } from "@/src/utils/cn";
 
 interface ApplicationQuestionProps {
   className?: string;
   applicationQuestions: ApplicationQuestion[];
 }
 
-const ApplicationQuestion: FC<ApplicationQuestionProps> = ({
+const ApplicationQuestion = ({
   className,
   applicationQuestions,
-}) => {
+}: ApplicationQuestionProps) => {
   const applicationIndex = useAtomValue(applicationIndexAtom);
   const [applicationQuestion, setApplicationQuestion] = useState(
     applicationQuestions[applicationIndex]
@@ -28,7 +28,7 @@ const ApplicationQuestion: FC<ApplicationQuestionProps> = ({
   }, [applicationIndex]);
 
   return (
-    <article className={classNames("flex flex-col justify-between", className)}>
+    <article className={cn("flex flex-col justify-between", className)}>
       <div>
         <Txt typography="h1" className="uppercase">
           ECONOVATION 신입모집 신청

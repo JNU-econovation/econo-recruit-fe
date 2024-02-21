@@ -53,7 +53,7 @@ const InterviewEditComponent = ({ data }: InterviewEditComponentProps) => {
   return (
     <div className="flex flex-col w-full my-10 items-end">
       <button onClick={() => setIsOpen((prev) => !prev)}>
-        <span className="text-sm text-[#A7A7A7] underline underline-offset-2">
+        <span className="text-sm text-secondary-100 underline underline-offset-2">
           {isOpen ? "접어 두기" : "면접기록 수정하기"}
         </span>
       </button>
@@ -85,7 +85,7 @@ const InterviewEditComponent = ({ data }: InterviewEditComponentProps) => {
           />
           <div className="flex gap-2 mt-4">
             <button
-              className="flex-1 rounded-md flex justify-center items-center p-3 bg-[#EFEFEF]"
+              className="flex-1 rounded-md flex justify-center items-center p-3 bg-light"
               onClick={() => {
                 setIsOpen(false);
                 setInterviewData({
@@ -98,7 +98,7 @@ const InterviewEditComponent = ({ data }: InterviewEditComponentProps) => {
               취소
             </button>
             <button
-              className="flex-1 rounded-md flex justify-center items-center p-3 bg-[#303030] text-white"
+              className="flex-1 rounded-md flex justify-center items-center p-3 bg-dark text-white"
               onClick={handleUpload}
             >
               수정하기

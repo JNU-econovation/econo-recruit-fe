@@ -5,17 +5,17 @@ import {
   getWorkLabel,
   postWorkLabel,
 } from "@/src/apis/work/work";
+import { cn } from "@/src/utils/cn";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import classNames from "classnames";
-import { FC, useState } from "react";
 import Icon from "@/components/common/Icon";
+import { useState } from "react";
 
 interface WorkLabelProps {
   cardId: number;
   generation: string;
 }
 
-const WorkLabel: FC<WorkLabelProps> = ({ cardId, generation }) => {
+const WorkLabel = ({ cardId, generation }: WorkLabelProps) => {
   const [openAdditional, setOpenAdditional] = useState(false);
 
   const { data, error, isLoading } = useQuery<WorkLabelReq[]>(
@@ -70,8 +70,8 @@ const WorkLabel: FC<WorkLabelProps> = ({ cardId, generation }) => {
         </div>
         <button
           onClick={toggleOpen}
-          className={classNames(
-            "text-[#2160FF] bg-[#E8EFFF] translate-y-[2px] h-8 w-8 rounded-full flex items-center justify-center transition-all",
+          className={cn(
+            "text-primary bg-primary-200 translate-y-[2px] h-8 w-8 rounded-full flex items-center justify-center transition-all",
             { "rotate-45 ": openAdditional }
           )}
         >
@@ -88,11 +88,11 @@ interface WorkLabelButtonProps {
   generation: string;
 }
 
-const WorkLabelButton: FC<WorkLabelButtonProps> = ({
+const WorkLabelButton = ({
   label,
   cardId,
   generation,
-}) => {
+}: WorkLabelButtonProps) => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(postWorkLabel, {
@@ -111,11 +111,11 @@ const WorkLabelButton: FC<WorkLabelButtonProps> = ({
   return (
     <button
       key={label.name}
-      className={classNames(
+      className={cn(
         "py-1 px-4 rounded-full w-max",
         label.active
-          ? "text-[#2160FF] bg-[#E8EFFF]"
-          : "text-[#777777] bg-[#EFEFEF]"
+          ? "text-primary bg-primary-200"
+          : "text-secondary-200 bg-light"
       )}
       onClick={onLabelClick}
     >

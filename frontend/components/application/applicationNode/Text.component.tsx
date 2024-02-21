@@ -8,14 +8,14 @@ import {
 import { replacer } from "@/src/functions/replacer";
 import { validator } from "@/src/functions/validator";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
-import classNames from "classnames";
-import { FC, useId, useState } from "react";
+import { cn } from "@/src/utils/cn";
+import { useId, useState } from "react";
 
 interface ApplicationTextProps {
   data: ApplicationNode;
 }
 
-const ApplicationText: FC<ApplicationTextProps> = ({ data }) => {
+const ApplicationText = ({ data }: ApplicationTextProps) => {
   const textData = data as ApplicationText;
   const id = useId();
   const [value, setValue] = useLocalStorage(textData.name, "");
@@ -32,10 +32,9 @@ const ApplicationText: FC<ApplicationTextProps> = ({ data }) => {
         </label>
       )}
       <input
-        className={classNames(
-          "my-2 border rounded-lg p-4 w-full",
-          isError && "border-[#DC0000]"
-        )}
+        className={cn("my-2 border rounded-lg p-4 w-full", {
+          "border-error": isError,
+        })}
         type="text"
         id={id}
         value={value}
@@ -54,7 +53,7 @@ const ApplicationText: FC<ApplicationTextProps> = ({ data }) => {
       />
       {isError && textData.errorMessages ? (
         <div className="absolute w-full translate-x-[100%]">
-          <div className="w-fit text-[#DC0000] -translate-x-[calc(100%+1rem)] -translate-y-12">
+          <div className="w-fit text-error -translate-x-[calc(100%+1rem)] -translate-y-12">
             {textData.errorMessages}
           </div>
         </div>

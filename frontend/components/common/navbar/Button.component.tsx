@@ -24,7 +24,7 @@ const NavbarButtonComponent = ({ value }: NavbarButtonComponent) => {
     <button
       className={
         findmenuIndex.toString() === navbarId
-          ? `bg-[#303030] text-white${buttonClassName}`
+          ? `bg-dark text-white${buttonClassName}`
           : `bg-white text-gray-400${buttonClassName}`
       }
       onClick={onClick}

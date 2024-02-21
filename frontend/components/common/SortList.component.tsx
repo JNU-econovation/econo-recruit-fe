@@ -1,6 +1,6 @@
 "use client";
 
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Icon from "./Icon";
@@ -32,18 +32,18 @@ const SortListComponent = ({ sortList, selected }: SortListComponent) => {
   return (
     <div className="relative">
       <button
-        className="flex items-center bg-[#F9FBFF] p-4 gap-2 rounded-2xl text-[#7E7E7E] z-20"
+        className="flex items-center bg-primary-100 p-4 gap-2 rounded-2xl text-secondary-200 z-20"
         onClick={(e) => {
           e.preventDefault();
           setIsOpen((prev) => !prev);
         }}
       >
         Sort by :
-        <span className="font-semibold capitalize text-[#3D3C42]">{order}</span>
+        <span className="font-semibold capitalize text-dark">{order}</span>
         <Icon icon="chevronDown" />
       </button>
       {isOpen ? (
-        <div className="flex flex-col absolute w-full border-[#F0F0F0] rounded-xl border-[1px] bg-white p-6 font-semibold -mt-4 text-[#3D3C42]">
+        <div className="flex flex-col absolute w-full border-light rounded-xl border-[1px] bg-white p-6 font-semibold -mt-4 text-dark">
           {sortList.map((sort) => (
             <button
               key={sort.type}
@@ -53,9 +53,9 @@ const SortListComponent = ({ sortList, selected }: SortListComponent) => {
                 onOrderChange(sort.type);
                 setIsOpen(false);
               }}
-              className={classNames(
+              className={cn(
                 "flex justify-end py-2 px-6 capitalize cursor-pointer",
-                { "text-[#9A9A9A] cursor-auto": sort.type === selected }
+                { "text-secondary-200 cursor-auto": sort.type === selected }
               )}
             >
               {sort.type}

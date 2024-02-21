@@ -1,7 +1,7 @@
 "use client";
 
-import classNames from "classnames";
-import { ChangeEvent, FC, useId } from "react";
+import { ChangeEvent, useId } from "react";
+import { cn } from "@/src/utils/cn";
 
 interface RadioProps {
   label: string;
@@ -13,7 +13,7 @@ interface RadioProps {
   onClick?: () => void;
 }
 
-const Radio: FC<RadioProps> = ({
+const Radio = ({
   label,
   name,
   value,
@@ -21,18 +21,18 @@ const Radio: FC<RadioProps> = ({
   isCheck,
   disabled,
   onClick,
-}) => {
+}: RadioProps) => {
   const id = useId();
   return (
     <>
       <label
         htmlFor={id}
-        className={classNames(
+        className={cn(
           "flex items-center justify-center w-full py-4 border rounded-md cursor-pointer",
           isCheck
-            ? "bg-[#303030] text-white border-black"
+            ? "bg-dark text-white border-black"
             : "border-gray-300 text-black bg-white",
-          disabled && "bg-gray-200 text-gray-400 cursor-not-allowed"
+          { "bg-gray-200 text-gray-400 cursor-not-allowed": disabled }
         )}
         onClick={() => {
           typeof onClick === "function" && onClick();
@@ -67,7 +67,7 @@ interface RadioGroupProps {
 
 const gridCols = ["", "", "grid-cols-2", "grid-cols-3", "grid-cols-4"];
 
-const RadioGroup: FC<RadioGroupProps> = ({
+const RadioGroup = ({
   name,
   value,
   onChange,
@@ -75,9 +75,9 @@ const RadioGroup: FC<RadioGroupProps> = ({
   disableValue,
   splitNumber = 2,
   onClick,
-}) => (
+}: RadioGroupProps) => (
   <div
-    className={classNames(
+    className={cn(
       "grid gap-2 col-end-auto font-semibold",
       gridCols[splitNumber]
     )}

@@ -1,14 +1,14 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
 import Icon from "../common/Icon";
+
 interface KanbanDetailBackButtonProps {
   generation: string;
 }
 
-const KanbanDetailBackButton: FC<KanbanDetailBackButtonProps> = ({
+const KanbanDetailBackButton = ({
   generation,
-}) => {
+}: KanbanDetailBackButtonProps) => {
   const navigate = useRouter();
 
   const onBackClick = () => {

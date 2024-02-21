@@ -1,7 +1,6 @@
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
 import KanbanAddCardComponent from "../card/AddCard.component";
-import { FC } from "react";
 import { KanbanCard } from "../card";
 import Icon from "@/components/common/Icon";
 interface KanbanColumnProps {
@@ -9,10 +8,10 @@ interface KanbanColumnProps {
   columnData: (KanbanCardData | null)[];
 }
 
-const KanbanColumnDroppable: FC<KanbanColumnProps> = ({
+const KanbanColumnDroppable = ({
   columnIndex,
   columnData,
-}) => {
+}: KanbanColumnProps) => {
   return (
     <Droppable droppableId={`${columnIndex}`} key={columnIndex}>
       {(provided) => (
@@ -61,13 +60,13 @@ interface KanbanColumnComponentProps {
   columnId: number;
 }
 
-const KanbanColumnComponent: FC<KanbanColumnComponentProps> = ({
+const KanbanColumnComponent = ({
   columnData,
   title,
   columnCount,
   columnIndex,
   columnId,
-}) => {
+}: KanbanColumnComponentProps) => {
   return (
     <Draggable
       draggableId={`${columnIndex}`}
@@ -76,7 +75,7 @@ const KanbanColumnComponent: FC<KanbanColumnComponentProps> = ({
     >
       {(provided) => (
         <div
-          className="h-fit border-[1px] border-[#F0F0F0] w-fit p-4 rounded-lg min-w-[17rem] bg-white"
+          className="h-fit border-[1px] border-light w-fit p-4 rounded-lg min-w-[17rem] bg-white"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -84,7 +83,7 @@ const KanbanColumnComponent: FC<KanbanColumnComponentProps> = ({
           <div className="flex justify-between">
             <div className="flex gap-2 items-center">
               <div className="font-bold text-lg">{title}</div>
-              <div className="flex justify-center items-center px-3 rounded-full bg-[#E8EFFF] text-xs text-[#2160FF] h-4">
+              <div className="flex justify-center items-center px-3 rounded-full bg-primary-200 text-xs text-primary h-4">
                 {columnCount}
               </div>
             </div>

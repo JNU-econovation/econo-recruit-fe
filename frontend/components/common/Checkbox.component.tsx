@@ -1,7 +1,7 @@
 "use client";
 
-import classNames from "classnames";
-import { ChangeEvent, FC, useId } from "react";
+import { ChangeEvent, useId } from "react";
+import { cn } from "@/src/utils/cn";
 
 interface CheckboxProps {
   label: string;
@@ -15,7 +15,7 @@ interface CheckboxProps {
   className?: string;
 }
 
-export const Checkbox: FC<CheckboxProps> = ({
+export const Checkbox = ({
   label,
   name,
   value,
@@ -25,20 +25,18 @@ export const Checkbox: FC<CheckboxProps> = ({
   isLast,
   onClick,
   className,
-}) => {
+}: CheckboxProps) => {
   const id = useId();
   return (
-    <div
-      className={classNames(isLast && "col-start-1 col-end-[-1]", className)}
-    >
+    <div className={cn({ "col-start-1 col-end-[-1]": isLast }, className)}>
       <label
         htmlFor={id}
-        className={classNames(
+        className={cn(
           "flex items-center justify-center w-full py-4 border rounded-md cursor-pointer",
           checked
-            ? "bg-[#303030] text-white border-black"
-            : "border-gray-300 text-black bg-white",
-          disabled && "bg-gray-200 text-gray-400 cursor-not-allowed"
+            ? "bg-dark text-white border-black"
+            : "bg-white text-black border-gray-300",
+          { "bg-gray-200 text-gray-400 cursor-not-allowed": disabled }
         )}
         onClick={() => {
           if (typeof onClick === "function") onClick();
@@ -71,7 +69,7 @@ interface CheckboxGroupProps {
   onClick?: () => void;
 }
 
-const CheckboxGroup: FC<CheckboxGroupProps> = ({
+const CheckboxGroup = ({
   name,
   value,
   onChange,
@@ -80,7 +78,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
   splitNumber = 2,
   isSpaned = false,
   onClick,
-}) => (
+}: CheckboxGroupProps) => (
   <div
     className={`grid gap-2 grid-cols-${splitNumber} col-end-auto font-semibold`}
   >

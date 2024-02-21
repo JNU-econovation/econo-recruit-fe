@@ -1,4 +1,3 @@
-import { FC } from "react";
 import KanbanBoardDragDropComponent from "@/components/kanban/DragDrop.component";
 import KanbanNavbarComponent from "@/components/kanban/Navbar.component";
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
@@ -9,7 +8,7 @@ interface KanbanBoardPageProps {
   };
 }
 
-const KanbanBoardPage: FC<KanbanBoardPageProps> = ({ params }) => {
+const KanbanBoardPage = ({ params }: KanbanBoardPageProps) => {
   const { generation } = params;
   return (
     <main className="pl-24 flex py-12">

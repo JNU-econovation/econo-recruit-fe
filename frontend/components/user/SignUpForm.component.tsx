@@ -1,5 +1,5 @@
 import { isEmail, isPassword } from "@/src/functions/validator";
-import { FC, useState } from "react";
+import { useState } from "react";
 import InputFormItem from "../common/InputFormItem.component";
 
 const resetWarning = {
@@ -31,7 +31,7 @@ interface SignUpProps {
  * @returns {JSX.Element} - SignUpForm component
  * @constructor
  */
-const SignUpForm: FC<SignUpProps> = ({ onSubmit, data, setForm }) => {
+const SignUpForm = ({ onSubmit, data, setForm }: SignUpProps) => {
   const [isWarning, setWarning] = useState({
     email: false,
     password: false,

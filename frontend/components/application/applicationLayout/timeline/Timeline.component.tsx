@@ -6,10 +6,9 @@ import {
   ApplicationTimeline,
 } from "@/src/constants/application/type";
 import { dateSplicer } from "@/src/functions/date";
-import classNames from "classnames";
-import { FC } from "react";
 import TimelineRow from "./TimelineRow.component";
 import { CURRENT_GENERATION } from "@/src/constants";
+import { cn } from "@/src/utils/cn";
 
 interface TimelineCellProps {
   startIndex: number;
@@ -19,13 +18,13 @@ interface TimelineCellProps {
   seperate: number;
 }
 
-export const TimelineCell: FC<TimelineCellProps> = ({
+export const TimelineCell = ({
   startIndex,
   startTime,
   endTime,
   disableTime,
   seperate,
-}) => {
+}: TimelineCellProps) => {
   const dates = dateSplicer(startTime, endTime, seperate);
 
   return (
@@ -52,16 +51,16 @@ interface ApplicationTimelineProps {
   applicationQuestion: ApplicationQuestion;
 }
 
-const ApplicationTimelineLayout: FC<ApplicationTimelineProps> = ({
+const ApplicationTimelineLayout = ({
   applicationQuestion,
-}) => {
+}: ApplicationTimelineProps) => {
   const data = require(`@/src/constants/application/${CURRENT_GENERATION}.ts`);
   const { disableTime, time, seperate } =
     data.APPLICATION_TIMELINE as ApplicationTimeline;
 
   return (
     <div
-      className={classNames("w-full", {
+      className={cn("w-full", {
         "pr-12": applicationQuestion.id !== -1,
       })}
     >

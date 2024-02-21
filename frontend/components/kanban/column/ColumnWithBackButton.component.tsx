@@ -2,7 +2,6 @@
 
 import { KanbanColumnData } from "@/src/stores/kanban/Kanban.atoms";
 import { useAtom } from "jotai";
-import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllKanbanData } from "@/src/apis/kanban/kanban";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
@@ -17,12 +16,12 @@ interface KanbanDetailCardProps {
   applicantId: string;
 }
 
-const KanbanColumnDetailCard: FC<KanbanDetailCardProps> = ({
+const KanbanColumnDetailCard = ({
   columnIndex,
   generation,
   cardId,
   applicantId,
-}) => {
+}: KanbanDetailCardProps) => {
   const [navbarId] = useAtom(KanbanSelectedButtonNumberState);
 
   const {
@@ -50,11 +49,11 @@ const KanbanColumnDetailCard: FC<KanbanDetailCardProps> = ({
         <KanbanDetailBackButton generation={generation} />
       </div>
       <div className="overflow-auto max-h-[calc(100vh-10em)]">
-        <div className="h-fit border-[1px] border-[#F0F0F0] w-fit p-4 rounded-lg min-w-[17rem] bg-white">
+        <div className="h-fit border-[1px] border-light w-fit p-4 rounded-lg min-w-[17rem] bg-white">
           <div className="flex justify-between">
             <div className="flex gap-2 items-center">
               <div className="font-bold text-lg">{cardTitle}</div>
-              <div className="flex justify-center items-center px-3 rounded-full bg-[#E8EFFF] text-xs text-[#2160FF] h-4">
+              <div className="flex justify-center items-center px-3 rounded-full bg-primary-200 text-xs text-primary h-4">
                 {cardCount}
               </div>
             </div>

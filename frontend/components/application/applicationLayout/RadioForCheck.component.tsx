@@ -4,19 +4,18 @@ import {
   ApplicationRadioForCheck,
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 import Link from "next/link";
-import { FC } from "react";
 
 interface RadioCellProps {
   applicationQuestion: ApplicationQuestion;
   radioForCheckData: ApplicationRadioForCheck;
 }
 
-const RadioCell: FC<RadioCellProps> = ({
+const RadioCell = ({
   applicationQuestion,
   radioForCheckData,
-}) => {
+}: RadioCellProps) => {
   const [radio, setRadio] = useLocalStorage<string>(
     radioForCheckData.name,
     "동의하지 않습니다."
@@ -82,11 +81,11 @@ interface ApplicationRadioForCheckProps {
   applicationQuestion: ApplicationQuestion;
 }
 
-const ApplicationRadioForCheckLayout: FC<ApplicationRadioForCheckProps> = ({
+const ApplicationRadioForCheckLayout = ({
   applicationQuestion,
-}) => {
+}: ApplicationRadioForCheckProps) => {
   return (
-    <div className={classNames(applicationQuestion.id !== -1 ? "pr-12" : "")}>
+    <div className={cn({ "pr-12": applicationQuestion.id !== -1 })}>
       {applicationQuestion.id !== -1 && applicationQuestion.title && (
         <>
           <Txt typography="h6">{`${applicationQuestion.id}. `}</Txt>

@@ -31,12 +31,12 @@ function KanbanAddColumnComponent() {
     <div className="w-[17rem]">
       {isOpenAddColumn ? (
         <form
-          className="w-[17rem] border-[1px] border-[#F0F0F0] p-3 rounded-lg"
+          className="w-[17rem] border-[1px] border-light p-3 rounded-lg"
           onSubmit={(e) => addColumnSubmit(e)}
         >
           <input
             type="text"
-            className="p-3 border-[1px] border-[#F0F0F0] bg-white rounded-lg w-full text-sm my-3 outline-none"
+            className="p-3 border-[1px] border-light bg-white rounded-lg w-full text-sm my-3 outline-none"
             placeholder="Enter list title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -53,7 +53,7 @@ function KanbanAddColumnComponent() {
       ) : (
         <button
           type="button"
-          className="w-[17rem] flex gap-6 justify-start items-center text-[#828282] py-4 px-6 bg-[#EFEFEF] h-fit rounded-lg text-lg"
+          className="w-[17rem] flex gap-6 justify-start items-center text-secondary-200 py-4 px-6 bg-light h-fit rounded-lg text-lg"
           onClick={() => setIsOpenAddColumn(true)}
         >
           <Icon icon="ellipsisPlus" />

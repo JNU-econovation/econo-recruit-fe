@@ -8,8 +8,7 @@ import {
 } from "@/src/apis/interview/interviewer";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Txt from "../common/Txt.component";
-import classNames from "classnames";
-import { FC } from "react";
+import { cn } from "@/src/utils/cn";
 
 const roleKeys: (keyof typeof roleMap)[] = [
   "ROLE_OPERATION",
@@ -39,10 +38,10 @@ interface InterViewerUpdateButtonProps {
   user: InterviewerReq;
 }
 
-const InterViewerUpdateButton: FC<InterViewerUpdateButtonProps> = ({
+const InterViewerUpdateButton = ({
   role,
   user,
-}) => {
+}: InterViewerUpdateButtonProps) => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
@@ -54,17 +53,16 @@ const InterViewerUpdateButton: FC<InterViewerUpdateButtonProps> = ({
       },
     }
   );
-
   return (
     <button
       onClick={() => {
         mutate();
       }}
-      className={classNames(
+      className={cn(
         "py-2 w-[6rem] rounded-md",
         user.role === role
-          ? "bg-[#CEDCFF] text-[#2160FF]"
-          : "bg-[#EDEDED] text-[#B5B5B5]"
+          ? "bg-primary-300 text-primary"
+          : "bg-light text-secondary-100"
       )}
     >
       {roleTranslater(role)}
@@ -99,12 +97,12 @@ const AdminBoard = () => {
         <div className="flex py-4 justify-between">
           <Txt
             typography="h6"
-            className="flex-[1_0_0] text-left text-[#B5B7C0]"
+            className="flex-[1_0_0] text-left text-secondary-100"
           >
             Member Name
           </Txt>
-          <Txt className="flex-[2_0_0] text-left text-[#B5B7C0]">기수</Txt>
-          <Txt className="w-[28.5rem] text-left text-[#B5B7C0]">Status</Txt>
+          <Txt className="flex-[2_0_0] text-left text-secondary-100">기수</Txt>
+          <Txt className="w-[28.5rem] text-left text-secondary-100">Status</Txt>
         </div>
       </div>
       {userData.map((user, index) => (

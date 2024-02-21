@@ -1,5 +1,5 @@
 import { isEmail, isPassword } from "@/src/functions/validator";
-import { FC, useState } from "react";
+import { useState } from "react";
 import InputFormItem from "../common/InputFormItem.component";
 
 const resetWarning = {
@@ -26,7 +26,7 @@ interface SignInProps {
  * @returns {JSX.Element} - SignUpForm component
  * @constructor
  */
-const SignInForm: FC<SignInProps> = ({ onSubmit, data, setForm }) => {
+const SignInForm = ({ onSubmit, data, setForm }: SignInProps) => {
   const [isWarning, setWarning] = useState({
     email: false,
     password: false,
@@ -56,7 +56,7 @@ const SignInForm: FC<SignInProps> = ({ onSubmit, data, setForm }) => {
   return (
     <form className="flex flex-col gap-4 w-[40rem]" onSubmit={onSubmitPrevent}>
       <InputFormItem
-        placeholder={"example@econovarion.kr"}
+        placeholder={"example@econovation.kr"}
         type="text"
         value={email}
         onChange={(e) => setForm({ name: "email", value: e.target.value })}

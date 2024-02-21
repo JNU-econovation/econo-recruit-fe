@@ -3,8 +3,7 @@
 import Txt from "@/components/common/Txt.component";
 import { minimumIntegerDigits } from "@/src/functions/replacer";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
-import classNames from "classnames";
-import { FC } from "react";
+import { cn } from "@/src/utils/cn";
 
 interface TimelineRowProps {
   date: Date;
@@ -12,7 +11,7 @@ interface TimelineRowProps {
   index: number;
 }
 
-const TimelineRow: FC<TimelineRowProps> = ({ date, isLast, index }) => {
+const TimelineRow = ({ date, isLast, index }: TimelineRowProps) => {
   const dateString = `${minimumIntegerDigits(
     date.getHours(),
     2
@@ -22,12 +21,9 @@ const TimelineRow: FC<TimelineRowProps> = ({ date, isLast, index }) => {
   return (
     <span className="flex-1 border-l border-gray-300 translate-x-6 mb-8">
       <Txt
-        className={classNames(
-          "-translate-x-1/2 block w-fit -translate-y-6 h-2",
-          {
-            "opacity-0": minimumIntegerDigits(date.getMinutes(), 2) === "30",
-          }
-        )}
+        className={cn("-translate-x-1/2 block w-fit -translate-y-6 h-2", {
+          "opacity-0": minimumIntegerDigits(date.getMinutes(), 2) === "30",
+        })}
       >
         {dateString}
       </Txt>
@@ -53,7 +49,7 @@ const TimelineRow: FC<TimelineRowProps> = ({ date, isLast, index }) => {
           />
           <label
             htmlFor={date.getTime().toString()}
-            className="h-8 block peer-checked:bg-[#2160FF] bg-[#EFEFEF]"
+            className="h-8 block peer-checked:bg-primary bg-light"
           ></label>
         </>
       )}
