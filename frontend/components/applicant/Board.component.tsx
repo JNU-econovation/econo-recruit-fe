@@ -4,7 +4,7 @@ import Board from "@/components/common/board/Board.component";
 import { getApplicantByPage } from "@/src/apis/applicant/applicant";
 import ApplicantDetailRight from "./DetailRight.component";
 import ApplicantDetailLeft from "./DetailLeft.component";
-import { FC, useState } from "react";
+import { useState } from "react";
 import { ApplicantReq } from "@/src/apis/application";
 import { applicantDataFinder } from "@/src/functions/finder";
 import { useQuery } from "@tanstack/react-query";
@@ -14,7 +14,7 @@ interface ApplicantBoardProps {
   generation: string;
 }
 
-const ApplicantBoard: FC<ApplicantBoardProps> = ({ generation }) => {
+const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   const [data, setData] = useState<ApplicantReq[]>([]);
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";

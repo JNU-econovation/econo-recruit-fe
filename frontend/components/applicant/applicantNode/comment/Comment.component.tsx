@@ -1,6 +1,5 @@
 "use client";
 
-import { FC } from "react";
 import ApplicantCommentInputForm from "./InputForm.component";
 import { useQuery } from "@tanstack/react-query";
 import { getAllComment } from "@/src/apis/comment/comment";
@@ -12,11 +11,11 @@ interface ApplicantCommentProps {
   generation: string;
 }
 
-const ApplicantComment: FC<ApplicantCommentProps> = ({
+const ApplicantComment = ({
   postId,
   cardId,
   generation,
-}) => {
+}: ApplicantCommentProps) => {
   const { data, error, isLoading } = useQuery(
     ["applicantComment", "", cardId],
     () => getAllComment(cardId, postId)

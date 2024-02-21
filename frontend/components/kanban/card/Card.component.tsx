@@ -43,17 +43,17 @@ function KanbanCardComponent({
   return (
     <div
       className={classNames(
-        "border-[1px] w-[14.9rem] p-3 rounded-lg drop-shadow-md bg-white hover:border-[#7AA0FF]",
+        "border-[1px] w-[14.9rem] p-3 rounded-lg drop-shadow-md bg-white hover:border-primary-400",
         (applicantId !== "" && dataApplicantId == applicantId) ||
           `${id}` == cardId
-          ? "border-[#2160FF]"
-          : "border-[#F0F0F0]"
+          ? "border-primary"
+          : "border-light"
       )}
       onClick={onClickDetail}
     >
-      <div className="text-xs text-[#666666]">{major}</div>
+      <div className="text-xs text-secondary-200">{major}</div>
       <div className="font-bold truncate">{title}</div>
-      <div className="mt-2 flex justify-between items-center text-sm text-[#666666]">
+      <div className="mt-2 flex justify-between items-center text-sm text-secondary-200">
         <div className="text-sm">{apply.join(" / ")}</div>
         <div className="flex gap-3">
           <div className="flex">

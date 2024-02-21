@@ -4,7 +4,6 @@ import InterviewPageNavbar from "@/components/interview/PageNavbar.component";
 import InterviewSearchComponent from "@/components/interview/Search.component";
 import InterviewSortList from "@/components/interview/SortList.component";
 import Validate from "@/components/user/Validate.component";
-import { FC } from "react";
 
 interface InterviewPageProps {
   params: {
@@ -12,7 +11,7 @@ interface InterviewPageProps {
   };
 }
 
-const InterviewPage: FC<InterviewPageProps> = ({ params: { generation } }) => {
+const InterviewPage = ({ params: { generation } }: InterviewPageProps) => {
   return (
     <div className="px-24 min-w-[1280px] flex p-12">
       <Validate />

@@ -29,7 +29,7 @@ const NavbarUserInfo = () => {
         <Txt className="font-medium">{data.name}</Txt>
       </div>
       <div>
-        <Txt className="text-[#757575]">
+        <Txt className="text-secondary-200">
           {`${data.year}기 | ${roleTranslater(data.role)}`}{" "}
         </Txt>
       </div>

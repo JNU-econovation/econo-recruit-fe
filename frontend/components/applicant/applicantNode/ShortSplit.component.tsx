@@ -1,17 +1,13 @@
 import Txt from "@/components/common/Txt.component";
 import { ApplicantReq } from "@/src/apis/applicant/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
-import { FC } from "react";
 
 interface ApplicantShortSplitProps {
   nodeData: ApplicantNode;
   data: ApplicantReq[];
 }
 
-const ApplicantShortSplit: FC<ApplicantShortSplitProps> = ({
-  nodeData,
-  data,
-}) => {
+const ApplicantShortSplit = ({ nodeData, data }: ApplicantShortSplitProps) => {
   const shortSplitData = nodeData as ApplicantShortSplitNode;
 
   return (

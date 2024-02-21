@@ -4,8 +4,8 @@ import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 
-import { FC, useEffect, useReducer, useRef, useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { putComment } from "../../../../src/apis/comment/comment";
 
 interface ApplicantCommentEditorOrViewerProps {
@@ -15,9 +15,12 @@ interface ApplicantCommentEditorOrViewerProps {
   setIsEdit: (isEdit: boolean) => void;
 }
 
-const ApplicantCommentEditorOrViewer: FC<
-  ApplicantCommentEditorOrViewerProps
-> = ({ content: initContent, isEdit = false, commentId, setIsEdit }) => {
+const ApplicantCommentEditorOrViewer = ({
+  content: initContent,
+  isEdit = false,
+  commentId,
+  setIsEdit,
+}: ApplicantCommentEditorOrViewerProps) => {
   const editorRef = useRef<Editor>(null);
   const [content, setContent] = useState(initContent);
 
@@ -49,7 +52,7 @@ const ApplicantCommentEditorOrViewer: FC<
         <>
           <div className="my-4">
             <Editor
-              className="w-full my-4 border-[1px] rounded border-[#DBDBDB] p-3 text-sm"
+              className="w-full my-4 border-[1px] rounded border-secondary-100 p-3 text-sm"
               height="6rem"
               initialEditType="markdown"
               usageStatistics={false}

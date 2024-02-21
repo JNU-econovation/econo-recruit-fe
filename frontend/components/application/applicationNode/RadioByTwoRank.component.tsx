@@ -7,15 +7,14 @@ import {
   type ApplicationRadioByTwoRank,
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
-import { FC } from "react";
 
 interface ApplicationRadioByTwoRankProps {
   data: ApplicationNode;
 }
 
-const ApplicationRadioByTwoRank: FC<ApplicationRadioByTwoRankProps> = ({
+const ApplicationRadioByTwoRank = ({
   data,
-}) => {
+}: ApplicationRadioByTwoRankProps) => {
   const radioByTwoRankData = data as ApplicationRadioByTwoRank;
   const firstNode = radioByTwoRankData.subNodes[0];
   const secondNode = radioByTwoRankData.subNodes[1];

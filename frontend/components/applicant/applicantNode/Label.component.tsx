@@ -7,14 +7,14 @@ import {
 } from "@/src/apis/applicant/applicant";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
-import { FC, useState } from "react";
+import { useState } from "react";
 
 interface ApplicantLabelProps {
   postId: string;
   generation: string;
 }
 
-const ApplicantLabel: FC<ApplicantLabelProps> = ({ postId, generation }) => {
+const ApplicantLabel = ({ postId, generation }: ApplicantLabelProps) => {
   const [openAdditional, setOpenAdditional] = useState(false);
 
   const { data, error, isLoading } = useQuery<ApplicantLabelReq[]>(
@@ -70,7 +70,7 @@ const ApplicantLabel: FC<ApplicantLabelProps> = ({ postId, generation }) => {
         <button
           onClick={toggleOpen}
           className={classNames(
-            "text-[#2160FF] bg-[#E8EFFF] translate-y-[2px] h-8 w-8 rounded-full flex items-center justify-center transition-all",
+            "text-primary bg-primary-200 translate-y-[2px] h-8 w-8 rounded-full flex items-center justify-center transition-all",
             { "rotate-45 ": openAdditional }
           )}
         >
@@ -87,11 +87,11 @@ interface ApplicantLabelButtonProps {
   generation: string;
 }
 
-const ApplicantLabelButton: FC<ApplicantLabelButtonProps> = ({
+const ApplicantLabelButton = ({
   label,
   postId,
   generation,
-}) => {
+}: ApplicantLabelButtonProps) => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(postApplicantLabel, {
@@ -113,8 +113,8 @@ const ApplicantLabelButton: FC<ApplicantLabelButtonProps> = ({
       className={classNames(
         "py-1 px-4 rounded-full w-max",
         label.active
-          ? "text-[#2160FF] bg-[#E8EFFF]"
-          : "text-[#777777] bg-[#EFEFEF]"
+          ? "text-primary bg-primary-200"
+          : "text-secondary-200 bg-light"
       )}
       onClick={onLabelClick}
     >

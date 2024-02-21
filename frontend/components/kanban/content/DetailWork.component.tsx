@@ -1,6 +1,5 @@
 "use client";
 
-import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getWork } from "@/src/apis/work/work";
 import WorkDetailLeft from "./work/WorkDetailLeft.component";
@@ -11,10 +10,7 @@ interface KanbanDetailWorkProps {
   generation: string;
 }
 
-const KanbanDetailWork: FC<KanbanDetailWorkProps> = ({
-  cardId,
-  generation,
-}) => {
+const KanbanDetailWork = ({ cardId, generation }: KanbanDetailWorkProps) => {
   const { data, isLoading, isError } = useQuery(["work", cardId], () =>
     getWork(cardId)
   );

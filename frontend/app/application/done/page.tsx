@@ -1,7 +1,6 @@
 import { CURRENT_GENERATION } from "@/src/constants";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
 
 interface ApplicantDonePageProps {
   searchParams: {
@@ -9,9 +8,9 @@ interface ApplicantDonePageProps {
   };
 }
 
-const ApplicationDonePage: FC<ApplicantDonePageProps> = ({
+const ApplicationDonePage = ({
   searchParams: { id },
-}) => {
+}: ApplicantDonePageProps) => {
   const generation = `${CURRENT_GENERATION}`;
 
   const endDate =

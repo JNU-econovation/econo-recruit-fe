@@ -13,7 +13,7 @@ const PageNavbarComponent = ({
         <a
           key={i}
           href={url + `&page=${i + 1}`}
-          className={i + 1 === page ? "p-3" : "text-[#B6B6B6] p-3"}
+          className={i + 1 === page ? "p-3" : "text-secondary-100 p-3"}
         >
           {i + 1}
         </a>

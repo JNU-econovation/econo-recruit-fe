@@ -4,7 +4,6 @@ import Txt from "@/components/common/Txt.component";
 import { minimumIntegerDigits } from "@/src/functions/replacer";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 import classNames from "classnames";
-import { FC } from "react";
 
 interface TimelineRowProps {
   date: Date;
@@ -12,7 +11,7 @@ interface TimelineRowProps {
   index: number;
 }
 
-const TimelineRow: FC<TimelineRowProps> = ({ date, isLast, index }) => {
+const TimelineRow = ({ date, isLast, index }: TimelineRowProps) => {
   const dateString = `${minimumIntegerDigits(
     date.getHours(),
     2
@@ -53,7 +52,7 @@ const TimelineRow: FC<TimelineRowProps> = ({ date, isLast, index }) => {
           />
           <label
             htmlFor={date.getTime().toString()}
-            className="h-8 block peer-checked:bg-[#2160FF] bg-[#EFEFEF]"
+            className="h-8 block peer-checked:bg-primary bg-light"
           ></label>
         </>
       )}

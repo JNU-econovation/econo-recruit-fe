@@ -8,7 +8,7 @@ import {
   ApplicationCheckboxWithEtcType,
   ApplicationNode,
 } from "@/src/constants/application/type";
-import { FC, useState } from "react";
+import { useState } from "react";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 import { localStorage } from "@/src/functions/localstorage";
 
@@ -16,9 +16,9 @@ interface ApplicationCheckboxWithEtcProps {
   data: ApplicationNode;
 }
 
-const ApplicationCheckboxWithEtc: FC<ApplicationCheckboxWithEtcProps> = ({
+const ApplicationCheckboxWithEtc = ({
   data,
-}) => {
+}: ApplicationCheckboxWithEtcProps) => {
   const checkboxWithEtcData = data as ApplicationCheckboxWithEtcType;
   const [isOpenEtc, setIsOpenEtc] = useState(
     localStorage.get(checkboxWithEtcData.name + "Etc", "") !== ""
