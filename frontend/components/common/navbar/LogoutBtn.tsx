@@ -11,7 +11,7 @@ export default function LogoutBtn() {
   return (
     <button
       className="ml-4 text-sm border-b-2 border-white hover:border-secondary-200 hover:text-secondary-200 transition ease-in-out duration-150"
-      onClick={() => logout()}
+      onClick={logout}
     >
       로그아웃 &rarr;
     </button>
