@@ -27,7 +27,7 @@ const InterviewSearch = () => {
       </button>
       <input
         className="p-2 color-secondary-100 bg-transparent outline-none"
-        type="text"
+        type="search"
         placeholder="search"
         onChange={(e) => {
           handleSearch(e.target.value);
