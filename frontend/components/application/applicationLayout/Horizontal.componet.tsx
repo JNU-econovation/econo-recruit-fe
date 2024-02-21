@@ -1,7 +1,7 @@
 "use client";
 
 import Txt from "@/components/common/Txt.component";
-import { ApplicationQuestion } from "@/src/constants/application/type";
+import type { ApplicationQuestion } from "@/src/constants/application/type";
 import { JunctinOrLayout } from "../JunctionOrLayout";
 
 interface ApplicationHorizontalLayoutProps {

@@ -2,7 +2,7 @@
 
 import RadioGroup from "@/components/common/Radio.component";
 import Txt from "@/components/common/Txt.component";
-import {
+import type {
   ApplicationBooleanTextarea,
   ApplicationQuestion,
 } from "@/src/constants/application/type";
@@ -19,7 +19,7 @@ interface TextAreaProps {
   index: number;
 }
 
-const TextArea = ({ index, node }: TextAreaProps) => {
+const TextArea = ({ node }: TextAreaProps) => {
   const [textValue, setTextValue] = useLocalStorage(node.name, "");
 
   return (

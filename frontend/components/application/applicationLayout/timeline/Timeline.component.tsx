@@ -1,7 +1,7 @@
 "use client";
 
 import Txt from "@/components/common/Txt.component";
-import {
+import type {
   ApplicationQuestion,
   ApplicationTimeline,
 } from "@/src/constants/application/type";

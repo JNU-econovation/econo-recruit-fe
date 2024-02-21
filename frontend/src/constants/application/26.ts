@@ -1,4 +1,4 @@
-import { ApplicationQuestion, ApplicationTimeline } from "./type";
+import type { ApplicationQuestion, ApplicationTimeline } from "./type";
 
 export const APPLICATION: ApplicationQuestion[] = [
   {

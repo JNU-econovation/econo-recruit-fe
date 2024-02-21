@@ -1,4 +1,4 @@
-import { ApplicationQuestion } from "../type";
+import type { ApplicationQuestion } from "../type";
 
 export const APPLICATION_DESIGN: ApplicationQuestion[] = [
   {
