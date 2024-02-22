@@ -13,7 +13,7 @@ const APPLICANT: ApplicantNode[] = [
   },
   {
     id: 2,
-    title: "학적 상태를 입력해주세요.*",
+    title: "기본 인적 사항을 입력해주세요.*",
     type: "customHuman",
     value: {
       hunamName: { name: "name" },
