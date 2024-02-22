@@ -31,6 +31,7 @@ const SignInPage = () => {
 
   const onSubmit = async () => {
     if (await signIn(signInData)) {
+      alert("로그인이 성공하였습니다");
       navigate.push("/");
       return;
     }

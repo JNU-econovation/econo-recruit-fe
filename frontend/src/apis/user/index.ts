@@ -1,5 +1,5 @@
 import { https } from "@/src/functions/axios";
-import { localStorage } from "@/src/functions/localstorage";
+import { setToken } from "@/src/utils/authenticate";
 
 interface SignInReq {
   email: string;
@@ -14,12 +14,7 @@ interface SignInRes {
 export const signIn = async ({ email, password }: SignInReq) => {
   try {
     const { data } = await https.post<SignInRes>("/login", { email, password });
-    if (data satisfies SignInRes) {
-      alert("로그인이 성공하였습니다");
-    }
-
-    localStorage.set("accessToken", data.accessToken);
-    localStorage.set("refreshToken", data.refreshToken);
+    setToken(data.accessToken, data.refreshToken);
     return true;
   } catch (error) {
     return false;
