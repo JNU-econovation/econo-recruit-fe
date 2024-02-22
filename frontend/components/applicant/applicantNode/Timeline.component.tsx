@@ -1,7 +1,7 @@
 "use client";
 
 import Txt from "@/components/common/Txt.component";
-import { getApplicantTimeTables } from "@/src/apis/applicant/applicant";
+import { getApplicantTimeTables } from "@/src/apis/applicant";
 import { CURRENT_GENERATION } from "@/src/constants";
 import { ApplicationTimeline } from "@/src/constants/application/type";
 import { dateSplicer } from "@/src/functions/date";

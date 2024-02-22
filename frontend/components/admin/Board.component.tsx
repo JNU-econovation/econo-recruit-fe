@@ -5,7 +5,7 @@ import {
   getAllInterviewer,
   getMyInfo,
   putInterviewer,
-} from "@/src/apis/interview/interviewer";
+} from "@/src/apis/interview";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Txt from "../common/Txt.component";
 import { cn } from "@/src/utils/cn";

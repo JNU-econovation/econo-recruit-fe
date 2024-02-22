@@ -1,6 +1,6 @@
 "use client";
 
-import { ApplicantReq } from "@/src/apis/applicant/applicant";
+import { ApplicantReq } from "@/src/apis/applicant";
 import {
   postApplicant,
   postApplicantBackup,

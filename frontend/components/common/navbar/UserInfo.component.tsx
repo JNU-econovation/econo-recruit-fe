@@ -1,4 +1,4 @@
-import { getMyInfo } from "@/src/apis/interview/interviewer";
+import { getMyInfo } from "@/src/apis/interview";
 import { useQuery } from "@tanstack/react-query";
 import Txt from "../Txt.component";
 

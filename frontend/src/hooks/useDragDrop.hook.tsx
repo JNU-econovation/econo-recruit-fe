@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postLocations, putColumnsLocations } from "../apis/kanban/location";
+import { postLocations, putColumnsLocations } from "@/src/apis/kanban";
 import { DropResult } from "@hello-pangea/dnd";
 import { KanbanColumnData } from "../stores/kanban/Kanban.atoms";
 import {

@@ -1,6 +1,6 @@
 "use client";
 
-import { postAddColumn } from "@/src/apis/kanban/kanban";
+import { postAddColumn } from "@/src/apis/kanban";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
