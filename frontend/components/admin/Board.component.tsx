@@ -9,27 +9,7 @@ import {
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Txt from "../common/Txt.component";
 import { cn } from "@/src/utils/cn";
-
-const roleKeys: (keyof typeof roleMap)[] = [
-  "ROLE_OPERATION",
-  "ROLE_PRESIDENT",
-  "ROLE_TF",
-  "ROLE_GUEST",
-];
-
-const roleUpdateMap = {
-  ROLE_OPERATION: "OPERATION",
-  ROLE_PRESIDENT: "PRESIDENT",
-  ROLE_TF: "TF",
-  ROLE_GUEST: "GUEST",
-} as const;
-
-const roleMap = {
-  ROLE_OPERATION: "관리자",
-  ROLE_PRESIDENT: "회장단",
-  ROLE_TF: "TF",
-  ROLE_GUEST: "게스트",
-} as const;
+import { roleKeys, roleMap, roleUpdateMap } from "@/src/constants/admin";
 
 const roleTranslater = (role: keyof typeof roleMap) => roleMap[role];
 
