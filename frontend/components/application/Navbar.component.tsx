@@ -1,24 +1,20 @@
 "use client";
 
-import {
-  applicationIndexAtom,
-  applicationNavbarAtom,
-} from "@/src/stores/application";
-import { useAtom, useAtomValue } from "jotai";
+import { applicationIndexAtom } from "@/src/stores/application";
+import { useAtom } from "jotai";
 import Txt from "@/components/common/Txt.component";
 import { cn } from "@/src/utils/cn";
 
 interface ApplicationNavbarProps {
-  generation: string;
+  applicationNavbar: { id: number; title: string }[];
   className?: string;
 }
 
 const ApplicationNavbar = ({
-  generation,
+  applicationNavbar,
   className,
 }: ApplicationNavbarProps) => {
   const [applicationIndex, setApplicationIndex] = useAtom(applicationIndexAtom);
-  const applicationNavbar = useAtomValue(applicationNavbarAtom);
 
   return (
     <nav className={cn("pl-12 w-full h-full", className)}>

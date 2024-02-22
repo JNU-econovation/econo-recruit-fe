@@ -1,20 +1,27 @@
 import { CURRENT_GENERATION } from "@/src/constants";
 import type { ApplicationQuestion } from "@/src/constants/application/type";
 import { atom } from "jotai";
+import { Dispatch, SetStateAction, createContext } from "react";
 
 export const applicationIndexAtom = atom(0);
 
-const applicationQuestions =
+export const applicationQuestionsInitData =
   require(`@/src/constants/application/${CURRENT_GENERATION}.ts`)
     .APPLICATION as ApplicationQuestion[];
 
-export const applicationDataAtom = atom(applicationQuestions);
+export const ApplicationQuestionsContext = createContext<
+  [ApplicationQuestion[], Dispatch<SetStateAction<ApplicationQuestion[]>>]
+>([[], () => {}]);
 
-const applicationNavbar =
+interface ApplicationNavbarState {
+  id: number;
+  title: string;
+}
+
+export const applicationNavbarInitData =
   require(`@/src/constants/application/${CURRENT_GENERATION}.ts`)
-    .APPLICATION_NAVBAR as {
-    id: number;
-    title: string;
-  }[];
+    .APPLICATION_NAVBAR as ApplicationNavbarState[];
 
-export const applicationNavbarAtom = atom(applicationNavbar);
+export const ApplicationNavbarContext = createContext<
+  [ApplicationNavbarState[], Dispatch<SetStateAction<ApplicationNavbarState[]>>]
+>([[], () => {}]);

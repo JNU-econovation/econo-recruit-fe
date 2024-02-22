@@ -2,7 +2,6 @@
 
 import ApplicationNavbar from "@/components/application/Navbar.component";
 import ApplicationQuestion from "@/components/application/Question.component";
-import { CURRENT_GENERATION } from "@/src/constants";
 import {
   APPLICATION_DESIGN,
   APPLICATION_NAVBAR_DESIGN,
@@ -17,47 +16,51 @@ import {
 } from "@/src/constants/application/26/manager";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 import {
-  applicationDataAtom,
-  applicationNavbarAtom,
+  ApplicationNavbarContext,
+  ApplicationQuestionsContext,
+  applicationNavbarInitData,
+  applicationQuestionsInitData,
 } from "@/src/stores/application";
-import { useAtom, useSetAtom } from "jotai";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ApplicationPage = () => {
-  const [applicationQuestions, setApplicationDate] =
-    useAtom(applicationDataAtom);
+  const [applicationQuestions, setApplicationDate] = useState(
+    applicationQuestionsInitData
+  );
   const [fieldData, _] = useLocalStorage<string>("field", "");
-  const setApplicationNavbar = useSetAtom(applicationNavbarAtom);
+  const [applicationNavbarData, setApplicationNavbarData] = useState(
+    applicationNavbarInitData
+  );
 
   useEffect(() => {
     switch (fieldData) {
       case "디자이너":
         setApplicationDate(() => [
-          ...applicationDataAtom.init,
+          ...applicationQuestionsInitData,
           ...APPLICATION_DESIGN,
         ]);
-        setApplicationNavbar(() => [
-          ...applicationNavbarAtom.init,
+        setApplicationNavbarData(() => [
+          ...applicationNavbarInitData,
           ...APPLICATION_NAVBAR_DESIGN,
         ]);
         return;
       case "개발자":
         setApplicationDate(() => [
-          ...applicationDataAtom.init,
+          ...applicationQuestionsInitData,
           ...APPLICATION_DEVELOPER,
         ]);
-        setApplicationNavbar(() => [
-          ...applicationNavbarAtom.init,
+        setApplicationNavbarData(() => [
+          ...applicationNavbarInitData,
           ...APPLICATION_NAVBAR_DEVELOPER,
         ]);
         return;
       case "기획자":
         setApplicationDate(() => [
-          ...applicationDataAtom.init,
+          ...applicationQuestionsInitData,
           ...APPLICATION_MANAGER,
         ]);
-        setApplicationNavbar(() => [
-          ...applicationNavbarAtom.init,
+        setApplicationNavbarData(() => [
+          ...applicationNavbarInitData,
           ...APPLICATION_NAVBAR_MANAGER,
         ]);
         return;
@@ -66,14 +69,19 @@ const ApplicationPage = () => {
 
   return (
     <section className="flex gap-24 mt-24 min-w-[1280px]">
-      <ApplicationNavbar
-        className="flex-1"
-        generation={`${CURRENT_GENERATION}`}
-      />
-      <ApplicationQuestion
-        className="flex-[3_0_0]"
-        applicationQuestions={applicationQuestions}
-      />
+      <ApplicationNavbarContext.Provider
+        value={[applicationNavbarData, setApplicationNavbarData]}
+      >
+        <ApplicationNavbar
+          className="flex-1"
+          applicationNavbar={applicationNavbarData}
+        />
+        <ApplicationQuestionsContext.Provider
+          value={[applicationQuestions, setApplicationDate]}
+        >
+          <ApplicationQuestion className="flex-[3_0_0]" />
+        </ApplicationQuestionsContext.Provider>
+      </ApplicationNavbarContext.Provider>
     </section>
   );
 };

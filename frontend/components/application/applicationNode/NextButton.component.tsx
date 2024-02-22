@@ -2,10 +2,10 @@
 
 import useApplicationIndexControll from "@/src/hooks/useApplicationIndexControll.hook";
 import { postApplication } from "../sendApplication";
-import { useAtomValue } from "jotai";
-import { applicationDataAtom } from "@/src/stores/application";
 import type { ApplicationQuestion } from "@/src/constants/application/type";
 import { localStorage } from "@/src/functions/localstorage";
+import { useContext } from "react";
+import { ApplicationQuestionsContext } from "@/src/stores/application";
 
 interface ApplicationNextButtonProps {
   canNext: boolean;
@@ -24,7 +24,7 @@ const ApplicationNextButton = ({
     useApplicationIndexControll();
   const nextButtonClassName =
     "flex-1 rounded-md flex justify-center items-center p-4";
-  const applicationData = useAtomValue(applicationDataAtom);
+  const [applicationData] = useContext(ApplicationQuestionsContext);
 
   const applicationName = new Set<string>();
 

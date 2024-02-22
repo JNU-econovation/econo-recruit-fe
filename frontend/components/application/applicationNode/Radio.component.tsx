@@ -20,10 +20,12 @@ import {
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 import {
-  applicationDataAtom,
-  applicationNavbarAtom,
+  ApplicationNavbarContext,
+  ApplicationQuestionsContext,
+  applicationNavbarInitData,
+  applicationQuestionsInitData,
 } from "@/src/stores/application";
-import { useSetAtom } from "jotai";
+import { useContext } from "react";
 
 interface ApplicationRadioProps {
   data: ApplicationNode;
@@ -32,8 +34,8 @@ interface ApplicationRadioProps {
 const ApplicationRadio = ({ data }: ApplicationRadioProps) => {
   const radioData = data as ApplicationRadio;
   const [value, setValue] = useLocalStorage<string>(radioData.name, "");
-  const setApplicationDate = useSetAtom(applicationDataAtom);
-  const setApplicationNavbar = useSetAtom(applicationNavbarAtom);
+  const [, setApplicationDate] = useContext(ApplicationQuestionsContext);
+  const [, setApplicationNavbar] = useContext(ApplicationNavbarContext);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -42,31 +44,31 @@ const ApplicationRadio = ({ data }: ApplicationRadioProps) => {
       switch (e.target.value) {
         case "디자이너":
           setApplicationDate(() => [
-            ...applicationDataAtom.init,
+            ...applicationQuestionsInitData,
             ...APPLICATION_DESIGN,
           ]);
           setApplicationNavbar(() => [
-            ...applicationNavbarAtom.init,
+            ...applicationNavbarInitData,
             ...APPLICATION_NAVBAR_DESIGN,
           ]);
           return;
         case "개발자":
           setApplicationDate(() => [
-            ...applicationDataAtom.init,
+            ...applicationQuestionsInitData,
             ...APPLICATION_DEVELOPER,
           ]);
           setApplicationNavbar(() => [
-            ...applicationNavbarAtom.init,
+            ...applicationNavbarInitData,
             ...APPLICATION_NAVBAR_DEVELOPER,
           ]);
           return;
         case "기획자":
           setApplicationDate(() => [
-            ...applicationDataAtom.init,
+            ...applicationQuestionsInitData,
             ...APPLICATION_MANAGER,
           ]);
           setApplicationNavbar(() => [
-            ...applicationNavbarAtom.init,
+            ...applicationNavbarInitData,
             ...APPLICATION_NAVBAR_MANAGER,
           ]);
           return;
