@@ -2,6 +2,7 @@ import { https } from "@/src/functions/axios";
 import { PageInfo } from "../applicant/applicant";
 
 // TODO: RecordsRes 타입 정의 필요한지 확인
+// FIXME: field 추가해야 함
 export interface RecordsRes {
   applicantId: string;
   scores: number;
@@ -27,7 +28,10 @@ export const getInterviewRecordByPage = async (page: number, order: string) => {
     `/page/${page}/records?sortType=${order}`
   );
 
-  return { maxPage: pageInfo.endPage, records };
+  return {
+    maxPage: pageInfo.endPage,
+    records,
+  };
 };
 
 export interface InterviewRes {
