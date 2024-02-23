@@ -26,8 +26,17 @@ export const getApplicantByIdWithField = async (
   }));
 };
 
+interface PageInfo {
+  currentPage: number;
+  listCount: number;
+  pageLimit: number;
+  startPage: number;
+  endPage: number;
+  boardLimit: number;
+}
+
 interface ApplicantByPageReq {
-  maxPage: number;
+  pageInfo: PageInfo;
   applicants: AllApplicantReq[];
 }
 
@@ -38,13 +47,13 @@ export const getApplicantByPageAndGeneration = async (
   order: string
 ): Promise<{ maxPage: number; applicants: ApplicantReq[][] }> => {
   const {
-    data: { applicants, maxPage },
+    data: { applicants, pageInfo },
   } = await https.get<ApplicantByPageReq>(
-    `/page/${page}/year/${generation}/applicants?order=${order}`
+    `/page/${page}/year/${+generation}/applicants?order=${order}`
   );
 
   return {
-    maxPage,
+    maxPage: pageInfo.endPage,
     applicants: applicants.map((applicant) =>
       Object.keys(applicant).map((key) => ({
         name: key,
