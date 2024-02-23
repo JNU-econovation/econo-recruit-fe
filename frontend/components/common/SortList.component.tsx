@@ -7,9 +7,14 @@ import { useState } from "react";
 type SortListComponent = {
   sortList: { type: string; string: string }[];
   selected: string;
+  onChange?: () => void;
 };
 
-const SortListComponent = ({ sortList, selected }: SortListComponent) => {
+const SortListComponent = ({
+  sortList,
+  selected,
+  onChange = () => {},
+}: SortListComponent) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -26,6 +31,7 @@ const SortListComponent = ({ sortList, selected }: SortListComponent) => {
     const query = search ? `?${search}` : "";
 
     router.push(`${pathname}${query}`);
+    onChange();
   };
 
   return (
