@@ -24,12 +24,6 @@ export const postInterviewRecord = async (recode: interviewReqBody) => {
   return data;
 };
 
-export const getInterviewRecordAll = async () => {
-  const { data } = await https.get<InterviewRes[]>(`/records/all`);
-
-  return data;
-};
-
 export interface putInterviewReq {
   applicantId: string;
   record?: string;
@@ -42,7 +36,7 @@ export const putInterviewRecord = async ({
 }: putInterviewReq) => {
   const { data } = await https.put<string>(
     `/applicants/${applicantId}/records`,
-    { record },
+    { record }
   );
   return data;
 };

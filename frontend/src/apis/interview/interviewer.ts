@@ -1,5 +1,6 @@
 import { https } from "@/src/functions/axios";
 
+// FIXME: record.ts와 겹치는 API 삭제
 export interface InterviewRes {
   url: string;
   record: string;
@@ -20,12 +21,6 @@ export interface interviewReqBody {
 
 export const postInterviewRecord = async (recode: interviewReqBody) => {
   const { data } = await https.post<interviewReqBody>(`/records`, recode);
-
-  return data;
-};
-
-export const getInterviewRecordAll = async () => {
-  const { data } = await https.get<InterviewRes[]>(`/records/all`);
 
   return data;
 };
