@@ -3,17 +3,17 @@
 import InterviewDetailLeftComponent from "./modal/DetailLeft.component";
 import Board from "../common/board/Board.component";
 import InterviewDetailRightComponent from "./modal/DetailRight.component";
-import { applicantDataFinder } from "@/src/functions/finder";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
-import { getApplicantByPage } from "@/src/apis/applicant/applicant";
 import { useSearchParams } from "next/navigation";
+import { getInterviewRecordByPage } from "@/src/apis/interview/record";
 
 const InterviewBoardComponent = () => {
   const [applicantId, setApplicantId] = useAtom(interViewApplicantIdState);
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
+  const order = searchParams.get("order") || "newest";
 
   const queryClient = useQueryClient();
 
@@ -28,26 +28,24 @@ const InterviewBoardComponent = () => {
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: ["allApplicant"],
-    queryFn: () => getApplicantByPage(+pageIndex),
+    queryKey: ["allApplicant", pageIndex, order],
+    queryFn: () => getInterviewRecordByPage(+pageIndex, order),
   });
 
   if (!data || isLoading) {
     return <div>loading...</div>;
   }
 
-  const { maxPage, applicants } = data;
+  const { records } = data;
 
-  const boardData = applicants.map((value) => ({
-    id: applicantDataFinder(value, "id"),
-    title: `[${applicantDataFinder(value, "field")}] ${applicantDataFinder(
-      value,
-      "name"
-    )}`,
+  // TODO: title에 field 추가해야 함
+  const boardData = records.map((value) => ({
+    id: value.applicantId,
+    title: `[개발자] ${value.name}`,
     subElements: [
-      applicantDataFinder(value, "field1"),
-      applicantDataFinder(value, "field2"),
-      applicantDataFinder(value, "major"),
+      value.field1,
+      value.field2,
+      `${value.grade} ${value.semester}`,
     ],
   }));
 
