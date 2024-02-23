@@ -4,11 +4,11 @@ import { KANBAN_MENU } from "@/src/constants/kanban/26";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import { useAtom } from "jotai";
 
-type NavbarButton = {
+type NavbarButtonProps = {
   value: string;
 };
 
-const NavbarButton = ({ value }: NavbarButton) => {
+const NavbarButton = ({ value }: NavbarButtonProps) => {
   const [navbarId, setnavbarId] = useAtom(KanbanSelectedButtonNumberState);
 
   const findmenuIndex =
