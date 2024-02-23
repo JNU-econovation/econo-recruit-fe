@@ -1,4 +1,34 @@
 import { https } from "@/src/functions/axios";
+import { PageInfo } from "../applicant/applicant";
+
+// TODO: RecordsRes 타입 정의 필요한지 확인
+export interface RecordsRes {
+  applicantId: string;
+  scores: number;
+  name: string;
+  url: string;
+  record: string;
+  field1: string;
+  field2: string;
+  grade: string;
+  semester: string;
+  modifiedAt: string;
+}
+
+interface RecordsByPageRes {
+  records: RecordsRes[];
+  pageInfo: PageInfo;
+}
+
+export const getInterviewRecordByPage = async (page: number, order: string) => {
+  const {
+    data: { records, pageInfo },
+  } = await https.get<RecordsByPageRes>(
+    `/page/${page}/records?sortType=${order}`
+  );
+
+  return { maxPage: pageInfo.endPage, records };
+};
 
 export interface InterviewRes {
   url: string;

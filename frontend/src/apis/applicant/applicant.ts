@@ -26,7 +26,7 @@ export const getApplicantByIdWithField = async (
   }));
 };
 
-interface PageInfo {
+export interface PageInfo {
   currentPage: number;
   listCount: number;
   pageLimit: number;
