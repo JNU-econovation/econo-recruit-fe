@@ -15,7 +15,7 @@ export const NavbarOperation = ({
   isShort = false,
   currentPath,
 }: NavbarOperationProps) => {
-  const { data: userData } = useQuery(["user"], () => getMyInfo());
+  const { data: userData } = useQuery(["user"], getMyInfo);
   if (!userData) {
     return <div></div>;
   }
