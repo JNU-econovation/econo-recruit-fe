@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import PageNavbarComponent from "../common/PageNavbar.component";
 import { useSearchParams } from "next/navigation";
-import { getApplicantByPage } from "@/src/apis/applicant/applicant";
+import { getInterviewRecordByPage } from "@/src/apis/interview/record";
 
 type InterviewPageNavbarProps = {
   generation: string;
@@ -21,7 +21,7 @@ const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
     isError,
   } = useQuery(
     ["allApplicant", generation],
-    () => getApplicantByPage(+pageIndex),
+    () => getInterviewRecordByPage(+pageIndex, order),
     {
       enabled: !!generation,
     }
