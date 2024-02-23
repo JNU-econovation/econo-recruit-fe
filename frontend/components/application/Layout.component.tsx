@@ -1,32 +1,9 @@
-"use client";
-
 import type { ApplicationQuestion } from "@/src/constants/application/type";
-import dynamic from "next/dynamic";
-
-const ApplicationHorizontalLayout = dynamic(
-  () => import("./applicationLayout/Horizontal.componet"),
-  { ssr: false }
-);
-
-const ApplicationVerticalLayout = dynamic(
-  () => import("./applicationLayout/Vertical.component"),
-  { ssr: false }
-);
-
-const ApplicationBooleanTextareaLayout = dynamic(
-  () => import("./applicationLayout/BooleanTextarea.component"),
-  { ssr: false }
-);
-
-const ApplicationRadioForCheckLayout = dynamic(
-  () => import("./applicationLayout/RadioForCheck.component"),
-  { ssr: false }
-);
-
-const ApplicationTimelineLayout = dynamic(
-  () => import("./applicationLayout/timeline/Timeline.component"),
-  { ssr: false }
-);
+import ApplicationHorizontalLayout from "./applicationLayout/Horizontal.componet";
+import ApplicationVerticalLayout from "./applicationLayout/Vertical.component";
+import ApplicationBooleanTextareaLayout from "./applicationLayout/BooleanTextarea.component";
+import ApplicationRadioForCheckLayout from "./applicationLayout/RadioForCheck.component";
+import ApplicationTimelineLayout from "./applicationLayout/timeline/Timeline.component";
 
 interface ApplicationLayoutProps {
   applicationQuestion: ApplicationQuestion;

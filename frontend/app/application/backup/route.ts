@@ -13,7 +13,7 @@ export const POST = async (req: NextRequest) => {
   }
   const body = (await req.json()) as { name: string; answer: string }[];
 
-  let queryString = "INSERT INTO applicant (applicant_data) VALUES(?)";
+  const queryString = "INSERT INTO applicant (applicant_data) VALUES(?)";
   await db.run(queryString, JSON.stringify(body));
 
   await sendSms({

@@ -62,7 +62,7 @@ const ApplicationPage = () => {
         ]);
         return;
     }
-  }, []);
+  }, [fieldData]);
 
   return (
     <section className="flex gap-24 mt-24 min-w-[1280px]">

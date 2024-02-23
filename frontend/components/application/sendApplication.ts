@@ -12,6 +12,7 @@ import { localStorage } from "@/src/functions/localstorage";
 
 // 깊은 탐색을 통해 지원자가 작성한 데이터를 추출하는 함수
 const extractApplicantData = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   node: { [key: string]: any } | ApplicationQuestion[],
   applicationData: Set<ApplicantReq>
 ) => {

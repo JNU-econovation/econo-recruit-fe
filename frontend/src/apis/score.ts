@@ -24,7 +24,6 @@ export const getScore = async (id: string) => {
   return data;
 };
 
-
 export interface ScoreReq {
   applicantId: string;
   scoreVo: scoreDetail[];

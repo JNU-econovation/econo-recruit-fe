@@ -19,7 +19,7 @@ const ApplicantDetailLeft = ({
   data,
   cardId,
   generation,
-}:ApplicantDetailLeftProps) => {
+}: ApplicantDetailLeftProps) => {
   const postId = applicantDataFinder(data, "id");
 
   return (
