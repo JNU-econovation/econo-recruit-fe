@@ -9,7 +9,7 @@ const ApplicantPage = ({ children }: WithNavbarLayout) => {
   const headersList = headers();
   const header_url = headersList.get("x-url") || "";
   const [_, __, ___, currentPath, generation] = header_url.split("/");
-  const isShort = currentPath === "kanban" ? true : false;
+  const isShort = currentPath === "kanban";
 
   return (
     <div className="px-24 min-w-[1280px] flex p-12">
