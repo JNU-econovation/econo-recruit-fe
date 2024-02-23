@@ -21,7 +21,7 @@ const CommonNavbar = ({
         className="flex flex-col font-bold h-36 justify-end text-4xl"
         href="/"
       >
-        {isShort ? <div></div> : <div>ECONOVATION</div>}
+        {isShort && <div>ECONOVATION</div>}
         <div>RECRUIT</div>
         <div>{generation}th</div>
       </Link>
