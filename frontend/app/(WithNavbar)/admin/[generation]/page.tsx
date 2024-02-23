@@ -3,7 +3,6 @@
 import AdminBoard from "@/components/admin/Board.component";
 import AdminSearch from "@/components/admin/Search.component";
 import SortListComponent from "@/components/common/SortList.component";
-import CommonNavbar from "@/components/common/navbar/Navbar.component";
 import { getAllInterviewer } from "@/src/apis/interview/interviewer";
 import { useQuery } from "@tanstack/react-query";
 
@@ -24,11 +23,8 @@ const orderMenu = [
 ];
 
 const AdminPage = ({
-  params,
   searchParams: { type = "", order = "", page = "1" },
 }: AdminPageProps) => {
-  const { generation } = params;
-
   const {
     data: userData,
     isLoading,
@@ -44,15 +40,12 @@ const AdminPage = ({
   }
 
   return (
-    <div className="px-24 w-max-[1280px] flex p-12">
-      <CommonNavbar generation={generation} />
-      <div className="flex-1 ml-32 min-w-[46rem] mb-12">
-        <div className="flex w-full justify-end gap-8 my-12">
-          <AdminSearch />
-          <SortListComponent sortList={orderMenu} selected={order} />
-        </div>
-        <AdminBoard />
+    <div className="flex-1 ml-32 min-w-[46rem] mb-12">
+      <div className="flex w-full justify-end gap-8 my-12">
+        <AdminSearch />
+        <SortListComponent sortList={orderMenu} selected={order} />
       </div>
+      <AdminBoard />
     </div>
   );
 };

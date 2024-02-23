@@ -2,7 +2,7 @@ import Image from "next/image";
 import LtIcon from "@/public/icons/lt.icon.svg";
 import LtIconWhite from "@/public/icons/lt.icon.white.svg";
 
-type CommonNavbarCellComponent = {
+type CommonNavbarCell = {
   currentPath: string;
   item: {
     type: string;
@@ -14,11 +14,7 @@ type CommonNavbarCellComponent = {
   isShort: boolean;
 };
 
-const CommonNavbarCellComponent = ({
-  currentPath,
-  item,
-  isShort,
-}: CommonNavbarCellComponent) => {
+const CommonNavbarCell = ({ currentPath, item, isShort }: CommonNavbarCell) => {
   const linkButtonClassName =
     "flex justify-between p-4 hover:bg-secondary-100 hover:text-white rounded-lg";
   return (
@@ -41,4 +37,4 @@ const CommonNavbarCellComponent = ({
   );
 };
 
-export default CommonNavbarCellComponent;
+export default CommonNavbarCell;
