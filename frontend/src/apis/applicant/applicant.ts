@@ -31,12 +31,17 @@ interface ApplicantByPageReq {
   applicants: AllApplicantReq[];
 }
 
-export const getApplicantByPage = async (
-  page: number
+// FIXME: 지원서 리스트 조회 API 변경
+export const getApplicantByPageAndGeneration = async (
+  page: number,
+  generation: string,
+  order: string
 ): Promise<{ maxPage: number; applicants: ApplicantReq[][] }> => {
   const {
     data: { applicants, maxPage },
-  } = await https.get<ApplicantByPageReq>(`/page/${page}/applicants`);
+  } = await https.get<ApplicantByPageReq>(
+    `/page/${page}/year/${generation}/applicants?order=${order}`
+  );
 
   return {
     maxPage,
