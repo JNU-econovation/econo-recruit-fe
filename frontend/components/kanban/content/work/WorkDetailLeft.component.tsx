@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Work, deleteWork, putWork } from "@/src/apis/work/work";
+import { Work, deleteWork, putWork } from "@/src/apis/work";
 import dynamic from "next/dynamic";
 import Txt from "@/components/common/Txt.component";
 import WorkLabel from "./Label.component";

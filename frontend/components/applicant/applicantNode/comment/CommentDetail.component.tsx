@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ApplicantCommentEditorOrViewer from "./EditorOrViewer.component";
-import { deleteComment } from "../../../../src/apis/comment/comment";
-import { postCommentsLike } from "@/src/apis/comment/commentLike";
+import { deleteComment } from "@/src/apis/comment";
+import { postCommentsLike } from "@/src/apis/comment";
 import Icon from "@/components/common/Icon";
 
 interface CommentDeleteButtonProps {

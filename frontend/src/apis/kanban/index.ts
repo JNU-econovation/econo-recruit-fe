@@ -18,7 +18,7 @@ export interface KanbanCardReq {
   isLabeled: boolean;
 }
 
-// card api 추가 시 수정 필요
+// TODO: card api 추가 시 수정 필요
 export const getKanbanCards = async (columnId: string) => {
   const { data } = await https.get<KanbanCardReq[]>(
     `/navigations/${columnId}/boards`
@@ -144,4 +144,53 @@ export const getAllKanbanData = async (
         .filter((card) => card !== null),
     };
   });
+};
+
+interface LocationReq {
+  boardId: number;
+  targetBoardId: number;
+}
+
+export const postLocations = async (body: LocationReq) => {
+  const { data } = await https.post("/boards/locations", body);
+
+  return data;
+};
+
+interface LocationcolumnReq {
+  columnId: number;
+  targetColumnId: number;
+}
+
+export const putColumnsLocations = async (body: LocationcolumnReq) => {
+  const { data } = await https.put("/boards/columns", body);
+
+  return data;
+};
+
+export interface KanbanNavReq {
+  id: string;
+  navTitle: string;
+}
+
+export const getAllKanbanNav = async () => {
+  const { data } = await https.get<KanbanNavReq[]>("/boards/navigations");
+
+  return data;
+};
+
+export const getKanbanNav = async (navId: string) => {
+  const { data } = await https.get<KanbanNavReq>(
+    `/boards/navigations/${navId}`
+  );
+
+  return data;
+};
+
+export const postKanbanNav = async (navTitle: string) => {
+  const { data } = await https.post<KanbanNavReq>("/boards/navigations", {
+    params: { navTitle },
+  });
+
+  return data;
 };

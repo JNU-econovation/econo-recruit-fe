@@ -6,7 +6,7 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { putComment } from "../../../../src/apis/comment/comment";
+import { putComment } from "@/src/apis/comment";
 
 interface ApplicantCommentEditorOrViewerProps {
   content: string;

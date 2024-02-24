@@ -1,5 +1,5 @@
 import { https } from "@/src/functions/axios";
-import { getAllInterviewer } from "../interview/interviewer";
+import { getAllInterviewer } from "../interview";
 
 export interface Work {
   title: string;

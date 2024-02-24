@@ -1,4 +1,4 @@
-import { ApplicantReq } from "@/src/apis/applicant/applicant";
+import { ApplicantReq } from "@/src/apis/applicant";
 import { ReactNode } from "react";
 import ApplicantCustomField from "./applicantNode/CustomField.component";
 import ApplicantCustomHuman from "./applicantNode/CustomHuman.component";

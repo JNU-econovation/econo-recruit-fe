@@ -4,7 +4,7 @@ import {
   ApplicantLabelReq,
   getApplicantLabel,
   postApplicantLabel,
-} from "@/src/apis/applicant/applicant";
+} from "@/src/apis/applicant";
 import { cn } from "@/src/utils/cn";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Icon from "@/components/common/Icon";

@@ -1,7 +1,7 @@
 "use client";
 
 import ApplicantDetailRight from "@/components/applicant/DetailRight.component";
-import { getAppliationById } from "@/src/apis/applicant/applicant";
+import { getAppliationById } from "@/src/apis/applicant";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
