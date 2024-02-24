@@ -11,11 +11,7 @@ interface SortListProps {
   onChange?: () => void;
 }
 
-const SortList = ({
-  sortList,
-  selected,
-  onChange = () => {},
-}: SortListProps) => {
+const SortList = ({ sortList, selected, onChange }: SortListProps) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -32,7 +28,7 @@ const SortList = ({
     const query = search ? `?${search}` : "";
 
     router.push(`${pathname}${query}`);
-    onChange();
+    onChange?.();
   };
 
   return (
