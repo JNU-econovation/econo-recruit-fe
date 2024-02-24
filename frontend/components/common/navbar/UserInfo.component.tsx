@@ -1,6 +1,9 @@
+"use client";
+
 import { getMyInfo } from "@/src/apis/interview";
 import { useQuery } from "@tanstack/react-query";
 import Txt from "../Txt.component";
+import LogoutBtn from "./LogoutBtn";
 
 const roleTranslater = (role: keyof typeof roleMap) => {
   const roleMap = {
@@ -13,9 +16,13 @@ const roleTranslater = (role: keyof typeof roleMap) => {
 };
 
 const NavbarUserInfo = () => {
-  const { data, isLoading, isError } = useQuery(["user"], () => getMyInfo());
+  const {
+    data: loggedInUserInfo,
+    isLoading,
+    isError,
+  } = useQuery(["user"], () => getMyInfo());
 
-  if (!data || isLoading) {
+  if (!loggedInUserInfo || isLoading) {
     return <div className="fixed bottom-12">loading...</div>;
   }
 
@@ -23,14 +30,17 @@ const NavbarUserInfo = () => {
     return <div className="fixed bottom-12">error</div>;
   }
 
+  const { name, role, year } = loggedInUserInfo;
+
   return (
     <div className="fixed bottom-12">
       <div>
-        <Txt className="font-medium">{data.name}</Txt>
+        <Txt className="font-medium">{name}</Txt>
+        <LogoutBtn />
       </div>
       <div>
         <Txt className="text-secondary-200">
-          {`${data.year}기 | ${roleTranslater(data.role)}`}{" "}
+          {`${year}기 | ${roleTranslater(role)}`}
         </Txt>
       </div>
     </div>
