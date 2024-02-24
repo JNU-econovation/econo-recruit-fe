@@ -1,6 +1,6 @@
 "use client";
 import { useQueryClient } from "@tanstack/react-query";
-import SortListComponent from "../common/SortList";
+import SortList from "../common/SortList";
 import { useSearchParams } from "next/navigation";
 import { ORDER_MENU } from "@/src/constants";
 
@@ -18,7 +18,7 @@ const ApplicantSortList = () => {
   };
 
   return (
-    <SortListComponent
+    <SortList
       sortList={ORDER_MENU.APPLICANT}
       selected={order}
       onChange={onOrderChange}

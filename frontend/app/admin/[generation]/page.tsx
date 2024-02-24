@@ -2,7 +2,7 @@
 
 import AdminBoard from "@/components/admin/Board.component";
 import AdminSearch from "@/components/admin/Search.component";
-import SortListComponent from "@/components/common/SortList";
+import SortList from "@/components/common/SortList";
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
 import { getAllInterviewer } from "@/src/apis/interview";
 import { ORDER_MENU } from "@/src/constants";
@@ -45,7 +45,7 @@ const AdminPage = ({
       <div className="flex-1 ml-32 min-w-[46rem] mb-12">
         <div className="flex w-full justify-end gap-8 my-12">
           <AdminSearch />
-          <SortListComponent sortList={ORDER_MENU.ADMIN} selected={order} />
+          <SortList sortList={ORDER_MENU.ADMIN} selected={order} />
         </div>
         <AdminBoard />
       </div>
