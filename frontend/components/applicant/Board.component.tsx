@@ -32,7 +32,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
     isLoading,
     isError,
   } = useQuery(
-    ["allApplicant", generation],
+    ["allApplicant", generation, order],
     () => getApplicantByPageAndGeneration(+pageIndex, generation, order),
     {
       enabled: !!generation,
