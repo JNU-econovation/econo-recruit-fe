@@ -11,6 +11,7 @@ import FaceSmilingFill from "/public/icons/face.smiling.fill.svg";
 import Heart from "/public/icons/heart.svg";
 import HeartPoint from "/public/icons/heart.point.svg";
 import Search from "/public/icons/search-icon.svg";
+import TrashSquareFill from "/public/icons/trash.square.fill.svg";
 import { ComponentProps } from "react";
 
 interface IconProps extends ComponentProps<"img"> {
@@ -70,6 +71,10 @@ const icons = {
   search: {
     image: Search,
     alt: "search icon",
+  },
+  trashSquareFill: {
+    image: TrashSquareFill,
+    alt: "delete icon",
   },
 } as const;
 
