@@ -7,7 +7,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
 import { useSearchParams } from "next/navigation";
-import { getInterviewRecordByPage } from "@/src/apis/interview";
+import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
 
 const InterviewBoardComponent = () => {
   const [applicantId, setApplicantId] = useAtom(interViewApplicantIdState);
@@ -29,7 +29,7 @@ const InterviewBoardComponent = () => {
 
   const { data, isLoading } = useQuery({
     queryKey: ["allApplicant", pageIndex, order],
-    queryFn: () => getInterviewRecordByPage(+pageIndex, order),
+    queryFn: () => getInterviewRecordByPageWithOrder(+pageIndex, order),
   });
 
   if (!data || isLoading) {

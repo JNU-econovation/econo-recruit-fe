@@ -19,7 +19,10 @@ interface RecordsByPageRes {
   pageInfo: PageInfo;
 }
 
-export const getInterviewRecordByPage = async (page: number, order: string) => {
+export const getInterviewRecordByPageWithOrder = async (
+  page: number,
+  order: string
+) => {
   const {
     data: { records, pageInfo },
   } = await https.get<RecordsByPageRes>(
