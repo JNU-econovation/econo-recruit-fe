@@ -28,7 +28,7 @@ const InterviewBoardComponent = () => {
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: ["allApplicant", pageIndex, order],
+    queryKey: ["allInterviewRecord", pageIndex, order],
     queryFn: () => getInterviewRecordByPageWithOrder(+pageIndex, order),
   });
 

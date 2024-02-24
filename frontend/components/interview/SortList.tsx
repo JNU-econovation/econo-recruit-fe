@@ -13,7 +13,7 @@ const InterviewSortList = () => {
 
   const onOrderChange = () => {
     queryClient.invalidateQueries({
-      queryKey: ["allApplicant", pageIndex, order],
+      queryKey: ["allInterviewRecord", pageIndex, order],
     });
   };
 
