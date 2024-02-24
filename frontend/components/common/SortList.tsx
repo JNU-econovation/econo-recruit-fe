@@ -5,17 +5,17 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Icon from "./Icon";
 
-type SortListComponent = {
+interface SortListProps {
   sortList: Readonly<{ type: string; string: string }[]>;
   selected: string;
   onChange?: () => void;
-};
+}
 
-const SortListComponent = ({
+const SortList = ({
   sortList,
   selected,
   onChange = () => {},
-}: SortListComponent) => {
+}: SortListProps) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -75,4 +75,4 @@ const SortListComponent = ({
   );
 };
 
-export default SortListComponent;
+export default SortList;
