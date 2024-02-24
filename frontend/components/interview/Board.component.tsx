@@ -38,16 +38,19 @@ const InterviewBoardComponent = () => {
 
   const { records } = data;
 
-  // TODO: title에 field 추가해야 함
-  const boardData = records.map((value) => ({
-    id: value.applicantId,
-    title: `[개발자] ${value.name}`,
-    subElements: [
-      value.field1,
-      value.field2,
-      `${value.grade} ${value.semester}`,
-    ],
-  }));
+  const boardData = records.map((value) => {
+    return {
+      id: value.applicantId,
+      title: value.name,
+      subElements: [
+        value.field1.split('"').join(""),
+        value.field2.split('"').join(""),
+        `${value.grade.split('"').join("")} ${value.semester
+          .split('"')
+          .join("")}`,
+      ],
+    };
+  });
 
   return (
     <Board
