@@ -1,7 +1,7 @@
 "use client";
 
-import classNames from "classnames";
 import { ChangeEvent, useId } from "react";
+import { cn } from "@/src/utils/cn";
 
 interface RadioProps {
   label: string;
@@ -27,12 +27,12 @@ const Radio = ({
     <>
       <label
         htmlFor={id}
-        className={classNames(
+        className={cn(
           "flex items-center justify-center w-full py-4 border rounded-md cursor-pointer",
           isCheck
             ? "bg-dark text-white border-black"
             : "border-gray-300 text-black bg-white",
-          disabled && "bg-gray-200 text-gray-400 cursor-not-allowed"
+          { "bg-gray-200 text-gray-400 cursor-not-allowed": disabled }
         )}
         onClick={() => {
           typeof onClick === "function" && onClick();
@@ -77,7 +77,7 @@ const RadioGroup = ({
   onClick,
 }: RadioGroupProps) => (
   <div
-    className={classNames(
+    className={cn(
       "grid gap-2 col-end-auto font-semibold",
       gridCols[splitNumber]
     )}

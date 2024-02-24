@@ -5,7 +5,7 @@ import {
   interviewReqBody,
   putInterviewRecord,
   putInterviewUrl,
-} from "@/src/apis/interview/record";
+} from "@/src/apis/interview";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";

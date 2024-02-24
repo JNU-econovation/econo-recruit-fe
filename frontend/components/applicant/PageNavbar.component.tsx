@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import PageNavbarComponent from "../common/PageNavbar.component";
 import { useSearchParams } from "next/navigation";
-import { getApplicantByPageAndGeneration } from "@/src/apis/applicant/applicant";
+import { getApplicantByPageAndGeneration } from "@/src/apis/applicant";
 
 type ApplicantPageNavbarProps = {
   generation: string;

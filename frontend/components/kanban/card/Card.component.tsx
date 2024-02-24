@@ -1,6 +1,7 @@
 import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 import { useParams, useRouter } from "next/navigation";
+import Icon from "@/components/common/Icon";
 
 type KanbanCardComponentType = {
   data: KanbanCardData | null;
@@ -40,14 +41,15 @@ function KanbanCardComponent({
     );
   };
 
+  const isSelected =
+    (applicantId && dataApplicantId === applicantId) ||
+    id.toString() === cardId;
+
   return (
     <div
-      className={classNames(
+      className={cn(
         "border-[1px] w-[14.9rem] p-3 rounded-lg drop-shadow-md bg-white hover:border-primary-400",
-        (applicantId !== "" && dataApplicantId == applicantId) ||
-          `${id}` == cardId
-          ? "border-primary"
-          : "border-light"
+        isSelected ? "border-primary" : "border-light"
       )}
       onClick={onClickDetail}
     >
@@ -57,15 +59,11 @@ function KanbanCardComponent({
         <div className="text-sm">{apply.join(" / ")}</div>
         <div className="flex gap-3">
           <div className="flex">
-            <img src="/icons/bubble.right.svg" alt="comment" />
+            <Icon icon="bubbleRight" />
             {comment}
           </div>
           <div className="flex">
-            {isHearted ? (
-              <img src="/icons/heart.point.svg" alt="heart" />
-            ) : (
-              <img src="/icons/heart.svg" alt="heart" />
-            )}
+            {isHearted ? <Icon icon="heartPoint" /> : <Icon icon="heart" />}
             {heart}
           </div>
         </div>

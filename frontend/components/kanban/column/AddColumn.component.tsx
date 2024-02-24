@@ -1,10 +1,11 @@
 "use client";
 
-import { postAddColumn } from "@/src/apis/kanban/kanban";
+import { postAddColumn } from "@/src/apis/kanban";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import React, { useState } from "react";
+import Icon from "@/components/common/Icon";
 
 function KanbanAddColumnComponent() {
   const [title, setTitle] = useState("");
@@ -42,10 +43,10 @@ function KanbanAddColumnComponent() {
           />
           <div className="flex gap-3 justify-end">
             <button type="button" onClick={() => setIsOpenAddColumn(false)}>
-              <img src="/icons/ellipsis.multiply.svg" alt="" />
+              <Icon icon="ellipsisMultiply" />
             </button>
             <button type="submit">
-              <img src="/icons/arrow.forward.circle.fill.svg" alt="" />
+              <Icon icon="arrowForwardCircleFill" />
             </button>
           </div>
         </form>
@@ -55,7 +56,7 @@ function KanbanAddColumnComponent() {
           className="w-[17rem] flex gap-6 justify-start items-center text-secondary-200 py-4 px-6 bg-light h-fit rounded-lg text-lg"
           onClick={() => setIsOpenAddColumn(true)}
         >
-          <img src="/icons/ellipsis.plus.svg" alt="AddColumn" />
+          <Icon icon="ellipsisPlus" />
           Add another list
         </button>
       )}

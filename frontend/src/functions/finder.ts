@@ -1,5 +1,5 @@
-import { ApplicantReq } from "../apis/applicant/applicant";
-import { InterviewRes } from "../apis/interview/record";
+import { ApplicantReq } from "../apis/applicant";
+import { InterviewRes } from "@/src/apis/interview";
 
 export const applicantDataFinder = (
   applicantData: ApplicantReq[],

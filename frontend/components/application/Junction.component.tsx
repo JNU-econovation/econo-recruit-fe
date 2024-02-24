@@ -1,5 +1,6 @@
 import { ApplicationNode } from "@/src/constants/application/type";
 import dynamic from "next/dynamic";
+import { ReactNode } from "react";
 
 const ApplicationRadio = dynamic(
   () => import("./applicationNode/Radio.component")
@@ -34,7 +35,7 @@ interface JunctionQuestionProps {
 export const JunctionQuestion = ({
   applicationNodeData,
 }: JunctionQuestionProps) => {
-  const jsxNode = {
+  const jsxNode: Record<ApplicationNode["type"], ReactNode> = {
     radio: <ApplicationRadio data={applicationNodeData} />,
     radioByTwoRank: <ApplicationRadioByTwoRank data={applicationNodeData} />,
     radioForCheck: <></>,
@@ -44,6 +45,7 @@ export const JunctionQuestion = ({
     bar: <ApplicationBar />,
     justText: <ApplicationJustText data={applicationNodeData} />,
     checkboxWithEtc: <ApplicationCheckboxWithEtc data={applicationNodeData} />,
+    checkbox: <></>,
     timeline: <></>,
   };
 

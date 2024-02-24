@@ -1,12 +1,9 @@
 "use client";
 
-import {
-  WorkLabelReq,
-  getWorkLabel,
-  postWorkLabel,
-} from "@/src/apis/work/work";
+import { WorkLabelReq, getWorkLabel, postWorkLabel } from "@/src/apis/work";
+import { cn } from "@/src/utils/cn";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import classNames from "classnames";
+import Icon from "@/components/common/Icon";
 import { useState } from "react";
 
 interface WorkLabelProps {
@@ -69,12 +66,12 @@ const WorkLabel = ({ cardId, generation }: WorkLabelProps) => {
         </div>
         <button
           onClick={toggleOpen}
-          className={classNames(
+          className={cn(
             "text-primary bg-primary-200 translate-y-[2px] h-8 w-8 rounded-full flex items-center justify-center transition-all",
             { "rotate-45 ": openAdditional }
           )}
         >
-          <img src="/icons/ellipsis.plus.blue.svg" alt="plus" />
+          <Icon icon="ellipsisPlusBlue" />
         </button>
       </div>
     </div>
@@ -110,7 +107,7 @@ const WorkLabelButton = ({
   return (
     <button
       key={label.name}
-      className={classNames(
+      className={cn(
         "py-1 px-4 rounded-full w-max",
         label.active
           ? "text-primary bg-primary-200"

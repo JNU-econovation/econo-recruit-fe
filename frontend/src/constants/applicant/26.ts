@@ -1,4 +1,4 @@
-const APPLICANT = [
+const APPLICANT: ApplicantNode[] = [
   {
     id: 1,
     title: "프로젝트 희망 분야를 선택해주세요.*",
@@ -10,7 +10,7 @@ const APPLICANT = [
       { title: "1순위", name: "field1" },
       { title: "2순위", name: "field2" },
     ],
-  } as ApplicantCustomFieldNode,
+  },
   {
     id: 2,
     title: "기본 인적 사항을 입력해주세요.*",
@@ -28,7 +28,7 @@ const APPLICANT = [
         { name: "semester" },
       ],
     },
-  } as ApplicantCustomHumanNode,
+  },
   {
     id: 3,
     title: "기타 질문 사항에 답변해주세요.",
@@ -37,11 +37,16 @@ const APPLICANT = [
       { title: "향후 계획 활동", name: "activity" },
       { title: "지원 경로* (중복 선택 가능)", name: "channel" },
     ],
-  } as ApplicantShortSplitNode,
-] as ApplicantNode[];
+  },
+];
 
+// TODO: ScoreKeyword, ScoreKeywordName, ScoreKeywordType type 최적화
 export type ScoreKeyword = "실천력" | "동아리애착" | "협업" | "기타";
-type ScoreKeywordName = "passion" | "clubFocus" | "collaboration" | "earnestness";
+type ScoreKeywordName =
+  | "passion"
+  | "clubFocus"
+  | "collaboration"
+  | "earnestness";
 
 type ScoreKeywordType = {
   title: ScoreKeyword;

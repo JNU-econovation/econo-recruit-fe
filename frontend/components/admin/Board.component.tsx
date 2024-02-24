@@ -5,31 +5,11 @@ import {
   getAllInterviewer,
   getMyInfo,
   putInterviewer,
-} from "@/src/apis/interview/interviewer";
+} from "@/src/apis/interview";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Txt from "../common/Txt.component";
-import classNames from "classnames";
-
-const roleKeys: (keyof typeof roleMap)[] = [
-  "ROLE_OPERATION",
-  "ROLE_PRESIDENT",
-  "ROLE_TF",
-  "ROLE_GUEST",
-];
-
-const roleUpdateMap = {
-  ROLE_OPERATION: "OPERATION",
-  ROLE_PRESIDENT: "PRESIDENT",
-  ROLE_TF: "TF",
-  ROLE_GUEST: "GUEST",
-} as const;
-
-const roleMap = {
-  ROLE_OPERATION: "관리자",
-  ROLE_PRESIDENT: "회장단",
-  ROLE_TF: "TF",
-  ROLE_GUEST: "게스트",
-} as const;
+import { cn } from "@/src/utils/cn";
+import { roleKeys, roleMap, roleUpdateMap } from "@/src/constants/admin";
 
 const roleTranslater = (role: keyof typeof roleMap) => roleMap[role];
 
@@ -53,13 +33,12 @@ const InterViewerUpdateButton = ({
       },
     }
   );
-
   return (
     <button
       onClick={() => {
         mutate();
       }}
-      className={classNames(
+      className={cn(
         "py-2 w-[6rem] rounded-md",
         user.role === role
           ? "bg-primary-300 text-primary"

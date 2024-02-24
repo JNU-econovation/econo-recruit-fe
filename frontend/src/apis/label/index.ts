@@ -1,4 +1,4 @@
-import { https } from "../functions/axios";
+import { https } from "../../functions/axios";
 
 export const getLabel = async (id: string) => {
   const { data } = await https.get<string[]>(`/labels`, {

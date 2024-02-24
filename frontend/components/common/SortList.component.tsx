@@ -1,8 +1,9 @@
 "use client";
 
-import classNames from "classnames";
+import { cn } from "@/src/utils/cn";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import Icon from "./Icon";
 
 type SortListComponent = {
   sortList: { type: string; string: string }[];
@@ -45,7 +46,7 @@ const SortListComponent = ({
       >
         Sort by :
         <span className="font-semibold capitalize text-dark">{order}</span>
-        <img src="/icons/chevron-down.svg" alt="drop_down"></img>
+        <Icon icon="chevronDown" />
       </button>
       {isOpen ? (
         <div className="flex flex-col absolute w-full border-light rounded-xl border-[1px] bg-white p-6 font-semibold -mt-4 text-dark">
@@ -58,7 +59,7 @@ const SortListComponent = ({
                 onOrderChange(sort.type);
                 setIsOpen(false);
               }}
-              className={classNames(
+              className={cn(
                 "flex justify-end py-2 px-6 capitalize cursor-pointer",
                 { "text-secondary-200 cursor-auto": sort.type === selected }
               )}

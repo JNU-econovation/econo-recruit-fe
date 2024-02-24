@@ -3,7 +3,7 @@
 import KanbanColumnDetailCard from "@/components/kanban/column/ColumnWithBackButton.component";
 import KanbanDetailApplicant from "@/components/kanban/content/DetailApplicant.component";
 import Validate from "@/components/user/Validate.component";
-import { KanbanCardReq } from "@/src/apis/kanban/kanban";
+import { KanbanCardReq } from "@/src/apis/kanban";
 import KanbanDetailWork from "@/components/kanban/content/DetailWork.component";
 
 interface KanbanBoardDetailPageProps {

@@ -1,5 +1,5 @@
 import InterviewUserComponent from "./User.component";
-import { getInterviewRecord } from "@/src/apis/interview/record";
+import { getInterviewRecord } from "@/src/apis/interview";
 import { getScore } from "@/src/apis/score";
 import InterviewAvgComponent from "@/components/interview/modal/AvgScore.component";
 import InterviewScoreComponent from "./Score.component";

@@ -1,5 +1,5 @@
 import { CURRENT_GENERATION } from "@/src/constants";
-import { ApplicationQuestion } from "@/src/constants/application/type";
+import type { ApplicationQuestion } from "@/src/constants/application/type";
 import { atom } from "jotai";
 
 export const applicationIndexAtom = atom(0);

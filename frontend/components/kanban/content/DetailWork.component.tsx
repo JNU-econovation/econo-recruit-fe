@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { getWork } from "@/src/apis/work/work";
+import { getWork } from "@/src/apis/work";
 import WorkDetailLeft from "./work/WorkDetailLeft.component";
 import WorkDetailRight from "./work/WorkDetailRight.component";
 

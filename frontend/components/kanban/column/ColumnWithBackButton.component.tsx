@@ -3,10 +3,11 @@
 import { KanbanColumnData } from "@/src/stores/kanban/Kanban.atoms";
 import { useAtom } from "jotai";
 import { useQuery } from "@tanstack/react-query";
-import { getAllKanbanData } from "@/src/apis/kanban/kanban";
+import { getAllKanbanData } from "@/src/apis/kanban";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import KanbanDetailBackButton from "../BackButton.component";
 import KanbanCardComponent from "../card/Card.component";
+import Icon from "@/components/common/Icon";
 
 interface KanbanDetailCardProps {
   columnIndex: number;
@@ -57,7 +58,7 @@ const KanbanColumnDetailCard = ({
               </div>
             </div>
             <button>
-              <img src="/icons/ellipsis.bubble.svg" alt="CardDetail" />
+              <Icon icon="ellipsisBubble" />
             </button>
           </div>
           <div className="flex flex-col justify-between">

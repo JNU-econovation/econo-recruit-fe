@@ -1,6 +1,6 @@
 import { APPLICANT_KEYS } from "@/src/constants";
 import { https } from "@/src/functions/axios";
-import { getAllInterviewer } from "../interview/interviewer";
+import { getAllInterviewer } from "../interview";
 
 export interface ApplicantReq {
   name: string;
@@ -63,6 +63,7 @@ export const getApplicantByPageAndGeneration = async (
   };
 };
 
+/** THIS API MAY UNUSED. PLEASE REMOVE THIS COMMENT IF YOU WANT USE */
 export const getAllApplicant = async (
   fields?: string[]
 ): Promise<ApplicantReq[][]> => {

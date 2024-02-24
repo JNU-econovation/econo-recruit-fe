@@ -1,4 +1,4 @@
-import { InterviewRes, getInterviewRecord } from "@/src/apis/interview/record";
+import { InterviewRes, getInterviewRecord } from "@/src/apis/interview";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
 import { useQuery } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";

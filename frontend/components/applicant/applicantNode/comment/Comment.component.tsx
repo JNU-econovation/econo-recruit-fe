@@ -2,7 +2,7 @@
 
 import ApplicantCommentInputForm from "./InputForm.component";
 import { useQuery } from "@tanstack/react-query";
-import { getAllComment } from "@/src/apis/comment/comment";
+import { getAllComment } from "@/src/apis/comment";
 import ApplicantCommentDetail from "./CommentDetail.component";
 
 interface ApplicantCommentProps {

@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ApplicantCommentEditorOrViewer from "./EditorOrViewer.component";
-import { deleteComment } from "../../../../src/apis/comment/comment";
-import { postCommentsLike } from "@/src/apis/comment/commentLike";
+import { deleteComment } from "@/src/apis/comment";
+import { postCommentsLike } from "@/src/apis/comment";
+import Icon from "@/components/common/Icon";
 
 interface CommentDeleteButtonProps {
   commentId: string;
@@ -78,14 +79,7 @@ const ApplicantCommentDetail = ({
           </div>
         </div>
         <button onClick={() => heartToggle()} className="flex gap-2 items-end">
-          <img
-            src={
-              comment.isLike
-                ? "/icons/face.smiling.fill.svg"
-                : "/icons/face.smiling.svg"
-            }
-            alt="smile face"
-          />
+          <Icon icon={comment.isLike ? "faceSmilingFill" : "faceSmiling"} />
           <span className="text-xs text-secondary-200">
             {comment.likeCount}
           </span>
