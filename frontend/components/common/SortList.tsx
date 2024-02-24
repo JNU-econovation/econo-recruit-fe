@@ -6,7 +6,7 @@ import { useState } from "react";
 import Icon from "./Icon";
 
 type SortListComponent = {
-  sortList: { type: string; string: string }[];
+  sortList: Readonly<{ type: string; string: string }[]>;
   selected: string;
   onChange?: () => void;
 };
