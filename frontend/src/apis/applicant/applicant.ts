@@ -37,7 +37,7 @@ export interface PageInfo {
 
 interface ApplicantByPageReq {
   pageInfo: PageInfo;
-  applicants: AllApplicantReq[];
+  answers: AllApplicantReq[];
 }
 
 // FIXME: 지원서 리스트 조회 API 변경
@@ -47,14 +47,14 @@ export const getApplicantByPageAndGeneration = async (
   order: string
 ): Promise<{ maxPage: number; applicants: ApplicantReq[][] }> => {
   const {
-    data: { applicants, pageInfo },
+    data: { pageInfo, answers },
   } = await https.get<ApplicantByPageReq>(
     `/page/${page}/year/${+generation}/applicants?order=${order}`
   );
 
   return {
     maxPage: pageInfo.endPage,
-    applicants: applicants.map((applicant) =>
+    applicants: answers.map((applicant) =>
       Object.keys(applicant).map((key) => ({
         name: key,
         answer: applicant[key],
