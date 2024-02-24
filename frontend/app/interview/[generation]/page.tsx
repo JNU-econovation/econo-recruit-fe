@@ -1,8 +1,8 @@
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
-import InterviewBoardComponent from "@/components/interview/Board.component";
+import InterviewBoardComponent from "@/components/interview/Board";
 import InterviewPageNavbar from "@/components/interview/PageNavbar.component";
 import InterviewSearchComponent from "@/components/interview/Search.component";
-import InterviewSortList from "@/components/interview/SortList.component";
+import InterviewSortList from "@/components/interview/SortList";
 import Validate from "@/components/user/Validate.component";
 
 interface InterviewPageProps {

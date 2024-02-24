@@ -1,6 +1,6 @@
 "use client";
 import { useQueryClient } from "@tanstack/react-query";
-import SortListComponent from "../common/SortList.component";
+import SortListComponent from "../common/SortList";
 import { useSearchParams } from "next/navigation";
 
 const InterviewSortList = () => {

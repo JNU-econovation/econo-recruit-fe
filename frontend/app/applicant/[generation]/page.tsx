@@ -1,7 +1,7 @@
-import ApplicantBoard from "@/components/applicant/Board.component";
+import ApplicantBoard from "@/components/applicant/Board";
 import ApplicantPageNavbar from "@/components/applicant/PageNavbar.component";
 import ApplicantSearch from "@/components/applicant/Search.component";
-import ApplicantSortList from "@/components/applicant/SortList.component";
+import ApplicantSortList from "@/components/applicant/SortList";
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
 import Validate from "@/components/user/Validate.component";
 

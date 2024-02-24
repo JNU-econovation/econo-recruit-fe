@@ -2,7 +2,7 @@
 
 import AdminBoard from "@/components/admin/Board.component";
 import AdminSearch from "@/components/admin/Search.component";
-import SortListComponent from "@/components/common/SortList.component";
+import SortListComponent from "@/components/common/SortList";
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
 import { getAllInterviewer } from "@/src/apis/interview";
 import { useQuery } from "@tanstack/react-query";
