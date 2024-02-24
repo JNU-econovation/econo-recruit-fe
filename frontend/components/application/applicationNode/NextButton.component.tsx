@@ -29,6 +29,7 @@ const ApplicationNextButton = ({
   const applicationName = new Set<string>();
 
   const getApplicationName = (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     node: { [key: string]: any } | ApplicationQuestion[],
     applicationName: Set<string>
   ) => {

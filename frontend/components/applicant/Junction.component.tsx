@@ -1,26 +1,10 @@
 import { ApplicantReq } from "@/src/apis/applicant";
-import dynamic from "next/dynamic";
 import { ReactNode } from "react";
-
-const ApplicantCustomField = dynamic(
-  () => import("./applicantNode/CustomField.component")
-);
-
-const ApplicantCustomHuman = dynamic(
-  () => import("./applicantNode/CustomHuman.component")
-);
-
-const ApplicantShortSplit = dynamic(
-  () => import("./applicantNode/ShortSplit.component")
-);
-
-const ApplicantTextarea = dynamic(
-  () => import("./applicantNode/Textarea.component")
-);
-
-const ApplicantBooleanTextarea = dynamic(
-  () => import("./applicantNode/BooleanTextarea.component")
-);
+import ApplicantCustomField from "./applicantNode/CustomField.component";
+import ApplicantCustomHuman from "./applicantNode/CustomHuman.component";
+import ApplicantShortSplit from "./applicantNode/ShortSplit.component";
+import ApplicantTextarea from "./applicantNode/Textarea.component";
+import ApplicantBooleanTextarea from "./applicantNode/BooleanTextarea.component";
 
 interface JunctionApplicantProps {
   applicantNodeData: ApplicantNode;

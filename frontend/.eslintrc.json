@@ -2,11 +2,6 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
-  "parserOptions": {
-    "sourceType": "module",
-    "project": "./tsconfig.json",
-    "createDefaultProgram": true
-  },
   "env": {
     "browser": true,
     "node": true,
@@ -47,10 +42,6 @@
           "{}": false
         }
       }
-    ],
-    "parserOptions": {
-      "project": ["tsconfig.json"],
-      "createDefaultProgram": true
-    }
+    ]
   }
 }
