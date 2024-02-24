@@ -2,16 +2,12 @@
 import { useQueryClient } from "@tanstack/react-query";
 import SortListComponent from "../common/SortList";
 import { useSearchParams } from "next/navigation";
+import { ORDER_MENU } from "@/src/constants";
 
 const InterviewSortList = () => {
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
-  const orderMenu = [
-    { type: "newest", string: "최신순" },
-    { type: "name", string: "이름순" },
-    { type: "objective", string: "지원분야순" },
-    { type: "score", string: "점수순" },
-  ];
+
   const pageIndex = searchParams.get("page") || "1";
   const order = searchParams.get("order") ?? "newest";
 
@@ -23,7 +19,7 @@ const InterviewSortList = () => {
 
   return (
     <SortListComponent
-      sortList={orderMenu}
+      sortList={ORDER_MENU.INTERVIEW}
       selected={order}
       onChange={onOrderChange}
     />

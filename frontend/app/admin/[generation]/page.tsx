@@ -5,6 +5,7 @@ import AdminSearch from "@/components/admin/Search.component";
 import SortListComponent from "@/components/common/SortList";
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
 import { getAllInterviewer } from "@/src/apis/interview";
+import { ORDER_MENU } from "@/src/constants";
 import { useQuery } from "@tanstack/react-query";
 
 interface AdminPageProps {
@@ -17,11 +18,6 @@ interface AdminPageProps {
     page: string;
   };
 }
-
-const orderMenu = [
-  { type: "newest", string: "최신순" },
-  { type: "name", string: "이름순" },
-];
 
 const AdminPage = ({
   params,
@@ -49,7 +45,7 @@ const AdminPage = ({
       <div className="flex-1 ml-32 min-w-[46rem] mb-12">
         <div className="flex w-full justify-end gap-8 my-12">
           <AdminSearch />
-          <SortListComponent sortList={orderMenu} selected={order} />
+          <SortListComponent sortList={ORDER_MENU.ADMIN} selected={order} />
         </div>
         <AdminBoard />
       </div>
