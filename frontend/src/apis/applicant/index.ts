@@ -40,8 +40,7 @@ interface ApplicantByPageReq {
   answers: AllApplicantReq[];
 }
 
-// FIXME: 지원서 리스트 조회 API 변경
-export const getApplicantByPageAndGeneration = async (
+export const getApplicantByPageWithGeneration = async (
   page: number,
   generation: string,
   order: string

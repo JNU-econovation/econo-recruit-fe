@@ -1,7 +1,7 @@
 "use client";
 
 import Board from "@/components/common/board/Board.component";
-import { getApplicantByPageAndGeneration } from "@/src/apis/applicant";
+import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
 import ApplicantDetailRight from "./DetailRight.component";
 import ApplicantDetailLeft from "./DetailLeft.component";
 import { useState } from "react";
@@ -33,7 +33,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
     isError,
   } = useQuery(
     ["allApplicant", generation, order],
-    () => getApplicantByPageAndGeneration(+pageIndex, generation, order),
+    () => getApplicantByPageWithGeneration(+pageIndex, generation, order),
     {
       enabled: !!generation,
     }
