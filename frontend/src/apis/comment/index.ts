@@ -33,7 +33,7 @@ export const postComment = async (body: CommentReq) => {
     console.log("잘못된 요청입니다.");
   }
 
-  let reqData: Object = body;
+  let reqData: unknown = body;
   if (body.applicantId === "") {
     reqData = {
       ...body,

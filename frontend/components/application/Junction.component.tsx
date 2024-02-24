@@ -1,32 +1,13 @@
 import { ApplicationNode } from "@/src/constants/application/type";
-import dynamic from "next/dynamic";
 import { ReactNode } from "react";
 
-const ApplicationRadio = dynamic(
-  () => import("./applicationNode/Radio.component")
-);
-
-const ApplicationRadioByTwoRank = dynamic(
-  () => import("./applicationNode/RadioByTwoRank.component")
-);
-
-const ApplicationText = dynamic(
-  () => import("./applicationNode/Text.component")
-);
-
-const ApplicationCheckboxWithEtc = dynamic(
-  () => import("./applicationNode/CheckboxWithEtc.component")
-);
-
-const ApplicationTextarea = dynamic(
-  () => import("./applicationNode/Textarea.component")
-);
-
-const ApplicationBar = dynamic(() => import("./applicationNode/Bar.component"));
-
-const ApplicationJustText = dynamic(
-  () => import("./applicationNode/JustText.component")
-);
+import ApplicationRadio from "./applicationNode/Radio.component";
+import ApplicationRadioByTwoRank from "./applicationNode/RadioByTwoRank.component";
+import ApplicationText from "./applicationNode/Text.component";
+import ApplicationCheckboxWithEtc from "./applicationNode/CheckboxWithEtc.component";
+import ApplicationTextarea from "./applicationNode/Textarea.component";
+import ApplicationBar from "./applicationNode/Bar.component";
+import ApplicationJustText from "./applicationNode/JustText.component";
 
 interface JunctionQuestionProps {
   applicationNodeData: ApplicationNode;

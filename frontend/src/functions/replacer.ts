@@ -17,9 +17,11 @@ const scoreNumberReplacer = (value: string) => {
   if (!score) return "";
   return score[1] ?? score[0];
 };
-  
 
-export type ReplacerType = "cellPhoneNumber" | "undergradeNumber" | "scoreNumber";
+export type ReplacerType =
+  | "cellPhoneNumber"
+  | "undergradeNumber"
+  | "scoreNumber";
 
 export const replacer = (value: string, type: ReplacerType) => {
   switch (type) {
