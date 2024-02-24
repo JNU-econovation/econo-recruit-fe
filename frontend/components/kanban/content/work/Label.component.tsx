@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  WorkLabelReq,
-  getWorkLabel,
-  postWorkLabel,
-} from "@/src/apis/work/work";
+import { WorkLabelReq, getWorkLabel, postWorkLabel } from "@/src/apis/work";
 import { cn } from "@/src/utils/cn";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Icon from "@/components/common/Icon";

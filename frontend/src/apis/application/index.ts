@@ -1,5 +1,5 @@
 import axios from "axios";
-import { https } from "../functions/axios";
+import { https } from "../../functions/axios";
 
 export interface ApplicantReq {
   name: string;

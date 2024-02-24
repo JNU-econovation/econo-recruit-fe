@@ -2,7 +2,7 @@
 
 import ApplicantDetailLeft from "@/components/applicant/DetailLeft.component";
 import ApplicantDetailRight from "@/components/applicant/DetailRight.component";
-import { getApplicantByIdWithField } from "@/src/apis/applicant/applicant";
+import { getApplicantByIdWithField } from "@/src/apis/applicant";
 import { APPLICANT_KEYS } from "@/src/constants/";
 import { useQuery } from "@tanstack/react-query";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ApplicantReq } from "@/src/apis/applicant/applicant";
+import { ApplicantReq } from "@/src/apis/applicant";
 import { Fragment, useEffect } from "react";
 
 import Txt from "../common/Txt.component";

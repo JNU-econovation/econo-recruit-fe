@@ -6,7 +6,7 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { putWork } from "@/src/apis/work/work";
+import { putWork } from "@/src/apis/work";
 
 interface WorkEditorOrViewerProps {
   content: string;

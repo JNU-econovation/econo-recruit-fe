@@ -6,7 +6,7 @@ import { Editor } from "@toast-ui/react-editor";
 
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postComment } from "@/src/apis/comment/comment";
+import { postComment } from "@/src/apis/comment";
 import Icon from "@/components/common/Icon";
 type InputCheckBoxProps = {
   name: string;

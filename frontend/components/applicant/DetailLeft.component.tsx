@@ -1,4 +1,4 @@
-import { ApplicantReq } from "@/src/apis/applicant/applicant";
+import { ApplicantReq } from "@/src/apis/applicant";
 import ApplicantResource from "./applicantNode/CustomResource.component";
 import ApplicantLabel from "./applicantNode/Label.component";
 import { applicantDataFinder } from "@/src/functions/finder";
@@ -19,7 +19,7 @@ const ApplicantDetailLeft = ({
   data,
   cardId,
   generation,
-}:ApplicantDetailLeftProps) => {
+}: ApplicantDetailLeftProps) => {
   const postId = applicantDataFinder(data, "id");
 
   return (

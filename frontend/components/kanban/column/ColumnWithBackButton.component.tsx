@@ -3,7 +3,7 @@
 import { KanbanColumnData } from "@/src/stores/kanban/Kanban.atoms";
 import { useAtom } from "jotai";
 import { useQuery } from "@tanstack/react-query";
-import { getAllKanbanData } from "@/src/apis/kanban/kanban";
+import { getAllKanbanData } from "@/src/apis/kanban";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import KanbanDetailBackButton from "../BackButton.component";
 import KanbanCardComponent from "../card/Card.component";

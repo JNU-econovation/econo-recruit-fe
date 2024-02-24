@@ -4,7 +4,7 @@ import { MainNavbar } from "@/src/constants";
 import { useEffect, useState } from "react";
 import CommonNavbarCellComponent from "./NavbarCell.component";
 import NavbarUserInfo from "./UserInfo.component";
-import { getMyInfo } from "@/src/apis/interview/interviewer";
+import { getMyInfo } from "@/src/apis/interview";
 import { useQuery } from "@tanstack/react-query";
 
 interface CommonNavbarProps {

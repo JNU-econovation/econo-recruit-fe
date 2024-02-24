@@ -7,7 +7,7 @@ import { applicantDataFinder } from "@/src/functions/finder";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
-import { getApplicantByPage } from "@/src/apis/applicant/applicant";
+import { getApplicantByPage } from "@/src/apis/applicant";
 import { useSearchParams } from "next/navigation";
 
 const InterviewBoardComponent = () => {

@@ -1,5 +1,5 @@
-import { ScoreKeyword } from "../constants/applicant/26";
-import { https } from "../functions/axios";
+import { ScoreKeyword } from "../../constants/applicant/26";
+import { https } from "../../functions/axios";
 
 export interface scoreDetail {
   creteria: ScoreKeyword;
@@ -23,7 +23,6 @@ export const getScore = async (id: string) => {
   });
   return data;
 };
-
 
 export interface ScoreReq {
   applicantId: string;

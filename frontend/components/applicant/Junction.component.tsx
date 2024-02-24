@@ -1,4 +1,4 @@
-import { ApplicantReq } from "@/src/apis/applicant/applicant";
+import { ApplicantReq } from "@/src/apis/applicant";
 import dynamic from "next/dynamic";
 import { ReactNode } from "react";
 

@@ -1,9 +1,6 @@
 import LabeledInput from "@/components/common/LabeledInput.component";
 import LabeledTextarea from "@/components/common/LabeledTextarea";
-import {
-  interviewReqBody,
-  postInterviewRecord,
-} from "@/src/apis/interview/record";
+import { interviewReqBody, postInterviewRecord } from "@/src/apis/interview";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
