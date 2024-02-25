@@ -1,7 +1,7 @@
 "use client";
 
 import ApplicantDetailRight from "@/components/applicant/DetailRight.component";
-import { getAppliationById } from "@/src/apis/applicant";
+import { getApplicationById } from "@/src/apis/applicant";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
@@ -11,7 +11,7 @@ const ApplicationPdfViewer = () => {
 
   const { data, isLoading, isError } = useQuery(
     ["applicant", applicantId],
-    () => getAppliationById(applicantId),
+    () => getApplicationById(applicantId),
     {
       enabled: !!applicantId,
     }
