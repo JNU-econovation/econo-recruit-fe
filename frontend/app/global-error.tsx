@@ -1,31 +1,6 @@
 "use client";
 import Icon from "@/components/common/Icon";
-
-const managementTeam = {
-  position: ["Design", "Front-end", "Back-end"],
-  member: [
-    {
-      position: "Design",
-      generation: 22,
-      name: "김서하",
-    },
-    {
-      position: "Front-end",
-      generation: 22,
-      name: "임채승",
-    },
-    {
-      position: "Front-end",
-      generation: 25,
-      name: "강바다",
-    },
-    {
-      position: "Back-end",
-      generation: 21,
-      name: "이서현",
-    },
-  ],
-};
+import { managementTeam } from "@/src/constants";
 
 export default function Error({ reset }: { reset: () => void }) {
   return (
