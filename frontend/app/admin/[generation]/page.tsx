@@ -4,7 +4,6 @@ import AdminBoard from "@/components/admin/Board.component";
 import AdminSearch from "@/components/admin/Search.component";
 import SortList from "@/components/common/SortList";
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
-import { getAllInterviewer } from "@/src/apis/interview";
 import { ORDER_MENU } from "@/src/constants";
 import { useQuery } from "@tanstack/react-query";
 
@@ -24,20 +23,6 @@ const AdminPage = ({
   searchParams: { type = "", order = "", page = "1" },
 }: AdminPageProps) => {
   const { generation } = params;
-
-  const {
-    data: userData,
-    isLoading,
-    isError,
-  } = useQuery(["interviewers"], () => getAllInterviewer());
-
-  if (!userData || isLoading) {
-    return <div>로딩중...</div>;
-  }
-
-  if (isError) {
-    return <div>에러 발생</div>;
-  }
 
   return (
     <div className="px-24 w-max-[1280px] flex p-12">
