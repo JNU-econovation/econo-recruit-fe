@@ -45,7 +45,7 @@ const AdminPage = ({
       <div className="flex-1 ml-32 min-w-[46rem] mb-12">
         <div className="flex w-full justify-end gap-8 my-12">
           <AdminSearch />
-          <SortList sortList={ORDER_MENU.ADMIN} selected={order} />
+          <SortList sortList={ORDER_MENU.ADMIN} />
         </div>
         <AdminBoard />
       </div>
