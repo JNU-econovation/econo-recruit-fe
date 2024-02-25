@@ -1,9 +1,10 @@
+import SortList from "@/components/common/SortList";
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
 import InterviewBoardComponent from "@/components/interview/Board";
 import InterviewPageNavbar from "@/components/interview/PageNavbar.component";
 import InterviewSearchComponent from "@/components/interview/Search.component";
-import InterviewSortList from "@/components/interview/SortList";
 import Validate from "@/components/user/Validate.component";
+import { ORDER_MENU } from "@/src/constants";
 
 interface InterviewPageProps {
   params: {
@@ -19,7 +20,7 @@ const InterviewPage = ({ params: { generation } }: InterviewPageProps) => {
       <div className="flex-1 ml-32 min-w-[46rem]">
         <div className="flex w-full justify-end gap-8 my-12">
           <InterviewSearchComponent />
-          <InterviewSortList />
+          <SortList sortList={ORDER_MENU.INTERVIEW} />
         </div>
         <InterviewBoardComponent />
         <InterviewPageNavbar generation={generation} />
