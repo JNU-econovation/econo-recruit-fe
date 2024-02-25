@@ -2,7 +2,7 @@
 
 import {
   InterviewerReq,
-  getAllInterviewer,
+  getAllInterviewerWithOrder,
   getMyInfo,
   putInterviewer,
 } from "@/src/apis/interview";
@@ -10,6 +10,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Txt from "../common/Txt.component";
 import { cn } from "@/src/utils/cn";
 import { roleKeys, roleMap, roleUpdateMap } from "@/src/constants/admin";
+import { useSearchParams } from "next/navigation";
+import { ORDER_MENU } from "@/src/constants";
 
 const roleTranslater = (role: keyof typeof roleMap) => roleMap[role];
 
@@ -51,11 +53,16 @@ const InterViewerUpdateButton = ({
 };
 
 const AdminBoard = () => {
+  const searchParams = useSearchParams();
+  const order = searchParams.get("order") || ORDER_MENU.ADMIN[0].type;
+
   const {
     data: userData,
     isLoading,
     isError,
-  } = useQuery(["interviewers"], () => getAllInterviewer());
+  } = useQuery(["interviewers", order], () =>
+    getAllInterviewerWithOrder(order)
+  );
 
   const {
     data: myInfo,
