@@ -61,8 +61,10 @@ export interface InterviewerReq {
   role: "ROLE_GUEST" | "ROLE_TF" | "ROLE_OPERATION" | "ROLE_PRESIDENT";
 }
 
-export const getAllInterviewer = async () => {
-  const { data } = await https.get<InterviewerReq[]>(`/interviewers`);
+export const getAllInterviewerWithOrder = async (order: string) => {
+  const { data } = await https.get<InterviewerReq[]>(
+    `/interviewers?order=${order}`
+  );
 
   return data;
 };
