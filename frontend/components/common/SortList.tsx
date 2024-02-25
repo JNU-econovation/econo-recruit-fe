@@ -7,11 +7,9 @@ import Icon from "./Icon";
 
 interface SortListProps {
   sortList: Readonly<{ type: string; string: string }[]>;
-  selected: string;
-  onChange?: () => void;
 }
 
-const SortList = ({ sortList, selected, onChange }: SortListProps) => {
+const SortList = ({ sortList }: SortListProps) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -28,7 +26,6 @@ const SortList = ({ sortList, selected, onChange }: SortListProps) => {
     const query = search ? `?${search}` : "";
 
     router.push(`${pathname}${query}`);
-    onChange?.();
   };
 
   return (
@@ -41,7 +38,9 @@ const SortList = ({ sortList, selected, onChange }: SortListProps) => {
         }}
       >
         Sort by :
-        <span className="font-semibold capitalize text-dark">{order}</span>
+        <span className="font-semibold capitalize text-dark">
+          {sortList.find((sort) => sort.type === order)?.string}
+        </span>
         <Icon icon="chevronDown" />
       </button>
       {isOpen ? (
@@ -49,7 +48,7 @@ const SortList = ({ sortList, selected, onChange }: SortListProps) => {
           {sortList.map((sort) => (
             <button
               key={sort.type}
-              disabled={sort.type === selected}
+              disabled={sort.type === order}
               onClick={() => {
                 setOrder(sort.type);
                 onOrderChange(sort.type);
@@ -57,10 +56,10 @@ const SortList = ({ sortList, selected, onChange }: SortListProps) => {
               }}
               className={cn(
                 "flex justify-end py-2 px-6 capitalize cursor-pointer",
-                { "text-secondary-200 cursor-auto": sort.type === selected }
+                { "text-secondary-200 cursor-auto": sort.type === order }
               )}
             >
-              {sort.type}
+              {sort.string}
             </button>
           ))}
         </div>
