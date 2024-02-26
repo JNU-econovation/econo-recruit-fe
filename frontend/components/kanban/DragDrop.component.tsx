@@ -4,7 +4,7 @@ import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import { KanbanColumnData } from "@/src/stores/kanban/Kanban.atoms";
 import KanbanAddColumnComponent from "./column/AddColumn.component";
 import { useQuery } from "@tanstack/react-query";
-import { getAllKanbanData } from "@/src/apis/kanban/kanban";
+import { getAllKanbanData } from "@/src/apis/kanban";
 import KanbanColumnComponent from "./column/Column.component";
 import { useAtom, useAtomValue } from "jotai";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";

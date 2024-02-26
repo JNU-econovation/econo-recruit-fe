@@ -18,12 +18,14 @@ export interface interviewReqBody {
   record: string;
 }
 
+/** THIS API MAY UNUSED. PLEASE REMOVE THIS COMMENT IF YOU WANT USE */
 export const postInterviewRecord = async (recode: interviewReqBody) => {
   const { data } = await https.post<interviewReqBody>(`/records`, recode);
 
   return data;
 };
 
+/** THIS API MAY UNUSED. PLEASE REMOVE THIS COMMENT IF YOU WANT USE */
 export const getInterviewRecordAll = async () => {
   const { data } = await https.get<InterviewRes[]>(`/records/all`);
 
@@ -67,4 +69,41 @@ export const putInterviewer = async ({ id, role }: putInterviewerReq) => {
   });
 
   return data;
+};
+
+export interface putInterviewReq {
+  applicantId: string;
+  record?: string;
+  url?: string;
+}
+
+export const putInterviewRecord = async ({
+  applicantId,
+  record,
+}: putInterviewReq) => {
+  const { data } = await https.put<string>(
+    `/applicants/${applicantId}/records`,
+    { record }
+  );
+  return data;
+};
+
+export const putInterviewUrl = async ({
+  applicantId,
+  url,
+}: putInterviewReq) => {
+  const { data } = await https.put<string>(
+    `/applicants/${applicantId}/records`,
+    { url }
+  );
+
+  return data;
+};
+
+export interface DeleteInterviewerReq {
+  idpId: number;
+}
+
+export const deleteInterviewer = async ({ idpId }: DeleteInterviewerReq) => {
+  const { data } = await https.delete(`/interviewers/${idpId}`);
 };

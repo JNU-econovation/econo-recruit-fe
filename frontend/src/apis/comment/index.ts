@@ -69,14 +69,40 @@ export const deleteComment = async (commentId: string) => {
   return data;
 };
 
+/** THIS API MAY UNUSED. PLEASE REMOVE THIS COMMENT IF YOU WANT USE */
 export const getCardsByCardId = async (cardId: string) => {
   const { data } = await https.get<CommentRes[]>(`/cards/${cardId}/comments`);
   return data;
 };
 
+/** THIS API MAY UNUSED. PLEASE REMOVE THIS COMMENT IF YOU WANT USE */
 export const getCardsByApplicantId = async (applicantId: string) => {
   const { data } = await https.get<CommentRes[]>(
     `/applicants/${applicantId}/comments`
   );
+  return data;
+};
+
+export const postCommentsLike = async (commentId: string) => {
+  const { data } = await https.post<string>(`/comments/${commentId}/likes`, {
+    params: { commentId: commentId },
+  });
+
+  return data;
+};
+
+/** THIS API MAY UNUSED. PLEASE REMOVE THIS COMMENT IF YOU WANT USE */
+export const deleteCommentsLike = async (commentId: string) => {
+  const { data } = await https.delete<string>(`/comments/likes`, {
+    params: { commentId: commentId },
+  });
+
+  return data;
+};
+
+/** THIS API MAY UNUSED. PLEASE REMOVE THIS COMMENT IF YOU WANT USE */
+export const getCommentsIsLike = async (commentId: string) => {
+  const { data } = await https.get<boolean>(`/comments/${commentId}/is-like`);
+
   return data;
 };

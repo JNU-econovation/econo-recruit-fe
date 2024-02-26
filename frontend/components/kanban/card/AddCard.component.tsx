@@ -1,6 +1,6 @@
 "use client";
 
-import { postAddCard } from "@/src/apis/kanban/kanban";
+import { postAddCard } from "@/src/apis/kanban";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
