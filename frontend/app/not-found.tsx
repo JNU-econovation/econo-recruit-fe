@@ -1,12 +1,9 @@
 "use client";
+import ErrorPage2 from "@/components/common/error/ErrorPage2";
 import ErrorPage1 from "@/components/common/error/ErrorPage1";
-import { useRouter } from "next/navigation";
 
-export default function NotFound() {
-  const router = useRouter();
-  const goBack = () => {
-    router.back();
-  };
+const NotFound = () => {
+  return <ErrorPage2 />;
+};
 
-  return <ErrorPage1 goBack={goBack} />;
-}
+export default NotFound;
