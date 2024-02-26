@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import CommonNavbarCell from "./NavbarCell";
-import { getMyInfo } from "@/src/apis/interview/interviewer";
+import { getMyInfo } from "@/src/apis/interview/index";
 
 interface NavbarOperationProps {
   generation: string;
