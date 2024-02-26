@@ -57,11 +57,11 @@ type ScoreKeywordType = {
   name: ScoreKeywordName;
 };
 
-const INTERVIEW_SCORE_KEYWOARD: ScoreKeywordType[] = [
+const INTERVIEW_SCORE_KEYWORD: ScoreKeywordType[] = [
   { title: "실천력", name: "passion" },
   { title: "동아리 활동의지", name: "clubInvolvement" },
   { title: "협업", name: "collaboration" },
   { title: "베풀려는 마음", name: "devotion" },
 ];
 
-export { INTERVIEW_SCORE_KEYWOARD, APPLICANT };
+export { INTERVIEW_SCORE_KEYWORD, APPLICANT };
