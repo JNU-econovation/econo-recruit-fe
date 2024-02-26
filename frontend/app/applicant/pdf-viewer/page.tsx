@@ -8,6 +8,7 @@ interface ApplicationPdfViewerPageProps {
     applicantId: string;
   };
 }
+
 const ApplicationPdfViewerPage = async ({
   searchParams,
 }: ApplicationPdfViewerPageProps) => {
