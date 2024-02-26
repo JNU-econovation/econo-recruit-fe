@@ -7,10 +7,8 @@ const ErrorPage1 = () => {
       <div className="flex items-end gap-20 relative -translate-y-56">
         <div>
           <div className="flex flex-col">
-            <h1 className="text-black text-7xl font-bold">이런!</h1>
-            <h2 className="text-black text-5xl font-medium mt-4">
-              오류가 발생했군요.
-            </h2>
+            <h1 className="text-7xl font-bold">이런!</h1>
+            <h2 className="text-5xl font-medium mt-4">오류가 발생했군요.</h2>
             <h3 className="text-3xl font-semibold mt-8">Please Call Us.</h3>
             <p className="text-dark text-xl font-semibold my-2">
               우리에게 연락줘요. 빠르게 처리해드립니다.

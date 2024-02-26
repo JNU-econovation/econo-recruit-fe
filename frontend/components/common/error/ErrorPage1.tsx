@@ -6,7 +6,7 @@ const ErrorPage2 = () => {
     <div className="absolute h-full left-0 top-0 w-full flex justify-center items-center">
       <div className="flex items-end gap-20">
         <section>
-          <img src="/images/error2.png" alt="error page" />
+          <img src="/images/error1.png" alt="error page" />
           <div className="flex mt-10 justify-between pr-3 w-10/12 mx-auto">
             {managementTeam.position.map((occupation) => (
               <div className="text-secondary-100 text-center" key={occupation}>

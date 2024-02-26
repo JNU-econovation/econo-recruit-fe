@@ -5,10 +5,8 @@ const ErrorPage3 = () => {
   return (
     <div className="absolute h-full left-0 top-0 w-full flex justify-center items-center">
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-black text-7xl font-bold">이런!</h1>
-        <h2 className="text-black text-5xl font-medium mt-4">
-          오류가 발생했군요.
-        </h2>
+        <h1 className="text-7xl font-bold">이런!</h1>
+        <h2 className="text-5xl font-medium mt-4">오류가 발생했군요.</h2>
         <div className="flex items-end -translate-x-10">
           <div className="flex flex-col justify-between translate-x-12">
             {managementTeam.position.map((occupation) => (
