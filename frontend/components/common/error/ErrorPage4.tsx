@@ -19,7 +19,7 @@ const ErrorPage4 = () => {
                 ({ generation, name, position }, index) =>
                   position === occupation && (
                     <span
-                      className=""
+                      className="mr-1"
                       key={index}
                     >{`${generation}기 ${name}`}</span>
                   )

@@ -18,12 +18,12 @@ const ErrorPage5 = () => {
           <div className="flex items-start flex-col mt-3">
             {managementTeam.position.map((occupation) => (
               <div className="text-secondary-100 text-center" key={occupation}>
-                <span>{occupation}: </span>
+                <span>{occupation}:</span>
                 {managementTeam.member.map(
                   ({ generation, name, position }, index) =>
                     position === occupation && (
                       <span
-                        className=""
+                        className="ml-1"
                         key={index}
                       >{`${generation}기 ${name}`}</span>
                     )

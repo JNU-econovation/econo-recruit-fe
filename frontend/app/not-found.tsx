@@ -7,7 +7,18 @@ import ErrorPage5 from "@/components/common/error/ErrorPage5";
 import ErrorPage6 from "@/components/common/error/ErrorPage6";
 
 const NotFound = () => {
-  return <ErrorPage6 />;
+  const errorPage = Math.floor(Math.random() * 6) + 1;
+
+  return (
+    <>
+      {errorPage === 1 && <ErrorPage1 />}
+      {errorPage === 2 && <ErrorPage2 />}
+      {errorPage === 3 && <ErrorPage3 />}
+      {errorPage === 4 && <ErrorPage4 />}
+      {errorPage === 5 && <ErrorPage5 />}
+      {errorPage === 6 && <ErrorPage6 />}
+    </>
+  );
 };
 
 export default NotFound;
