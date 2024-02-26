@@ -24,7 +24,7 @@ export const NavbarOperation = ({
     return <div></div>;
   }
 
-  {
+  return (
     <CommonNavbarCell
       currentPath={currentPath}
       isShort={isShort}
@@ -35,6 +35,6 @@ export const NavbarOperation = ({
         target: "_self",
         type: "admin",
       }}
-    />;
-  }
+    />
+  );
 };
