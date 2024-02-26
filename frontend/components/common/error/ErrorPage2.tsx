@@ -1,7 +1,5 @@
 import { managementTeam } from "@/src/constants";
 import ErrorBtn from "./ErrorBtn";
-import ErrorImg from "./ErrorImg";
-import ErrorText from "./ErrorText";
 
 const ErrorPage1 = () => {
   return (
