@@ -1,35 +1,37 @@
+import { scoreFormmater } from "@/src/functions/format";
 import { ScoreKeyword } from "../../constants/applicant/26";
 import { https } from "../../functions/axios";
+import { Score, ScoreSequence } from "@/src/constants/applicant/27";
 
-export interface scoreDetail {
-  creteria: ScoreKeyword;
-  score: number;
+interface interviewerScoreRes {
+  [key: string]: number[];
 }
 
-export interface ScoreVo {
-  average: scoreDetail[];
-  [key: string]: scoreDetail[];
+export interface ScoreReq {
+  applicantId: string;
+  myScore: number[];
 }
 
-// score get response data
 export interface ScoreRes {
   totalAverage: number;
-  scoreVo: ScoreVo;
+  fieldAverage: number[];
+  myScore: number[];
+  interviewers: interviewerScoreRes;
 }
 
-export const getScore = async (id: string) => {
-  const { data } = await https.get<ScoreRes>(`/scores`, {
+export const getScore = async (id: string): Promise<ScoreRes> => {
+  const { data } = await https.get(`/scores`, {
     params: { applicantId: id },
   });
   return data;
 };
 
-export interface ScoreReq {
-  applicantId: string;
-  scoreVo: scoreDetail[];
-}
+export const postScore = async (body: ScoreReq): Promise<string> => {
+  const { data } = await https.post<string>(`/scores`, body);
+  return data;
+};
 
-export const postScore = async (score: ScoreReq): Promise<string> => {
-  const { data } = await https.post<string>(`/scores`, score);
+export const putScore = async (body: ScoreReq): Promise<string> => {
+  const { data } = await https.put<string>(`/scores`, body);
   return data;
 };
