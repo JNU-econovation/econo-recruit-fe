@@ -9,8 +9,9 @@ interface MyScoreViewerProps extends Omit<MyScoreProps, "applicantId"> {
 const MyScoreViewer = ({ scores, onChangeMode }: MyScoreViewerProps) => {
   return (
     <div className="flex flex-col items-end gap-8">
-      <button onClick={onChangeMode}>
-        <Icon icon="arrowForwardCircleFill" />
+      <button onClick={onChangeMode} className="flex gap-2">
+        <p className="text-secondary-200 text-sm">수정</p>
+        <Icon icon="minusCircleFill" className="w-5" />
       </button>
       <div className="w-full flex justify-between">
         {scores.map(({ fieldName, score }) => (
