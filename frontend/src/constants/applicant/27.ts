@@ -52,6 +52,20 @@ type ScoreKeywordName =
   | "collaboration"
   | "devotion";
 
+export const ScoreSequence: {
+  [key: number]: ScoreKeyword;
+} = {
+  0: "실천력",
+  1: "동아리 활동의지",
+  2: "협업",
+  3: "베풀려는 마음",
+};
+
+export type Score = {
+  fieldName: ScoreKeyword;
+  score: number;
+};
+
 type ScoreKeywordType = {
   title: ScoreKeyword;
   name: ScoreKeywordName;
