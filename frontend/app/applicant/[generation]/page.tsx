@@ -1,9 +1,10 @@
-import ApplicantBoard from "@/components/applicant/Board.component";
+import ApplicantBoard from "@/components/applicant/Board";
 import ApplicantPageNavbar from "@/components/applicant/PageNavbar.component";
 import ApplicantSearch from "@/components/applicant/Search.component";
-import ApplicantSortList from "@/components/applicant/SortList.component";
+import SortList from "@/components/common/SortList";
 import CommonNavbar from "@/components/common/navbar/Navbar.component";
 import Validate from "@/components/user/Validate.component";
+import { ORDER_MENU } from "@/src/constants";
 
 interface ApplicantPageProps {
   params: {
@@ -20,7 +21,7 @@ const ApplicantPage = ({ params }: ApplicantPageProps) => {
       <div className="flex-1 ml-32 min-w-[46rem]">
         <div className="flex w-full justify-end gap-8 my-12">
           <ApplicantSearch />
-          <ApplicantSortList />
+          <SortList sortList={ORDER_MENU.APPLICANT} />
         </div>
         <ApplicantBoard generation={generation} />
         <ApplicantPageNavbar generation={generation} />

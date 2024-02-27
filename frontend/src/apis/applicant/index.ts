@@ -1,6 +1,6 @@
+import { getAllInterviewerWithOrder } from "@/src/apis/interview";
 import { APPLICANT_KEYS } from "@/src/constants";
 import { https } from "@/src/functions/axios";
-import { getAllInterviewer } from "../interview";
 
 export interface ApplicantReq {
   name: string;
@@ -40,8 +40,7 @@ interface ApplicantByPageReq {
   answers: AllApplicantReq[];
 }
 
-// FIXME: 지원서 리스트 조회 API 변경
-export const getApplicantByPageAndGeneration = async (
+export const getApplicantByPageWithGeneration = async (
   page: number,
   generation: string,
   order: string
@@ -79,7 +78,7 @@ export const getAllApplicant = async (
   );
 };
 
-export const getAppliationById = async (id: string) => {
+export const getApplicationById = async (id: string) => {
   const { data } = await https.get<AllApplicantReq>(`/applicants/${id}`);
 
   return Object.keys(data).map((key) => ({
@@ -94,7 +93,7 @@ export interface ApplicantLabelReq {
 }
 
 export const getApplicantLabel = async (id: string) => {
-  const allInterviewers = await getAllInterviewer();
+  const allInterviewers = await getAllInterviewerWithOrder("name");
 
   try {
     const { data } = await https.get<string[]>(`/applicants/${id}/labels`);
