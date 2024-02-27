@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "../../../common/Icon";
 import { MyScoreMode, MyScoreProps } from "./MyScore";
-import ScoreInput from "./ScoreInputCell";
+import ScoreInput from "./ScoreInput";
 import { useMutation } from "@tanstack/react-query";
 import { postScore, putScore } from "@/src/apis/score";
 import { replacer } from "@/src/functions/replacer";
@@ -46,6 +46,10 @@ const MyScoreForm = ({
   };
 
   const onSubmitScore = () => {
+    if (myScores.some((v) => v.score === "")) {
+      alert("모든 항목의 점수를 입력해주세요.");
+      return;
+    }
     if (confirm("점수를 제출하시겠습니까?")) {
       mode === "initialForm" ? createMyScore() : updateMyScore();
       onChangeMode();
