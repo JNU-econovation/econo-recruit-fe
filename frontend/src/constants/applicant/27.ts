@@ -40,17 +40,17 @@ const APPLICANT: ApplicantNode[] = [
   },
 ];
 
-// TODO: ScoreKeyword, ScoreKeywordName, ScoreKeywordType type 최적화
 export type ScoreKeyword =
   | "실천력"
   | "동아리 활동의지"
   | "협업"
   | "베풀려는 마음";
-type ScoreKeywordName =
-  | "passion"
-  | "clubInvolvement"
-  | "collaboration"
-  | "devotion";
+
+// type ScoreKeywordName =
+//   | "passion"
+//   | "clubInvolvement"
+//   | "collaboration"
+//   | "devotion";
 
 export const ScoreSequence: {
   [key: number]: ScoreKeyword;
@@ -66,16 +66,18 @@ export type Score = {
   score: number;
 };
 
-type ScoreKeywordType = {
-  title: ScoreKeyword;
-  name: ScoreKeywordName;
-};
+// type ScoreKeywordType = {
+//   title: ScoreKeyword;
+//   name: ScoreKeywordName;
+// };
 
-const INTERVIEW_SCORE_KEYWORD: ScoreKeywordType[] = [
-  { title: "실천력", name: "passion" },
-  { title: "동아리 활동의지", name: "clubInvolvement" },
-  { title: "협업", name: "collaboration" },
-  { title: "베풀려는 마음", name: "devotion" },
-];
+// const INTERVIEW_SCORE_KEYWORD: ScoreKeywordType[] = [
+//   { title: "실천력", name: "passion" },
+//   { title: "동아리 활동의지", name: "clubInvolvement" },
+//   { title: "협업", name: "collaboration" },
+//   { title: "베풀려는 마음", name: "devotion" },
+// ];
 
-export { INTERVIEW_SCORE_KEYWORD, APPLICANT };
+const FIELD_NAME: ScoreKeyword[] = Object.values(ScoreSequence);
+
+export { APPLICANT, FIELD_NAME };

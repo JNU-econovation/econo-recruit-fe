@@ -1,4 +1,4 @@
-import { Score, ScoreKeyword } from "@/src/constants/applicant/27";
+import { FIELD_NAME, Score } from "@/src/constants/applicant/27";
 
 interface InterviewerScoreProps {
   interviewers: {
@@ -10,13 +10,6 @@ interface InterviewerScoresItemProps {
   name: string;
   scores: Score[];
 }
-
-const MOCK_FIELD_NAME: ScoreKeyword[] = [
-  "실천력",
-  "동아리 활동의지",
-  "협업",
-  "베풀려는 마음",
-];
 
 const InterviewerScores = ({ interviewers }: InterviewerScoreProps) => {
   return (
@@ -34,7 +27,7 @@ const InterviewerScoresHeader = () => {
     <div className="grid grid-cols-[5rem_1fr] gap-12 w-full">
       <div></div>
       <div className="flex w-full justify-between">
-        {MOCK_FIELD_NAME.map((fieldName) => (
+        {FIELD_NAME.map((fieldName) => (
           <span className="text-dark w-[4.5rem] text-sm text-center break-keep">
             {fieldName}
           </span>
