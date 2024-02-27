@@ -22,7 +22,7 @@ const AvgScore = ({ totalAverage, fieldAverages }: AvgScoreProps) => {
       <TotalAverage totalAverage={totalAverage} />
       <div className="flex w-full justify-between">
         {fieldAverages.map(({ fieldName, score }) => (
-          <ScoreCell fieldName={fieldName} score={score} />
+          <ScoreCell fieldName={fieldName} score={score || 0} />
         ))}
       </div>
     </div>
