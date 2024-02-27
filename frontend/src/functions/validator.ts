@@ -1,3 +1,8 @@
+import {
+  ApplicationNode,
+  ApplicationQuestion,
+} from "../constants/application/type";
+
 const isCellPhoneNumber = (phoneNumber: string) =>
   /^\(?(\d{3})\)?[- ]?(\d{4})[- ]?(\d{4})$/.test(phoneNumber);
 
@@ -47,4 +52,10 @@ export const validator = (value: string, type: ValidatorType) => {
     default:
       return false;
   }
+};
+
+export const isApplicationQuestion = (
+  question: ApplicationQuestion | ApplicationNode
+): question is ApplicationQuestion => {
+  return "nodes" in question;
 };

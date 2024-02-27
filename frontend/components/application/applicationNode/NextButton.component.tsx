@@ -4,87 +4,67 @@ import useApplicationIndexControll from "@/src/hooks/useApplicationIndexControll
 import { postApplication } from "../sendApplication";
 import { useAtomValue } from "jotai";
 import { applicationDataAtom } from "@/src/stores/application";
-import type { ApplicationQuestion } from "@/src/constants/application/type";
 import { localStorage } from "@/src/functions/localstorage";
+import { cn } from "@/src/utils/cn";
+import { getApplicationNames } from "@/src/functions/getApplicationName";
+import { isEmail } from "@/src/functions/validator";
 
 interface ApplicationNextButtonProps {
-  canNext: boolean;
-  applicationLength: number;
-  beforeCheckCallback?: () => boolean;
   isLast?: boolean;
 }
 
+// TODO: 질문의 이름마다 side effect가 있으니 주의하면 좋을 것
+const canNext = (applicationName: Array<string>) => {
+  return applicationName.every((name) => {
+    if (
+      name === "personalInformationAgreeForPortfolio" ||
+      name === "personalInformationAgree"
+    ) {
+      return (
+        localStorage.get(name, "") !== "동의하지 않습니다." &&
+        localStorage.get(name, "") !== ""
+      );
+    }
+    if (name === "email") {
+      return isEmail(localStorage.get(name, ""));
+    }
+    if (name === "check") {
+      return localStorage.get(name, "") === "확인했습니다";
+    }
+    if (localStorage.get(name, "").length === 0) {
+      if (
+        name === "channel" &&
+        localStorage.get("channelEtc", "").length !== 0
+      ) {
+        return true;
+      }
+      return false;
+    }
+    return true;
+  });
+};
+
 const ApplicationNextButton = ({
-  canNext,
-  beforeCheckCallback,
-  applicationLength,
   isLast = false,
 }: ApplicationNextButtonProps) => {
   const { applicationIndex, goNextIndex, goPrevIndex } =
     useApplicationIndexControll();
-  const nextButtonClassName =
-    "flex-1 rounded-md flex justify-center items-center p-4";
   const applicationData = useAtomValue(applicationDataAtom);
 
-  const applicationName = new Set<string>();
-
-  const getApplicationName = (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    node: { [key: string]: any } | ApplicationQuestion[],
-    applicationName: Set<string>
-  ) => {
-    if (node === undefined) return;
-    if (Array.isArray(node)) {
-      node.forEach((element) => {
-        getApplicationName(element, applicationName);
-      });
-      return;
+  const onNextClick = () => {
+    const applicationName = getApplicationNames(
+      applicationData[applicationIndex].nodes
+    );
+    if (!canNext(Array.from(applicationName))) {
+      alert("필수 항목을 입력해주세요.");
+      return false;
     }
 
-    Object.entries(node).map(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach((element) => {
-          getApplicationName(element, applicationName);
-        });
-        return;
-      }
-      if (key === "name" && value !== "timeline") {
-        if ("require" in node) {
-          if (node.require) {
-            applicationName.add(value);
-          }
-        }
-      }
-    });
-  };
-
-  const beforeCheck = () => {
-    if (beforeCheckCallback) {
-      if (!beforeCheckCallback()) {
-        return false;
-      }
+    if (isLast) {
+      postApplication(applicationData);
+    } else {
+      goNextIndex();
     }
-
-    getApplicationName(applicationData[applicationIndex], applicationName);
-    const applicationNameArray = Array.from(applicationName);
-
-    for (let i = 0; i < applicationNameArray.length; i++) {
-      const name = applicationNameArray[i];
-
-      if (localStorage.get(name, "") === "") {
-        if (
-          name === "channel" &&
-          localStorage.get("channelEtc", "").length === 0
-        ) {
-          alert("필수 항목을 입력해주세요.");
-          return false;
-        }
-
-        alert("필수 항목을 입력해주세요.");
-        return false;
-      }
-    }
-    return true;
   };
 
   return (
@@ -96,26 +76,14 @@ const ApplicationNextButton = ({
         이전
       </button>
       <button
-        onClick={
-          isLast
-            ? () => postApplication(applicationData)
-            : () => {
-                if (!beforeCheck()) {
-                  return;
-                }
-                goNextIndex();
-              }
-        }
-        disabled={!canNext}
-        className={
-          canNext
-            ? nextButtonClassName + " bg-dark text-white"
-            : nextButtonClassName + " bg-light text-secondary-100"
-        }
+        onClick={onNextClick}
+        className={cn(
+          "flex-1 rounded-md flex justify-center items-center p-4 bg-dark text-white"
+        )}
       >
         {isLast
           ? "제출하기"
-          : `다음(${applicationIndex + 1}/${applicationLength})`}
+          : `다음(${applicationIndex + 1}/${applicationData.length})`}
       </button>
     </div>
   );
