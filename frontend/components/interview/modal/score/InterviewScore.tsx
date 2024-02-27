@@ -38,7 +38,7 @@ const InterviewScore = () => {
   };
 
   return (
-    <div className="flex flex-col gap-14 w-full">
+    <div className="flex flex-col gap-14 w-full mt-10">
       <AvgScore
         totalAverage={scoreData.totalAverage}
         fieldAverages={scoreData.fieldAverage}
