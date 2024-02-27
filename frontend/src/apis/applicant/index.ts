@@ -1,6 +1,6 @@
+import { getAllInterviewerWithOrder } from "@/src/apis/interview";
 import { APPLICANT_KEYS } from "@/src/constants";
 import { https } from "@/src/functions/axios";
-import { getAllInterviewer } from "../interview";
 
 export interface ApplicantReq {
   name: string;
@@ -93,7 +93,7 @@ export interface ApplicantLabelReq {
 }
 
 export const getApplicantLabel = async (id: string) => {
-  const allInterviewers = await getAllInterviewer();
+  const allInterviewers = await getAllInterviewerWithOrder("name");
 
   try {
     const { data } = await https.get<string[]>(`/applicants/${id}/labels`);
