@@ -1,7 +1,4 @@
-import { scoreFormmater } from "@/src/functions/format";
-import { ScoreKeyword } from "../../constants/applicant/26";
 import { https } from "../../functions/axios";
-import { Score, ScoreSequence } from "@/src/constants/applicant/27";
 
 interface interviewerScoreRes {
   [key: string]: number[];
