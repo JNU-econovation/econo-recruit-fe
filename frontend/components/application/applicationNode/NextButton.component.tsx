@@ -7,6 +7,7 @@ import { applicationDataAtom } from "@/src/stores/application";
 import { localStorage } from "@/src/functions/localstorage";
 import { cn } from "@/src/utils/cn";
 import { getApplicationNames } from "@/src/functions/getApplicationName";
+import { isEmail } from "@/src/functions/validator";
 
 interface ApplicationNextButtonProps {
   isLast?: boolean;
@@ -23,6 +24,9 @@ const canNext = (applicationName: Array<string>) => {
         localStorage.get(name, "") !== "동의하지 않습니다." &&
         localStorage.get(name, "") !== ""
       );
+    }
+    if (name === "email") {
+      return isEmail(localStorage.get(name, ""));
     }
     if (name === "check") {
       return localStorage.get(name, "") === "확인했습니다";
