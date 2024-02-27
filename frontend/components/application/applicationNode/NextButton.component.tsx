@@ -1,11 +1,11 @@
 "use client";
 
 import useApplicationIndexControll from "@/src/hooks/useApplicationIndexControll.hook";
-import { postApplication } from "../sendApplication";
 import { useAtomValue } from "jotai";
 import { applicationDataAtom } from "@/src/stores/application";
 import type { ApplicationQuestion } from "@/src/constants/application/type";
 import { localStorage } from "@/src/functions/localstorage";
+import { postApplication } from "@/src/hooks/useSendApplication";
 
 interface ApplicationNextButtonProps {
   canNext: boolean;

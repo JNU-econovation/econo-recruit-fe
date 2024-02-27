@@ -1,14 +1,12 @@
-"use client";
-
-import { ApplicantReq } from "@/src/apis/applicant";
 import {
   postApplicant,
   postApplicantBackup,
   postApplicantTimeline,
 } from "@/src/apis/application";
 import { CURRENT_GENERATION } from "@/src/constants";
-import type { ApplicationQuestion } from "@/src/constants/application/type";
 import { localStorage } from "@/src/functions/localstorage";
+import { ApplicationQuestion } from "../constants/application/type";
+import { ApplicantReq } from "../apis/applicant";
 
 // 깊은 탐색을 통해 지원자가 작성한 데이터를 추출하는 함수
 const extractApplicantData = (
