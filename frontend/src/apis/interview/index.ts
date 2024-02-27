@@ -19,7 +19,10 @@ interface RecordsByPageRes {
   pageInfo: PageInfo;
 }
 
-export const getInterviewRecordByPage = async (page: number, order: string) => {
+export const getInterviewRecordByPageWithOrder = async (
+  page: number,
+  order: string
+) => {
   const {
     data: { records, pageInfo },
   } = await https.get<RecordsByPageRes>(
@@ -44,18 +47,7 @@ export const getInterviewRecord = async (id: string) => {
   return data;
 };
 
-export interface interviewReqBody {
-  applicantId: string;
-  url: string;
-  record: string;
-}
-
-export const postInterviewRecord = async (recode: interviewReqBody) => {
-  const { data } = await https.post<interviewReqBody>(`/records`, recode);
-
-  return data;
-};
-
+/** THIS API MAY UNUSED. PLEASE REMOVE THIS COMMENT IF YOU WANT USE */
 export const getInterviewRecordAll = async () => {
   const { data } = await https.get<InterviewRes[]>(`/records/all`);
 
@@ -69,8 +61,10 @@ export interface InterviewerReq {
   role: "ROLE_GUEST" | "ROLE_TF" | "ROLE_OPERATION" | "ROLE_PRESIDENT";
 }
 
-export const getAllInterviewer = async () => {
-  const { data } = await https.get<InterviewerReq[]>(`/interviewers`);
+export const getAllInterviewerWithOrder = async (order: string) => {
+  const { data } = await https.get<InterviewerReq[]>(
+    `/interviewers?order=${order}`
+  );
 
   return data;
 };
@@ -97,6 +91,18 @@ export const putInterviewer = async ({ id, role }: putInterviewerReq) => {
   const { data } = await https.put<string>(`/interviewers/${id}/roles`, null, {
     params: { role },
   });
+
+  return data;
+};
+
+export interface interviewReqBody {
+  applicantId: string;
+  url: string;
+  record: string;
+}
+
+export const postInterviewRecord = async (recode: interviewReqBody) => {
+  const { data } = await https.post<interviewReqBody>(`/records`, recode);
 
   return data;
 };
