@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import CommonNavbarCell from "./NavbarCell";
-import { getMyInfo } from "@/src/apis/interview/interviewer";
+import { getMyInfo } from "@/src/apis/interview";
 
 interface NavbarOperationProps {
   generation: string;
@@ -24,7 +24,7 @@ export const NavbarOperation = ({
     return <div></div>;
   }
 
-  {
+  return (
     <CommonNavbarCell
       currentPath={currentPath}
       isShort={isShort}
@@ -35,6 +35,6 @@ export const NavbarOperation = ({
         target: "_self",
         type: "admin",
       }}
-    />;
-  }
+    />
+  );
 };
