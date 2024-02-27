@@ -2,8 +2,8 @@ import { dehydrate, Hydrate } from "@tanstack/react-query";
 import AdminBoard from "@/components/admin/Board.component";
 import AdminSearch from "@/components/admin/Search.component";
 import SortList from "@/components/common/SortList";
-import { getAllInterviewerWithOrder } from "@/src/apis/interview";
 import { ORDER_MENU } from "@/src/constants";
+import { getAllInterviewerWithOrder, getMyInfo } from "@/src/apis/interview";
 import getQueryClient from "@/src/functions/getQueryClient";
 
 interface AdminPageProps {
@@ -24,6 +24,12 @@ const AdminPage = async ({
     queryKey: ["interviewers"],
     queryFn: () => getAllInterviewerWithOrder(order),
   });
+
+  await queryClient.prefetchQuery({
+    queryKey: ["user"],
+    queryFn: getMyInfo,
+  });
+
   const dehydrateState = dehydrate(queryClient);
 
   return (
