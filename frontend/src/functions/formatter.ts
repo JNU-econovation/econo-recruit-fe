@@ -9,7 +9,7 @@ export const scoreListToObject = (
   if (scores.length === 0) {
     return Object.values(ScoreSequece).map((fieldName) => ({
       fieldName,
-      score: 0,
+      score: "",
     }));
   }
   return scores.map((score, index) => ({
@@ -19,5 +19,8 @@ export const scoreListToObject = (
 };
 
 export const scoreObjectToList = (scores: Score[]) => {
-  return scores.reduce((acc: number[], cur: Score) => [...acc, cur.score], []);
+  return scores.reduce(
+    (acc: number[], cur: Score) => [...acc, cur.score || 0],
+    []
+  );
 };

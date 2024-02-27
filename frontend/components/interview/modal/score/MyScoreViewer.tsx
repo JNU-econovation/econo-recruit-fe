@@ -15,7 +15,7 @@ const MyScoreViewer = ({ scores, onChangeMode }: MyScoreViewerProps) => {
       </button>
       <div className="w-full flex justify-between">
         {scores.map(({ fieldName, score }) => (
-          <ScoreCell fieldName={fieldName} score={score} />
+          <ScoreCell fieldName={fieldName} score={score || 0} />
         ))}
       </div>
     </div>
