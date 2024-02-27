@@ -63,7 +63,7 @@ export const ScoreSequence: {
 
 export type Score = {
   fieldName: ScoreKeyword;
-  score: number;
+  score: number | "";
 };
 
 // type ScoreKeywordType = {

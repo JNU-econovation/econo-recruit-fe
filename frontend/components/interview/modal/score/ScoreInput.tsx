@@ -2,7 +2,7 @@ import { ScoreKeyword } from "@/src/constants/applicant/27";
 
 interface ScoreInputProps {
   fieldName: ScoreKeyword;
-  score: number;
+  score: number | "";
   onChangeScore: (fieldName: ScoreKeyword, score: number) => void;
 }
 

@@ -11,7 +11,7 @@ export interface MyScoreProps {
 
 const MyScore = ({ applicantId, scores }: MyScoreProps) => {
   const [mode, setMode] = useState<MyScoreMode>(
-    scores.length === 0 ? "initialForm" : "viewer"
+    scores.some((v) => v.score === "") ? "initialForm" : "viewer"
   );
   const onChangeMode = () => {
     setMode(mode === "viewer" ? "editForm" : "viewer");
