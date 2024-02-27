@@ -6,99 +6,67 @@ import {
 import { CURRENT_GENERATION } from "@/src/constants";
 import { localStorage } from "@/src/functions/localstorage";
 import { ApplicationQuestion } from "../constants/application/type";
-import { ApplicantReq } from "../apis/applicant";
-
-// 깊은 탐색을 통해 지원자가 작성한 데이터를 추출하는 함수
-const extractApplicantData = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  node: { [key: string]: any } | ApplicationQuestion[],
-  applicationData: Set<ApplicantReq>
-) => {
-  if (node === null) return;
-  if (Array.isArray(node)) {
-    node.forEach((element) => {
-      extractApplicantData(element, applicationData);
-    });
-    return;
-  }
-
-  Object.entries(node).map(([key, value]) => {
-    if (Array.isArray(value)) {
-      value.forEach((element) => {
-        extractApplicantData(element, applicationData);
-      });
-      return;
-    }
-    if (key === "name" && value !== "timeline" && value !== "channel") {
-      if ("require" in node) {
-        if (localStorage.get(value, "").length === 0 && node.require) {
-          throw new Error(`지원서 작성이 완료되지 않았습니다. ${value}`);
-        }
-        applicationData.add({
-          name: value,
-          answer: JSON.stringify(localStorage.get(value, "")),
-        });
-      }
-    }
-  });
-};
+import { getApplicationValues } from "../functions/getApplication";
 
 export const postApplication = async (
   applicationQuestions: ApplicationQuestion[]
 ) => {
   const isSend = confirm("지원서를 제출하시겠습니까?");
   if (!isSend) return false;
+  // if (Date.now() > Date.UTC(2023, 8, 15, 15, 0, 0)) {
+  //   alert("지원 기간이 종료되었습니다.");
+  //   return false;
+  // }
 
-  const applicationData = new Set<ApplicantReq>();
-  let applicantId: string;
+  const timeline = localStorage.get<number[]>("timeline", []);
+  if (!Array.isArray(timeline) || timeline.length === 0) {
+    alert("시간표를 선택해주세요.");
+    return false;
+  }
 
+  const channel = localStorage.get<string[]>("channel", []);
+  channel.push(localStorage.get("channelEtc", ""));
+  if (localStorage.get("channel", "").length === 0) {
+    alert("지원 경로를 선택해주세요.");
+    return false;
+  }
+
+  const sendValues = getApplicationValues(applicationQuestions).filter(
+    (value) => value.name !== "channelEtc" && value.name !== "channel"
+  );
+  sendValues.push({
+    name: "generation",
+    answer: `${CURRENT_GENERATION}`,
+  });
+  sendValues.push({
+    name: "uploadDate",
+    answer: `${new Date().getTime()}`,
+  });
+  sendValues.push({
+    name: "channel",
+    answer: channel.join(","),
+  });
+  sendValues.push({
+    name: "timeline",
+    answer: JSON.stringify(timeline),
+  });
+
+  if (sendValues.some((value) => value.answer === "")) {
+    alert("지원서를 작성해주세요.");
+    return false;
+  }
+
+  if (sendValues.find((value) => value.name === "timeline")?.answer === "[]") {
+    alert("시간표를 선택해주세요.");
+    return false;
+  }
+
+  let applicantId = "";
   try {
-    extractApplicantData(applicationQuestions, applicationData);
-
-    applicationData.add({
-      name: "generation",
-      answer: `${CURRENT_GENERATION}`,
-    });
-    applicationData.add({
-      name: "uploadDate",
-      answer: `${new Date().getTime()}`,
-    });
-    const channel = localStorage.get<string[]>("channel", []);
-    channel.push(localStorage.get("channelEtc", ""));
-
-    applicationData.add({
-      name: "channel",
-      answer: JSON.stringify(channel.join(",")),
-    });
-
-    if (localStorage.get("channel", "").length === 0) {
-      if (channel.length === 0) {
-        throw new Error("지원 경로를 선택해주세요.");
-      }
-    }
-
-    const timeline = localStorage.get<number[]>("timeline", []);
-    if (!Array.isArray(timeline) || timeline.length === 0) {
-      throw new Error("시간표가 존재하지 않습니다.");
-    }
-
-    if (Date.now() > Date.UTC(2023, 8, 15, 15, 0, 0)) {
-      throw new Error("지원 기간이 종료되었습니다.");
-    }
-
-    applicantId = await postApplicant(Array.from(applicationData));
+    applicantId = await postApplicant(sendValues);
     await postApplicantTimeline(applicantId, timeline);
-
-    applicationData.add({
-      name: "applicantId",
-      answer: applicantId,
-    });
-    applicationData.add({
-      name: "timeline",
-      answer: JSON.stringify(timeline),
-    });
   } catch (e) {
-    await postApplicantBackup(Array.from(applicationData));
+    await postApplicantBackup(sendValues);
     alert(`지원서 제출에 실패했습니다. 관리자에게 문의해주세요.\n ${e}`);
     return false;
   }
