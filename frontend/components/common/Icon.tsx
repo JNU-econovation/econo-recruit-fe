@@ -11,6 +11,7 @@ import FaceSmilingFill from "/public/icons/face.smiling.fill.svg";
 import Heart from "/public/icons/heart.svg";
 import HeartPoint from "/public/icons/heart.point.svg";
 import Search from "/public/icons/search-icon.svg";
+import TrashSquareFill from "/public/icons/trash.square.fill.svg";
 import { ComponentProps } from "react";
 
 interface IconProps extends ComponentProps<"img"> {
@@ -21,55 +22,59 @@ interface IconProps extends ComponentProps<"img"> {
 const icons = {
   arrowForwardCircleFill: {
     image: ArrowForwardCircleFill,
-    alt: "allow forward circle fill icon",
+    alt: "allow forward circle fill",
   },
   bubbleRight: {
     image: BubbleRight,
-    alt: "bubble right icon",
+    alt: "bubble right",
   },
   chevronBackward: {
     image: ChevronBackward,
-    alt: "chevron backward icon",
+    alt: "chevron backward",
   },
   chevronDown: {
     image: ChevronDown,
-    alt: "chevron down icon",
+    alt: "chevron down",
   },
   ellipsisBubble: {
     image: EllipsisBubble,
-    alt: "ellipsis bubble icon",
+    alt: "ellipsis bubble",
   },
   ellipsisMultiply: {
     image: EllipsisMultiply,
-    alt: "ellipsis multiply icon",
+    alt: "ellipsis multiply",
   },
   ellipsisPlus: {
     image: EllipsisPlus,
-    alt: "ellipsis plus icon",
+    alt: "ellipsis plus",
   },
   ellipsisPlusBlue: {
     image: EllipsisPlusBlue,
-    alt: "ellipsis plus blue icon",
+    alt: "ellipsis plus blue",
   },
   faceSmiling: {
     image: FaceSmiling,
-    alt: "face smiling icon",
+    alt: "empty smile face",
   },
   faceSmilingFill: {
     image: FaceSmilingFill,
-    alt: "face smiling fill icon",
+    alt: "filling smile face",
   },
   heart: {
     image: Heart,
-    alt: "heart icon",
+    alt: "empty heart drawn with outline",
   },
   heartPoint: {
     image: HeartPoint,
-    alt: "heart point icon",
+    alt: "filling heart",
   },
   search: {
     image: Search,
-    alt: "search icon",
+    alt: "reading glasses for search",
+  },
+  trashSquareFill: {
+    image: TrashSquareFill,
+    alt: "trash bin describe with box",
   },
 } as const;
 

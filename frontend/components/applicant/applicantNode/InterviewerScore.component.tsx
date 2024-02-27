@@ -14,7 +14,6 @@ interface ApplicantInterviewerScoreProps {
   postId: string;
 }
 
-
 const ApplicantInterviewerScore = ({
   postId,
 }: ApplicantInterviewerScoreProps) => {

@@ -78,7 +78,7 @@ export const getAllApplicant = async (
   );
 };
 
-export const getAppliationById = async (id: string) => {
+export const getApplicationById = async (id: string) => {
   const { data } = await https.get<AllApplicantReq>(`/applicants/${id}`);
 
   return Object.keys(data).map((key) => ({

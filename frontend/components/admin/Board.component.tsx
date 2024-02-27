@@ -2,6 +2,7 @@
 
 import {
   InterviewerReq,
+  deleteInterviewer,
   getAllInterviewerWithOrder,
   getMyInfo,
   putInterviewer,
@@ -10,8 +11,9 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Txt from "../common/Txt.component";
 import { cn } from "@/src/utils/cn";
 import { roleKeys, roleMap, roleUpdateMap } from "@/src/constants/admin";
-import { useSearchParams } from "next/navigation";
 import { ORDER_MENU } from "@/src/constants";
+import { useSearchParams } from "next/navigation";
+import Icon from "../common/Icon";
 
 const roleTranslater = (role: keyof typeof roleMap) => roleMap[role];
 
@@ -70,6 +72,23 @@ const AdminBoard = () => {
     isError: myInfoError,
   } = useQuery(["user"], () => getMyInfo());
 
+  const { mutate } = useMutation({
+    mutationFn: deleteInterviewer,
+    onSuccess: () => {
+      alert("삭제에 성공하였습니다.");
+    },
+    onError: () => {
+      alert("삭제하는데 실패하였습니다. 잠시 후 다시 시도해주세요.");
+    },
+  });
+
+  const onUserDelete = (userName: string, idpId: number) => {
+    if (
+      window.confirm(`정말 삭제하시겠습니까?\n 삭제할 회원 이름: ${userName}`)
+    ) {
+      mutate({ idpId });
+    }
+  };
   if (!userData || isLoading || myInfoLoading) {
     return <div>로딩중...</div>;
   }
@@ -102,6 +121,9 @@ const AdminBoard = () => {
             {roleKeys.map((role, index) => (
               <InterViewerUpdateButton role={role} user={user} key={index} />
             ))}
+            <button onClick={() => onUserDelete(user.name, user.id)}>
+              <Icon icon="trashSquareFill" />
+            </button>
           </div>
         </div>
       ))}

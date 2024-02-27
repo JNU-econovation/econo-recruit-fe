@@ -135,3 +135,11 @@ export const putInterviewUrl = async ({
 
   return data;
 };
+
+export interface DeleteInterviewerReq {
+  idpId: number;
+}
+
+export const deleteInterviewer = async ({ idpId }: DeleteInterviewerReq) => {
+  const { data } = await https.delete(`/interviewers/${idpId}`);
+};
