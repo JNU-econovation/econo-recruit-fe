@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import PageNavbarComponent from "../common/PageNavbar.component";
 import { useSearchParams } from "next/navigation";
-import { getApplicantByPage } from "@/src/apis/applicant";
+import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
 
 type ApplicantPageNavbarProps = {
   generation: string;
@@ -21,7 +21,7 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
     isError,
   } = useQuery(
     ["allApplicant", generation],
-    () => getApplicantByPage(+pageIndex),
+    () => getApplicantByPageWithGeneration(+pageIndex, generation, order),
     {
       enabled: !!generation,
     }
