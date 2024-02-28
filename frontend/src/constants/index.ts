@@ -145,3 +145,20 @@ export const managementTeam = {
     },
   ],
 };
+
+export const ORDER_MENU = {
+  ADMIN: [
+    { type: "newest", string: "최신순" },
+    { type: "name", string: "이름순" },
+  ],
+  APPLICANT: [
+    { type: "newest", string: "최신순" },
+    { type: "name", string: "이름순" },
+  ],
+  INTERVIEW: [
+    { type: "newest", string: "최신순" },
+    { type: "name", string: "이름순" },
+    { type: "objective", string: "지원분야순" },
+    { type: "score", string: "점수순" },
+  ],
+} as const;

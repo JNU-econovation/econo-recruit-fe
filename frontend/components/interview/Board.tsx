@@ -3,17 +3,17 @@
 import InterviewDetailLeftComponent from "./modal/DetailLeft.component";
 import Board from "../common/board/Board.component";
 import InterviewDetailRightComponent from "./modal/DetailRight.component";
-import { applicantDataFinder } from "@/src/functions/finder";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
-import { getApplicantByPage } from "@/src/apis/applicant";
 import { useSearchParams } from "next/navigation";
+import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
 
 const InterviewBoardComponent = () => {
   const [applicantId, setApplicantId] = useAtom(interViewApplicantIdState);
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
+  const order = searchParams.get("order") || "newest";
 
   const queryClient = useQueryClient();
 
@@ -28,28 +28,29 @@ const InterviewBoardComponent = () => {
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: ["allApplicant"],
-    queryFn: () => getApplicantByPage(+pageIndex),
+    queryKey: ["allInterviewRecord", pageIndex, order],
+    queryFn: () => getInterviewRecordByPageWithOrder(+pageIndex, order),
   });
 
   if (!data || isLoading) {
     return <div>loading...</div>;
   }
 
-  const { maxPage, applicants } = data;
+  const { records } = data;
 
-  const boardData = applicants.map((value) => ({
-    id: applicantDataFinder(value, "id"),
-    title: `[${applicantDataFinder(value, "field")}] ${applicantDataFinder(
-      value,
-      "name"
-    )}`,
-    subElements: [
-      applicantDataFinder(value, "field1"),
-      applicantDataFinder(value, "field2"),
-      applicantDataFinder(value, "major"),
-    ],
-  }));
+  const boardData = records.map((value) => {
+    return {
+      id: value.applicantId,
+      title: value.name,
+      subElements: [
+        value.field1.split('"').join(""),
+        value.field2.split('"').join(""),
+        `${value.grade.split('"').join("")} ${value.semester
+          .split('"')
+          .join("")}`,
+      ],
+    };
+  });
 
   return (
     <Board

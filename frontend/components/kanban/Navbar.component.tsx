@@ -1,14 +1,14 @@
 import { KANBAN_MENU, KanbanMenu } from "@/src/constants/kanban/26";
-import NavbarButtonComponent from "../common/navbar/Button.component";
+import NavbarButton from "../common/navbar/Button";
 
-const KanbanNavbarComponent = () => {
+const KanbanNavbar = () => {
   return (
     <>
       {KANBAN_MENU.map((menu: KanbanMenu) => (
-        <NavbarButtonComponent key={menu.id} value={menu.navTitle} />
+        <NavbarButton key={menu.id} value={menu.navTitle} />
       ))}
     </>
   );
 };
 
-export default KanbanNavbarComponent;
+export default KanbanNavbar;

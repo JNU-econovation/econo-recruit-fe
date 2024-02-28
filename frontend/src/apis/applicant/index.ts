@@ -1,6 +1,6 @@
+import { getAllInterviewerWithOrder } from "@/src/apis/interview";
 import { APPLICANT_KEYS } from "@/src/constants";
 import { https } from "@/src/functions/axios";
-import { getAllInterviewer } from "../interview";
 
 export interface ApplicantReq {
   name: string;
@@ -26,21 +26,34 @@ export const getApplicantByIdWithField = async (
   }));
 };
 
-interface ApplicantByPageReq {
-  maxPage: number;
-  applicants: AllApplicantReq[];
+export interface PageInfo {
+  currentPage: number;
+  listCount: number;
+  pageLimit: number;
+  startPage: number;
+  endPage: number;
+  boardLimit: number;
 }
 
-export const getApplicantByPage = async (
-  page: number
+interface ApplicantByPageReq {
+  pageInfo: PageInfo;
+  answers: AllApplicantReq[];
+}
+
+export const getApplicantByPageWithGeneration = async (
+  page: number,
+  generation: string,
+  order: string
 ): Promise<{ maxPage: number; applicants: ApplicantReq[][] }> => {
   const {
-    data: { applicants, maxPage },
-  } = await https.get<ApplicantByPageReq>(`/page/${page}/applicants`);
+    data: { pageInfo, answers },
+  } = await https.get<ApplicantByPageReq>(
+    `/page/${page}/year/${+generation}/applicants?order=${order}`
+  );
 
   return {
-    maxPage,
-    applicants: applicants.map((applicant) =>
+    maxPage: pageInfo.endPage,
+    applicants: answers.map((applicant) =>
       Object.keys(applicant).map((key) => ({
         name: key,
         answer: applicant[key],
@@ -65,7 +78,7 @@ export const getAllApplicant = async (
   );
 };
 
-export const getAppliationById = async (id: string) => {
+export const getApplicationById = async (id: string) => {
   const { data } = await https.get<AllApplicantReq>(`/applicants/${id}`);
 
   return Object.keys(data).map((key) => ({
@@ -80,7 +93,7 @@ export interface ApplicantLabelReq {
 }
 
 export const getApplicantLabel = async (id: string) => {
-  const allInterviewers = await getAllInterviewer();
+  const allInterviewers = await getAllInterviewerWithOrder("name");
 
   try {
     const { data } = await https.get<string[]>(`/applicants/${id}/labels`);
