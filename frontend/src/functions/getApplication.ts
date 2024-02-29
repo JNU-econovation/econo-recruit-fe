@@ -2,16 +2,17 @@ import {
   ApplicationNode,
   ApplicationQuestion,
 } from "../constants/application/type";
+import { localStorage } from "./localstorage";
 import { isApplicationQuestion } from "./validator";
 
 export const getApplicationNames = (
   node: (ApplicationQuestion | ApplicationNode)[],
   applicationName?: Set<string>
 ) => {
-  applicationName ||= new Set<string>();
+  const applicationNameSet = applicationName || new Set<string>();
   node.forEach((element) => {
     if (isApplicationQuestion(element)) {
-      return getApplicationNames(element.nodes, applicationName);
+      return getApplicationNames(element.nodes, applicationNameSet);
     }
     switch (element.type) {
       case "checkbox":
@@ -21,7 +22,7 @@ export const getApplicationNames = (
       case "text":
       case "textarea":
         if (element.require) {
-          applicationName.add(element.name);
+          applicationNameSet.add(element.name);
         }
         break;
       case "booleanTextarea":
@@ -29,7 +30,7 @@ export const getApplicationNames = (
         if (element.subNodes) {
           element.subNodes.forEach((subNode) => {
             if (subNode.require) {
-              applicationName.add(subNode.name);
+              applicationNameSet.add(subNode.name);
             }
           });
         }
@@ -41,5 +42,13 @@ export const getApplicationNames = (
         break;
     }
   });
-  return applicationName;
+  return applicationNameSet;
+};
+
+export const getApplicationValues = (node: ApplicationQuestion[]) => {
+  const applicationNames = getApplicationNames(node);
+  return Array.from(applicationNames).map((name) => ({
+    name,
+    answer: localStorage.get(name, ""),
+  }));
 };

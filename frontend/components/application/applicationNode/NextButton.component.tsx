@@ -1,13 +1,13 @@
 "use client";
 
 import useApplicationIndexControll from "@/src/hooks/useApplicationIndexControll.hook";
-import { postApplication } from "../sendApplication";
 import { useAtomValue } from "jotai";
 import { applicationDataAtom } from "@/src/stores/application";
 import { localStorage } from "@/src/functions/localstorage";
 import { cn } from "@/src/utils/cn";
-import { getApplicationNames } from "@/src/functions/getApplicationName";
+import { getApplicationNames } from "@/src/functions/getApplication";
 import { isEmail } from "@/src/functions/validator";
+import { postApplication } from "@/src/hooks/useSendApplication";
 
 interface ApplicationNextButtonProps {
   isLast?: boolean;

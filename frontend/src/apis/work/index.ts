@@ -1,5 +1,5 @@
 import { https } from "@/src/functions/axios";
-import { getAllInterviewer } from "../interview";
+import { getAllInterviewerWithOrder } from "../interview";
 
 export interface Work {
   title: string;
@@ -50,7 +50,7 @@ export const postWorkLabel = async (cardId: number) => {
 };
 
 export const getWorkLabel = async (cardId: number) => {
-  const allInterviewers = await getAllInterviewer();
+  const allInterviewers = await getAllInterviewerWithOrder("");
 
   try {
     const { data } = await https.get<string[]>(`/cards/${cardId}/labels`);
