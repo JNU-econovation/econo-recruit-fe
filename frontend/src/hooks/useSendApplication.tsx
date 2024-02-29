@@ -63,7 +63,15 @@ export const postApplication = async (
 
   let applicantId = "";
   try {
-    applicantId = await postApplicant(sendValues);
+    applicantId = await postApplicant(
+      sendValues.reduce(
+        (acc, cur) => {
+          acc[cur.name] = cur.answer;
+          return acc;
+        },
+        {} as Record<string, string>
+      )
+    );
     await postApplicantTimeline(applicantId, timeline);
   } catch (e) {
     await postApplicantBackup(sendValues);
