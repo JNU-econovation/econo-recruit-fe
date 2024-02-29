@@ -2,7 +2,6 @@ import Txt from "@/components/common/Txt.component";
 import { ApplicantReq } from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
 import Link from "next/link";
-import ApplicantInterviewerScore from "./InterviewerScore.component";
 
 interface ApplicantResourceProps {
   data: ApplicantReq[];
@@ -21,7 +20,6 @@ const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
           "field"
         )}] ${applicantDataFinder(data, "name")}`}</Txt>
       </div>
-      <ApplicantInterviewerScore postId={postId} />
       <div className="flex gap-4 mb-8">
         <div className="flex gap-1">
           <Txt typography="h3" color="gray" className="font-normal">

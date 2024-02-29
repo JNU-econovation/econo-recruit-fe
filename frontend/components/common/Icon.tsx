@@ -12,6 +12,8 @@ import Heart from "/public/icons/heart.svg";
 import HeartPoint from "/public/icons/heart.point.svg";
 import Search from "/public/icons/search-icon.svg";
 import TrashSquareFill from "/public/icons/trash.square.fill.svg";
+import MinusCircleFill from "/public/icons/minus.circle.fill.svg";
+
 import { ComponentProps } from "react";
 
 interface IconProps extends ComponentProps<"img"> {
@@ -75,6 +77,10 @@ const icons = {
   trashSquareFill: {
     image: TrashSquareFill,
     alt: "trash bin describe with box",
+  },
+  minusCircleFill: {
+    image: MinusCircleFill,
+    alt: "minus circle fill",
   },
 } as const;
 
