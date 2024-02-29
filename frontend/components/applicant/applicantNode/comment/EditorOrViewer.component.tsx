@@ -36,7 +36,7 @@ const ApplicantCommentEditorOrViewer = ({
     if (editorRef.current) {
       document.querySelector(".toastui-editor-toolbar")?.remove();
       document.querySelector(".toastui-editor-mode-switch")?.remove();
-      editorRef.current.getInstance().setMarkdown(initContent);
+      editorRef.current.getInstance().setMarkdown(content);
     }
   }, [isEdit]);
 
