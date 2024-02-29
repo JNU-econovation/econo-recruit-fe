@@ -6,10 +6,10 @@ export const applicantDataFinder = (
   name: string
 ) => {
   const data = applicantData.find((req) => req.name === name)?.answer ?? "";
-  if (name === "id") return data;
+  if (!data) return "";
 
   try {
-    return data || "";
+    return JSON.parse(data);
   } catch (e) {
     return data;
   }
@@ -20,8 +20,10 @@ export const interviewDataFinder = (
   name: string
 ) => {
   const data = interviewData.find((req) => req.url === name)?.record ?? "";
+  if (!data) return "";
+
   try {
-    return data || "";
+    return JSON.parse(data);
   } catch (e) {
     return data;
   }
