@@ -119,3 +119,46 @@ export const APPLICANT_KEYS = [
   "generation",
   "uploadDate",
 ];
+
+export const managementTeam = {
+  position: ["Design", "Front-end", "Back-end"],
+  member: [
+    {
+      position: "Design",
+      generation: 22,
+      name: "김서하",
+    },
+    {
+      position: "Front-end",
+      generation: 22,
+      name: "임채승",
+    },
+    {
+      position: "Front-end",
+      generation: 25,
+      name: "강바다",
+    },
+    {
+      position: "Back-end",
+      generation: 21,
+      name: "이서현",
+    },
+  ],
+};
+
+export const ORDER_MENU = {
+  ADMIN: [
+    { type: "newest", string: "최신순" },
+    { type: "name", string: "이름순" },
+  ],
+  APPLICANT: [
+    { type: "newest", string: "최신순" },
+    { type: "name", string: "이름순" },
+  ],
+  INTERVIEW: [
+    { type: "newest", string: "최신순" },
+    { type: "name", string: "이름순" },
+    { type: "objective", string: "지원분야순" },
+    { type: "score", string: "점수순" },
+  ],
+} as const;

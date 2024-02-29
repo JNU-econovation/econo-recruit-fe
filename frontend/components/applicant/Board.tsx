@@ -1,7 +1,7 @@
 "use client";
 
 import Board from "@/components/common/board/Board.component";
-import { getApplicantByPage } from "@/src/apis/applicant";
+import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
 import ApplicantDetailRight from "./DetailRight.component";
 import ApplicantDetailLeft from "./DetailLeft.component";
 import { useState } from "react";
@@ -18,6 +18,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   const [data, setData] = useState<ApplicantReq[]>([]);
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
+  const order = searchParams.get("order") || "newest";
 
   const onClick = (id: string) => {
     if (!allData) return;
@@ -31,8 +32,8 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
     isLoading,
     isError,
   } = useQuery(
-    ["allApplicant", generation],
-    () => getApplicantByPage(+pageIndex),
+    ["allApplicant", pageIndex, order],
+    () => getApplicantByPageWithGeneration(+pageIndex, generation, order),
     {
       enabled: !!generation,
     }
