@@ -120,6 +120,32 @@ export const APPLICANT_KEYS = [
   "uploadDate",
 ];
 
+export const managementTeam = {
+  position: ["Design", "Front-end", "Back-end"],
+  member: [
+    {
+      position: "Design",
+      generation: 22,
+      name: "김서하",
+    },
+    {
+      position: "Front-end",
+      generation: 22,
+      name: "임채승",
+    },
+    {
+      position: "Front-end",
+      generation: 25,
+      name: "강바다",
+    },
+    {
+      position: "Back-end",
+      generation: 21,
+      name: "이서현",
+    },
+  ],
+};
+
 export const ORDER_MENU = {
   ADMIN: [
     { type: "newest", string: "최신순" },
