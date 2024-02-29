@@ -95,12 +95,14 @@ const ApplicantCommentInputForm = ({
       return false;
     }
 
-    setContent((prev) => (hasQuestion ? "**[질문]** " : "") + prev);
-    return true;
+    const newContent = (hasQuestion ? "**[질문]** " : "") + content;
+    setContent(newContent);
+    return newContent;
   };
 
   const onSubmit = () => {
-    if (isPrevSubmit()) {
+    const newContent = isPrevSubmit();
+    if (newContent) {
       mutate();
       editorRef.current?.getInstance().reset();
     }
