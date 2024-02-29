@@ -13,9 +13,10 @@ export const minimumIntegerDigits = (value: number, digits: number) =>
   });
 
 const scoreNumberReplacer = (value: string) => {
-  const score = value.replace(/[^0-5]/g, "");
-  if (!score) return "";
-  return score[1] ?? score[0];
+  const number = parseInt(value);
+  if (isNaN(number) || number < 0) return "0";
+  if (number > 10) return value[1];
+  return number;
 };
 
 export type ReplacerType =
