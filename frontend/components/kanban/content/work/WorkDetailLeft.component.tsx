@@ -22,7 +22,7 @@ const WorkDetailLeft = ({
   generation,
   cardId,
 }: WorkDetailLeftProps) => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(workTitle);
   const [isOpenAddCard, setIsOpenAddCard] = useState(false);
   const queryClient = useQueryClient();
 
@@ -52,10 +52,6 @@ const WorkDetailLeft = ({
     if (!confirm("정말 삭제하시겠습니까?")) return;
     deleteWorkCard(`${cardId}`);
   };
-
-  useEffect(() => {
-    setTitle(workTitle);
-  }, []);
 
   return (
     <>
