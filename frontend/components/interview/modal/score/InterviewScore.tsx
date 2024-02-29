@@ -21,8 +21,7 @@ const InterviewScore = () => {
     isError,
   } = useQuery(["score", applicantId], () => getScore(applicantId));
 
-  // TODO: nextjs app router 기능 사용
-  if (isLoading) return <div>로딩 중</div>;
+  if (!initScoreData || isLoading) return <div>로딩 중</div>;
   if (isError) return <div>에러 발생</div>;
 
   const scoreData = {
