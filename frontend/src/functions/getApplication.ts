@@ -2,6 +2,7 @@ import {
   ApplicationNode,
   ApplicationQuestion,
 } from "../constants/application/type";
+import { localStorage } from "./localstorage";
 import { isApplicationQuestion } from "./validator";
 
 export const getApplicationNames = (
@@ -42,4 +43,12 @@ export const getApplicationNames = (
     }
   });
   return applicationNameSet;
+};
+
+export const getApplicationValues = (node: ApplicationQuestion[]) => {
+  const applicationNames = getApplicationNames(node);
+  return Array.from(applicationNames).map((name) => ({
+    name,
+    answer: localStorage.get(name, ""),
+  }));
 };

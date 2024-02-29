@@ -9,12 +9,13 @@ const set = <T>(key: string, value: T) => {
 };
 
 const get = <T>(key: string, initialValue?: T) => {
+  initialValue ||= "" as unknown as T;
   if (typeof window === "undefined") {
     return initialValue;
   }
   try {
     const item = window.localStorage.getItem(key);
-    return item ? JSON.parse(item) : initialValue;
+    return item ? (JSON.parse(item) as T) : initialValue;
   } catch (error) {
     return initialValue;
   }

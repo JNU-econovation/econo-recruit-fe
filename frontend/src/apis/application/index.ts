@@ -6,7 +6,7 @@ export interface ApplicantReq {
   answer: string;
 }
 
-export const postApplicant = async (body: ApplicantReq[]) => {
+export const postApplicant = async (body: object) => {
   const { data } = await https.post(`/applicants`, body);
 
   return data;
