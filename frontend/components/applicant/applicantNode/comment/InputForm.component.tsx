@@ -87,7 +87,7 @@ const ApplicantCommentInputForm = ({
     }
   }, [isNocomment]);
 
-  const prevSubmit = () => {
+  const isPrevSubmit = () => {
     const content = editorRef.current?.getInstance().getMarkdown();
 
     if (!content) {
@@ -100,7 +100,7 @@ const ApplicantCommentInputForm = ({
   };
 
   const onSubmit = () => {
-    if (prevSubmit()) {
+    if (isPrevSubmit()) {
       mutate();
       editorRef.current?.getInstance().reset();
     }
