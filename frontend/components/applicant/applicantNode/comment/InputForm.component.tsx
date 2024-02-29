@@ -89,7 +89,21 @@ const ApplicantCommentInputForm = ({
 
   const prevSubmit = () => {
     const content = editorRef.current?.getInstance().getMarkdown();
+
+    if (!content) {
+      alert("댓글을 입력해주세요.");
+      return false;
+    }
+
     setContent((hasQuestion ? "**[질문]** " : "") + content);
+    return true;
+  };
+
+  const onSubmit = () => {
+    if (prevSubmit()) {
+      mutate();
+      editorRef.current?.getInstance().reset();
+    }
   };
 
   useEffect(() => {
@@ -103,9 +117,7 @@ const ApplicantCommentInputForm = ({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        prevSubmit();
-        mutate();
-        editorRef.current?.getInstance().reset();
+        onSubmit();
       }}
     >
       <div className="flex justify-between items-center pb-2">
