@@ -11,8 +11,10 @@ interface KanbanDetailWorkProps {
 }
 
 const KanbanDetailWork = ({ cardId, generation }: KanbanDetailWorkProps) => {
-  const { data, isLoading, isError } = useQuery(["work", cardId], () =>
-    getWork(cardId)
+  const { data, isLoading, isError } = useQuery(
+    ["work", cardId],
+    () => getWork(cardId),
+    { cacheTime: 0 }
   );
 
   if (!data || isLoading) {
