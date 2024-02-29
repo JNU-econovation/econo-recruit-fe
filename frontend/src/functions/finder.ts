@@ -9,7 +9,7 @@ export const applicantDataFinder = (
   if (name === "id") return data;
 
   try {
-    return data ? "" : JSON.parse(data);
+    return data || "";
   } catch (e) {
     return data;
   }
@@ -21,7 +21,7 @@ export const interviewDataFinder = (
 ) => {
   const data = interviewData.find((req) => req.url === name)?.record ?? "";
   try {
-    return data ? "" : JSON.parse(data);
+    return data || "";
   } catch (e) {
     return data;
   }
