@@ -9,6 +9,7 @@ import { ApplicantReq } from "@/src/apis/application";
 import { applicantDataFinder } from "@/src/functions/finder";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
+import { ORDER_MENU } from "@/src/constants";
 
 interface ApplicantBoardProps {
   generation: string;
@@ -18,7 +19,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   const [data, setData] = useState<ApplicantReq[]>([]);
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
-  const order = searchParams.get("order") || "newest";
+  const order = searchParams.get("order") || ORDER_MENU.APPLICANT[0].type;
 
   const onClick = (id: string) => {
     if (!allData) return;
