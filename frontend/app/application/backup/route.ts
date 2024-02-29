@@ -17,20 +17,16 @@ export const POST = async (req: NextRequest) => {
   await db.run(queryString, JSON.stringify(body));
 
   await sendSms({
-    name: JSON.parse(body.find((value) => value.name === "name")?.answer ?? ""),
-    phone: JSON.parse(
-      body.find((value) => value.name === "contacted")?.answer ?? ""
-    )
-      .split("-")
-      .join(""),
+    name: body.find((value) => value.name === "name")?.answer ?? "",
+    phone:
+      body.find((value) => value.name === "contacted")?.answer ??
+      "".split("-").join(""),
   });
 
   await sendEmail({
     applicantId:
       body.find((value) => value.name === "applicantId")?.answer ?? "",
-    email: JSON.parse(
-      body.find((value) => value.name === "email")?.answer ?? ""
-    ),
+    email: body.find((value) => value.name === "email")?.answer ?? "",
   });
 
   return NextResponse.json({ success: true, response: null, error: null });
