@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface WorkDetailLeftProps {
   cardId: number;
-  data: Work;
+  workTitle: string;
   generation: string;
 }
 
@@ -17,7 +17,11 @@ const ApplicantComment = dynamic(
   { ssr: false }
 );
 
-const WorkDetailLeft = ({ data, generation, cardId }: WorkDetailLeftProps) => {
+const WorkDetailLeft = ({
+  workTitle,
+  generation,
+  cardId,
+}: WorkDetailLeftProps) => {
   const [title, setTitle] = useState("");
   const [isOpenAddCard, setIsOpenAddCard] = useState(false);
   const queryClient = useQueryClient();
@@ -50,7 +54,7 @@ const WorkDetailLeft = ({ data, generation, cardId }: WorkDetailLeftProps) => {
   };
 
   useEffect(() => {
-    setTitle(data.title);
+    setTitle(workTitle);
   }, []);
 
   return (
@@ -76,7 +80,7 @@ const WorkDetailLeft = ({ data, generation, cardId }: WorkDetailLeftProps) => {
               </div>
             </form>
           ) : (
-            <Txt typography="h2">{data.title}</Txt>
+            <Txt typography="h2">{workTitle}</Txt>
           )}
           <div className="flex gap-2 w-[8rem] justify-end">
             <button

@@ -1,7 +1,5 @@
-import { Viewer } from "@toast-ui/react-editor";
+import { Viewer, Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
-
-import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { useEffect, useRef, useState } from "react";
