@@ -3,8 +3,8 @@ import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { useEffect, useRef, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { putWork } from "@/src/apis/work";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Work, putWork } from "@/src/apis/work";
 
 interface WorkEditorOrViewerProps {
   content: string;
@@ -20,23 +20,37 @@ const WorkEditorOrViewer = ({
   setIsEdit,
 }: WorkEditorOrViewerProps) => {
   const editorRef = useRef<Editor>(null);
+  const viwerRef = useRef<Viewer>(null);
   const [content, setContent] = useState(initContent);
+  const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(() => putWork({ cardId, content }));
+  const { mutate } = useMutation({
+    mutationFn: () => putWork({ cardId, content }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: ["work"],
+        refetchType: "active",
+      }),
+  });
 
   const onEdit = () => {
     setContent(editorRef.current?.getInstance().getMarkdown());
-    mutate();
     setIsEdit(false);
+    mutate();
   };
 
   useEffect(() => {
     if (editorRef.current) {
       document.querySelector(".toastui-editor-toolbar")?.remove();
       document.querySelector(".toastui-editor-mode-switch")?.remove();
-      editorRef.current.getInstance().setMarkdown(initContent);
+      editorRef.current.getInstance().setMarkdown(content);
     }
   }, [isEdit]);
+
+  useEffect(() => {
+    setContent(initContent);
+    viwerRef.current?.getInstance().setMarkdown(initContent);
+  }, [initContent]);
 
   return (
     <>
@@ -45,6 +59,7 @@ const WorkEditorOrViewer = ({
           className="text-sm"
           initialEditType="markdown"
           initialValue={content || ""}
+          ref={viwerRef}
         />
       ) : (
         <>
