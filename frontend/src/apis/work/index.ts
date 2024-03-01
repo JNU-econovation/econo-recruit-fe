@@ -20,15 +20,10 @@ export const putWork = async ({
   title?: string;
   content?: string;
 }) => {
-  let resData = {};
-  if (title === "" || !title) {
-    resData = { content };
-  } else if (content === "" || !content) {
-    resData = { title };
-  } else {
-    resData = { title, content };
-  }
-
+  let resData;
+  if (!title) resData = { content };
+  else if (!content) resData = { title };
+  else resData = { title, content };
   const response = await https.put<Work>(`/boards/cards/${cardId}`, resData);
   return response.data;
 };

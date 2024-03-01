@@ -11,11 +11,11 @@ const WorkEditorOrViewer = dynamic(
 );
 
 interface WorkDetailRightProps {
-  data: string;
+  workContent: string;
   cardId: number;
 }
 
-const WorkDetailRight = ({ data, cardId }: WorkDetailRightProps) => {
+const WorkDetailRight = ({ workContent, cardId }: WorkDetailRightProps) => {
   const [isEdit, setIsEdit] = useState(false);
 
   return (
@@ -25,7 +25,7 @@ const WorkDetailRight = ({ data, cardId }: WorkDetailRightProps) => {
         <button onClick={() => setIsEdit((prev) => !prev)}>수정</button>
       </div>
       <WorkEditorOrViewer
-        content={data}
+        content={workContent}
         cardId={cardId}
         setIsEdit={setIsEdit}
         isEdit={isEdit}
