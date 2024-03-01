@@ -88,7 +88,7 @@ const ApplicantCommentInputForm = ({
         .getInstance()
         .setMarkdown(isNocomment ? "" : "지인이므로 코멘트 삼가겠습니다.");
     }
-  }, [isNocomment]);
+  }, [isNocomment, setIsNocomment]);
 
   const isPrevSubmit = () => {
     const content = editorRef.current?.getInstance().getMarkdown();
