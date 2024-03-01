@@ -21,13 +21,17 @@ const InterviewScore = () => {
     isError,
   } = useQuery(["score", applicantId], () => getScore(applicantId));
 
-  // TODO: nextjs app router 기능 사용
-  if (isLoading) return <div>로딩 중</div>;
+  if (!initScoreData || isLoading) return <div>로딩 중</div>;
   if (isError) return <div>에러 발생</div>;
 
   const scoreData = {
-    totalAverage: initScoreData.totalAverage,
-    fieldAverage: scoreListToObject(initScoreData.fieldAverage, ScoreSequence),
+    totalAverage: isNaN(initScoreData.totalAverage)
+      ? 0
+      : initScoreData.totalAverage,
+    fieldAverages: scoreListToObject(
+      initScoreData.fieldAverages,
+      ScoreSequence
+    ),
     myScore: scoreListToObject(initScoreData.myScore, ScoreSequence),
     interviewers: Object.fromEntries(
       Object.entries(initScoreData.interviewers).map(([key, value]) => [
@@ -41,7 +45,7 @@ const InterviewScore = () => {
     <div className="flex flex-col gap-14 w-full mt-10">
       <AvgScore
         totalAverage={scoreData.totalAverage}
-        fieldAverages={scoreData.fieldAverage}
+        fieldAverages={scoreData.fieldAverages}
       />
       <MyScore applicantId={applicantId} scores={scoreData.myScore} />
       <div className="flex flex-col items-end w-full gap-8">

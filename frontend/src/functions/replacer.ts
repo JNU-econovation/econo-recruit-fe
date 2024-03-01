@@ -15,7 +15,7 @@ export const minimumIntegerDigits = (value: number, digits: number) =>
 const scoreNumberReplacer = (value: string) => {
   const number = parseInt(value);
   if (isNaN(number) || number < 0) return "0";
-  if (number > 10) return value[1];
+  if (number > 10) return value[value.length - 1];
   return number;
 };
 

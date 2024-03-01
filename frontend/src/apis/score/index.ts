@@ -6,12 +6,12 @@ interface interviewerScoreRes {
 
 export interface ScoreReq {
   applicantId: string;
-  myScore: number[];
+  scoreVo: number[];
 }
 
 export interface ScoreRes {
   totalAverage: number;
-  fieldAverage: number[];
+  fieldAverages: number[];
   myScore: number[];
   interviewers: interviewerScoreRes;
 }
