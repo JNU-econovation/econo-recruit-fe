@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import PageNavbarComponent from "../common/PageNavbar.component";
 import { useSearchParams } from "next/navigation";
 import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
+import { ORDER_MENU } from "@/src/constants";
 
 type ApplicantPageNavbarProps = {
   generation: string;
@@ -12,7 +13,7 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
   const type = searchParams.get("type") ?? "list";
-  const order = searchParams.get("order") ?? "newest";
+  const order = searchParams.get("order") ?? ORDER_MENU.APPLICANT[0].type;
   const page = searchParams.get("page") ?? "1";
 
   const {
