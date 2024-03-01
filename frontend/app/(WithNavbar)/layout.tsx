@@ -15,7 +15,7 @@ const ApplicantPage = ({ children }: WithNavbarLayout) => {
     <div className="px-24 min-w-[1280px] flex p-12">
       <Validate />
       <CommonNavbar
-        generation={generation}
+        generation={parseInt(generation).toString()}
         currentPath={currentPath}
         isShort={isShort}
       />
