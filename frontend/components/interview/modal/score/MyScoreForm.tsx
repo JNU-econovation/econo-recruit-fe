@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "../../../common/Icon";
 import { MyScoreMode, MyScoreProps } from "./MyScore";
 import ScoreInput from "./ScoreInput";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postScore, putScore } from "@/src/apis/score";
 import { replacer } from "@/src/functions/replacer";
 import { Score, ScoreKeyword } from "@/src/constants/applicant/27";
@@ -19,19 +19,34 @@ const MyScoreForm = ({
   mode,
   onChangeMode,
 }: MyScoreFormProps) => {
+  const queryClient = useQueryClient();
   const [myScores, setMyScores] = useState<Score[]>(scores);
 
-  const { mutate: createMyScore } = useMutation(["createMyScore"], () =>
-    postScore({
-      applicantId,
-      myScore: scoreObjectToList(scores),
-    })
+  const { mutate: createMyScore } = useMutation(
+    ["createMyScore"],
+    () =>
+      postScore({
+        applicantId,
+        scoreVo: scoreObjectToList(myScores),
+      }),
+    {
+      onSettled: () => {
+        queryClient.invalidateQueries(["score", applicantId]);
+      },
+    }
   );
-  const { mutate: updateMyScore } = useMutation(["updateMyScore"], () =>
-    putScore({
-      applicantId,
-      myScore: scoreObjectToList(scores),
-    })
+  const { mutate: updateMyScore } = useMutation(
+    ["updateMyScore"],
+    () =>
+      putScore({
+        applicantId,
+        scoreVo: scoreObjectToList(myScores),
+      }),
+    {
+      onSettled: () => {
+        queryClient.invalidateQueries(["score", applicantId]);
+      },
+    }
   );
 
   const onChangeScore = (fieldName: ScoreKeyword, score: number) => {
