@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Work, deleteWork, putWork } from "@/src/apis/work";
+import { useState } from "react";
+import { deleteWork, putWork } from "@/src/apis/work";
 import dynamic from "next/dynamic";
 import Txt from "@/components/common/Txt.component";
 import WorkLabel from "./Label.component";
@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface WorkDetailLeftProps {
   cardId: number;
-  data: Work;
+  workTitle: string;
   generation: string;
 }
 
@@ -17,8 +17,12 @@ const ApplicantComment = dynamic(
   { ssr: false }
 );
 
-const WorkDetailLeft = ({ data, generation, cardId }: WorkDetailLeftProps) => {
-  const [title, setTitle] = useState("");
+const WorkDetailLeft = ({
+  workTitle,
+  generation,
+  cardId,
+}: WorkDetailLeftProps) => {
+  const [title, setTitle] = useState(workTitle);
   const [isOpenAddCard, setIsOpenAddCard] = useState(false);
   const queryClient = useQueryClient();
 
@@ -49,10 +53,6 @@ const WorkDetailLeft = ({ data, generation, cardId }: WorkDetailLeftProps) => {
     deleteWorkCard(`${cardId}`);
   };
 
-  useEffect(() => {
-    setTitle(data.title);
-  }, []);
-
   return (
     <>
       <div className="flex flex-col gap-1 mb-8">
@@ -76,7 +76,7 @@ const WorkDetailLeft = ({ data, generation, cardId }: WorkDetailLeftProps) => {
               </div>
             </form>
           ) : (
-            <Txt typography="h2">{data.title}</Txt>
+            <Txt typography="h2">{workTitle}</Txt>
           )}
           <div className="flex gap-2 w-[8rem] justify-end">
             <button
