@@ -6,7 +6,7 @@ export const scoreListToObject = (
     [key: number]: ScoreKeyword;
   }
 ): Score[] => {
-  if (scores.length === 0) {
+  if (!scores || scores.length === 0) {
     return Object.values(ScoreSequece).map((fieldName) => ({
       fieldName,
       score: "",
