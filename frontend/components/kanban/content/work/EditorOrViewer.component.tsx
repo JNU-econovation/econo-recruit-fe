@@ -29,7 +29,6 @@ const WorkEditorOrViewer = ({
     onSuccess: () =>
       queryClient.invalidateQueries({
         queryKey: ["work"],
-        refetchType: "active",
       }),
   });
 
