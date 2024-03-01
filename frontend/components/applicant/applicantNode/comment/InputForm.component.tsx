@@ -72,11 +72,17 @@ const ApplicantCommentInputForm = ({
           queryKey: ["kanbanDataArray", generation],
         });
       },
+      onSuccess: () => {
+        editorRef.current?.getInstance().reset();
+        setIsNocomment(false);
+        setHasQuestion(false);
+      },
     }
   );
 
   const onNocommentCheck = useCallback(() => {
-    setIsNocomment(!isNocomment);
+    setIsNocomment((prev) => !prev);
+
     if (editorRef.current) {
       editorRef.current
         .getInstance()
@@ -94,15 +100,7 @@ const ApplicantCommentInputForm = ({
 
     const newContent = (hasQuestion ? "**[질문]** " : "") + content;
     setContent(newContent);
-    return newContent;
-  };
-
-  const onSubmit = () => {
-    const newContent = isPrevSubmit();
-    if (newContent) {
-      mutate();
-      editorRef.current?.getInstance().reset();
-    }
+    return true;
   };
 
   useEffect(() => {
@@ -116,7 +114,7 @@ const ApplicantCommentInputForm = ({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit();
+        isPrevSubmit() && mutate();
       }}
     >
       <div className="flex justify-between items-center pb-2">
@@ -135,14 +133,6 @@ const ApplicantCommentInputForm = ({
           initialEditType="markdown"
           usageStatistics={false}
           language="ko-KR"
-          onChange={() => {
-            isNocomment &&
-              editorRef.current?.getInstance().getMarkdown() !==
-                "지인이므로 코멘트 삼가겠습니다." &&
-              editorRef.current
-                ?.getInstance()
-                .setMarkdown("지인이므로 코멘트 삼가겠습니다.");
-          }}
           ref={editorRef}
         />
       </div>
@@ -152,6 +142,7 @@ const ApplicantCommentInputForm = ({
             name="question"
             id="question"
             title="질문드립니다."
+            checked={hasQuestion}
             onChange={() => setHasQuestion((prev) => !prev)}
           />
           <InputCheckBox
