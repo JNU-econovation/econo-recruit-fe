@@ -8,12 +8,13 @@ import { useAtom } from "jotai";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
 import { useSearchParams } from "next/navigation";
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
+import { ORDER_MENU } from "@/src/constants";
 
 const InterviewBoardComponent = () => {
   const [applicantId, setApplicantId] = useAtom(interViewApplicantIdState);
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
-  const order = searchParams.get("order") || "newest";
+  const order = searchParams.get("order") || ORDER_MENU.INTERVIEW[0].type;
 
   const queryClient = useQueryClient();
 

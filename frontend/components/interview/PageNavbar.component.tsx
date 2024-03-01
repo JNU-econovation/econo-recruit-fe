@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import PageNavbarComponent from "../common/PageNavbar.component";
 import { useSearchParams } from "next/navigation";
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
+import { ORDER_MENU } from "@/src/constants";
 
 type InterviewPageNavbarProps = {
   generation: string;
@@ -12,7 +13,7 @@ const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
   const type = searchParams.get("type") ?? "list";
-  const order = searchParams.get("order") ?? "newest";
+  const order = searchParams.get("order") ?? ORDER_MENU.INTERVIEW[0].type;
   const page = searchParams.get("page") ?? "1";
 
   const {
