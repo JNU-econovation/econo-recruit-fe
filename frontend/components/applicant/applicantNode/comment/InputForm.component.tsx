@@ -98,8 +98,7 @@ const ApplicantCommentInputForm = ({
       return false;
     }
 
-    const newContent = (hasQuestion ? "**[질문]** " : "") + content;
-    setContent(newContent);
+    setContent((hasQuestion ? "**[질문]** " : "") + content);
     return true;
   };
 
