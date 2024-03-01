@@ -58,19 +58,16 @@ const ApplicantCommentInputForm = ({
   const editorRef = React.useRef<Editor>(null);
 
   const { mutate } = useMutation(
-    () => {
-      return postComment({
+    () =>
+      postComment({
         content,
         applicantId,
         cardId,
         parentCommentId: 0,
-      });
-    },
+      }),
     {
       onSettled: () => {
-        queryClient.invalidateQueries({
-          queryKey: ["applicantComment", applicantId, cardId],
-        });
+        queryClient.invalidateQueries(["applicantComment"]);
         queryClient.invalidateQueries({
           queryKey: ["kanbanDataArray", generation],
         });
