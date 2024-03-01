@@ -14,7 +14,7 @@ const KanbanDetailWork = ({ cardId, generation }: KanbanDetailWorkProps) => {
   const { data, isLoading, isError } = useQuery(
     ["work", cardId],
     () => getWork(cardId),
-    { cacheTime: 1000 * 60 * 5, staleTime: 1000 * 60 * 5 }
+    { staleTime: 1000 * 60 * 5 }
   );
 
   if (!data || isLoading) {
