@@ -25,7 +25,7 @@ const WorkEditorOrViewer = ({
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
-    mutationFn: () => putWork({ cardId, content }),
+    mutationFn: putWork,
     onSuccess: () =>
       queryClient.invalidateQueries({
         queryKey: ["work"],
@@ -35,7 +35,7 @@ const WorkEditorOrViewer = ({
   const onEdit = () => {
     setContent(editorRef.current?.getInstance().getMarkdown());
     setIsEdit(false);
-    mutate();
+    mutate({ cardId, content });
   };
 
   useEffect(() => {
