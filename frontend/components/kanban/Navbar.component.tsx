@@ -1,4 +1,4 @@
-import { KANBAN_MENU, KanbanMenu } from "@/src/constants/kanban/26";
+import { KANBAN_MENU, KanbanMenu } from "@/src/constants/kanban/27";
 import NavbarButton from "../common/navbar/Button";
 
 const KanbanNavbar = () => {
