@@ -13,34 +13,29 @@ interface ApplicationNextButtonProps {
   isLast?: boolean;
 }
 
+// etc. 단순히 boolean이 아닌 어느 곳에서 터지는 지와 그 이유를 담은 객체를 반환하면 어떨까?
 // TODO: 질문의 이름마다 side effect가 있으니 주의하면 좋을 것
-const canNext = (applicationName: Array<string>) => {
-  return applicationName.every((name) => {
+const canNext = (applicationNames: Array<string>) => {
+  return applicationNames.every((name) => {
+    const EMPTY_STRING: string = "";
+    const localStorageValueFromName = localStorage.get(name, EMPTY_STRING);
+
     if (
       name === "personalInformationAgreeForPortfolio" ||
       name === "personalInformationAgree"
     ) {
-      return (
-        localStorage.get(name) !== "동의하지 않습니다." &&
-        localStorage.get(name, "") !== ""
-      );
+      return localStorageValueFromName === "동의합니다.";
     }
     if (name === "email") {
-      return isEmail(localStorage.get(name, ""));
+      return isEmail(localStorageValueFromName);
     }
     if (name === "check") {
-      return localStorage.get(name) === "확인했습니다";
+      return localStorageValueFromName === "확인했습니다";
     }
-    if (localStorage.get(name, "").length === 0) {
-      if (
-        name === "channel" &&
-        localStorage.get("channelEtc", "").length !== 0
-      ) {
-        return true;
-      }
-      return false;
-    }
-    return true;
+    return (
+      !(localStorageValueFromName.length === 0) ||
+      (name === "channel" && localStorage.get("channelEtc", "").length !== 0)
+    );
   });
 };
 
@@ -57,7 +52,7 @@ const ApplicationNextButton = ({
     );
     if (!canNext(Array.from(applicationName))) {
       alert("필수 항목을 입력해주세요.");
-      return false;
+      return;
     }
 
     if (isLast) {
