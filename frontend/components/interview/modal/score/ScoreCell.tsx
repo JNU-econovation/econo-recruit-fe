@@ -8,7 +8,9 @@ interface ScoreCellProps {
 const ScoreCell = ({ fieldName, score }: ScoreCellProps) => {
   return (
     <div className="w-[4.5rem] flex flex-col gap-2 items-center">
-      <span className="text-dark text-3xl font-semibold">{score}</span>
+      <span className="text-dark text-3xl font-semibold">
+        {+score.toFixed(1)}
+      </span>
       <span className="text-dark text-center text-sm break-keep">
         {fieldName}
       </span>

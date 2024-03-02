@@ -11,7 +11,7 @@ const TotalAverage = ({ totalAverage }: TotalAverageProps) => {
   return (
     <div className="w-full relative">
       <p className="w-full text-5xl text-dark font-extrabold text-center">
-        {totalAverage}
+        {+totalAverage.toFixed(1)}
       </p>
       <div className="bg-primary-300 absolute w-full h-5 top-8 -z-10"></div>
     </div>
