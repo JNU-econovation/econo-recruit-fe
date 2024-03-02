@@ -60,7 +60,7 @@ export const MainNavbar = [
     short_title: "지원현황",
     type: "applicant",
     target: "none",
-    href: `/applicant`,
+    href: `/applicant/${CURRENT_GENERATION}`,
   },
   {
     title: "신입모집 쉐어 포인트",
