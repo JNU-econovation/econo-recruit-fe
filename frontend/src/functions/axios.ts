@@ -1,4 +1,5 @@
 import axios from "axios";
+import errorConfig from "./errorConfig";
 
 const https = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -19,12 +20,21 @@ https.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 401 || error.response.status === 403) {
+    const { data, status: errorStatus } = error.response;
+    const { code: errorCode, reason: errorReason } = data;
+    const errorMessage =
+      errorConfig[errorCode].message || errorReason || error.message;
+
+    error.message = errorMessage;
+
+    if (errorStatus === 401 || errorStatus === 403) {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       alert("로그인이 필요합니다.");
       window.location.href = "/signin";
     }
+
+    return Promise.reject(error);
   }
 );
 
