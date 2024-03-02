@@ -58,34 +58,37 @@ const ApplicantCommentInputForm = ({
   const editorRef = React.useRef<Editor>(null);
 
   const { mutate } = useMutation(
-    () => {
-      return postComment({
+    () =>
+      postComment({
         content,
         applicantId,
         cardId,
         parentCommentId: 0,
-      });
-    },
+      }),
     {
       onSettled: () => {
-        queryClient.invalidateQueries({
-          queryKey: ["applicantComment", applicantId, cardId],
-        });
+        queryClient.invalidateQueries(["applicantComment"]);
         queryClient.invalidateQueries({
           queryKey: ["kanbanDataArray", generation],
         });
+      },
+      onSuccess: () => {
+        editorRef.current?.getInstance().reset();
+        setIsNocomment(false);
+        setHasQuestion(false);
       },
     }
   );
 
   const onNocommentCheck = useCallback(() => {
-    setIsNocomment(!isNocomment);
+    setIsNocomment((prev) => !prev);
+
     if (editorRef.current) {
       editorRef.current
         .getInstance()
         .setMarkdown(isNocomment ? "" : "지인이므로 코멘트 삼가겠습니다.");
     }
-  }, [isNocomment]);
+  }, [isNocomment, setIsNocomment]);
 
   const isPrevSubmit = () => {
     const content = editorRef.current?.getInstance().getMarkdown();
@@ -95,15 +98,8 @@ const ApplicantCommentInputForm = ({
       return false;
     }
 
-    setContent((prev) => (hasQuestion ? "**[질문]** " : "") + prev);
+    setContent((hasQuestion ? "**[질문]** " : "") + content);
     return true;
-  };
-
-  const onSubmit = () => {
-    if (isPrevSubmit()) {
-      mutate();
-      editorRef.current?.getInstance().reset();
-    }
   };
 
   useEffect(() => {
@@ -117,7 +113,7 @@ const ApplicantCommentInputForm = ({
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit();
+        isPrevSubmit() && mutate();
       }}
     >
       <div className="flex justify-between items-center pb-2">
@@ -136,14 +132,6 @@ const ApplicantCommentInputForm = ({
           initialEditType="markdown"
           usageStatistics={false}
           language="ko-KR"
-          onChange={() => {
-            isNocomment &&
-              editorRef.current?.getInstance().getMarkdown() !==
-                "지인이므로 코멘트 삼가겠습니다." &&
-              editorRef.current
-                ?.getInstance()
-                .setMarkdown("지인이므로 코멘트 삼가겠습니다.");
-          }}
           ref={editorRef}
         />
       </div>
@@ -153,6 +141,7 @@ const ApplicantCommentInputForm = ({
             name="question"
             id="question"
             title="질문드립니다."
+            checked={hasQuestion}
             onChange={() => setHasQuestion((prev) => !prev)}
           />
           <InputCheckBox
