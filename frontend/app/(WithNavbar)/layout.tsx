@@ -8,7 +8,7 @@ interface WithNavbarLayout extends PropsWithChildren {}
 const ApplicantPage = ({ children }: WithNavbarLayout) => {
   const headersList = headers();
   const header_url = headersList.get("x-url") || "";
-  const [_, __, ___, currentPath, generation] = header_url.split("/");
+  const [_, __, currentPath, generation, ___] = header_url.split(/[/?]+/);
   const isShort = currentPath === "kanban";
 
   return (
