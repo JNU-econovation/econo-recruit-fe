@@ -18,8 +18,6 @@ export const signIn = async ({ email, password }: SignInReq) => {
       alert("로그인이 성공하였습니다");
     }
 
-    localStorage.set("accessToken", data.accessToken);
-    localStorage.set("refreshToken", data.refreshToken);
     return true;
   } catch (error) {
     return false;
