@@ -34,7 +34,7 @@ const canNext = (applicationNames: Array<string>) => {
     }
     return (
       !(localStorageValueFromName.length === 0) ||
-      (name === "channel" && localStorage.get("channelEtc", "").length !== 0)
+      (name === "channel" && localStorage.get("channelEtc", EMPTY_STRING).length !== 0)
     );
   });
 };
