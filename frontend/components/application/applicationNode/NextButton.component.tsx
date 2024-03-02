@@ -21,7 +21,7 @@ const canNext = (applicationName: Array<string>) => {
       name === "personalInformationAgree"
     ) {
       return (
-        localStorage.get(name, "") !== "동의하지 않습니다." &&
+        localStorage.get(name) !== "동의하지 않습니다." &&
         localStorage.get(name, "") !== ""
       );
     }
@@ -29,7 +29,7 @@ const canNext = (applicationName: Array<string>) => {
       return isEmail(localStorage.get(name, ""));
     }
     if (name === "check") {
-      return localStorage.get(name, "") === "확인했습니다";
+      return localStorage.get(name) === "확인했습니다";
     }
     if (localStorage.get(name, "").length === 0) {
       if (
