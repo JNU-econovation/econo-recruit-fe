@@ -1,0 +1,33 @@
+name: build test for pull request(CI)
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository and set up
+        uses: actions/checkout@v4
+        
+      - name: setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+    
+      - name: generate env file
+        run: |
+          touch .env
+          echo NCP_SMS_SERVICE_ID=""\nNCP_SMS_ACCESS_KEY=""\nNCP_SMS_SECRET_KEY=""\nNEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL}} >> .env
+          cat .env
+        working-directory: ./frontend
+
+      - name: setting dependencies
+        run: pnpm install
+        working-directory: ./frontend
+
+      - name: next build
+        run: pnpm run build
+        working-directory: ./frontend
