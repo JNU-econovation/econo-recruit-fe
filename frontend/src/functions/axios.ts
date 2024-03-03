@@ -28,8 +28,6 @@ https.interceptors.response.use(
     error.message = errorMessage;
 
     if (errorStatus === 401 || errorStatus === 403) {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
       alert("로그인이 필요합니다.");
       window.location.href = "/signin";
     }
