@@ -2,7 +2,26 @@ interface ErrorConfig {
   message: string;
 }
 
-const errorConfig: Record<string, ErrorConfig> = {
+type ScoreErrorCode = "LABEL_400_1" | "LABEL_404_1";
+type RecordErrorCode = "RECORD_400_1" | "RECORD_404_1";
+type InterviewerErrorCode =
+  | "INTERVIEWER_400_1"
+  | "INTERVIEWER_400_2"
+  | "INTERVIEWER_400_3"
+  | "INTERVIEWER_404_1";
+type CommentErrorCode = "COMMENT_400_1" | "COMMENT_404_1";
+type CardErrorCode = "CARD_400_1" | "CARD_404_1";
+type ApplicantErrorCode = "APPLICANT_400_1" | "APPLICANT_404_1";
+
+export type ErrorCode =
+  | ScoreErrorCode
+  | RecordErrorCode
+  | InterviewerErrorCode
+  | CommentErrorCode
+  | CardErrorCode
+  | ApplicantErrorCode;
+
+const errorConfig: Record<ErrorCode, ErrorConfig> = {
   // score & label
   LABEL_400_1: {
     message: "유효하지 않은 평가 항목입니다.",

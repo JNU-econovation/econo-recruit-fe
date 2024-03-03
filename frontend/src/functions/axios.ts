@@ -1,5 +1,5 @@
 import axios from "axios";
-import errorConfig from "./errorConfig";
+import errorConfig, { ErrorCode } from "./errorConfig";
 
 const https = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -23,7 +23,9 @@ https.interceptors.response.use(
     const { data, status: errorStatus } = error.response;
     const { code: errorCode, reason: errorReason } = data;
     const errorMessage =
-      errorConfig[errorCode].message || errorReason || error.message;
+      errorConfig[errorCode as ErrorCode].message ||
+      errorReason ||
+      error.message;
 
     error.message = errorMessage;
 
