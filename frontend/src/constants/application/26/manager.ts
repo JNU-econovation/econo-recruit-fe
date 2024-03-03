@@ -173,7 +173,7 @@ export const APPLICATION_MANAGER: ApplicationQuestion[] = [
       },
       {
         name: "fileUrlforPlanner",
-        require: false,
+        require: true,
         type: "text",
         title: "파일 URL",
         subtitle: "Google Drive 등",
