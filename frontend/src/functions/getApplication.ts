@@ -7,12 +7,17 @@ import { isApplicationQuestion } from "./validator";
 
 export const getApplicationNames = (
   node: (ApplicationQuestion | ApplicationNode)[],
+  requirement: boolean = true,
   applicationName?: Set<string>
 ) => {
   const applicationNameSet = applicationName || new Set<string>();
   node.forEach((element) => {
     if (isApplicationQuestion(element)) {
-      return getApplicationNames(element.nodes, applicationNameSet);
+      return getApplicationNames(
+        element.nodes,
+        requirement,
+        applicationNameSet
+      );
     }
     switch (element.type) {
       case "checkbox":
@@ -21,7 +26,7 @@ export const getApplicationNames = (
       case "radioForCheck":
       case "text":
       case "textarea":
-        if (element.require) {
+        if (!requirement || element.require) {
           applicationNameSet.add(element.name);
         }
         break;
@@ -29,7 +34,7 @@ export const getApplicationNames = (
       case "radioByTwoRank":
         if (element.subNodes) {
           element.subNodes.forEach((subNode) => {
-            if (subNode.require) {
+            if (!requirement || subNode.require) {
               applicationNameSet.add(subNode.name);
             }
           });
@@ -46,9 +51,14 @@ export const getApplicationNames = (
 };
 
 export const getApplicationValues = (node: ApplicationQuestion[]) => {
-  const applicationNames = getApplicationNames(node);
-  return Array.from(applicationNames).map((name) => ({
-    name,
-    answer: localStorage.get(name, ""),
-  }));
+  const applicationNames = getApplicationNames(node, false);
+  return Array.from(applicationNames)
+    .map((name) => {
+      const value = localStorage.get(name, "");
+      return {
+        name,
+        answer: value ? value : "",
+      };
+    })
+    .filter((item) => item.answer !== "");
 };

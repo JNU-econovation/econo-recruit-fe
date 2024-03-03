@@ -1,7 +1,7 @@
 import { ApplicationNode } from "@/src/constants/application/type";
 import { ReactNode } from "react";
 
-import ApplicationRadio from "./applicationNode/Radio.component";
+import ApplicationRadio from "./applicationNode/Radio";
 import ApplicationRadioByTwoRank from "./applicationNode/RadioByTwoRank.component";
 import ApplicationText from "./applicationNode/Text.component";
 import ApplicationCheckboxWithEtc from "./applicationNode/CheckboxWithEtc.component";
