@@ -5,6 +5,8 @@ const https = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
+https.defaults.withCredentials = true;
+
 https.interceptors.request.use((config) => {
   const token = JSON.parse(localStorage.getItem("accessToken") ?? '""');
   if (token) {

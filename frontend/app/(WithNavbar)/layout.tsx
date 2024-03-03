@@ -1,5 +1,4 @@
 import CommonNavbar from "@/components/common/navbar/Navbar";
-import Validate from "@/components/user/Validate.component";
 import { PropsWithChildren } from "react";
 import { headers } from "next/headers";
 
@@ -13,7 +12,6 @@ const ApplicantPage = ({ children }: WithNavbarLayout) => {
 
   return (
     <div className="px-24 min-w-[1280px] flex p-12">
-      <Validate />
       <CommonNavbar
         generation={generation}
         currentPath={currentPath}

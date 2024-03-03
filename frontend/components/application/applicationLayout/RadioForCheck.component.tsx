@@ -25,9 +25,9 @@ const RadioCell = ({
       <Link
         href={
           radioForCheckData.name === "personalInformationAgree"
-            ? "https://lightning-derby-674.notion.site/ad720024b5ab482caaa78419c57b373a?pvs=4"
+            ? "https://candied-goldenrod-7dd.notion.site/c37fad59e43b4685b7212714efdc8756?pvs=4"
             : radioForCheckData.name === "personalInformationAgreeForPortfolio"
-            ? "https://lightning-derby-674.notion.site/50b16833d1c549dba80ba0949a119de1?pvs=4"
+            ? "https://candied-goldenrod-7dd.notion.site/41fafb5c4d794b98b88383285d2c86c3?pvs=4"
             : ""
         }
         target="_blank"
