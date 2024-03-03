@@ -26,6 +26,7 @@ const APPLICANT: ApplicantNode[] = [
         { name: "minor" },
         { name: "grade" },
         { name: "semester" },
+        { name: "registered" },
       ],
     },
   },
