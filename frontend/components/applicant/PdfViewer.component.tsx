@@ -4,6 +4,7 @@ import ApplicantDetailRight from "@/components/applicant/DetailRight.component";
 import { getApplicationById } from "@/src/apis/applicant";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
+import Portfolio from "./applicantNode/Portfolio.component";
 
 const ApplicationPdfViewer = () => {
   const searchParams = useSearchParams();
@@ -28,6 +29,7 @@ const ApplicationPdfViewer = () => {
   return (
     <div className="p-24">
       <ApplicantDetailRight data={data} />
+      <Portfolio data={data} />
     </div>
   );
 };
