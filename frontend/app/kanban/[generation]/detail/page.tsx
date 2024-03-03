@@ -2,7 +2,6 @@
 
 import KanbanColumnDetailCard from "@/components/kanban/column/ColumnWithBackButton.component";
 import KanbanDetailApplicant from "@/components/kanban/content/DetailApplicant.component";
-import Validate from "@/components/user/Validate.component";
 import { KanbanCardReq } from "@/src/apis/kanban";
 import KanbanDetailWork from "@/components/kanban/content/DetailWork.component";
 
@@ -52,7 +51,6 @@ const KanbanBoardDetailPage = ({
 }: KanbanBoardDetailPageProps) => {
   return (
     <main className="flex mt-8 overflow-auto pt-12 pl-12">
-      <Validate />
       <KanbanColumnDetailCard
         columnIndex={+columnIndex ?? 0}
         generation={generation}

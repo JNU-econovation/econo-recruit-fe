@@ -162,3 +162,10 @@ export const ORDER_MENU = {
     { type: "score", string: "점수순" },
   ],
 } as const;
+
+export const needValidatePath = [
+  "/admin",
+  "/applicant",
+  "/interview",
+  "/kanban",
+];

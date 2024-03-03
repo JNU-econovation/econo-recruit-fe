@@ -4,6 +4,8 @@ const https = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
+https.defaults.withCredentials = true;
+
 https.interceptors.request.use((config) => {
   const token = JSON.parse(localStorage.getItem("accessToken") ?? '""');
   if (token) {
@@ -20,8 +22,6 @@ https.interceptors.response.use(
   },
   (error) => {
     if (error.response.status === 401 || error.response.status === 403) {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
       alert("로그인이 필요합니다.");
       window.location.href = "/signin";
     }
