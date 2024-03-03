@@ -3,9 +3,10 @@ import type {
   ApplicationQuestion,
   ApplicationRadioForCheck,
 } from "@/src/constants/application/type";
-import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 import { cn } from "@/src/utils/cn";
 import Link from "next/link";
+import { ChangeEvent } from "react";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 interface RadioCellProps {
   applicationQuestion: ApplicationQuestion;
@@ -20,6 +21,11 @@ const RadioCell = ({
     radioForCheckData.name,
     "동의하지 않습니다."
   );
+
+  const onSelectRadio = (e: ChangeEvent<HTMLInputElement>) => {
+    setRadio(e.target.value);
+  };
+
   return (
     <div className="flex-1">
       <Link
@@ -46,9 +52,7 @@ const RadioCell = ({
         id={radioForCheckData.name + radioForCheckData.value[0]}
         checked={radio === radioForCheckData.value[0]}
         value={radioForCheckData.value[0]}
-        onChange={(e) => {
-          setRadio(e.target.value);
-        }}
+        onChange={onSelectRadio}
       />
       <label
         className="mr-4"
@@ -63,9 +67,7 @@ const RadioCell = ({
         id={radioForCheckData.name + radioForCheckData.value[1]}
         checked={radio === radioForCheckData.value[1]}
         value={radioForCheckData.value[1]}
-        onChange={(e) => {
-          setRadio(e.target.value);
-        }}
+        onChange={onSelectRadio}
       />
       <label
         className="mr-4"
