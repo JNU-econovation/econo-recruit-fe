@@ -1,7 +1,7 @@
 import Txt from "@/components/common/Txt.component";
 import { ApplicantReq } from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
-import Portfolio from "./Portfolio.component";
+import Portfolio from "./Portfolio";
 interface ApplicantResourceProps {
   data: ApplicantReq[];
   postId: string;

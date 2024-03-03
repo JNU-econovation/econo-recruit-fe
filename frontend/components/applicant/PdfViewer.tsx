@@ -4,7 +4,7 @@ import ApplicantDetailRight from "@/components/applicant/DetailRight.component";
 import { getApplicationById } from "@/src/apis/applicant";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import Portfolio from "./applicantNode/Portfolio.component";
+import Portfolio from "./applicantNode/Portfolio";
 
 const ApplicationPdfViewer = () => {
   const searchParams = useSearchParams();

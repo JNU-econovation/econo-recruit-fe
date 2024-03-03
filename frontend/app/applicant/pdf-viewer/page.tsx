@@ -1,7 +1,7 @@
 import { dehydrate, Hydrate } from "@tanstack/react-query";
 import getQueryClient from "@/src/functions/getQueryClient";
 import { getApplicationById } from "@/src/apis/applicant";
-import ApplicationPdfViewer from "@/components/applicant/PdfViewer.component";
+import ApplicationPdfViewer from "@/components/applicant/PdfViewer";
 
 interface ApplicationPdfViewerPageProps {
   searchParams: {
