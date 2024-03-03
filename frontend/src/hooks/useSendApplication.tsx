@@ -26,7 +26,7 @@ export const postApplication = async (
 
   const channel = localStorage.get<string[]>("channel", []);
   channel.push(localStorage.get("channelEtc", ""));
-  if (localStorage.get("channel", "").length === 0) {
+  if (channel.length === 0) {
     alert("지원 경로를 선택해주세요.");
     return false;
   }
