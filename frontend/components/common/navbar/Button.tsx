@@ -1,6 +1,6 @@
 "use client";
 
-import { KANBAN_MENU } from "@/src/constants/kanban/26";
+import { KANBAN_MENU } from "@/src/constants/kanban/27";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import { cn } from "@/src/utils/cn";
 import { useAtom } from "jotai";
