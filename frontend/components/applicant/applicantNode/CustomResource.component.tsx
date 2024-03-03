@@ -9,12 +9,14 @@ interface ApplicantResourceProps {
 }
 
 const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
+  const regex = /[\s,;|]+/;
+
   const portfolio = applicantDataFinder(data, "portfolio")
-    .split(",")
+    .split(regex)
     .map((url: string) => url.trim());
 
   const file = applicantDataFinder(data, "fileUrl")
-    .split(",")
+    .split(regex)
     .map((url: string) => url.trim());
 
   return (
