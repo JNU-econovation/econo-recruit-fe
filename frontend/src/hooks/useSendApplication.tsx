@@ -74,12 +74,12 @@ export const postApplication = async (
       )
     );
     await postApplicantTimeline(applicantId, timeline);
+    await postApplicantBackup(sendValues);
   } catch (e) {
     const defaultMessage = `지원서 제출에 실패했습니다. 관리자에게 문의해주세요.\n ${e}`;
     const message = e instanceof AxiosError ? e.message : defaultMessage;
 
     alert(message);
-    await postApplicantBackup(sendValues);
     return false;
   }
 

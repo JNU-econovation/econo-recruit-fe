@@ -19,8 +19,10 @@ export const POST = async (req: NextRequest) => {
   await sendSms({
     name: body.find((value) => value.name === "name")?.answer ?? "",
     phone:
-      body.find((value) => value.name === "contacted")?.answer ??
-      "".split("-").join(""),
+      body
+        .find((value) => value.name === "contacted")
+        ?.answer.split("-")
+        .join("") ?? "",
   });
 
   await sendEmail({
@@ -38,7 +40,7 @@ const sendSms = async ({ name, phone }: { name: string; phone: string }) => {
     contentType: "COMM",
     countryCode: "82",
     from: "01030665016",
-    content: "내용",
+    content: "",
     messages: [
       {
         to: phone,
