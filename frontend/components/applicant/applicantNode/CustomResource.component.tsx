@@ -9,6 +9,10 @@ interface ApplicantResourceProps {
 }
 
 const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
+  const portfolio = applicantDataFinder(data, "portfolio")
+    .split(",")
+    .map((url: string) => url.trim());
+
   return (
     <>
       <div className="flex flex-col gap-1 mb-2">
@@ -43,11 +47,13 @@ const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
         <div className="flex gap-4">
           <div className="flex-1 flex flex-col">
             <Txt typography="h6">링크</Txt>
-            <Link href={applicantDataFinder(data, "portfolio")} target="_blank">
-              <Txt className="break-all">
-                {applicantDataFinder(data, "portfolio")}
-              </Txt>
-            </Link>
+            {portfolio.map((url: string, index: number) => {
+              return (
+                <Link href={url} target="_blank" key={index}>
+                  <Txt className="break-all">{url}</Txt>
+                </Link>
+              );
+            })}
           </div>
           <div className="flex-1 flex flex-col">
             <Txt typography="h6">파일</Txt>
