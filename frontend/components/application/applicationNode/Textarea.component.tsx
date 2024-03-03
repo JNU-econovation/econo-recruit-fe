@@ -7,6 +7,7 @@ import {
   ApplicationTextarea,
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
+import { FormEvent } from "react";
 
 interface ApplicationTextareaProps {
   data: ApplicationNode;
@@ -16,7 +17,7 @@ const ApplicationTexarea = ({ data }: ApplicationTextareaProps) => {
   const textData = data as ApplicationTextarea;
   const [value, setValue] = useLocalStorage(textData.name, "");
 
-  const onInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
+  const onInput = (e: FormEvent<HTMLTextAreaElement>) => {
     setValue(e.currentTarget.value.slice(0, MAX_TEXT_LENGTH));
   };
 
