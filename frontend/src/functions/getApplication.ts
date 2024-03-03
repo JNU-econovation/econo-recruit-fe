@@ -21,9 +21,7 @@ export const getApplicationNames = (
       case "radioForCheck":
       case "text":
       case "textarea":
-        if (element.require) {
-          applicationNameSet.add(element.name);
-        }
+        applicationNameSet.add(element.name);
         break;
       case "booleanTextarea":
       case "radioByTwoRank":
@@ -47,8 +45,13 @@ export const getApplicationNames = (
 
 export const getApplicationValues = (node: ApplicationQuestion[]) => {
   const applicationNames = getApplicationNames(node);
-  return Array.from(applicationNames).map((name) => ({
-    name,
-    answer: localStorage.get(name, ""),
-  }));
+  return Array.from(applicationNames)
+    .map((name) => {
+      const value = localStorage.get(name, "");
+      return {
+        name,
+        answer: value ? value : undefined,
+      };
+    })
+    .filter((item) => item.answer !== undefined);
 };
