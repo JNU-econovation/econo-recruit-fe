@@ -13,6 +13,10 @@ const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
     .split(",")
     .map((url: string) => url.trim());
 
+  const file = applicantDataFinder(data, "fileUrl")
+    .split(",")
+    .map((url: string) => url.trim());
+
   return (
     <>
       <div className="flex flex-col gap-1 mb-2">
@@ -57,11 +61,13 @@ const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
           </div>
           <div className="flex-1 flex flex-col">
             <Txt typography="h6">파일</Txt>
-            <Link href={applicantDataFinder(data, "fileUrl")} target="_blank">
-              <Txt className="break-all">
-                {applicantDataFinder(data, "fileUrl")}
-              </Txt>
-            </Link>
+            {file.map((url: string, index: number) => {
+              return (
+                <Link href={url} target="_blank" key={index}>
+                  <Txt className="break-all">{url}</Txt>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
