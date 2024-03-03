@@ -32,11 +32,6 @@ export const postApplication = async (
     return false;
   }
 
-  const doubleMajor = localStorage.get("doubleMajor", "");
-  const minor = localStorage.get("minor", "");
-  const portfolio = localStorage.get("portfolio", "");
-  const fileUrl = localStorage.get("fileUrl", "");
-
   const sendValues = getApplicationValues(applicationQuestions).filter(
     (value) => value.name !== "channelEtc" && value.name !== "channel"
   );
@@ -56,26 +51,6 @@ export const postApplication = async (
     name: "timeline",
     answer: JSON.stringify(timeline),
   });
-  portfolio &&
-    sendValues.push({
-      name: "portfolio",
-      answer: portfolio,
-    });
-  fileUrl &&
-    sendValues.push({
-      name: "fileUrl",
-      answer: fileUrl,
-    });
-  doubleMajor &&
-    sendValues.push({
-      name: "doubleMajor",
-      answer: doubleMajor,
-    });
-  minor &&
-    sendValues.push({
-      name: "minor",
-      answer: minor,
-    });
 
   if (sendValues.some((value) => value.answer === "")) {
     alert("지원서를 작성해주세요.");
