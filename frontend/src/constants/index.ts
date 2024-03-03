@@ -169,3 +169,5 @@ export const needValidatePath = [
   "/interview",
   "/kanban",
 ];
+
+export const MAX_TEXT_LENGTH = 1000;

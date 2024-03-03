@@ -2,11 +2,13 @@
 
 import RadioGroup from "@/components/common/Radio.component";
 import Txt from "@/components/common/Txt.component";
+import { MAX_TEXT_LENGTH } from "@/src/constants";
 import type {
   ApplicationBooleanTextarea,
   ApplicationQuestion,
 } from "@/src/constants/application/type";
 import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
+import { FormEvent } from "react";
 
 interface TextAreaProps {
   node: {
@@ -21,6 +23,9 @@ interface TextAreaProps {
 
 const TextArea = ({ node }: TextAreaProps) => {
   const [textValue, setTextValue] = useLocalStorage(node.name, "");
+  const onInput = (e: FormEvent<HTMLTextAreaElement>) => {
+    setTextValue(e.currentTarget.value.slice(0, MAX_TEXT_LENGTH));
+  };
 
   return (
     <div className="flex gap-6">
@@ -32,15 +37,16 @@ const TextArea = ({ node }: TextAreaProps) => {
           <Txt className="pl-4 block break-keep">{node.subtitle}</Txt>
         </div>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 relative">
         <textarea
-          className="my-2 border rounded-lg p-4 w-full resize-none"
+          className="border rounded-lg px-4 py-6 w-full resize-none"
           rows={20}
           maxLength={1000}
           name={node.name}
           value={textValue}
-          onInput={(e) => setTextValue(e.currentTarget.value)}
+          onInput={onInput}
         />
+        <div className="absolute bottom-3 right-4 bg-white text-sm">{`(${textValue.length}/${MAX_TEXT_LENGTH})`}</div>
       </div>
     </div>
   );
