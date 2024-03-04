@@ -25,7 +25,7 @@ https.interceptors.response.use(
     const { data, status: errorStatus } = error.response;
     const { code: errorCode, reason: errorReason } = data;
     const errorMessage =
-      errorConfig[errorCode as ErrorCode].message ||
+      errorConfig[errorCode as ErrorCode]?.message ||
       errorReason ||
       error.message;
 
