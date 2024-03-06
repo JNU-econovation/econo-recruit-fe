@@ -31,6 +31,7 @@ export const getApplicationNames = (
         }
         break;
       case "booleanTextarea":
+        applicationNameSet.add(element.name);
       case "radioByTwoRank":
         if (element.subNodes) {
           element.subNodes.forEach((subNode) => {
