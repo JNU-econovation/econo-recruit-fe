@@ -3,7 +3,7 @@ import {
   ApplicationQuestion,
 } from "../constants/application/type";
 import { localStorage } from "./localstorage";
-import { isApplicationQuestion } from "./validator";
+import { isApplicationQuestion, isEmail } from "./validator";
 
 export const getApplicationNames = (
   node: (ApplicationQuestion | ApplicationNode)[],
@@ -53,13 +53,11 @@ export const getApplicationNames = (
 
 export const getApplicationValues = (node: ApplicationQuestion[]) => {
   const applicationNames = getApplicationNames(node, false);
-  return Array.from(applicationNames)
-    .map((name) => {
-      const value = localStorage.get(name, "");
-      return {
-        name,
-        answer: value ? value : "",
-      };
-    })
-    .filter((item) => item.answer !== "");
+  return Array.from(applicationNames).map((name) => {
+    const value = localStorage.get(name, "");
+    return {
+      name,
+      answer: value ? value : "",
+    };
+  });
 };

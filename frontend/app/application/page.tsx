@@ -1,6 +1,6 @@
 "use client";
 
-import ApplicationNavbar from "@/components/application/Navbar.component";
+import ApplicationNavbar from "@/components/application/Navbar";
 import ApplicationQuestion from "@/components/application/Question.component";
 import { CURRENT_GENERATION } from "@/src/constants";
 import {
