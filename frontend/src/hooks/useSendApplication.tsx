@@ -6,7 +6,10 @@ import {
 import { CURRENT_GENERATION } from "@/src/constants";
 import { localStorage } from "@/src/functions/localstorage";
 import { ApplicationQuestion } from "../constants/application/type";
-import { getApplicationValues } from "../functions/getApplication";
+import {
+  getApplicationNames,
+  getApplicationValues,
+} from "../functions/getApplication";
 import { AxiosError } from "axios";
 
 export const postApplication = async (
@@ -52,13 +55,15 @@ export const postApplication = async (
     answer: JSON.stringify(timeline),
   });
 
-  if (sendValues.some((value) => value.answer === "")) {
+  const requiredQuestions = Array.from(
+    getApplicationNames(applicationQuestions)
+  );
+  if (
+    sendValues
+      .filter((value) => requiredQuestions.includes(value.name))
+      .some((value) => value.answer === "")
+  ) {
     alert("지원서를 작성해주세요.");
-    return false;
-  }
-
-  if (sendValues.find((value) => value.name === "timeline")?.answer === "[]") {
-    alert("시간표를 선택해주세요.");
     return false;
   }
 
