@@ -97,10 +97,6 @@ export const useApplication = () => {
 
     const channel = localStorage.get<string[]>("channel", []);
     channel.push(localStorage.get("channelEtc", ""));
-    if (channel.length === 0) {
-      alert("지원 경로를 선택해주세요.");
-      return false;
-    }
 
     const sendValues = getApplicationValues(applicationQuestions).filter(
       (value) => value.name !== "channelEtc" && value.name !== "channel"
