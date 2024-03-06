@@ -23,6 +23,15 @@ export const signIn = async ({ email, password }: SignInReq) => {
   }
 };
 
+export const signOut = async () => {
+  try {
+    await https.post<SignInRes>("/logout");
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 interface SignUpReq {
   name: string;
   year: number;
