@@ -1,12 +1,15 @@
 "use client";
 
 import {
+  applicationDataAtom,
   applicationIndexAtom,
   applicationNavbarAtom,
 } from "@/src/stores/application";
 import { useAtom, useAtomValue } from "jotai";
 import Txt from "@/components/common/Txt.component";
 import { cn } from "@/src/utils/cn";
+import { getApplicationNames } from "@/src/functions/getApplication";
+import { useApplication } from "@/src/hooks/useApplication";
 
 interface ApplicationNavbarProps {
   generation: string;
@@ -19,13 +22,25 @@ const ApplicationNavbar = ({
 }: ApplicationNavbarProps) => {
   const [applicationIndex, setApplicationIndex] = useAtom(applicationIndexAtom);
   const applicationNavbar = useAtomValue(applicationNavbarAtom);
+  const applicationData = useAtomValue(applicationDataAtom);
+  const { canApplicationNext } = useApplication();
+
+  const onNavbarClick = (id: number) => {
+    const applicationName = Array.from({ length: id - 1 }, (_, i) =>
+      Array.from(getApplicationNames(applicationData[i].nodes))
+    ).flat();
+    if (!canApplicationNext(applicationName)) {
+      return;
+    }
+    setApplicationIndex(id - 1);
+  };
 
   return (
     <nav className={cn("pl-12 w-full h-full", className)}>
       {applicationNavbar.map((navItem, index) => (
         <button
           className={"text-left p-4 relative"}
-          onClick={() => setApplicationIndex(navItem.id - 1)}
+          onClick={() => onNavbarClick(navItem.id)}
           key={navItem.id}
         >
           {/* 마지막 선은 그리지 않기 */}
