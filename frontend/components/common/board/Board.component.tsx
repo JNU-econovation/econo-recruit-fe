@@ -36,14 +36,20 @@ const Board = ({
 
   return (
     <section className="flex flex-col">
-      {boardData.map((item, index) => (
-        <BoardCell
-          key={index}
-          title={item.title}
-          subElements={item.subElements}
-          onClick={() => openModel(item.id)}
-        />
-      ))}
+      {boardData.length === 0 ? (
+        <div>검색결과가 없습니다.</div>
+      ) : (
+        <>
+          {boardData.map((item, index) => (
+            <BoardCell
+              key={index}
+              title={item.title}
+              subElements={item.subElements}
+              onClick={() => openModel(item.id)}
+            />
+          ))}
+        </>
+      )}
       <Modal
         style={{
           content: {
