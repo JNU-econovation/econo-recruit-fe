@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { getSearchKeyword } from "@/src/apis/interview";
+import { getSearchKeyword } from "@/src/apis/search";
 
 export const useSearchQuery = (pageIndex: string) => {
   const searchParams = useSearchParams();
@@ -10,10 +10,11 @@ export const useSearchQuery = (pageIndex: string) => {
     queryKey: ["searchKeyWord", pageIndex, searchKeyword],
     queryFn: () => getSearchKeyword(+pageIndex, searchKeyword),
     enabled: !!searchKeyword,
-    select: (data) => data.answers,
   });
 
-  const searchInterviewData = search?.map((value) => ({
+  const searchEndPage = search?.endPage;
+
+  const searchInterviewData = search?.answers.map((value) => ({
     id: value.id,
     title: `[${value.field}] ${value.name}`,
     subElements: [
@@ -25,7 +26,7 @@ export const useSearchQuery = (pageIndex: string) => {
     ],
   }));
 
-  const searchApplicantData = search?.map((value) => ({
+  const searchApplicantData = search?.answers.map((value) => ({
     id: value.id,
     title: `[${value.field}] ${value.name}`,
     subElements: [
@@ -40,5 +41,5 @@ export const useSearchQuery = (pageIndex: string) => {
     ],
   }));
 
-  return { searchInterviewData, searchApplicantData };
+  return { searchInterviewData, searchApplicantData, searchEndPage };
 };
