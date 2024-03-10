@@ -1,10 +1,10 @@
 "use client";
 
-import Icon from "../common/Icon";
+import Icon from "./Icon";
 import { useDebouncedCallback } from "use-debounce";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-const InterviewSearch = () => {
+const Search = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -12,16 +12,21 @@ const InterviewSearch = () => {
   const handleSearch = useDebouncedCallback((term) => {
     const params = new URLSearchParams(Object.fromEntries(searchParams));
     if (term) {
-      params.set("query", term);
+      params.set("search", term);
     } else {
-      params.delete("query");
+      params.delete("search");
     }
 
     replace(`${pathname}?${params.toString()}`);
   }, 300);
 
   return (
-    <form className="flex items-center py-2 px-4 bg-primary-100 rounded-2xl gap-2">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+      className="flex items-center py-2 px-4 bg-primary-100 rounded-2xl gap-2"
+    >
       <Icon icon="search" />
       <input
         className="p-2 color-secondary-100 bg-transparent outline-none"
@@ -30,8 +35,8 @@ const InterviewSearch = () => {
         onChange={(e) => {
           handleSearch(e.target.value);
         }}
-      ></input>
+      />
     </form>
   );
 };
-export default InterviewSearch;
+export default Search;
