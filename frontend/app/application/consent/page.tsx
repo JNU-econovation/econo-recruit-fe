@@ -10,8 +10,8 @@ const ApplicationConsentPage = () => {
   )}.${dateReplacer(FIANL_DATE.date)}`;
 
   return (
-    <>
-      <section className="mx-48 my-32" id="common">
+    <div className="mx-48 [&_section]:my-32">
+      <section id="common">
         <h1 className="font-extrabold text-4xl mb-8">
           <a href="#common">개인정보 수집(공통)에 대한 안내</a>
         </h1>
@@ -37,7 +37,7 @@ const ApplicationConsentPage = () => {
           </p>
         </article>
       </section>
-      <section className="mx-48 my-32" id="portfolio">
+      <section id="portfolio">
         <h1 className="font-extrabold text-4xl mb-8">
           <a href="#portfolio">개인정보 수집(포트폴리오)에 대한 안내</a>
         </h1>
@@ -64,7 +64,7 @@ const ApplicationConsentPage = () => {
           </p>
         </article>
       </section>
-    </>
+    </div>
   );
 };
 
