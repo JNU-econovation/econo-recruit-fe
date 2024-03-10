@@ -76,7 +76,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   return (
     <Board
       wapperClassname="divide-x"
-      boardData={searchApplicantData || boardData}
+      boardData={searchApplicantData ?? boardData}
       onClick={onClick}
     >
       <div className="flex flex-1">

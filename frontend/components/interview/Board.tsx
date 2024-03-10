@@ -58,7 +58,7 @@ const InterviewBoardComponent = () => {
   return (
     <Board
       wapperClassname="divide-x"
-      boardData={searchInterviewData || boardData}
+      boardData={searchInterviewData ?? boardData}
       onClick={(id) => onClick(id)}
     >
       <div className="flex flex-1 min-h-0">
