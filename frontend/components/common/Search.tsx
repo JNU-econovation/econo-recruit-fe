@@ -8,6 +8,7 @@ const Search = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const searchKeyword = searchParams.get("search") ?? "";
 
   const handleSearch = useDebouncedCallback((term) => {
     const params = new URLSearchParams(Object.fromEntries(searchParams));
@@ -32,6 +33,7 @@ const Search = () => {
         className="p-2 color-secondary-100 bg-transparent outline-none"
         type="search"
         placeholder="search"
+        defaultValue={searchKeyword}
         onChange={(e) => {
           handleSearch(e.target.value);
         }}
