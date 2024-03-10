@@ -143,27 +143,3 @@ export interface DeleteInterviewerReq {
 export const deleteInterviewer = async ({ idpId }: DeleteInterviewerReq) => {
   const { data } = await https.delete(`/interviewers/${idpId}`);
 };
-
-export interface SearchInterviewerRes {
-  id: string;
-  name: string;
-  field: string;
-  field1: string;
-  field2: string;
-  grade: string;
-  semester: string;
-  uploadDate: string;
-}
-
-export interface GetSearchKeywordRes {
-  answers: SearchInterviewerRes[];
-  pageInfo: PageInfo;
-}
-
-export const getSearchKeyword = async (page: number, searchKeyword: string) => {
-  const { data } = await https.get<GetSearchKeywordRes>(
-    `/page/${page}/search/${searchKeyword}/applicants`
-  );
-
-  return data;
-};
