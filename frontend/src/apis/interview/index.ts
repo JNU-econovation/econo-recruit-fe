@@ -152,7 +152,7 @@ export interface SearchInterviewerRes {
   field2: string;
   grade: string;
   semester: string;
-  uploadData: string;
+  uploadDate: string;
 }
 
 export interface GetSearchKeywordRes {

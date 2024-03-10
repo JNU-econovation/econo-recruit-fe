@@ -34,7 +34,7 @@ export const useSearchQuery = (pageIndex: string) => {
       `${value.grade.split('"').join("")} ${value.semester
         .split('"')
         .join("")}`,
-      new Date(Number(value.uploadData)).toLocaleString("ko-KR", {
+      new Date(Number(value.uploadDate)).toLocaleString("ko-KR", {
         dateStyle: "short",
       }),
     ],
