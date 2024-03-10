@@ -36,3 +36,5 @@ export const replacer = (value: string, type: ReplacerType) => {
       return value;
   }
 };
+
+export const dateReplacer = (date: number) => date.toString().padStart(2, "0");
