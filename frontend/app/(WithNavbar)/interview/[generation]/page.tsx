@@ -1,6 +1,6 @@
 import SortList from "@/components/common/SortList";
-import InterviewBoardComponent from "@/components/interview/Board";
-import InterviewPageNavbar from "@/components/interview/PageNavbar.component";
+import InterviewBoard from "@/components/interview/Board";
+import InterviewPageNavbar from "@/components/interview/PageNavbar";
 import Search from "@/components/common/Search";
 import { ORDER_MENU } from "@/src/constants";
 
@@ -17,7 +17,7 @@ const InterviewPage = ({ params: { generation } }: InterviewPageProps) => {
         <Search />
         <SortList sortList={ORDER_MENU.INTERVIEW} />
       </div>
-      <InterviewBoardComponent />
+      <InterviewBoard />
       <InterviewPageNavbar generation={generation} />
     </div>
   );

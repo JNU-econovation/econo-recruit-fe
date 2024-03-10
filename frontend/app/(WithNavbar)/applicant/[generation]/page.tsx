@@ -1,5 +1,5 @@
 import ApplicantBoard from "@/components/applicant/Board";
-import ApplicantPageNavbar from "@/components/applicant/PageNavbar.component";
+import ApplicantPageNavbar from "@/components/applicant/PageNavbar";
 import SortList from "@/components/common/SortList";
 import Search from "@/components/common/Search";
 import { ORDER_MENU } from "@/src/constants";

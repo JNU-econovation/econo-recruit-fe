@@ -1,7 +1,7 @@
 "use client";
 
 import InterviewDetailLeftComponent from "./modal/DetailLeft.component";
-import Board from "../common/board/Board.component";
+import Board from "../common/board/Board";
 import InterviewDetailRightComponent from "./modal/DetailRight.component";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
@@ -11,7 +11,7 @@ import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
 import { ORDER_MENU } from "@/src/constants";
 import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 
-const InterviewBoardComponent = () => {
+const InterviewBoard = () => {
   const [applicantId, setApplicantId] = useAtom(interViewApplicantIdState);
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
@@ -75,4 +75,4 @@ const InterviewBoardComponent = () => {
   );
 };
 
-export default InterviewBoardComponent;
+export default InterviewBoard;

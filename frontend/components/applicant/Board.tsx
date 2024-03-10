@@ -1,6 +1,6 @@
 "use client";
 
-import Board from "@/components/common/board/Board.component";
+import Board from "@/components/common/board/Board";
 import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
 import ApplicantDetailRight from "./DetailRight.component";
 import ApplicantDetailLeft from "./DetailLeft.component";
