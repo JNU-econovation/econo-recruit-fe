@@ -17,7 +17,7 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
   const order = searchParams.get("order") ?? ORDER_MENU.APPLICANT[0].type;
   const page = searchParams.get("page") ?? "1";
 
-  const searchKeyword = searchParams.get("search") || "";
+  const searchTerm = searchParams.get("search") || "";
   const { searchEndPage } = useSearchQuery(pageIndex);
 
   const {
@@ -45,7 +45,7 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
     <PageNavbarComponent
       maxLength={searchEndPage ?? maxPage}
       page={+page}
-      url={`/applicant/${generation}?search=${searchKeyword}&type=${type}&order=${order}`}
+      url={`/applicant/${generation}?search=${searchTerm}&type=${type}&order=${order}`}
     />
   );
 };
