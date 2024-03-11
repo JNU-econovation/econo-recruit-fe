@@ -1,44 +1,47 @@
 "use client";
 
 import Icon from "./Icon";
-import { useDebouncedCallback } from "use-debounce";
+import { useDebounce } from "@uidotdev/usehooks";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useState, useTransition } from "react";
 
 const Search = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  const searchKeyword = searchParams.get("search") ?? "";
+  const [isPending, startTransition] = useTransition();
 
-  const handleSearch = useDebouncedCallback((term) => {
+  const initialSearchTerm = searchParams.get("search") ?? "";
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+  useEffect(() => {
     const params = new URLSearchParams(Object.fromEntries(searchParams));
-    if (term) {
-      params.set("search", term);
-    } else {
-      params.delete("search");
-    }
 
-    replace(`${pathname}?${params.toString()}`);
-  }, 300);
+    startTransition(() => {
+      if (debouncedSearchTerm) {
+        params.set("search", debouncedSearchTerm);
+      } else {
+        params.delete("search");
+      }
+
+      replace(`${pathname}?${params.toString()}`);
+    });
+  }, [debouncedSearchTerm, pathname]);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-      className="flex items-center py-2 px-4 bg-primary-100 rounded-2xl gap-2"
-    >
+    <div className="flex items-center py-2 px-4 bg-primary-100 rounded-2xl gap-2">
       <Icon icon="search" />
       <input
         className="p-2 color-secondary-100 bg-transparent outline-none"
         type="search"
         placeholder="search"
-        defaultValue={searchKeyword}
+        defaultValue={initialSearchTerm}
         onChange={(e) => {
-          handleSearch(e.target.value);
+          setSearchTerm(e.target.value);
         }}
       />
-    </form>
+    </div>
   );
 };
 export default Search;
