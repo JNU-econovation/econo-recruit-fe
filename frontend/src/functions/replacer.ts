@@ -37,4 +37,5 @@ export const replacer = (value: string, type: ReplacerType) => {
   }
 };
 
-export const dateReplacer = (date: number) => date.toString().padStart(2, "0");
+export const replaceTwoString = (original: number, by: string = "0") =>
+  original.toString().padStart(2, by);
