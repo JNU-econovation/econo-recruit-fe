@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { getSearchKeyword } from "@/src/apis/search";
+import { getSearchTerm } from "@/src/apis/search";
 
 export const useSearchQuery = (pageIndex: string) => {
   const searchParams = useSearchParams();
-  const searchKeyword = searchParams.get("search") || "";
+  const searchTerm = searchParams.get("search") || "";
 
   const { data: search } = useQuery({
-    queryKey: ["searchKeyWord", pageIndex, searchKeyword],
-    queryFn: () => getSearchKeyword(+pageIndex, searchKeyword),
-    enabled: !!searchKeyword,
+    queryKey: ["searchTerm", pageIndex, searchTerm],
+    queryFn: () => getSearchTerm({ page: +pageIndex, searchTerm }),
+    enabled: !!searchTerm,
   });
 
   const searchEndPage = search?.endPage;

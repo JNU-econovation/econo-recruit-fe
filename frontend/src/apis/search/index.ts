@@ -12,16 +12,21 @@ export interface SearchInterviewerRes {
   uploadDate: string;
 }
 
-export interface GetSearchKeywordRes {
+export interface GetSearchTermReq {
+  page: number;
+  searchTerm: string;
+}
+
+export interface GetSearchTermRes {
   answers: SearchInterviewerRes[];
   pageInfo: PageInfo;
 }
 
-export const getSearchKeyword = async (page: number, searchKeyword: string) => {
+export const getSearchTerm = async ({ page, searchTerm }: GetSearchTermReq) => {
   const {
     data: { answers, pageInfo },
-  } = await https.get<GetSearchKeywordRes>(
-    `/page/${page}/search/${searchKeyword}/applicants`
+  } = await https.get<GetSearchTermRes>(
+    `/page/${page}/search/${searchTerm}/applicants`
   );
 
   return {
