@@ -41,9 +41,9 @@ const Board = ({
         <Txt>검색결과가 없습니다.</Txt>
       ) : (
         <>
-          {boardData.map((item, index) => (
+          {boardData.map((item) => (
             <BoardCell
-              key={index}
+              key={item.id}
               title={item.title}
               subElements={item.subElements}
               onClick={() => openModel(item.id)}
