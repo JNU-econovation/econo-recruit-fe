@@ -198,7 +198,7 @@ export const END_DATE = {
   date: 18,
 };
 
-export const FIANL_DATE = {
+export const FINAL_DATE = {
   year: 2024,
   month: 3,
   date: 25,

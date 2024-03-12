@@ -1,13 +1,13 @@
 import Txt from "@/components/common/Txt.component";
 import { CURRENT_GENERATION } from "@/src/constants";
-import { FIANL_DATE } from "@/src/constants/application/27";
+import { FINAL_DATE } from "@/src/constants/application/27";
 import { replaceTwoString } from "@/src/functions/replacer";
 
 const ApplicationConsentPage = () => {
   const generation = `${CURRENT_GENERATION}`;
-  const finalDate = `${FIANL_DATE.year}.${replaceTwoString(
-    FIANL_DATE.month
-  )}.${replaceTwoString(FIANL_DATE.date)}`;
+  const finalDate = `${FINAL_DATE.year}.${replaceTwoString(
+    FINAL_DATE.month
+  )}.${replaceTwoString(FINAL_DATE.date)}`;
 
   return (
     <div className="mx-48 [&_section]:my-32">
