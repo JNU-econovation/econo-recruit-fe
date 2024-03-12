@@ -36,3 +36,6 @@ export const replacer = (value: string, type: ReplacerType) => {
       return value;
   }
 };
+
+export const replaceTwoString = (original: number, by: string = "0") =>
+  original.toString().padStart(2, by);

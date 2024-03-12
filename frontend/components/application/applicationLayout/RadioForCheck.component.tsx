@@ -31,9 +31,9 @@ const RadioCell = ({
       <Link
         href={
           radioForCheckData.name === "personalInformationAgree"
-            ? "https://candied-goldenrod-7dd.notion.site/c37fad59e43b4685b7212714efdc8756?pvs=4"
+            ? "/application/consent#common"
             : radioForCheckData.name === "personalInformationAgreeForPortfolio"
-            ? "https://candied-goldenrod-7dd.notion.site/41fafb5c4d794b98b88383285d2c86c3?pvs=4"
+            ? "/application/consent#portfolio"
             : ""
         }
         target="_blank"
