@@ -16,7 +16,7 @@ const InterviewBoard = () => {
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
   const order = searchParams.get("order") || ORDER_MENU.INTERVIEW[0].type;
-  const { searchInterviewData } = useSearchQuery(pageIndex);
+  const { createSearchData } = useSearchQuery(pageIndex);
 
   const queryClient = useQueryClient();
 
@@ -58,7 +58,7 @@ const InterviewBoard = () => {
   return (
     <Board
       wapperClassname="divide-x"
-      boardData={searchInterviewData ?? boardData}
+      boardData={createSearchData() ?? boardData}
       onClick={(id) => onClick(id)}
     >
       <div className="flex flex-1 min-h-0">

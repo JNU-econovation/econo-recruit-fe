@@ -14,32 +14,31 @@ export const useSearchQuery = (pageIndex: string) => {
 
   const searchEndPage = search?.endPage;
 
-  const searchInterviewData = search?.answers.map((value) => ({
-    id: value.id,
-    title: `[${value.field}] ${value.name}`,
-    subElements: [
-      value.field1.split('"').join(""),
-      value.field2.split('"').join(""),
-      `${value.grade.split('"').join("")} ${value.semester
-        .split('"')
-        .join("")}`,
-    ],
-  }));
+  const createSearchData = (isIncludeUploadDate = false) => {
+    return search?.answers?.map((value) => {
+      const searchInterviewData = {
+        id: value.id,
+        title: `[${value.field}] ${value.name}`,
+        subElements: [
+          value.field1.split('"').join(""),
+          value.field2.split('"').join(""),
+          `${value.grade.split('"').join("")} ${value.semester
+            .split('"')
+            .join("")}`,
+        ],
+      };
 
-  const searchApplicantData = search?.answers.map((value) => ({
-    id: value.id,
-    title: `[${value.field}] ${value.name}`,
-    subElements: [
-      value.field1.split('"').join(""),
-      value.field2.split('"').join(""),
-      `${value.grade.split('"').join("")} ${value.semester
-        .split('"')
-        .join("")}`,
-      new Date(Number(value.uploadDate)).toLocaleString("ko-KR", {
-        dateStyle: "short",
-      }),
-    ],
-  }));
+      if (isIncludeUploadDate) {
+        searchInterviewData.subElements.push(
+          new Date(Number(value.uploadDate)).toLocaleString("ko-KR", {
+            dateStyle: "short",
+          })
+        );
+      }
 
-  return { searchInterviewData, searchApplicantData, searchEndPage };
+      return searchInterviewData;
+    });
+  };
+
+  return { createSearchData, searchEndPage };
 };

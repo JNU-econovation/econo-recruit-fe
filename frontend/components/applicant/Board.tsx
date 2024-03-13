@@ -21,7 +21,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
   const order = searchParams.get("order") || ORDER_MENU.APPLICANT[0].type;
-  const { searchApplicantData } = useSearchQuery(pageIndex);
+  const { createSearchData } = useSearchQuery(pageIndex);
 
   const onClick = (id: string) => {
     if (!allData) return;
@@ -76,7 +76,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   return (
     <Board
       wapperClassname="divide-x"
-      boardData={searchApplicantData ?? boardData}
+      boardData={createSearchData(true) ?? boardData}
       onClick={onClick}
     >
       <div className="flex flex-1">
