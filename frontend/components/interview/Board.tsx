@@ -1,7 +1,7 @@
 "use client";
 
 import InterviewDetailLeftComponent from "./modal/DetailLeft.component";
-import Board from "../common/board/Board.component";
+import Board from "../common/board/Board";
 import InterviewDetailRightComponent from "./modal/DetailRight.component";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
@@ -9,12 +9,14 @@ import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom
 import { useSearchParams } from "next/navigation";
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
 import { ORDER_MENU } from "@/src/constants";
+import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 
-const InterviewBoardComponent = () => {
+const InterviewBoard = () => {
   const [applicantId, setApplicantId] = useAtom(interViewApplicantIdState);
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
   const order = searchParams.get("order") || ORDER_MENU.INTERVIEW[0].type;
+  const { createSearchData } = useSearchQuery(pageIndex);
 
   const queryClient = useQueryClient();
 
@@ -56,7 +58,7 @@ const InterviewBoardComponent = () => {
   return (
     <Board
       wapperClassname="divide-x"
-      boardData={boardData}
+      boardData={createSearchData() ?? boardData}
       onClick={(id) => onClick(id)}
     >
       <div className="flex flex-1 min-h-0">
@@ -73,4 +75,4 @@ const InterviewBoardComponent = () => {
   );
 };
 
-export default InterviewBoardComponent;
+export default InterviewBoard;

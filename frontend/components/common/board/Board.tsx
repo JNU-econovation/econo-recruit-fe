@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import Image from "next/image";
 import CloseImage from "/public/icons/ellipsis.multiply.svg";
 import { cn } from "@/src/utils/cn";
+import Txt from "../Txt.component";
 
 interface BoardData {
   id: string;
@@ -36,14 +37,20 @@ const Board = ({
 
   return (
     <section className="flex flex-col">
-      {boardData.map((item, index) => (
-        <BoardCell
-          key={index}
-          title={item.title}
-          subElements={item.subElements}
-          onClick={() => openModel(item.id)}
-        />
-      ))}
+      {boardData.length === 0 ? (
+        <Txt>검색결과가 없습니다.</Txt>
+      ) : (
+        <>
+          {boardData.map((item) => (
+            <BoardCell
+              key={item.id}
+              title={item.title}
+              subElements={item.subElements}
+              onClick={() => openModel(item.id)}
+            />
+          ))}
+        </>
+      )}
       <Modal
         style={{
           content: {
