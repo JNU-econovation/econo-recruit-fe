@@ -84,7 +84,7 @@ export const useApplication = () => {
   ) => {
     const isSend = confirm("지원서를 제출하시겠습니까?");
     if (!isSend) return false;
-    if (Date.now() > Date.UTC(2024, 2, 14, 15, 0, 0)) {
+    if (Date.now() > Date.UTC(2024, 2, 15, 15, 0, 0)) {
       alert("지원 기간이 종료되었습니다.");
       return false;
     }
