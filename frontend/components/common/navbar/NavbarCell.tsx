@@ -15,12 +15,12 @@ type CommonNavbarCellProps = {
     short_title: string;
     title: string;
   };
-  isShort: boolean;
 };
 
-const CommonNavbarCell = ({ item, isShort }: CommonNavbarCellProps) => {
+const CommonNavbarCell = ({ item }: CommonNavbarCellProps) => {
   const currentPath = usePathname();
   const currentType = currentPath.split("/")[1];
+  const isShort = currentType === "kanban";
 
   const linkButtonClassName =
     "flex justify-between p-4 hover:bg-secondary-100 hover:text-white rounded-lg";

@@ -7,16 +7,11 @@ interface WithNavbarLayout extends PropsWithChildren {}
 const ApplicantPage = ({ children }: WithNavbarLayout) => {
   const headersList = headers();
   const header_url = headersList.get("x-url") || "";
-  const [_, __, currentPath, generation, ___] = header_url.split(/[/?]+/);
-  const isShort = currentPath === "kanban";
+  const [_, __, ___, generation, ____] = header_url.split(/[/?]+/);
 
   return (
     <div className="px-24 min-w-[1280px] flex p-12">
-      <CommonNavbar
-        generation={generation}
-        currentPath={currentPath}
-        isShort={isShort}
-      />
+      <CommonNavbar generation={generation} />
       {children}
     </div>
   );

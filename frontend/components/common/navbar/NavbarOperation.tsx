@@ -7,13 +7,11 @@ import { getMyInfo } from "@/src/apis/interview";
 interface NavbarOperationProps {
   generation: string;
   isShort?: boolean;
-  currentPath: string;
 }
 
 export const NavbarOperation = ({
   generation,
   isShort = false,
-  currentPath,
 }: NavbarOperationProps) => {
   const { data: userData } = useQuery(["user"], getMyInfo);
   if (!userData) {
@@ -26,7 +24,6 @@ export const NavbarOperation = ({
 
   return (
     <CommonNavbarCell
-      isShort={isShort}
       item={{
         href: `/admin/${generation}`,
         short_title: "관리자",
