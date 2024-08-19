@@ -26,7 +26,6 @@ export const NavbarOperation = ({
 
   return (
     <CommonNavbarCell
-      currentPath={currentPath}
       isShort={isShort}
       item={{
         href: `/admin/${generation}`,

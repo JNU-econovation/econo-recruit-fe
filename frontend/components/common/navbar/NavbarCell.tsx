@@ -1,11 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import LtIcon from "@/public/icons/lt.icon.svg";
 import LtIconWhite from "@/public/icons/lt.icon.white.svg";
+import Link from "next/link";
+import { cn } from "@/src/utils/cn";
+import { usePathname } from "next/navigation";
 
 type CommonNavbarCellProps = {
-  currentPath: string;
   item: {
-    type: string;
+    type: string; //TODO: 타입 정의하기
     href: string;
     target: string;
     short_title: string;
@@ -14,30 +18,32 @@ type CommonNavbarCellProps = {
   isShort: boolean;
 };
 
-const CommonNavbarCell = ({
-  currentPath,
-  item,
-  isShort,
-}: CommonNavbarCellProps) => {
+const CommonNavbarCell = ({ item, isShort }: CommonNavbarCellProps) => {
+  const currentPath = usePathname();
+  const currentType = currentPath.split("/")[1];
+
   const linkButtonClassName =
     "flex justify-between p-4 hover:bg-secondary-100 hover:text-white rounded-lg";
+
+  const { href, short_title, target, title, type } = item;
+
   return (
-    <a
-      className={
-        currentPath === item.type
+    <Link
+      className={cn(
+        currentType === type
           ? `${linkButtonClassName} !bg-black !text-white`
           : linkButtonClassName
-      }
-      href={item.href}
-      target={item.target === "_blank" ? "_blank" : ""}
-      key={item.type}
+      )}
+      href={href}
+      target={target === "_blank" ? "_blank" : ""}
+      key={type}
     >
-      {isShort ? item.short_title : item.title}
+      {isShort ? short_title : title}
       <Image
-        src={currentPath !== item.type ? LtIcon : LtIconWhite}
+        src={currentPath !== type ? LtIcon : LtIconWhite}
         alt="right arrow"
       />
-    </a>
+    </Link>
   );
 };
 

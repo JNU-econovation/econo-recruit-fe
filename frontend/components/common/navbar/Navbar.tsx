@@ -27,12 +27,7 @@ const CommonNavbar = ({
       </Link>
       <div className="flex flex-col gap-8 mt-8 text-xl">
         {MainNavbar.map((item) => (
-          <CommonNavbarCell
-            key={item.type}
-            currentPath={currentPath}
-            isShort={isShort}
-            item={item}
-          />
+          <CommonNavbarCell key={item.type} isShort={isShort} item={item} />
         ))}
         <NavbarOperation
           currentPath={currentPath}
