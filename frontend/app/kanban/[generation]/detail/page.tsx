@@ -52,7 +52,7 @@ const KanbanBoardDetailPage = ({
   return (
     <main className="flex mt-8 overflow-auto pt-12 pl-12">
       <KanbanColumnDetailCard
-        columnIndex={+columnIndex ?? 0}
+        columnIndex={+(columnIndex ?? 0)}
         generation={generation}
         cardId={cardId}
         applicantId={applicantId}

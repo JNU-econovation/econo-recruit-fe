@@ -5,14 +5,12 @@ import NavbarUserInfo from "./UserInfo";
 import { NavbarOperation } from "./NavbarOperation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { NavbarToggle } from "./NavbarToggle";
 
-interface CommonNavbarProps {
-  generation: string;
-}
-
-const CommonNavbar = ({ generation }: CommonNavbarProps) => {
-  const currentPath = usePathname().split("/")[1];
-  const isShort = currentPath === "kanban";
+const CommonNavbar = () => {
+  const currentPath = usePathname();
+  const isShort = currentPath.split("/")[1] === "kanban";
+  const generation = currentPath.split("/")[2];
 
   return (
     <nav className="flex flex-col transition-all">
@@ -25,10 +23,11 @@ const CommonNavbar = ({ generation }: CommonNavbarProps) => {
         <div>{generation}th</div>
       </Link>
       <div className="flex flex-col gap-8 mt-8 text-xl">
-        {MainNavbar.map((item) => (
+        {MainNavbar(+generation).map((item) => (
           <CommonNavbarCell key={item.type} item={item} />
         ))}
-        <NavbarOperation generation={generation} />
+        <NavbarToggle />
+        <NavbarOperation />
       </div>
       <NavbarUserInfo />
     </nav>

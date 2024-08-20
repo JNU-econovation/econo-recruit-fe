@@ -3,16 +3,11 @@
 import { useQuery } from "@tanstack/react-query";
 import CommonNavbarCell from "./NavbarCell";
 import { getMyInfo } from "@/src/apis/interview";
+import { usePathname } from "next/navigation";
 
-interface NavbarOperationProps {
-  generation: string;
-  isShort?: boolean;
-}
-
-export const NavbarOperation = ({
-  generation,
-  isShort = false,
-}: NavbarOperationProps) => {
+export const NavbarOperation = () => {
+  const currentPath = usePathname();
+  const generation = currentPath.split("/")[2];
   const { data: userData } = useQuery(["user"], getMyInfo);
   if (!userData) {
     return <div></div>;
