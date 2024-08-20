@@ -1,6 +1,4 @@
-export const CURRENT_GENERATION: number = +(
-  process.env.NEXT_PUBLIC_CURRENT_GENERATION ?? 0
-);
+export const CURRENT_GENERATION: number = 28;
 
 export const MAIN_MENU = [
   {
