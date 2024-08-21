@@ -28,11 +28,9 @@ const CommonNavbarCell = ({ item }: CommonNavbarCellProps) => {
 
   return (
     <Link
-      className={cn(
-        currentType === type
-          ? `${linkButtonClassName} !bg-black !text-white`
-          : linkButtonClassName
-      )}
+      className={cn(linkButtonClassName, {
+        "!bg-black !text-white": currentType === type,
+      })}
       href={href}
       target={target === "_blank" ? "_blank" : ""}
       key={type}
