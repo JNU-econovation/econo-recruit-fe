@@ -47,12 +47,11 @@ const DetailContentJunction = ({
 
 const KanbanBoardDetailPage = ({
   params: { generation },
-  searchParams: { columnIndex, applicantId, type, cardId },
+  searchParams: { applicantId, type, cardId },
 }: KanbanBoardDetailPageProps) => {
   return (
     <main className="flex mt-8 overflow-auto pt-12 pl-12">
       <KanbanColumnDetailCard
-        columnIndex={+(columnIndex ?? 0)}
         generation={generation}
         cardId={cardId}
         applicantId={applicantId}
