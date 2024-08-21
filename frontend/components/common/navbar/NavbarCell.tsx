@@ -18,11 +18,8 @@ type CommonNavbarCellProps = {
 };
 
 const CommonNavbarCell = ({ item }: CommonNavbarCellProps) => {
-  const currentPath = usePathname();
-  const currentType = currentPath.split("/")[1];
+  const [_, currentType] = usePathname().split("/");
   const isShort = currentType === "kanban";
-
-  const generation = currentPath.split("/")[2];
 
   const linkButtonClassName =
     "flex justify-between p-4 hover:bg-secondary-100 hover:text-white rounded-lg";
@@ -42,7 +39,7 @@ const CommonNavbarCell = ({ item }: CommonNavbarCellProps) => {
     >
       {isShort ? short_title : title}
       <Image
-        src={currentPath !== type ? LtIcon : LtIconWhite}
+        src={currentType !== type ? LtIcon : LtIconWhite}
         alt="right arrow"
       />
     </Link>
