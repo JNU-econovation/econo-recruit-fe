@@ -1,5 +1,5 @@
 import CommonNavbar from "@/components/common/navbar/Navbar";
-import { PropsWithChildren } from "react";
+import { type PropsWithChildren } from "react";
 
 interface WithNavbarLayout extends PropsWithChildren {}
 
