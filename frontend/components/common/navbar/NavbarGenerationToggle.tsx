@@ -2,7 +2,7 @@ import { usePathname } from "next/navigation";
 import CommonNavbarCell from "./NavbarCell";
 import { CURRENT_GENERATION } from "@/src/constants";
 
-export const NavbarToggle = () => {
+export const NavbarGenerationToggle = () => {
   const currentPath = usePathname();
   const selectedGeneration = +currentPath.split("/")[2];
 

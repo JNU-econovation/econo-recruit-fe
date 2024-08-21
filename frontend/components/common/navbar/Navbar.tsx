@@ -5,7 +5,7 @@ import NavbarUserInfo from "./UserInfo";
 import { NavbarOperation } from "./NavbarOperation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NavbarToggle } from "./NavbarToggle";
+import { NavbarGenerationToggle } from "./NavbarGenerationToggle";
 
 const CommonNavbar = () => {
   const currentPath = usePathname();
@@ -26,7 +26,7 @@ const CommonNavbar = () => {
         {MainNavbar(+generation).map((item) => (
           <CommonNavbarCell key={item.type} item={item} />
         ))}
-        <NavbarToggle />
+        <NavbarGenerationToggle />
         <NavbarOperation />
       </div>
       <NavbarUserInfo />
