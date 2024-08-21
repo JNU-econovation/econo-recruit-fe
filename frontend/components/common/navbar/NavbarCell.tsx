@@ -8,23 +8,25 @@ import { cn } from "@/src/utils/cn";
 import { usePathname } from "next/navigation";
 
 type CommonNavbarCellProps = {
-  item: {
-    type: string; //TODO: 타입 정의하기
-    href: string;
-    target: string;
-    short_title: string;
-    title: string;
-  };
+  type: string; //TODO: 타입 정의하기
+  href: string;
+  target: string;
+  short_title: string;
+  title: string;
 };
 
-const CommonNavbarCell = ({ item }: CommonNavbarCellProps) => {
+const CommonNavbarCell = ({
+  href,
+  short_title,
+  target,
+  title,
+  type,
+}: CommonNavbarCellProps) => {
   const [_, currentType] = usePathname().split("/");
   const isShort = currentType === "kanban";
 
   const linkButtonClassName =
     "flex justify-between p-4 hover:bg-secondary-100 hover:text-white rounded-lg";
-
-  const { href, short_title, target, title, type } = item;
 
   return (
     <Link

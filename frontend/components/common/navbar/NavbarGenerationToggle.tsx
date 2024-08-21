@@ -18,13 +18,11 @@ export const NavbarGenerationToggle = () => {
 
   return (
     <CommonNavbarCell
-      item={{
-        href: `/kanban/${generation}`,
-        short_title,
-        title,
-        target: "_self",
-        type: "toggle",
-      }}
+      href={`/kanban/${generation}`}
+      short_title={short_title}
+      title={title}
+      target="_self"
+      type="toggle"
     />
   );
 };

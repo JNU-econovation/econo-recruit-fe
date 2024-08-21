@@ -19,13 +19,11 @@ export const NavbarOperation = () => {
 
   return (
     <CommonNavbarCell
-      item={{
-        href: `/admin/${generation}`,
-        short_title: "관리자",
-        title: "관리자 페이지",
-        target: "_self",
-        type: "admin",
-      }}
+      href={`/admin/${generation}`}
+      short_title="관리자"
+      title="관리자 페이지"
+      target="_self"
+      type="admin"
     />
   );
 };

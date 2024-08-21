@@ -24,7 +24,7 @@ const CommonNavbar = () => {
       </Link>
       <div className="flex flex-col gap-8 mt-8 text-xl">
         {MainNavbar(+generation).map((item) => (
-          <CommonNavbarCell key={item.type} item={item} />
+          <CommonNavbarCell key={item.type} {...item} />
         ))}
         <NavbarGenerationToggle />
         <NavbarOperation />
