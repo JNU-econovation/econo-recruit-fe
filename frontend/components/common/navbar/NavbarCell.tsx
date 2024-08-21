@@ -5,20 +5,11 @@ import LtIcon from "@/public/icons/lt.icon.svg";
 import LtIconWhite from "@/public/icons/lt.icon.white.svg";
 import Link from "next/link";
 import { cn } from "@/src/utils/cn";
-import { usePathname } from "next/navigation";
+import { NavbarItem } from "@/src/constants";
 
-export type CommonNavbarCellProps = {
-  title: string;
-  short_title: string;
-  type:
-    | "apply"
-    | "kanban"
-    | "interview"
-    | "applicant"
-    | "sharepoint"
-    | "toggle";
-  target?: "_blank" | "_self" | "_parent" | "_top";
-  href: string;
+export type CommonNavbarCellProps = NavbarItem & {
+  currentType: string;
+  isShort: boolean;
 };
 
 const CommonNavbarCell = ({
@@ -27,10 +18,9 @@ const CommonNavbarCell = ({
   target,
   title,
   type,
+  currentType,
+  isShort,
 }: CommonNavbarCellProps) => {
-  const [_, currentType] = usePathname().split("/");
-  const isShort = currentType === "kanban";
-
   const linkButtonClassName =
     "flex justify-between p-4 hover:bg-secondary-100 hover:text-white rounded-lg";
 

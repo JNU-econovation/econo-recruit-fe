@@ -8,9 +8,8 @@ import { usePathname } from "next/navigation";
 import { NavbarGenerationToggle } from "./NavbarGenerationToggle";
 
 const CommonNavbar = () => {
-  const currentPath = usePathname();
-  const isShort = currentPath.split("/")[1] === "kanban";
-  const generation = currentPath.split("/")[2];
+  const [_, currentType, generation] = usePathname().split("/");
+  const isShort = currentType === "kanban";
 
   return (
     <nav className="flex flex-col transition-all">
@@ -24,10 +23,15 @@ const CommonNavbar = () => {
       </Link>
       <div className="flex flex-col gap-8 mt-8 text-xl">
         {MainNavbar(+generation).map((item) => (
-          <CommonNavbarCell key={item.type} {...item} />
+          <CommonNavbarCell
+            key={item.type}
+            currentType={currentType}
+            isShort={isShort}
+            {...item}
+          />
         ))}
-        <NavbarGenerationToggle />
-        <NavbarOperation />
+        <NavbarGenerationToggle generation={generation} isShort={isShort} />
+        <NavbarOperation currentType={currentType} />
       </div>
       <NavbarUserInfo />
     </nav>

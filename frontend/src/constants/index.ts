@@ -1,6 +1,4 @@
-import { CommonNavbarCellProps } from "@/components/common/navbar/NavbarCell";
-
-export const CURRENT_GENERATION: number = 28;
+export const CURRENT_GENERATION = 28;
 
 export const MAIN_MENU = [
   {
@@ -35,41 +33,55 @@ export const MAIN_MENU = [
   },
 ] as const;
 
-export const MainNavbar = (generation: number): CommonNavbarCellProps[] =>
-  [
-    {
-      title: "신입모집 신청 페이지",
-      short_title: "신청",
-      type: "apply",
-      target: "_blank",
-      href: `/application`,
-    },
-    {
-      title: "신입모집 칸반보드",
-      short_title: "칸반보드",
-      type: "kanban",
-      href: `/kanban/${generation}`,
-    },
-    {
-      title: "신입모집 면접 기록",
-      short_title: "면접기록",
-      type: "interview",
-      href: `/interview/${generation}`,
-    },
-    {
-      title: "신입모집 지원현황",
-      short_title: "지원현황",
-      type: "applicant",
-      href: `/applicant/${generation}`,
-    },
-    {
-      title: "신입모집 쉐어 포인트",
-      short_title: "쉐어포인트",
-      type: "sharepoint",
-      target: "_blank",
-      href: "https://ejnu.sharepoint.com/sites/msteams_bbf640/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Fmsteams_bbf640%2FShared%20Documents%2F2023%EB%85%84%2F1%ED%95%99%EA%B8%B0%2F%EC%8B%A0%EC%9E%85%EB%AA%A8%EC%A7%91&p=true&ga=1",
-    },
-  ] as const;
+export interface NavbarItem {
+  title: string;
+  short_title: string;
+  type:
+    | "apply"
+    | "kanban"
+    | "interview"
+    | "applicant"
+    | "sharepoint"
+    | "admin"
+    | "toggle";
+  target?: "_blank" | "_self" | "_parent" | "_top";
+  href: string;
+}
+
+export const MainNavbar = (generation: number): NavbarItem[] => [
+  {
+    title: "신입모집 신청 페이지",
+    short_title: "신청",
+    type: "apply",
+    target: "_blank",
+    href: `/application`,
+  },
+  {
+    title: "신입모집 칸반보드",
+    short_title: "칸반보드",
+    type: "kanban",
+    href: `/kanban/${generation}`,
+  },
+  {
+    title: "신입모집 면접 기록",
+    short_title: "면접기록",
+    type: "interview",
+    href: `/interview/${generation}`,
+  },
+  {
+    title: "신입모집 지원현황",
+    short_title: "지원현황",
+    type: "applicant",
+    href: `/applicant/${generation}`,
+  },
+  {
+    title: "신입모집 쉐어 포인트",
+    short_title: "쉐어포인트",
+    type: "sharepoint",
+    target: "_blank",
+    href: "https://ejnu.sharepoint.com/sites/msteams_bbf640/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Fmsteams_bbf640%2FShared%20Documents%2F2023%EB%85%84%2F1%ED%95%99%EA%B8%B0%2F%EC%8B%A0%EC%9E%85%EB%AA%A8%EC%A7%91&p=true&ga=1",
+  },
+];
 
 export const APPLICANT_KEYS = [
   "field",

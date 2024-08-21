@@ -1,13 +1,16 @@
-import { usePathname } from "next/navigation";
 import CommonNavbarCell from "./NavbarCell";
 import { CURRENT_GENERATION } from "@/src/constants";
 
-export const NavbarGenerationToggle = () => {
-  const currentPath = usePathname();
-  const selectedGeneration = +currentPath.split("/")[2];
-
-  const isCurrentGeneration = selectedGeneration === CURRENT_GENERATION;
-  const generation = isCurrentGeneration
+type NavbarGenerationToggleProps = {
+  generation: string;
+  isShort: boolean;
+};
+export const NavbarGenerationToggle = ({
+  generation,
+  isShort,
+}: NavbarGenerationToggleProps) => {
+  const isCurrentGeneration = +generation === CURRENT_GENERATION;
+  const targetGeneration = isCurrentGeneration
     ? CURRENT_GENERATION - 1
     : CURRENT_GENERATION;
 
@@ -18,7 +21,9 @@ export const NavbarGenerationToggle = () => {
 
   return (
     <CommonNavbarCell
-      href={`/kanban/${generation}`}
+      currentType="kanban"
+      isShort={isShort}
+      href={`/kanban/${targetGeneration}`}
       short_title={short_title}
       title={title}
       type="toggle"
