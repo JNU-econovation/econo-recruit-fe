@@ -21,7 +21,7 @@ describe("chaoter", () => {
         expect(str).to.equal("필수 질문을 작성해주세요.");
       });
     });
-    describe("개발자(디자이너/기획)을 누르면", () => {
+    describe("개발자(디자이너/기획)를 누르면", () => {
       beforeEach(async () => {
         cy.get('[for=":R7dmlllkq:"]').click();
       });
@@ -68,8 +68,20 @@ describe("chaoter", () => {
           "면접 가능시간을 선택해주세요.(중복 선택 가능)"
         );
       });
-      //   it("질문 제목 네이게이션 클릭 시 “필수 질문을 작성해주세요.” alert창이 뜬다. ", () => {});
-      //   it("다음 버튼 클릭시 “필수 질문을 작성해주세요.” alert창이 뜬다. ", () => {});
+      it("질문 제목 네이게이션 클릭 시 “필수 질문을 작성해주세요.” alert창이 뜬다. ", async () => {
+        cy.get(".pl-12 > :nth-child(2) > .text-base").click();
+
+        cy.on("window:alert", (str) => {
+          expect(str).to.equal("필수 질문을 작성해주세요.");
+        });
+      });
+      it("다음 버튼 클릭시 “필수 질문을 작성해주세요.” alert창이 뜬다. ", () => {
+        cy.get("button").contains("다음").should("exist").click();
+
+        cy.on("window:alert", (str) => {
+          expect(str).to.equal("필수 질문을 작성해주세요.");
+        });
+      });
       //   describe("1순위 분야를 선택하면", () => {
       //     it("2순위로는 동일한 분야를 선택할 수 없다.", () => {});
       //     describe("2순위를 선택한 후", () => {
