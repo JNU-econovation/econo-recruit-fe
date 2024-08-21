@@ -1,3 +1,5 @@
+import { CommonNavbarCellProps } from "@/components/common/navbar/NavbarCell";
+
 export const CURRENT_GENERATION: number = 28;
 
 export const MAIN_MENU = [
@@ -33,7 +35,7 @@ export const MAIN_MENU = [
   },
 ] as const;
 
-export const MainNavbar = (generation: number) =>
+export const MainNavbar = (generation: number): CommonNavbarCellProps[] =>
   [
     {
       title: "신입모집 신청 페이지",
@@ -46,21 +48,18 @@ export const MainNavbar = (generation: number) =>
       title: "신입모집 칸반보드",
       short_title: "칸반보드",
       type: "kanban",
-      target: "none",
       href: `/kanban/${generation}`,
     },
     {
       title: "신입모집 면접 기록",
       short_title: "면접기록",
       type: "interview",
-      target: "none",
       href: `/interview/${generation}`,
     },
     {
       title: "신입모집 지원현황",
       short_title: "지원현황",
       type: "applicant",
-      target: "none",
       href: `/applicant/${generation}`,
     },
     {

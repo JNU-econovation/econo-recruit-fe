@@ -7,12 +7,18 @@ import Link from "next/link";
 import { cn } from "@/src/utils/cn";
 import { usePathname } from "next/navigation";
 
-type CommonNavbarCellProps = {
-  type: string; //TODO: 타입 정의하기
-  href: string;
-  target: string;
-  short_title: string;
+export type CommonNavbarCellProps = {
   title: string;
+  short_title: string;
+  type:
+    | "apply"
+    | "kanban"
+    | "interview"
+    | "applicant"
+    | "sharepoint"
+    | "toggle";
+  target?: "_blank" | "_self" | "_parent" | "_top";
+  href: string;
 };
 
 const CommonNavbarCell = ({
@@ -34,7 +40,7 @@ const CommonNavbarCell = ({
         "!bg-black !text-white": currentType === type,
       })}
       href={href}
-      target={target === "_blank" ? "_blank" : ""}
+      target={target}
       key={type}
     >
       {isShort ? short_title : title}

@@ -21,7 +21,6 @@ export const NavbarGenerationToggle = () => {
       href={`/kanban/${generation}`}
       short_title={short_title}
       title={title}
-      target="_self"
       type="toggle"
     />
   );
