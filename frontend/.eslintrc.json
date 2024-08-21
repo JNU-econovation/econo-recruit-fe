@@ -7,7 +7,7 @@
     "node": true,
     "es6": true
   },
-  "ignorePatterns": ["node_modules/", "tailwind.config.js"],
+  "ignorePatterns": ["node_modules/", "tailwind.config.js", "cypress/"],
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
