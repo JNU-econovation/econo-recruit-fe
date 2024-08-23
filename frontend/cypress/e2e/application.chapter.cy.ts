@@ -97,11 +97,45 @@ describe("chaoter", () => {
             expect(SelectedSecondChapter).to.equal('""');
           });
         });
-        // describe("2순위를 선택한 후", () => {
-        //   it("2순위와 동일한 분야를 1순위에서 선택할 수 없다.", () => {});
-        //   it("선택하지 않는 분야를 1순위에서 선택시 2순위 선택이 풀린다", () => {});
-        //   it("다음 버튼을 누르면 다음 질문(기본 인적사항)으로 넘어간다.", () => {});
-        // });
+        describe("2순위를 선택한 후", () => {
+          beforeEach(() => {
+            cy.get('[for=":r1:"]').click();
+          });
+          it("2순위와 동일한 분야를 1순위에서 선택할 수 없다.", () => {
+            cy.window()
+              .then((win) => {
+                const 첫번째_순위_직군을_선택하였을_때_1순위_데이터가_담긴_로컬스토리지 =
+                  win.localStorage.getItem("field1");
+                expect(
+                  첫번째_순위_직군을_선택하였을_때_1순위_데이터가_담긴_로컬스토리지
+                ).to.equal('"APP"');
+              })
+              .then(() => {
+                cy.get(":nth-child(2) > .bg-gray-200").click();
+
+                cy.window().then((win) => {
+                  const 두번째_순위_직군을_선택한_이후_1순위_데이터가_담긴_로컬스토리지 =
+                    win.localStorage.getItem("field1");
+                  expect(
+                    두번째_순위_직군을_선택한_이후_1순위_데이터가_담긴_로컬스토리지
+                  ).to.equal('"APP"');
+                });
+              });
+          });
+          it("선택하지 않는 분야를 1순위에서 선택시 2순위 선택이 풀린다", () => {
+            cy.get('[for=":R6tdlddda:"]').click();
+
+            cy.window().then((win) => {
+              const SelectedSecondChapter = win.localStorage.getItem("field2");
+              expect(SelectedSecondChapter).to.equal('""');
+            });
+          });
+          it("다음 버튼을 누르면 다음 질문(기본 인적사항)으로 넘어간다.", () => {
+            cy.get("button").contains("다음").should("exist").click();
+
+            cy.contains("기본 인적 사항을 입력해주세요.").should("exist");
+          });
+        });
       });
     });
   });
