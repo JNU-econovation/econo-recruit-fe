@@ -44,4 +44,14 @@ describe("2번째 인적사항 e2e 테스트", () => {
       ".flex-1.rounded-md.flex.justify-center.items-center.p-4.bg-dark.text-white"
     ).click();
   });
+
+  it("아무것도 입력하지 않고 다음 버튼 클릭", () => {
+    cy.goSecondPersonalInformation();
+    cy.get(
+      ".flex-1.rounded-md.flex.justify-center.items-center.p-4.bg-dark.text-white"
+    ).click();
+    cy.on("window:alert", (text) => {
+      console.log("Alert message:", text);
+    });
+  });
 });
