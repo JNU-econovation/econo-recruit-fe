@@ -1,37 +1,24 @@
-/// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+declare namespace Cypress {
+  interface Chainable {
+    goSecondPersonalInformation(): Chainable<void>;
+  }
+}
+
+Cypress.Commands.add("goSecondPersonalInformation", () => {
+  cy.visit("http://localhost:3000/application");
+  cy.get('[for=":R7dmlllkq:"]').click();
+  cy.get('[for=":Rblmlllkq:"]').click();
+  cy.get('[for=":r1:"]').click();
+  cy.get(
+    ".flex-1.rounded-md.flex.justify-center.items-center.p-4.bg-dark.text-white"
+  ).click(); // 첫번째 인적사항 페이지로 이동
+  cy.get("input.my-2.border.rounded-lg.p-4.w-full").eq(0).type("심민보");
+  cy.get("input.my-2.border.rounded-lg.p-4.w-full").eq(1).type("01000000000");
+  cy.get("input.my-2.border.rounded-lg.p-4.w-full").eq(2).type("111111");
+  cy.get("input.my-2.border.rounded-lg.p-4.w-full").eq(3).type("재학");
+  cy.get('[for=":rb:"]').click();
+  cy.get('[for=":re:"]').click();
+  cy.get(
+    ".flex-1.rounded-md.flex.justify-center.items-center.p-4.bg-dark.text-white"
+  ).click(); // 두번째 인적사항 페이지로 이동
+});
