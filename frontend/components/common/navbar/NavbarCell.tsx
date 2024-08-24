@@ -1,43 +1,44 @@
+"use client";
+
 import Image from "next/image";
 import LtIcon from "@/public/icons/lt.icon.svg";
 import LtIconWhite from "@/public/icons/lt.icon.white.svg";
+import Link from "next/link";
+import { cn } from "@/src/utils/cn";
+import { NavbarItem } from "@/src/constants";
 
-type CommonNavbarCellProps = {
-  currentPath: string;
-  item: {
-    type: string;
-    href: string;
-    target: string;
-    short_title: string;
-    title: string;
-  };
+export type CommonNavbarCellProps = NavbarItem & {
+  currentType: string;
   isShort: boolean;
 };
 
 const CommonNavbarCell = ({
-  currentPath,
-  item,
+  href,
+  short_title,
+  target,
+  title,
+  type,
+  currentType,
   isShort,
 }: CommonNavbarCellProps) => {
   const linkButtonClassName =
     "flex justify-between p-4 hover:bg-secondary-100 hover:text-white rounded-lg";
+
   return (
-    <a
-      className={
-        currentPath === item.type
-          ? `${linkButtonClassName} !bg-black !text-white`
-          : linkButtonClassName
-      }
-      href={item.href}
-      target={item.target === "_blank" ? "_blank" : ""}
-      key={item.type}
+    <Link
+      className={cn(linkButtonClassName, {
+        "!bg-black !text-white": currentType === type,
+      })}
+      href={href}
+      target={target}
+      key={type}
     >
-      {isShort ? item.short_title : item.title}
+      {isShort ? short_title : title}
       <Image
-        src={currentPath !== item.type ? LtIcon : LtIconWhite}
+        src={currentType !== type ? LtIcon : LtIconWhite}
         alt="right arrow"
       />
-    </a>
+    </Link>
   );
 };
 
