@@ -151,4 +151,22 @@ describe("인적사항 첫번째 페이지 전환 테스트:", () => {
       expect(ls["semester"]).to.equal(testSuite.answer.semester);
     });
   });
+
+  it("질문 제목 네비게이션을 통해 이전 페이지로 이동 가능하다.", () => {
+    cy.get("button")
+      .contains(/프로젝트 희망 분야/)
+      .click();
+    cy.get("span")
+      .contains("2순위가 없다면 '없음'을 선택해주세요.")
+      .should("have.text", "2순위가 없다면 '없음'을 선택해주세요.");
+  });
+
+  it("현재 페이지가 제대로 작성되어있지 않은 상황에서 이후 질문 페이지로 이동 시 작성을 요청하는 alert창이 나타난다.", () => {
+    cy.get("button")
+      .contains(/기타 질문 사항/)
+      .click();
+    cy.on("window:alert", (text) => {
+      expect(text).to.equal("필수 질문을 작성해주세요.");
+    });
+  });
 });
