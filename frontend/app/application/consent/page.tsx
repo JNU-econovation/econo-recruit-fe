@@ -1,9 +1,11 @@
 import Txt from "@/components/common/Txt.component";
 import { CURRENT_GENERATION } from "@/src/constants";
-import { FINAL_DATE } from "@/src/constants/application/27";
 import { replaceTwoString } from "@/src/functions/replacer";
 
-const ApplicationConsentPage = () => {
+const ApplicationConsentPage = async () => {
+  const { FINAL_DATE } = await import(
+    `@/src/constants/application/${CURRENT_GENERATION}`
+  );
   const generation = `${CURRENT_GENERATION}`;
   const finalDate = `${FINAL_DATE.year}.${replaceTwoString(
     FINAL_DATE.month
