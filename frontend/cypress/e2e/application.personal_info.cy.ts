@@ -1,6 +1,9 @@
-describe('신청폼 테스트: ', () => {
+const BASE_URL = "http://localhost:3000";
+
+describe('인적사항 첫번째 페이지 입력 검증 테스트: ', () => {
   beforeEach(() => {
-      cy.visit('http://localhost:3000/application')
+      cy.visit(`${BASE_URL}/application`)
+      cy.clearAllLocalStorage();
       cy.get('label').contains("개발자").click();
       cy.get('label').contains("WEB").click();
       cy.wait(100);
@@ -11,10 +14,9 @@ describe('신청폼 테스트: ', () => {
       cy.get('input').eq(1).as('phoneInput');
       cy.get('input').eq(2).as('studentIdInput'); 
       cy.get('input').eq(3).as('academicStatusInput');
-
+      cy.get('label').contains("4학년").as("fourthGradeLabel");
   })
 
-  describe('인적사항 첫번째 페이지 테스트', () => {
     it('사용자는 이름을 5글자까지 입력할 수 있다.', () => {
       cy.get('@nameInput').type("에").should("have.value", "에").clear()
       cy.get('@nameInput').type("에코노").should("have.value", "에코노").clear()
@@ -54,6 +56,75 @@ describe('신청폼 테스트: ', () => {
       cy.get('@academicStatusInput').type("재학중").should('have.value', '재학중').clear();
       cy.get('@academicStatusInput').type("부트캠프로 인한 휴학. 2025년 1학기에 복학할 예정입니다.").should("have.value", "부트캠프로 인한 휴학. 2025년 1학기에 복학할 예정입니다.");
     }); 
-  })
   
-})
+    it("사용자는 학년을 선택한 후 학기를 1학기, 2학기 중 선택할 수 있다.", () => {
+      cy.get('@fourthGradeLabel').click();
+      cy.get('label').contains(/학기/).eq(0).click();
+
+      cy.getAllLocalStorage({ log: true }).then((result) => {
+        const ls = result[BASE_URL];
+        expect(ls['grade']).to.match(/4학년/);
+        expect(ls['semester']).to.match(/1학기/); 
+      })
+    });
+});
+
+describe("인적사항 첫번째 페이지 전환 테스트:", () => {
+  beforeEach(() => {
+    cy.visit(`${BASE_URL}/application`)
+    cy.clearAllLocalStorage();
+    cy.get('label').contains("개발자").click();
+    cy.get('label').contains("WEB").click();
+    cy.wait(100);
+    cy.get('label').contains("선택없음").click();
+    cy.get('button').contains(/다음/).click();
+
+    cy.get('input').first().as('nameInput');
+    cy.get('input').eq(1).as('phoneInput');
+    cy.get('input').eq(2).as('studentIdInput'); 
+    cy.get('input').eq(3).as('academicStatusInput');
+    cy.get('label').contains("4학년").as("fourthGradeLabel");
+});
+
+it("모든 올바른 값을 입력한 뒤에는 작성한 값이 LocalStorage에 저장된다.", () => {
+  /* test 케이스 데이터 */
+  const testSuite = {
+    input: {
+      name: "김아무개",
+      contacted: "01012341234",
+      classOf: "123456",
+      registered: "재학",
+      grade: "4학년",
+      semester: "1학기"
+    },
+    answer: {
+      name: "\"김아무개\"",
+      contacted: "\"010-1234-1234\"",
+      classOf: "\"123456\"",
+      registered: "\"재학\"",
+      grade: "\"4학년\"",
+      semester: "\"1학기\""
+    }
+  }
+  /* 폼 작성 */
+  cy.get('@nameInput').type("김아무개");
+  cy.get('@phoneInput').type("01012341234");
+  cy.get('@studentIdInput').type("123456");
+  cy.get('@academicStatusInput').type("재학");
+  cy.get("@fourthGradeLabel").click();
+  cy.get('label').contains(/학기/).eq(0).click();
+
+  /* 값 검증 */
+cy.getAllLocalStorage({ log: true }).then((result) => {
+  // TODO: 중복 줄이기
+  const ls = result[BASE_URL];
+  expect(ls['name']).to.equal(testSuite.answer.name);
+  expect(ls['contacted']).to.equal(testSuite.answer.contacted);
+  expect(ls['classOf']).to.equal(testSuite.answer.classOf);
+  expect(ls['registered']).to.equal(testSuite.answer.registered);
+  expect(ls['grade']).to.equal(testSuite.answer.grade);
+  expect(ls['semester']).to.equal(testSuite.answer.semester);
+});
+
+});
+});
