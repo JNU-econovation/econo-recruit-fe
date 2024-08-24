@@ -15,15 +15,19 @@ Cypress.Commands.add("goSecondPersonalInformation", () => {
     .should("exist")
     .click();
   cy.get("span")
-    .contains("1순위")
-    .next()
-    .next()
+    .filter((index, element) => Cypress.$(element).text().trim() === "2순위")
     .next()
     .contains("label", "WEB")
     .should("exist")
     .click();
   cy.get("button").contains("다음").should("exist").click();
-  cy.get("span").contains("이름").parent().next().type("심민보");
+  cy.get("span")
+    .contains("이름")
+    .parent()
+    .next()
+    .type("심민보")
+    .invoke("val")
+    .should("satisfy", (value) => value.length <= 5);
   cy.get("span")
     .contains("연락처")
     .parent()
@@ -38,7 +42,13 @@ Cypress.Commands.add("goSecondPersonalInformation", () => {
     .type("123456")
     .invoke("val")
     .should("match", /^\d{6}$/);
-  cy.get("span").contains("학적상태").parent().next().type("재학");
+  cy.get("span")
+    .contains("학적상태")
+    .parent()
+    .next()
+    .type("재학")
+    .invoke("val")
+    .should("satisfy", (value) => value.length >= 1);
   cy.get("label").contains("4학년").should("exist").click();
   cy.get("label").contains("2학기").should("exist").click();
   cy.get("button").contains("다음").should("exist").click();
