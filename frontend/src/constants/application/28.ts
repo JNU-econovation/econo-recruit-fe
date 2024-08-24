@@ -193,13 +193,24 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
   disableTime: [],
 };
 
+/**
+ * @description 개인정보 수집에 대한 1차 모집 마감일 상수 데이터
+ * @property {month}: 1차 모집 마감 달 (1-12)
+ * @property {date}: 1차 모집 마감 날짜 (1-31)
+ */
 export const END_DATE = {
-  month: 3,
-  date: 18,
+  month: 9,
+  date: 15,
 };
 
+/**
+ * @description 개인정보 수집에 대한 최종 마감일 상수 데이터
+ * @property {number} year - 최종 모집 마감 연도
+ * @property {number} month - 최종 모집 마감 월 (1-12)
+ * @property {number} date - 최종 모집 마감 일 (1-31)
+ */
 export const FINAL_DATE = {
   year: 2024,
-  month: 3,
-  date: 25,
+  month: 9,
+  date: 30,
 };
