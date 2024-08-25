@@ -1,37 +1,57 @@
 /// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
+declare namespace Cypress {
+  interface Chainable {
+    goSecondPersonalInformation(): Chainable<void>;
+  }
+}
+
+Cypress.Commands.add("goSecondPersonalInformation", () => {
+  cy.clearAllLocalStorage();
+  cy.visit("http://localhost:3000/application");
+  cy.get("label").contains("개발자").should("exist").click();
+  cy.get("span")
+    .contains("1순위")
+    .next()
+    .contains("label", "APP")
+    .should("exist")
+    .click();
+  cy.get("span")
+    .filter((index, element) => Cypress.$(element).text().trim() === "2순위")
+    .next()
+    .contains("label", "WEB")
+    .should("exist")
+    .click();
+  cy.get("button").contains("다음").should("exist").click();
+  cy.get("span")
+    .contains("이름")
+    .parent()
+    .next()
+    .type("심민보")
+    .invoke("val")
+    .should("satisfy", (value) => value.length <= 5);
+  cy.get("span")
+    .contains("연락처")
+    .parent()
+    .next()
+    .type("00000000000")
+    .invoke("val")
+    .should("match", /^\d{3}-\d{4}-\d{4}$/);
+  cy.get("span")
+    .contains("학번")
+    .parent()
+    .next()
+    .type("123456")
+    .invoke("val")
+    .should("match", /^\d{6}$/);
+  cy.get("span")
+    .contains("학적상태")
+    .parent()
+    .next()
+    .type("재학")
+    .invoke("val")
+    .should("satisfy", (value) => value.length >= 1);
+  cy.get("label").contains("4학년").should("exist").click();
+  cy.get("label").contains("2학기").should("exist").click();
+  cy.get("button").contains("다음").should("exist").click();
+});
