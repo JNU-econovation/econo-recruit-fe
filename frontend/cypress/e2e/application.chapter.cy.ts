@@ -1,4 +1,4 @@
-describe("chapter", () => {
+describe("첫 번째 인적사항 입력 검증 테스트:", () => {
   beforeEach(() => {
     cy.clearAllCookies();
     cy.clearLocalStorage();
