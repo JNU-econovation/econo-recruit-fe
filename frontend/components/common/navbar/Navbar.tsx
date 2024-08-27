@@ -1,20 +1,16 @@
+"use client";
 import { MainNavbar } from "@/src/constants";
 import CommonNavbarCell from "./NavbarCell";
 import NavbarUserInfo from "./UserInfo";
 import { NavbarOperation } from "./NavbarOperation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { NavbarGenerationToggle } from "./NavbarGenerationToggle";
 
-interface CommonNavbarProps {
-  generation: string;
-  isShort?: boolean;
-  currentPath: string;
-}
+const CommonNavbar = () => {
+  const [_, currentType, generation] = usePathname().split("/");
+  const isShort = currentType === "kanban";
 
-const CommonNavbar = ({
-  generation,
-  isShort = false,
-  currentPath,
-}: CommonNavbarProps) => {
   return (
     <nav className="flex flex-col transition-all">
       <Link
@@ -26,19 +22,16 @@ const CommonNavbar = ({
         <div>{generation}th</div>
       </Link>
       <div className="flex flex-col gap-8 mt-8 text-xl">
-        {MainNavbar.map((item) => (
+        {MainNavbar(+generation).map((item) => (
           <CommonNavbarCell
             key={item.type}
-            currentPath={currentPath}
+            currentType={currentType}
             isShort={isShort}
-            item={item}
+            {...item}
           />
         ))}
-        <NavbarOperation
-          currentPath={currentPath}
-          generation={generation}
-          isShort={isShort}
-        />
+        <NavbarGenerationToggle generation={generation} isShort={isShort} />
+        <NavbarOperation currentType={currentType} />
       </div>
       <NavbarUserInfo />
     </nav>

@@ -3,18 +3,14 @@
 import { useQuery } from "@tanstack/react-query";
 import CommonNavbarCell from "./NavbarCell";
 import { getMyInfo } from "@/src/apis/interview";
+import { usePathname } from "next/navigation";
 
-interface NavbarOperationProps {
-  generation: string;
-  isShort?: boolean;
-  currentPath: string;
-}
-
-export const NavbarOperation = ({
-  generation,
-  isShort = false,
-  currentPath,
-}: NavbarOperationProps) => {
+type NavbarOperationProps = {
+  currentType: string;
+};
+export const NavbarOperation = ({ currentType }: NavbarOperationProps) => {
+  const currentPath = usePathname();
+  const generation = currentPath.split("/")[2];
   const { data: userData } = useQuery(["user"], getMyInfo);
   if (!userData) {
     return <div></div>;
@@ -26,15 +22,13 @@ export const NavbarOperation = ({
 
   return (
     <CommonNavbarCell
-      currentPath={currentPath}
-      isShort={isShort}
-      item={{
-        href: `/admin/${generation}`,
-        short_title: "관리자",
-        title: "관리자 페이지",
-        target: "_self",
-        type: "admin",
-      }}
+      currentType={currentType}
+      isShort={false}
+      href={`/admin/${generation}`}
+      short_title="관리자"
+      title="관리자 페이지"
+      target="_self"
+      type="admin"
     />
   );
 };

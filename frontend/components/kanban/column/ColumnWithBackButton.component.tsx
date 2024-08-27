@@ -1,28 +1,30 @@
 "use client";
 
 import { KanbanColumnData } from "@/src/stores/kanban/Kanban.atoms";
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import { useQuery } from "@tanstack/react-query";
 import { getAllKanbanData } from "@/src/apis/kanban";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import KanbanDetailBackButton from "../BackButton.component";
 import KanbanCardComponent from "../card/Card.component";
 import Icon from "@/components/common/Icon";
+import { useSearchParams } from "next/navigation";
 
 interface KanbanDetailCardProps {
-  columnIndex: number;
   generation: string;
   cardId: string;
   applicantId: string;
 }
 
 const KanbanColumnDetailCard = ({
-  columnIndex,
   generation,
   cardId,
   applicantId,
 }: KanbanDetailCardProps) => {
-  const [navbarId] = useAtom(KanbanSelectedButtonNumberState);
+  const searchParams = useSearchParams();
+  const columnIndex = +(searchParams.get("columnIndex") ?? "0");
+
+  const navbarId = useAtomValue(KanbanSelectedButtonNumberState);
 
   const {
     data: kanbanDataArray,
