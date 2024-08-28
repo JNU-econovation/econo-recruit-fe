@@ -5,6 +5,7 @@ declare namespace Cypress {
     checkLocalStorage(key: string, expectedValue: string): Chainable<void>;
     checkAlert(expectedValue: string): Chainable<void>;
     goSecondPersonalInformation(): Chainable<void>;
+    goOtherQuestions(): Chainable<void>;
   }
 }
 
@@ -34,6 +35,7 @@ Cypress.Commands.add("goSecondPersonalInformation", () => {
     .contains("label", "APP")
     .should("exist")
     .click();
+  cy.wait(1000);
   cy.get("span")
     .filter((index, element) => Cypress.$(element).text().trim() === "2순위")
     .next()
@@ -72,4 +74,15 @@ Cypress.Commands.add("goSecondPersonalInformation", () => {
   cy.get("label").contains("4학년").should("exist").click();
   cy.get("label").contains("2학기").should("exist").click();
   cy.get("button").contains("다음").should("exist").click();
+});
+
+Cypress.Commands.add("goOtherQuestions", () => {
+  cy.goSecondPersonalInformation();
+  cy.get("span")
+    .filter((index, element) => Cypress.$(element).text().trim() === "전공*")
+    .parent()
+    .next("input")
+    .type("컴퓨터정보통신공학과");
+
+  cy.get("button").contains("다음").click();
 });
