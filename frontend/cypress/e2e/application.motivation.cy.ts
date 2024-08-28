@@ -1,3 +1,5 @@
+const MAX_LENGTH = 1000;
+
 describe("참가자 지원 동기 질문 페이지 e2e 테스트", () => {
   beforeEach(() => {
     cy.clearAllCookies();
@@ -55,9 +57,11 @@ describe("참가자 지원 동기 질문 페이지 e2e 테스트", () => {
     cy.get("@futurePlanInput").type("없음");
     cy.get("@applyRouteLabel").click();
     cy.get("@nextButton").should("exist").click();
+    cy.wait(100);
 
     // 지원 동기 페이지 (테스트 하고자 하는 페이지)
     cy.get("textarea").as("motivationTextarea");
+    cy.get("textarea").siblings("div").as("charCount");
   });
 
   describe("초기 상태(아무 내용도 작성하지 않았을 경우)에서", () => {
@@ -91,11 +95,52 @@ describe("참가자 지원 동기 질문 페이지 e2e 테스트", () => {
     });
   });
 
-  // describe("유저가 답변 입력시", () => {
-  //   it("입력한 글자수를 볼 수 있다.", () => {});
-  //   it("100자 이하로 입력하였을 때, 다음 버튼을 누르면 다음 화면으로 이동한다.", () => {});
-  //   it("유저가 답변 입력시 100자 이하로 입력하였을 때, 질문 제목 네비게이션의 다음 질문을 누르면 다음 화면으로 이동한다.", () => {});
-  //   it("100자 이상 입력할 수 없다.", () => {});
-  //   it("입력한 내용이 로컬스토리지에 올바르게 저장된다.", () => {});
-  // });
+  describe("유저가 답변 입력시", () => {
+    it("입력한 글자수를 볼 수 있다.", () => {
+      cy.get("@charCount").should("have.text", `(0/${MAX_LENGTH})`);
+      cy.get("@motivationTextarea").type("안녕하세요.");
+      cy.get("@charCount").should("have.text", `(6/${MAX_LENGTH})`);
+      cy.get("@motivationTextarea").type(" 반갑습니다.");
+      cy.get("@charCount").should("have.text", `(13/${MAX_LENGTH})`);
+
+      cy.get("@motivationTextarea").clear();
+      cy.get("@charCount").should("have.text", `(0/${MAX_LENGTH})`);
+    });
+    it("100자 이하로 입력하였을 때, 다음 버튼을 누르면 다음 화면으로 이동한다.", () => {
+      cy.get("@motivationTextarea").type("안녕하세요.");
+      cy.get("@nextButton").click();
+      cy.get("span")
+        .contains("개발자를 희망하는 이유는 무엇인가요?")
+        .should("exist");
+    });
+    it("유저가 답변 입력시 100자 이하로 입력하였을 때, 질문 제목 네비게이션의 다음 질문을 누르면 다음 화면으로 이동한다.", () => {
+      cy.get("@motivationTextarea").type("안녕하세요.");
+      cy.get("@questionTitleNavbar")
+        .find("button")
+        .contains("개발자를 희망하는 이유는 무엇인가요?")
+        .click();
+      cy.get("span")
+        .contains("개발자를 희망하는 이유는 무엇인가요?")
+        .should("exist");
+    });
+    it("최대 글자수 이상 입력할 수 없다.", () => {
+      cy.get("@motivationTextarea").type("a".repeat(MAX_LENGTH + 1));
+      cy.get("@motivationTextarea").should(
+        "have.value",
+        "a".repeat(MAX_LENGTH)
+      );
+    });
+    it("입력한 내용이 로컬스토리지에 올바르게 저장된다.", () => {
+      cy.get("@motivationTextarea").type("안녕하세요.");
+      cy.checkLocalStorage("reason", '"안녕하세요."');
+
+      cy.get("@motivationTextarea").clear();
+      cy.checkLocalStorage("reason", '""');
+
+      cy.get("@motivationTextarea").type("반갑습니다!");
+      cy.checkLocalStorage("reason", '"반갑습니다!"');
+
+      cy.get("@motivationTextarea").clear();
+    });
+  });
 });
