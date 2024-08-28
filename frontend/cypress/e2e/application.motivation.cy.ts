@@ -6,8 +6,7 @@ describe("참가자 지원 동기 질문 페이지 e2e 테스트", () => {
     cy.clearLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.viewport(1920, 1080);
-    cy.visit("http://localhost:3000/application");
+    cy.visit("/application");
 
     // 희망 분야 페이지
     cy.get("label").contains("개발자").parent().as("occupation");
