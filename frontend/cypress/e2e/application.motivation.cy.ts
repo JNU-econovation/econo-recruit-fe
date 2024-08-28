@@ -27,7 +27,7 @@ describe("참가자 지원 동기 질문 페이지 e2e 테스트", () => {
     cy.get("input").eq(3).as("academicStatusInput");
     cy.get("label").contains("4학년").as("fourthGradeLabel");
 
-    cy.get("@nameInput").type("김아무개");
+    cy.get("@nameInput").type("홍길동");
     cy.get("@phoneInput").type("01012341234");
     cy.get("@studentIdInput").type("123456");
     cy.get("@academicStatusInput").type("재학");
@@ -40,10 +40,25 @@ describe("참가자 지원 동기 질문 페이지 e2e 테스트", () => {
     cy.get("input").eq(1).as("revengeMajor");
     cy.get("input").eq(2).as("minor");
 
-    cy.get("@major").type("컴퓨터정보통신공학과");
+    cy.get("@major").type("철학과");
     cy.get("@revengeMajor").type("건축학과");
     cy.get("@minor").type("물리학과");
     cy.get("@nextButton").should("exist").click();
+  });
+
+  describe("초기 상태(아무 내용도 작성하지 않았을 경우)에서", () => {
+    it("다음 버튼을 누르면 “필수 질문을 작성해주세요.” 알림창이 뜬다.", () => {});
+    it("질문 제목 네비게이션의 이후 질문을 누르면 “필수 질문을 작성해주세요.” 알림창이 뜬다.", () => {});
+    it("이전 버튼 클릭시 이전 질문 페이지로 이동한다.", () => {});
+    it("질문 제목 네비게이션의 이전 질문을 누르면 이전 질문 페이지로 이동한다.", () => {});
+  });
+
+  describe("유저가 답변 입력시", () => {
+    it("입력한 글자수를 볼 수 있다.", () => {});
+    it("1000자 이하로 입력하였을 때, 다음 버튼을 누르면 다음 화면으로 이동한다.", () => {});
+    it("유저가 답변 입력시 1000자 이하로 입력하였을 때, 질문 제목 네비게이션의 다음 질문을 누르면 다음 화면으로 이동한다.", () => {});
+    it("1000자 이상 입력할 수 없다.", () => {});
+    it("입력한 내용이 로컬스토리지에 올바르게 저장된다.", () => {});
   });
 
   it("테스트 뭐하지?", () => {
