@@ -1,4 +1,4 @@
-describe("2번째 인적사항 e2e 테스트", () => {
+describe("기타 질문 사항 e2e 테스트", () => {
   beforeEach(() => {
     cy.viewport(1200, 900);
 
