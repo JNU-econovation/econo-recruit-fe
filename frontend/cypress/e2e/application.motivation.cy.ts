@@ -19,6 +19,7 @@ describe("참가자 지원 동기 질문 페이지 e2e 테스트", () => {
     cy.contains("선택없음").parent().as("secondChapter");
     cy.get("@secondChapter").find("label").contains("WEB").click();
     cy.get("@nextButton").should("exist").click();
+    cy.wait(100);
 
     // 기본 인적사항 페이지
     cy.get("input").first().as("nameInput");
@@ -34,6 +35,7 @@ describe("참가자 지원 동기 질문 페이지 e2e 테스트", () => {
     cy.get("@fourthGradeLabel").click();
     cy.get("label").contains(/학기/).eq(0).click();
     cy.get("@nextButton").should("exist").click();
+    cy.wait(100);
 
     // 기본 인적사항 2번째 페이지
     cy.get("input").eq(0).as("major");
@@ -44,24 +46,56 @@ describe("참가자 지원 동기 질문 페이지 e2e 테스트", () => {
     cy.get("@revengeMajor").type("건축학과");
     cy.get("@minor").type("물리학과");
     cy.get("@nextButton").should("exist").click();
+    cy.wait(100);
+
+    // 기타 질문 페이지
+    cy.get("input").eq(0).as("futurePlanInput");
+    cy.get("label").contains("학과 공지사항").as("applyRouteLabel");
+
+    cy.get("@futurePlanInput").type("없음");
+    cy.get("@applyRouteLabel").click();
+    cy.get("@nextButton").should("exist").click();
+
+    // 지원 동기 페이지 (테스트 하고자 하는 페이지)
+    cy.get("textarea").as("motivationTextarea");
   });
 
   describe("초기 상태(아무 내용도 작성하지 않았을 경우)에서", () => {
-    it("다음 버튼을 누르면 “필수 질문을 작성해주세요.” 알림창이 뜬다.", () => {});
-    it("질문 제목 네비게이션의 이후 질문을 누르면 “필수 질문을 작성해주세요.” 알림창이 뜬다.", () => {});
-    it("이전 버튼 클릭시 이전 질문 페이지로 이동한다.", () => {});
-    it("질문 제목 네비게이션의 이전 질문을 누르면 이전 질문 페이지로 이동한다.", () => {});
+    it("다음 버튼을 누르면 “필수 질문을 작성해주세요.” 알림창이 뜬다.", () => {
+      cy.get("@nextButton").click();
+      cy.checkAlert("필수 질문을 작성해주세요.");
+    });
+    it("질문 제목 네비게이션의 이후 질문을 누르면 “필수 질문을 작성해주세요.” 알림창이 뜬다.", () => {
+      cy.checkAlert("필수 질문을 작성해주세요.");
+
+      cy.get("@questionTitleNavbar")
+        .find("button")
+        .contains("개발자를 희망하는 이유는 무엇인가요?")
+        .click();
+    });
+    it("이전 버튼 클릭시 이전 질문 페이지로 이동한다.", () => {
+      cy.get("@prevButton").should("exist").click();
+      cy.get("span")
+        .contains("기타 질문 사항에 답변해주세요.*")
+        .should("exist");
+    });
+    it("질문 제목 네비게이션의 이전 질문을 누르면 이전 질문 페이지로 이동한다.", () => {
+      cy.get("@questionTitleNavbar")
+        .find("button")
+        .contains("기타 질문 사항에 답변해주세요.")
+        .click();
+
+      cy.get("span")
+        .contains("기타 질문 사항에 답변해주세요.*")
+        .should("exist");
+    });
   });
 
-  describe("유저가 답변 입력시", () => {
-    it("입력한 글자수를 볼 수 있다.", () => {});
-    it("1000자 이하로 입력하였을 때, 다음 버튼을 누르면 다음 화면으로 이동한다.", () => {});
-    it("유저가 답변 입력시 1000자 이하로 입력하였을 때, 질문 제목 네비게이션의 다음 질문을 누르면 다음 화면으로 이동한다.", () => {});
-    it("1000자 이상 입력할 수 없다.", () => {});
-    it("입력한 내용이 로컬스토리지에 올바르게 저장된다.", () => {});
-  });
-
-  it("테스트 뭐하지?", () => {
-    expect(true).to.be.true;
-  });
+  // describe("유저가 답변 입력시", () => {
+  //   it("입력한 글자수를 볼 수 있다.", () => {});
+  //   it("100자 이하로 입력하였을 때, 다음 버튼을 누르면 다음 화면으로 이동한다.", () => {});
+  //   it("유저가 답변 입력시 100자 이하로 입력하였을 때, 질문 제목 네비게이션의 다음 질문을 누르면 다음 화면으로 이동한다.", () => {});
+  //   it("100자 이상 입력할 수 없다.", () => {});
+  //   it("입력한 내용이 로컬스토리지에 올바르게 저장된다.", () => {});
+  // });
 });
