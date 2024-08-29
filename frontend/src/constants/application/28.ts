@@ -199,8 +199,12 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
  * @property {date}: 1차 모집 마감 날짜 (1-31)
  */
 export const END_DATE = {
+  year: 2024,
   month: 9,
   date: 15,
+  hours: 15,
+  minutes: 0,
+  seconds: 0,
 };
 
 /**

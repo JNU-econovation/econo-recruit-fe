@@ -17,6 +17,7 @@ import {
   applicationDataAtom,
   applicationIndexAtom,
 } from "../stores/application";
+import { END_DATE } from "../constants/application/28";
 
 export const useApplication = () => {
   // TODO: 질문의 이름마다 side effect가 있으니 주의하면 좋을 것
@@ -84,7 +85,17 @@ export const useApplication = () => {
   ) => {
     const isSend = confirm("지원서를 제출하시겠습니까?");
     if (!isSend) return false;
-    if (Date.now() > Date.UTC(2024, 2, 15, 15, 0, 0)) {
+    if (
+      Date.now() >
+      Date.UTC(
+        END_DATE.year,
+        END_DATE.month - 1,
+        END_DATE.date,
+        END_DATE.hours,
+        END_DATE.minutes,
+        END_DATE.seconds
+      )
+    ) {
       alert("지원 기간이 종료되었습니다.");
       return false;
     }
