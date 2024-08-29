@@ -67,27 +67,27 @@ describe("기타 질문 사항 e2e 테스트", () => {
   });
 
   it("사용자는 아무것도 작성 및 선택하지 말고 다음버튼을 누를 시, “필수 질문을 작성해주세요.”라는 alert창이 뜬다.", () => {
-    cy.get("@nextButton").click();
     cy.checkAlert("필수 질문을 작성해주세요.");
+    cy.get("@nextButton").click();
   });
 
   it("사용자는 향후 계획활동을 기입하지 않고 다음버튼을 누를 시, “필수 질문을 작성해주세요.”라는 alert창이 뜬다. (지원경로 선택 = true)", () => {
+    cy.checkAlert("필수 질문을 작성해주세요.");
     cy.get("@announcement").click();
     cy.get("@nextButton").click();
-    cy.checkAlert("필수 질문을 작성해주세요.");
   });
 
   it("사용자는 지원경로를 선택하지 않고 다음버튼을 누를 시, “지원경로를 선택해주세요.”라는 alert창이 뜬다. (향후 계획활동 작성 = true)", () => {
+    cy.checkAlert("지원 경로를 선택해주세요.");
     cy.get("@plan").type("프로젝트").should("have.value", "프로젝트");
     cy.get("@nextButton").click();
-    cy.checkAlert("지원 경로를 선택해주세요.");
   });
 
   it("사용자는 지원경로 중 “기타” 만 선택하고 다음버튼을 누를 시, “지원경로를 선택해주세요.”라는 alert창이 뜬다. (향후 계획활동 작성 = true)", () => {
+    cy.checkAlert("지원 경로를 선택해주세요.");
     cy.get("@plan").type("프로젝트").should("have.value", "프로젝트");
     cy.get("@etc").click();
     cy.get("@nextButton").click();
-    cy.checkAlert("지원 경로를 선택해주세요.");
   });
 
   it("사용자는 “기타”가 아닌 지원경로 하나 이상과, “기타”를 선택하고 다음버튼을 누를 시, 다음 페이지로 넘어간다. (향후 계획활동 작성 = true, 지원경로 선택 = true )", () => {
