@@ -8,7 +8,7 @@ export const APPLICANT_MANAGER = [
   {
     id: 6,
     title:
-      "본인이 계획하고 있는 진로가 무엇인가요? (IT 분야가 아니어도 괜찮습니다.)",
+      "본인이 계획하고 있는 진로와 이를 위해 노력한 내용을 말씀해주세요.(IT 분야가 아니어도 괜찮습니다)",
     type: "textarea",
     value: { name: "future" },
   } as ApplicantTextareaNode,
