@@ -109,6 +109,7 @@ type ApplicationQuestion = {
   id: number;
   title?: string;
   subtitle?: string;
+  alert?: string;
   require?: boolean;
   direction:
     | "vertical"
