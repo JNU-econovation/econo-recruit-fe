@@ -5,7 +5,7 @@ import type {
   ApplicationQuestion,
   ApplicationTimeline,
 } from "@/src/constants/application/type";
-import { dateSplicer } from "@/src/functions/date";
+import { convertDay, dateSplicer } from "@/src/functions/date";
 import TimelineRow from "./TimelineRow.component";
 import { CURRENT_GENERATION } from "@/src/constants";
 import { cn } from "@/src/utils/cn";
@@ -32,7 +32,9 @@ export const TimelineCell = ({
       <Txt
         typography="h6"
         className="block pb-8"
-      >{`${startTime.getMonth()}월 ${startTime.getDate()}일`}</Txt>
+      >{`${startTime.getMonth()}월 ${startTime.getDate()}일 (${convertDay(
+        startTime.getDay()
+      )})`}</Txt>
       <div className="w-full flex">
         {dates.map((date, index) => (
           <TimelineRow
