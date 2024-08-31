@@ -17,12 +17,15 @@ import {
   applicationDataAtom,
   applicationIndexAtom,
 } from "../stores/application";
-import { END_DATE } from "../constants/application/28";
 
 export const useApplication = () => {
   // TODO: 질문의 이름마다 side effect가 있으니 주의하면 좋을 것
   const setApplicationIndex = useSetAtom(applicationIndexAtom);
   const applicationData = useAtomValue(applicationDataAtom);
+
+  const {
+    END_DATE,
+  } = require(`@/src/constants/application/${CURRENT_GENERATION}.ts`);
 
   const canApplicationNext = (applicationNames: Array<string>) => {
     const nonValidatedQuestion = applicationNames
