@@ -206,9 +206,9 @@ export const END_DATE = {
   year: 2024,
   month: 9,
   date: 15,
-  hours: 15,
-  minutes: 0,
-  seconds: 0,
+  hours: 23,
+  minutes: 59,
+  seconds: 59,
 };
 
 /**
