@@ -1,4 +1,5 @@
-import { Score, ScoreKeyword } from "../constants/applicant/27";
+// TODO: 신입 기수에 따라서 ScoreKeyword를 다르게 가져오도록 수정해아합니다.
+import { Score, ScoreKeyword } from "../constants/applicant/28";
 
 export const scoreListToObject = (
   scores: number[],

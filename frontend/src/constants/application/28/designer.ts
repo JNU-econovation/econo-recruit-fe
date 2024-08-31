@@ -248,7 +248,7 @@ export const APPLICATION_NAVBAR_DESIGN = [
   },
   {
     id: 6,
-    title: "본인이 계획하고 있는 진로가 무엇인가요?",
+    title: "본인이 계획하고 있는 진로와 이를 위해 노력한 내용을 말씀해주세요.",
   },
   {
     id: 7,

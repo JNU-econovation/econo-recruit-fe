@@ -266,7 +266,7 @@ export const APPLICATION_NAVBAR_MANAGER = [
   { id: 5, title: "에코노베이션에 지원하게 된 계기는 무엇인가요?" },
   {
     id: 6,
-    title: "본인이 계획하고 있는 진로가 무엇인가요?",
+    title: "본인이 계획하고 있는 진로와 이를 위해 노력한 내용을 말씀해주세요.",
   },
   {
     id: 7,
