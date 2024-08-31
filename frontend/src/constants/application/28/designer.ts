@@ -17,7 +17,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
   },
   {
     id: 6,
-    title: "본인이 계획하고 있는 진로가 무엇인가요?",
+    title: "본인이 계획하고 있는 진로와 이를 위해 노력한 내용을 말씀해주세요.",
     subtitle: "IT 분야가 아니어도 괜찮습니다",
     direction: "horizontal",
     require: true,
