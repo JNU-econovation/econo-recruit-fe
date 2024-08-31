@@ -27,7 +27,7 @@ Cypress.Commands.add("checkAlert", (expectedValue: string) => {
 
 Cypress.Commands.add("goSecondPersonalInformation", () => {
   cy.clearAllLocalStorage();
-  cy.visit("http://localhost:3000/application");
+  cy.visit("/application");
   cy.get("label").contains("개발자").should("exist").click();
   cy.get("span")
     .contains("1순위")

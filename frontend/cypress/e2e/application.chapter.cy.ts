@@ -5,7 +5,7 @@ describe("첫 번째 인적사항 입력 검증 테스트:", () => {
     cy.clearAllSessionStorage();
 
     cy.viewport(1920, 1080);
-    cy.visit("http://localhost:3000/application");
+    cy.visit("/application");
 
     cy.get("label").contains("개발자").parent().as("occupation");
     cy.contains("1순위").parent().as("firstChapter");
