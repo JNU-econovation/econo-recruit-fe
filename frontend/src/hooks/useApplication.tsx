@@ -94,7 +94,7 @@ export const useApplication = () => {
         END_DATE.year,
         END_DATE.month - 1,
         END_DATE.date,
-        END_DATE.hours,
+        END_DATE.hours - 9,
         END_DATE.minutes,
         END_DATE.seconds
       )
