@@ -75,14 +75,21 @@ const ApplicationTimelineLayout = ({
         </div>
       )}
       {applicationQuestion.subtitle && (
-        <div className="pb-6">
+        <>
           {applicationQuestion.subtitle.split("\n").map((line, index) => (
             <Txt className="break-keep block" key={index}>
               {line}
             </Txt>
           ))}
-        </div>
+        </>
       )}
+      <div className="py-6">
+        {applicationQuestion.alert && (
+          <Txt className="underline font-semibold">
+            ⚠️ {applicationQuestion.alert}
+          </Txt>
+        )}
+      </div>
       {time.map((time, index) => (
         <div key={index}>
           <TimelineCell

@@ -251,6 +251,7 @@ export const APPLICATION_MANAGER: ApplicationQuestion[] = [
     subtitle:
       "면접은 오프라인으로 진행되며 지원서에 작성된 내용을 토대로 약 10분간 진행될 예정입니다.\n선택한 시간이 적을 경우, 지원자님의 면접이 임의 시간에 배정될 수 있습니다.\n면접이 가능한 시간대를 모두 선택해 주시기 바랍니다.",
     direction: "timeline",
+    alert: "최종 제출 후 시간 변경은 불가합니다.",
     require: false,
     nodes: [
       {
