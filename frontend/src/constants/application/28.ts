@@ -195,8 +195,12 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
 
 /**
  * @description 개인정보 수집에 대한 1차 모집 마감일 상수 데이터
- * @property {month}: 1차 모집 마감 달 (1-12)
- * @property {date}: 1차 모집 마감 날짜 (1-31)
+ * @property {number} year - 1차 모집 마감 연도
+ * @property {number} month - 1차 모집 마감 달 (1-12)
+ * @property {number} date - 1차 모집 마감 날짜 (1-31)
+ * @property {number} hours - 1차 모집 마감 시간(시) (0-23)
+ * @property {number} minutes - 1차 모집 마감 시간(분) (0-59)
+ * @property {number} seconds - 1차 모집 마감 시간(초) (0-59)
  */
 export const END_DATE = {
   year: 2024,
