@@ -14,7 +14,7 @@ const ApplicationDonePage = ({
   const generation = `${CURRENT_GENERATION}`;
 
   const endDate =
-    require(`@/src/constants/application/${generation}.ts`).END_DATE;
+    require(`@/src/constants/application/${generation}.ts`).FIRST_NOTIFICATION_DATE;
 
   return (
     <section className="flex flex-col justify-center items-center w-screen h-screen gap-6 absolute top-0 left-0">
