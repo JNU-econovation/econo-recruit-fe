@@ -89,8 +89,8 @@ const sendEmail = async ({
   applicantId: string;
   email: string;
 }) => {
-  const response = await axios({
-    url: process.env.NEXT_PUBLIC_API_URL + "/api/v1/applicants/mail",
+  await axios({
+    url: process.env.NEXT_PUBLIC_API_URL + "/applicants/mail",
     method: "POST",
     data: { email, applicantId },
     headers: { "Content-Type": "application/json; charset=utf-8" },
