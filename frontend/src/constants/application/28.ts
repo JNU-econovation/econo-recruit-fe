@@ -212,6 +212,18 @@ export const END_DATE = {
 };
 
 /**
+ * @description 개인정보 수집에 대한 1차 합격자 공지 상수 데이터
+ * @property {number} year - 1차 합격자 공지 연도
+ * @property {number} month - 1차 합격자 공지 월 (1-12)
+ * @property {number} date - 1차 합격자 공지 일 (1-31)
+ */
+export const FIRST_NOTIFICATION_DATE = {
+  year: 2024,
+  month: 9,
+  date: 20,
+};
+
+/**
  * @description 개인정보 수집에 대한 최종 마감일 상수 데이터
  * @property {number} year - 최종 모집 마감 연도
  * @property {number} month - 최종 모집 마감 월 (1-12)
