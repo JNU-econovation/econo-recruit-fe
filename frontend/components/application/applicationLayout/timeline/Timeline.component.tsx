@@ -29,9 +29,14 @@ export const TimelineCell = ({
 
   return (
     <div className="w-full">
-      <Txt typography="h6" className="block pb-8">{`${
-        startTime.getMonth() + 1
-      }월 ${startTime.getDate()}일 (${convertDay(startTime.getDay())})`}</Txt>
+      <Txt
+        typography="h6"
+        className="block pb-8"
+      >{`${startTime.toLocaleDateString("ko-KR", {
+        month: "long",
+        day: "numeric",
+        weekday: "short",
+      })}`}</Txt>
       <div className="w-full flex">
         {dates.map((date, index) => (
           <TimelineRow
