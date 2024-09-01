@@ -1,4 +1,4 @@
-import { ScoreSequence } from "@/src/constants/applicant/27";
+import { ScoreSequence } from "@/src/constants/applicant/28";
 import AvgScore from "./AvgScore";
 import InterviewerScores from "./InterviewerScore";
 import { useState } from "react";

@@ -9,9 +9,9 @@ import { applicantDataFinder } from "@/src/functions/finder";
 import { JunctionApplicant } from "./Junction.component";
 import { useAtom, useAtomValue } from "jotai";
 import { applicantQuestionsAtom } from "@/src/stores/applicant";
-import { APPLICANT_DEVELOPER } from "@/src/constants/applicant/27/developer";
-import { APPLICANT_DESIGNER } from "@/src/constants/applicant/27/designer";
-import { APPLICANT_MANAGER } from "@/src/constants/applicant/27/manager";
+import { APPLICANT_DEVELOPER } from "@/src/constants/applicant/28/developer";
+import { APPLICANT_DESIGNER } from "@/src/constants/applicant/28/designer";
+import { APPLICANT_MANAGER } from "@/src/constants/applicant/28/manager";
 
 interface ApplicantDetailRightProps {
   data: ApplicantReq[];

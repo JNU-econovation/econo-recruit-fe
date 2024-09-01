@@ -1,4 +1,4 @@
-import { FIELD_NAME, Score } from "@/src/constants/applicant/27";
+import { FIELD_NAME, Score } from "@/src/constants/applicant/28";
 
 interface InterviewerScoreProps {
   interviewers: {

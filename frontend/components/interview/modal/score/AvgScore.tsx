@@ -1,5 +1,5 @@
 import ScoreCell from "./ScoreCell";
-import { Score } from "@/src/constants/applicant/27";
+import { Score } from "@/src/constants/applicant/28";
 
 interface AvgScoreProps {
   totalAverage: number;

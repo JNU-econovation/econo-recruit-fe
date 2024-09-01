@@ -5,15 +5,15 @@ import Txt from "@/components/common/Txt.component";
 import {
   APPLICATION_DESIGN,
   APPLICATION_NAVBAR_DESIGN,
-} from "@/src/constants/application/27/designer";
+} from "@/src/constants/application/28/designer";
 import {
   APPLICATION_DEVELOPER,
   APPLICATION_NAVBAR_DEVELOPER,
-} from "@/src/constants/application/27/developer";
+} from "@/src/constants/application/28/developer";
 import {
   APPLICATION_MANAGER,
   APPLICATION_NAVBAR_MANAGER,
-} from "@/src/constants/application/27/manager";
+} from "@/src/constants/application/28/manager";
 import {
   ApplicationNode,
   type ApplicationRadio,
