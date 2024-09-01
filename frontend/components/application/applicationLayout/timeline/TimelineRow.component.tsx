@@ -22,7 +22,8 @@ const TimelineRow = ({ date, isLast, index }: TimelineRowProps) => {
     <span className="flex-1 border-l border-gray-300 translate-x-6 mb-8">
       <Txt
         className={cn("-translate-x-1/2 block w-fit -translate-y-6 h-2", {
-          "opacity-0": minimumIntegerDigits(date.getMinutes(), 2) === "30",
+          "opacity-0":
+            minimumIntegerDigits(date.getMinutes(), 2) === "30" && isLast,
         })}
       >
         {dateString}

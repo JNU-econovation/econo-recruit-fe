@@ -23,6 +23,13 @@ const ApplicationHorizontalLayout = ({
         {applicationQuestion.subtitle && (
           <div className="pl-6">
             <Txt className="text-sm">{applicationQuestion.subtitle}</Txt>
+            {applicationQuestion.alert && (
+              <div className="mt-4">
+                <Txt className=" underline font-semibold">
+                  ⚠️ {applicationQuestion.alert}
+                </Txt>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-const applicantQuestions = require(`@/src/constants/applicant/27`)
+const applicantQuestions = require(`@/src/constants/applicant/28`)
   .APPLICANT as ApplicantNode[];
 
 export const applicantQuestionsAtom = atom(applicantQuestions);

@@ -5,7 +5,7 @@ import type {
   ApplicationQuestion,
   ApplicationTimeline,
 } from "@/src/constants/application/type";
-import { dateSplicer } from "@/src/functions/date";
+import { convertDay, dateSplicer } from "@/src/functions/date";
 import TimelineRow from "./TimelineRow.component";
 import { CURRENT_GENERATION } from "@/src/constants";
 import { cn } from "@/src/utils/cn";
@@ -32,7 +32,11 @@ export const TimelineCell = ({
       <Txt
         typography="h6"
         className="block pb-8"
-      >{`${startTime.getMonth()}월 ${startTime.getDate()}일`}</Txt>
+      >{`${startTime.toLocaleDateString("ko-KR", {
+        month: "long",
+        day: "numeric",
+        weekday: "short",
+      })}`}</Txt>
       <div className="w-full flex">
         {dates.map((date, index) => (
           <TimelineRow
@@ -73,14 +77,21 @@ const ApplicationTimelineLayout = ({
         </div>
       )}
       {applicationQuestion.subtitle && (
-        <div className="pb-6">
+        <>
           {applicationQuestion.subtitle.split("\n").map((line, index) => (
             <Txt className="break-keep block" key={index}>
               {line}
             </Txt>
           ))}
-        </div>
+        </>
       )}
+      <div className="py-6">
+        {applicationQuestion.alert && (
+          <Txt className="underline font-semibold">
+            ⚠️ {applicationQuestion.alert}
+          </Txt>
+        )}
+      </div>
       {time.map((time, index) => (
         <div key={index}>
           <TimelineCell

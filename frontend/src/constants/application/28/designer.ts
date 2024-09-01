@@ -17,7 +17,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
   },
   {
     id: 6,
-    title: "본인이 계획하고 있는 진로가 무엇인가요?",
+    title: "본인이 계획하고 있는 진로와 이를 위해 노력한 내용을 말씀해주세요.",
     subtitle: "IT 분야가 아니어도 괜찮습니다",
     direction: "horizontal",
     require: true,
@@ -73,6 +73,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
         errorMessages: "개선하고 싶은 서비스를 서술해주세요.",
       },
     ],
+    require: true,
   },
   {
     id: 10,
@@ -88,6 +89,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
         errorMessages: "협업에 있어서 중요하다고 생각되는 것을 입력해주세요.",
       },
     ],
+    require: true,
   },
   {
     id: 11,
@@ -103,6 +105,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
         errorMessages: "깊게 빠져본 경험을 입력해주세요.",
       },
     ],
+    require: true,
   },
   {
     id: 12,
@@ -117,6 +120,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
         errorMessages: "협업에 있어서 중요하다고 생각되는 것을 입력해주세요.",
       },
     ],
+    require: true,
   },
   {
     id: 13,
@@ -131,6 +135,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
         errorMessages: "목표와 학습 계획을 입력해주세요.",
       },
     ],
+    require: true,
   },
   {
     id: 14,
@@ -138,6 +143,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
     direction: "horizontal",
     subtitle:
       "지원자 분의 포트폴리오 링크 접근 권한을 열어주세요. 만약 접근 권한이 없을 경우 불이익이 있을 수 있습니다.",
+    alert: "최종 제출 후 포트폴리오 수정은 불가합니다.",
     nodes: [
       {
         name: "portfolio",
@@ -181,7 +187,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
         id: 16,
         direction: "horizontal",
         title:
-          "에코노베이션은 3학기 이상의 활동을 권장하고 있으며 매주 금요일 17시에는 주간발표가 있습니다.\n위 내용을 확인하셨으면 '확인했습니다'를 기입해주세요.",
+          "에코노베이션은 3학기 이상의 활동과 매주 금요일 17시 주간발표에 필수로 참여해야 합니다.\n위 내용을 확인하셨으면 '확인했습니다'를 기입해주세요.",
         require: true,
         nodes: [
           {
@@ -224,6 +230,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
     subtitle:
       "면접은 오프라인으로 진행되며 지원서에 작성된 내용을 토대로 약 10분간 진행될 예정입니다.\n선택한 시간이 적을 경우, 지원자님의 면접이 임의 시간에 배정될 수 있습니다.\n면접이 가능한 시간대를 모두 선택해 주시기 바랍니다.",
     direction: "timeline",
+    alert: "최종 제출 후 시간 변경은 불가합니다.",
     require: false,
     nodes: [
       {
@@ -242,7 +249,7 @@ export const APPLICATION_NAVBAR_DESIGN = [
   },
   {
     id: 6,
-    title: "본인이 계획하고 있는 진로가 무엇인가요?",
+    title: "본인이 계획하고 있는 진로와 이를 위해 노력한 내용을 말씀해주세요.",
   },
   {
     id: 7,

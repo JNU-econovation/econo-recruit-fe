@@ -1,4 +1,4 @@
-import { Score, ScoreKeyword } from "../constants/applicant/27";
+import { Score, ScoreKeyword } from "../constants/applicant/28";
 
 export const scoreListToObject = (
   scores: number[],

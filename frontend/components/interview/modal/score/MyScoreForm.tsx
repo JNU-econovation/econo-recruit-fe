@@ -5,7 +5,7 @@ import ScoreInput from "./ScoreInput";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postScore, putScore } from "@/src/apis/score";
 import { replacer } from "@/src/functions/replacer";
-import { Score, ScoreKeyword } from "@/src/constants/applicant/27";
+import { Score, ScoreKeyword } from "@/src/constants/applicant/28";
 import { scoreObjectToList } from "@/src/functions/formatter";
 
 interface MyScoreFormProps extends MyScoreProps {
