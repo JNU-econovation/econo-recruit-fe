@@ -48,7 +48,7 @@ const ApplicationText = ({ data }: ApplicationTextProps) => {
           setIsError(isError);
           setValue(value);
         }}
-        maxLength={textData.maxLength ?? 1000}
+        maxLength={textData.maxLength ?? 700}
         minLength={textData.minLength ?? 0}
       />
       {isError && textData.errorMessages ? (

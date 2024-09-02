@@ -1,4 +1,4 @@
-const MAX_LENGTH = 1000;
+const MAX_LENGTH = 700;
 
 describe("참가자 지원 동기 질문 페이지 e2e 테스트", () => {
   beforeEach(() => {
