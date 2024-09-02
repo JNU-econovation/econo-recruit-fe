@@ -25,11 +25,12 @@ export const POST = async (req: NextRequest) => {
         .join("") ?? "",
   });
 
-  await sendEmail({
-    applicantId:
-      body.find((value) => value.name === "applicantId")?.answer ?? "",
-    email: body.find((value) => value.name === "email")?.answer ?? "",
-  });
+  // 이메일 보내는 요청이 프론트엔드와 백엔드 둘 다 이루어지고 있어서 이메일이 지원자에게 2번 전달되는 버그가 있어서 주석 처리
+  // await sendEmail({
+  //   applicantId:
+  //     body.find((value) => value.name === "applicantId")?.answer ?? "",
+  //   email: body.find((value) => value.name === "email")?.answer ?? "",
+  // });
 
   return NextResponse.json({ success: true, response: null, error: null });
 };
