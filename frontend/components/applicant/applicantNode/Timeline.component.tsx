@@ -44,7 +44,11 @@ const ApplicantTimelineNode = ({ postId }: ApplicantTimelineNodeProps) => {
           <Txt
             typography="h6"
             className="block pb-8"
-          >{`${time.startTime.getMonth()}월 ${time.startTime.getDate()}일`}</Txt>
+          >{`${time.startTime.toLocaleDateString("ko-KR", {
+            month: "long",
+            day: "numeric",
+            weekday: "short",
+          })}`}</Txt>
           <div className="w-full flex">
             {dateSplicer(time.startTime, time.endTime, seperate).map(
               (date, index) => (
