@@ -8,7 +8,7 @@ const https = axios.create({
 https.defaults.withCredentials = true;
 
 https.interceptors.request.use((config) => {
-  const token = JSON.parse(localStorage.getItem("accessToken") ?? '""');
+  const token = localStorage.getItem("accessToken");
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
