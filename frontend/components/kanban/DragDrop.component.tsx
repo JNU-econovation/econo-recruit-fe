@@ -10,7 +10,11 @@ import { useAtom, useAtomValue } from "jotai";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import useDragDrop from "@/src/hooks/useDragDrop.hook";
 
-const KanbanColumnView = () => {
+interface KanbanColumnViewProps {
+  generation: string;
+}
+
+const KanbanColumnView = ({ generation }: KanbanColumnViewProps) => {
   const navbarId = useAtomValue(KanbanSelectedButtonNumberState);
 
   const {
@@ -18,7 +22,7 @@ const KanbanColumnView = () => {
     isError,
     isLoading,
   } = useQuery<KanbanColumnData[]>(["kanbanDataArray", navbarId], () =>
-    getAllKanbanData(navbarId)
+    getAllKanbanData(navbarId, generation)
   );
 
   if (!kanbanData || isLoading) {
@@ -65,7 +69,7 @@ const KanbanBoardDragDropComponent = ({
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            <KanbanColumnView />
+            <KanbanColumnView generation={generation} />
             <KanbanAddColumnComponent />
             {provided.placeholder}
           </div>

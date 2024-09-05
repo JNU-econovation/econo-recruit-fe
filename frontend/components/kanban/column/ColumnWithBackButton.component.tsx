@@ -31,7 +31,7 @@ const KanbanColumnDetailCard = ({
     isError,
     isLoading,
   } = useQuery<KanbanColumnData[]>(["kanbanDataArray", generation], () =>
-    getAllKanbanData(navbarId)
+    getAllKanbanData(navbarId, generation)
   );
 
   if (!kanbanDataArray || isLoading) {
