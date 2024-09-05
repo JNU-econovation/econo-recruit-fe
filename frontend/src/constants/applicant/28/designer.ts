@@ -69,7 +69,7 @@ export const APPLICANT_DESIGNER = [
     value: { name: "check" },
   } as ApplicantTextareaNode,
   {
-    id: 15,
+    id: 18,
     title: "면접 가능시간을 선택해주세요. (중복 선택 가능)",
     type: "timeline",
   } as ApplicantTimelineNode,
