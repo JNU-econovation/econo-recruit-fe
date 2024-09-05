@@ -53,14 +53,14 @@ export const APPLICANT_DEVELOPER = [
     value: { name: "studyPlan" },
   } as ApplicantTextareaNode,
   {
-    id: 12,
+    id: 14,
     title:
-      "에코노베이션은 3학기 이상의 활동을 권장하고 있으며 매주 금요일 17시에는 주간발표가 있습니다. 위 내용을 확인하셨으면 '확인했습니다'를 기입해주세요.",
+      "에코노베이션은 3학기 이상의 활동과 매주 금요일 17시 주간발표에 필수로 참여해야 합니다.\n위 내용을 확인하셨으면 '확인했습니다'를 기입해주세요.",
     type: "textarea",
     value: { name: "check" },
   } as ApplicantTextareaNode,
   {
-    id: 13,
+    id: 16,
     title: "면접 가능시간을 선택해주세요. (중복 선택 가능)",
     type: "timeline",
   } as ApplicantTimelineNode,
