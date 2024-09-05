@@ -50,7 +50,7 @@ export const APPLICANT_DESIGNER = [
   {
     id: 12,
     title:
-      "협업(프로젝트, 팀 활동)에 있어서 가장 중요하다고 생각되는 것은 무엇인지 그 이유와 함께 서술해주세요.",
+      "협업(프로젝트, 팀 활동)에 있어서 가장 중요하다고 생각되는 것은 무엇인지 그 이유와 함께 지원자님의 생각을 서술해주세요.",
     type: "textarea",
     value: { name: "collaboration" },
   } as ApplicantTextareaNode,
@@ -62,7 +62,7 @@ export const APPLICANT_DESIGNER = [
     value: { name: "studyPlan" },
   } as ApplicantTextareaNode,
   {
-    id: 14,
+    id: 16,
     title:
       "에코노베이션은 3학기 이상의 활동과 매주 금요일 17시 주간발표에 필수로 참여해야 합니다.\n위 내용을 확인하셨으면 '확인했습니다'를 기입해주세요.",
     type: "textarea",

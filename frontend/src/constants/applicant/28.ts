@@ -31,7 +31,7 @@ const APPLICANT: ApplicantNode[] = [
     },
   },
   {
-    id: 3,
+    id: 4,
     title: "기타 질문 사항에 답변해주세요.",
     type: "shortSplit",
     value: [
