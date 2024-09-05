@@ -27,6 +27,7 @@ export const signIn = async ({ email, password }: SignInReq) => {
 export const signOut = async () => {
   try {
     await https.post<SignInRes>("/logout");
+    window.localStorage.removeItem("accessToken");
     return true;
   } catch (e) {
     return false;
