@@ -35,10 +35,7 @@ const ApplicationDonePage = ({
         <div>
           <Link
             className="text-blue-500 hover:underline font-bold"
-            href={
-              "https://recruit.econovation.kr/applicant/pdf-viewer?id=" +
-              (id ?? "")
-            }
+            href={"/applicant/pdf-viewer?id=" + (id ?? "")}
           >
             여기
           </Link>

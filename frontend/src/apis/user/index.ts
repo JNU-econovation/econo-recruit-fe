@@ -15,6 +15,7 @@ export const signIn = async ({ email, password }: SignInReq) => {
     const { data } = await https.post<SignInRes>("/login", { email, password });
     if (data satisfies SignInRes) {
       alert("로그인이 성공하였습니다");
+      window.localStorage.setItem("accessToken", data.accessToken);
     }
 
     return true;
@@ -26,6 +27,7 @@ export const signIn = async ({ email, password }: SignInReq) => {
 export const signOut = async () => {
   try {
     await https.post<SignInRes>("/logout");
+    window.localStorage.removeItem("accessToken");
     return true;
   } catch (e) {
     return false;
