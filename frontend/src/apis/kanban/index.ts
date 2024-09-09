@@ -19,9 +19,11 @@ export interface KanbanCardReq {
 }
 
 // TODO: card api 추가 시 수정 필요
-export const getKanbanCards = async (columnId: string) => {
+export const getKanbanCards = async (columnId: string, generation: string) => {
   const { data } = await https.get<KanbanCardReq[]>(
-    `/navigations/${columnId}/boards`
+    `/navigations/${columnId}/boards?${new URLSearchParams({
+      year: generation,
+    })}`
   );
 
   return data;
@@ -90,10 +92,11 @@ export const postAddCard = async ({ columnId, title }: addCardReq) => {
 };
 
 export const getAllKanbanData = async (
-  navigationId: string
+  navigationId: string,
+  generation: string
 ): Promise<KanbanColumnData[]> => {
   const columnsData = await getColums(navigationId);
-  const cardsData = await getKanbanCards(navigationId);
+  const cardsData = await getKanbanCards(navigationId, generation);
 
   return columnsData.map((column) => {
     const startColumnCardData = cardsData
