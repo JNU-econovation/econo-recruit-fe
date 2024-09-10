@@ -19,16 +19,20 @@ interface RecordsByPageRes {
   pageInfo: PageInfo;
 }
 
-export const getInterviewRecordByPageWithOrder = async (
-  page: number,
-  order: string,
-  year: string
-) => {
-  const sq = new URLSearchParams({ sortType: order, year });
+interface GetInterviewRecordByPageWithOrderReq {
+  page: number;
+  sortType: string;
+  year: string;
+}
+
+export const getInterviewRecordByPageWithOrder = async ({
+  page,
+  ...queryParams
+}: GetInterviewRecordByPageWithOrderReq) => {
   const {
     data: { records, pageInfo },
   } = await https.get<RecordsByPageRes>(
-    `/page/${page}/records?${sq.toString()}`
+    `/page/${page}/records?${new URLSearchParams(queryParams)}`
   );
 
   return {

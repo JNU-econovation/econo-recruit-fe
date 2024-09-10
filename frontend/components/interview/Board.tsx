@@ -37,7 +37,11 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
   const { data, isLoading } = useQuery({
     queryKey: ["allInterviewRecord", pageIndex, order, generation],
     queryFn: () =>
-      getInterviewRecordByPageWithOrder(+pageIndex, order, generation),
+      getInterviewRecordByPageWithOrder({
+        page: +pageIndex,
+        sortType: order,
+        year: generation,
+      }),
   });
 
   if (!data || isLoading) {

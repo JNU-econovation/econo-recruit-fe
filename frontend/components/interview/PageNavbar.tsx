@@ -30,7 +30,12 @@ const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
     isError,
   } = useQuery(
     ["allApplicant", order, generation],
-    () => getInterviewRecordByPageWithOrder(+pageIndex, order, generation),
+    () =>
+      getInterviewRecordByPageWithOrder({
+        page: +pageIndex,
+        sortType: order,
+        year: generation,
+      }),
     {
       enabled: !!generation,
     }
