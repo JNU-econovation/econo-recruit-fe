@@ -21,12 +21,14 @@ interface RecordsByPageRes {
 
 export const getInterviewRecordByPageWithOrder = async (
   page: number,
-  order: string
+  order: string,
+  year: string
 ) => {
+  const sq = new URLSearchParams({ sortType: order, year });
   const {
     data: { records, pageInfo },
   } = await https.get<RecordsByPageRes>(
-    `/page/${page}/records?sortType=${order}`
+    `/page/${page}/records?${sq.toString()}`
   );
 
   return {
