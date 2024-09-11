@@ -11,7 +11,11 @@ import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
 import { ORDER_MENU } from "@/src/constants";
 import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 
-const InterviewBoard = () => {
+interface InterviewBoardProps {
+  generation: string;
+}
+
+const InterviewBoard = ({ generation }: InterviewBoardProps) => {
   const [applicantId, setApplicantId] = useAtom(interViewApplicantIdState);
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
@@ -31,8 +35,13 @@ const InterviewBoard = () => {
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: ["allInterviewRecord", pageIndex, order],
-    queryFn: () => getInterviewRecordByPageWithOrder(+pageIndex, order),
+    queryKey: ["allInterviewRecord", pageIndex, order, generation],
+    queryFn: () =>
+      getInterviewRecordByPageWithOrder({
+        page: +pageIndex,
+        sortType: order,
+        year: generation,
+      }),
   });
 
   if (!data || isLoading) {

@@ -17,7 +17,7 @@ const InterviewPage = ({ params: { generation } }: InterviewPageProps) => {
         <Search />
         <SortList sortList={ORDER_MENU.INTERVIEW} />
       </div>
-      <InterviewBoard />
+      <InterviewBoard generation={generation} />
       <InterviewPageNavbar generation={generation} />
     </div>
   );
