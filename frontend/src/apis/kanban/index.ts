@@ -1,6 +1,10 @@
 import { https } from "@/src/functions/axios";
 import { KanbanColumnData } from "../../stores/kanban/Kanban.atoms";
 
+export interface ApplicantPassState {
+  passState: "non-passed" | "first-passed" | "final-passed";
+}
+
 export interface KanbanCardReq {
   id: number;
   boardId: number;
@@ -16,9 +20,7 @@ export interface KanbanCardReq {
   firstPriority: string;
   secondPriority: string;
   isLabeled: boolean;
-  state: {
-    passState: "non-passed" | "first-passed" | "final-passed";
-  };
+  state: ApplicantPassState;
 }
 
 // TODO: card api 추가 시 수정 필요

@@ -1,6 +1,4 @@
-interface KanbanCardApplicantStatusLabelProps {
-  passState: "non-passed" | "first-passed" | "final-passed";
-}
+import { ApplicantPassState } from "@/src/apis/kanban";
 
 const labelConfig = {
   "non-passed": {
@@ -17,9 +15,7 @@ const labelConfig = {
   },
 };
 
-const KanbanCardApplicantStatusLabel = ({
-  passState,
-}: KanbanCardApplicantStatusLabelProps) => {
+const KanbanCardApplicantStatusLabel = ({ passState }: ApplicantPassState) => {
   const { backgroundColor, label } = labelConfig[passState];
   return (
     <div

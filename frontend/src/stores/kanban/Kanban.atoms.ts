@@ -1,3 +1,4 @@
+import { ApplicantPassState } from "@/src/apis/kanban";
 import { atom } from "jotai";
 
 export type KanbanColumnData = {
@@ -17,7 +18,7 @@ export type KanbanCardData = {
   heart: number;
   isHearted: boolean;
   applicantId: string;
-  passState: "non-passed" | "first-passed" | "final-passed";
+  passState: ApplicantPassState["passState"];
 };
 
 export const KanbanDataArrayState = atom({} as KanbanColumnData[]);
