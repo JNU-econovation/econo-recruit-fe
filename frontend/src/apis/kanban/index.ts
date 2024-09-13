@@ -16,6 +16,9 @@ export interface KanbanCardReq {
   firstPriority: string;
   secondPriority: string;
   isLabeled: boolean;
+  state: {
+    passState: "non-passed" | "first-passed" | "final-passed";
+  };
 }
 
 // TODO: card api 추가 시 수정 필요
@@ -142,6 +145,7 @@ export const getAllKanbanData = async (
             comment: card.commentCount,
             heart: card.labelCount,
             isHearted: card.isLabeled,
+            passState: card.state.passState,
           };
         })
         .filter((card) => card !== null),
