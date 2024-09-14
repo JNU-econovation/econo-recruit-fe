@@ -17,21 +17,18 @@ interface ApplicantBoardProps {
 }
 
 const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
-  const [data, setData] = useState<ApplicantReq[]>([]);
+  const [userApplicationData, setUserApplicationData] = useState<
+    ApplicantReq[]
+  >([]);
+
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
   const order = searchParams.get("order") || ORDER_MENU.APPLICANT[0].type;
+
   const { createSearchData } = useSearchQuery(pageIndex);
 
-  const onClick = (id: string) => {
-    if (!allData) return;
-    setData(
-      applicants?.filter((value) => applicantDataFinder(value, "id") === id)[0]
-    );
-  };
-
   const {
-    data: allData,
+    data: pageUserApplications,
     isLoading,
     isError,
   } = useQuery(
@@ -42,7 +39,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
     }
   );
 
-  if (!allData || isLoading) {
+  if (!pageUserApplications || isLoading) {
     return <div>로딩중...</div>;
   }
 
@@ -50,7 +47,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
     return <div>에러 발생</div>;
   }
 
-  const { applicants } = allData;
+  const { applicants } = pageUserApplications;
 
   const boardData = applicants.map((value) => ({
     id: applicantDataFinder(value, "id"),
@@ -73,6 +70,13 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
     ],
   }));
 
+  const onClick = (id: string) => {
+    if (!pageUserApplications) return;
+    setUserApplicationData(
+      applicants?.filter((value) => applicantDataFinder(value, "id") === id)[0]
+    );
+  };
+
   return (
     <Board
       wapperClassname="divide-x"
@@ -83,14 +87,14 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
         <div className="flex-1 overflow-auto px-12 min-w-[40rem]">
           <ApplicantDetailLeft
             cardId={-1}
-            data={data}
+            data={userApplicationData}
             generation={generation}
           />
         </div>
       </div>
       <div className="flex flex-1 min-h-0">
         <div className="flex-1 overflow-auto px-12">
-          <ApplicantDetailRight data={data} />
+          <ApplicantDetailRight data={userApplicationData} />
         </div>
       </div>
     </Board>
