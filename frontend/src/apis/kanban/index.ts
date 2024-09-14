@@ -1,10 +1,11 @@
 import { https } from "@/src/functions/axios";
 import { KanbanColumnData } from "../../stores/kanban/Kanban.atoms";
-import { labelConfig } from "@/components/kanban/card/CardApplicantStatusLabel";
 
-export interface ApplicantPassState {
-  passState: keyof typeof labelConfig;
-}
+export type ApplicantPassState =
+  | "non-processed"
+  | "non-passed"
+  | "first-passed"
+  | "final-passed";
 
 export interface KanbanCardReq {
   id: number;
@@ -21,7 +22,9 @@ export interface KanbanCardReq {
   firstPriority: string;
   secondPriority: string;
   isLabeled: boolean;
-  state: ApplicantPassState;
+  state: {
+    passState: ApplicantPassState;
+  };
 }
 
 // TODO: card api 추가 시 수정 필요
