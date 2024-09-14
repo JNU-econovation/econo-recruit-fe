@@ -18,7 +18,7 @@ export type KanbanCardData = {
   heart: number;
   isHearted: boolean;
   applicantId: string;
-  passState: ApplicantPassState["passState"];
+  passState: ApplicantPassState;
 };
 
 export const KanbanDataArrayState = atom({} as KanbanColumnData[]);
