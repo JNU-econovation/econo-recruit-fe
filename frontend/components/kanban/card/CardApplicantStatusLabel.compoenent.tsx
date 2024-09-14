@@ -1,7 +1,7 @@
 import { ApplicantPassState } from "@/src/apis/kanban";
 
 const labelConfig = {
-  "non-passed": {
+  "non-processed": {
     backgroundColor: "bg-gray-300",
     label: "처리중",
   },
@@ -12,6 +12,10 @@ const labelConfig = {
   "final-passed": {
     backgroundColor: "bg-blue-300",
     label: "최종 합격",
+  },
+  "non-passed": {
+    backgroundColor: "bg-red-300",
+    label: "탈락",
   },
 };
 

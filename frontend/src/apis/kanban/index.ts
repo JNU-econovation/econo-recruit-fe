@@ -2,7 +2,7 @@ import { https } from "@/src/functions/axios";
 import { KanbanColumnData } from "../../stores/kanban/Kanban.atoms";
 
 export interface ApplicantPassState {
-  passState: "non-passed" | "first-passed" | "final-passed";
+  passState: "non-processed" | "first-passed" | "final-passed" | "non-passed";
 }
 
 export interface KanbanCardReq {
