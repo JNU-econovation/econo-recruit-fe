@@ -2,6 +2,7 @@ import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
 import { cn } from "@/src/utils/cn";
 import { useParams, useRouter } from "next/navigation";
 import Icon from "@/components/common/Icon";
+import KanbanCardApplicantStatusLabel from "./CardApplicantStatusLabel";
 
 type KanbanCardComponentType = {
   data: KanbanCardData | null;
@@ -33,6 +34,7 @@ function KanbanCardComponent({
     major,
     applicantId: dataApplicantId,
     cardType,
+    passState,
   } = data;
 
   const onClickDetail = () => {
@@ -53,7 +55,10 @@ function KanbanCardComponent({
       )}
       onClick={onClickDetail}
     >
-      <div className="text-xs text-secondary-200">{major}</div>
+      <div className="text-xs text-secondary-200 flex justify-between items-center">
+        {major}
+        <KanbanCardApplicantStatusLabel passState={passState} />
+      </div>
       <div className="font-bold truncate">{title}</div>
       <div className="mt-2 flex justify-between items-center text-sm text-secondary-200">
         <div className="text-sm">{apply.join(" / ")}</div>
