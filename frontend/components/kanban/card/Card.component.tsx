@@ -2,7 +2,7 @@ import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
 import { cn } from "@/src/utils/cn";
 import { useParams, useRouter } from "next/navigation";
 import Icon from "@/components/common/Icon";
-import KanbanCardApplicantStatusLabel from "./CardApplicantStatusLabel.compoenent";
+import KanbanCardApplicantStatusLabel from "./CardApplicantStatusLabel";
 
 type KanbanCardComponentType = {
   data: KanbanCardData | null;
