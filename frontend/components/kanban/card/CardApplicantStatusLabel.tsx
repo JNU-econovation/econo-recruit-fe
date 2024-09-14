@@ -22,9 +22,7 @@ const labelConfig = {
 const KanbanCardApplicantStatusLabel = ({ passState }: ApplicantPassState) => {
   const { backgroundColor, label } = labelConfig[passState];
   return (
-    <div
-      className={`${backgroundColor} text-xs px-[10px] py-[5px] rounded-[10px]`}
-    >
+    <div className={`${backgroundColor} text-xs px-2.5 py-1.5 rounded-lg`}>
       {label}
     </div>
   );
