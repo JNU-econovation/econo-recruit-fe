@@ -1,8 +1,9 @@
 import { https } from "@/src/functions/axios";
 import { KanbanColumnData } from "../../stores/kanban/Kanban.atoms";
+import { labelConfig } from "@/components/kanban/card/CardApplicantStatusLabel";
 
 export interface ApplicantPassState {
-  passState: "non-processed" | "first-passed" | "final-passed" | "non-passed";
+  passState: keyof typeof labelConfig;
 }
 
 export interface KanbanCardReq {
