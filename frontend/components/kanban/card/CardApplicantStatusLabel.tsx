@@ -1,6 +1,12 @@
-import { ApplicantPassState } from "@/src/apis/kanban";
+import { ApplicantPassState, KanbanCardReq } from "@/src/apis/kanban";
+import { cn } from "@/src/utils/cn";
 
-const labelConfig = {
+interface labelConfigType {
+  backgroundColor: string;
+  label: string;
+}
+
+export const labelConfig: Record<ApplicantPassState, labelConfigType> = {
   "non-processed": {
     backgroundColor: "bg-gray-300",
     label: "처리중",
@@ -19,10 +25,12 @@ const labelConfig = {
   },
 };
 
-const KanbanCardApplicantStatusLabel = ({ passState }: ApplicantPassState) => {
+const KanbanCardApplicantStatusLabel = ({
+  passState,
+}: KanbanCardReq["state"]) => {
   const { backgroundColor, label } = labelConfig[passState];
   return (
-    <div className={`${backgroundColor} text-xs px-2.5 py-1.5 rounded-lg`}>
+    <div className={cn("text-xs px-2.5 py-1 rounded-lg", backgroundColor)}>
       {label}
     </div>
   );
