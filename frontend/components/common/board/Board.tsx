@@ -7,6 +7,7 @@ import Image from "next/image";
 import CloseImage from "/public/icons/ellipsis.multiply.svg";
 import { cn } from "@/src/utils/cn";
 import Txt from "../Txt.component";
+import useModalState from "../../../src/hooks/useModalState";
 
 interface BoardData {
   id: string;
@@ -21,19 +22,37 @@ interface BoardProps extends PropsWithChildren {
   boardData: BoardData[];
 }
 
+const modalStyle = {
+  content: {
+    width: "calc(100% - 12rem)",
+    zIndex: "9999",
+    height: "calc(100%)",
+    margin: "3rem 6rem 0 6rem",
+    minWidth: "1280px",
+    boxShadow: "0px 0px 6px 1px rgba(0, 0, 0, 0.14)",
+    border: "none",
+    position: "relative",
+    inset: "0",
+    padding: "2.5rem 3rem",
+  },
+  overlay: {
+    padding: "0",
+    position: "absolute",
+  },
+} as const;
+
 const Board = ({
   children,
   onClick,
   wapperClassname,
   boardData,
 }: BoardProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, openModal, closeModal } = useModalState();
 
-  const openModel = (id: string) => {
-    setIsOpen(true);
+  const handleModalOpen = (id: string) => () => {
+    openModal();
     onClick && onClick(id);
   };
-  const closeModel = () => setIsOpen(false);
 
   return (
     <section className="flex flex-col">
@@ -46,35 +65,18 @@ const Board = ({
               key={item.id}
               title={item.title}
               subElements={item.subElements}
-              onClick={() => openModel(item.id)}
+              onClick={handleModalOpen(item.id)}
             />
           ))}
         </>
       )}
       <Modal
-        style={{
-          content: {
-            width: "calc(100% - 12rem)",
-            zIndex: "9999",
-            height: "calc(100%)",
-            margin: "3rem 6rem 0 6rem",
-            minWidth: "1280px",
-            boxShadow: "0px 0px 6px 1px rgba(0, 0, 0, 0.14)",
-            border: "none",
-            position: "relative",
-            inset: "0",
-            padding: "2.5rem 3rem",
-          },
-          overlay: {
-            padding: "0",
-            position: "absolute",
-          },
-        }}
+        style={modalStyle}
         isOpen={isOpen}
-        onRequestClose={closeModel}
+        onRequestClose={closeModal}
         ariaHideApp={false}
       >
-        <button className="absolute z-10" onClick={closeModel}>
+        <button className="absolute z-10" onClick={closeModal}>
           <Image src={CloseImage} alt="close" />
         </button>
         <div
