@@ -7,8 +7,12 @@ import { usePathname } from "next/navigation";
 
 type NavbarOperationProps = {
   currentType: string;
+  isShort: boolean;
 };
-export const NavbarOperation = ({ currentType }: NavbarOperationProps) => {
+export const NavbarOperation = ({
+  currentType,
+  isShort,
+}: NavbarOperationProps) => {
   const currentPath = usePathname();
   const generation = currentPath.split("/")[2];
   const { data: userData } = useQuery(["user"], getMyInfo);
@@ -23,7 +27,7 @@ export const NavbarOperation = ({ currentType }: NavbarOperationProps) => {
   return (
     <CommonNavbarCell
       currentType={currentType}
-      isShort={false}
+      isShort={isShort}
       href={`/admin/${generation}`}
       short_title="관리자"
       title="관리자 페이지"
