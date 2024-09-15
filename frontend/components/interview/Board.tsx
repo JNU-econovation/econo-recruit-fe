@@ -35,7 +35,7 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
     });
   };
 
-  const { data, isLoading } = useQuery({
+  const { data, status } = useQuery({
     queryKey: ["allInterviewRecord", pageIndex, order, generation],
     queryFn: () =>
       getInterviewRecordByPageWithOrder({
@@ -45,13 +45,15 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
       }),
   });
 
-  if (!data || isLoading) {
+  if (status === "loading") {
     return <div>loading...</div>;
   }
 
-  const { records } = data;
+  if (status === "error") {
+    return <div>에러가 발생하였습니다. 잠시 후 다시 시도해보세요.</div>;
+  }
 
-  const boardData = records.map((value) => {
+  const boardData = data.records.map((value) => {
     return {
       id: value.applicantId,
       title: value.name,
