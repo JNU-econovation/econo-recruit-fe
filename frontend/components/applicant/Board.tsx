@@ -49,8 +49,6 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
 
   const { applicants } = pageUserApplications;
 
-  console.log(applicants);
-
   const boardData = applicants.map((value) => ({
     id: applicantDataFinder(value, "id"),
     title: `[${applicantDataFinder(value, "field")}] ${applicantDataFinder(
@@ -58,6 +56,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
       "name"
     )}`,
     subElements: [
+      applicantDataFinder(value, "passState"),
       applicantDataFinder(value, "field1"),
       applicantDataFinder(value, "field2"),
       `${applicantDataFinder(value, "grade")} ${applicantDataFinder(
@@ -78,8 +77,6 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
       applicants?.filter((value) => applicantDataFinder(value, "id") === id)[0]
     );
   };
-
-  console.log(userApplicationData);
 
   return (
     <Board
