@@ -1,11 +1,10 @@
 import Txt from "@/components/common/Txt.component";
 import ApplicantsList from "@/components/passState/ApplicantsList";
 import { CURRENT_GENERATION } from "@/src/constants";
+import { gridRatio } from "@/src/constants/passState";
 import { cn } from "@/src/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
-
-export const gridRatio = "grid-cols-[8fr_8fr_4fr_3fr] gap-4";
 
 interface PassStatePageProps {
   searchParams: {

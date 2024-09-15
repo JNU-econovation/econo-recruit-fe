@@ -1,6 +1,5 @@
 "use client";
 
-import { gridRatio } from "@/app/(WithNavbar)/pass-state/[generation]/page";
 import {
   Answer,
   useAllApplicantsWithPassState,
@@ -11,6 +10,7 @@ import { cn } from "@/src/utils/cn";
 import { usePathname } from "next/navigation";
 import Txt from "../common/Txt.component";
 import { getApplicantPassState } from "@/src/functions/formatter";
+import { gridRatio } from "@/src/constants/passState";
 
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
