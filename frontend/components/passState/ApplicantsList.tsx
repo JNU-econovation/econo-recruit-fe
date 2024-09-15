@@ -42,7 +42,6 @@ function sortApplicantsByField1(applicants: Answer[]) {
   };
 
   return applicants.sort((a, b) => {
-    // 먼저 passState에 따라 정렬
     if (
       passStateOrder[a.state.passState] !== passStateOrder[b.state.passState]
     ) {
@@ -50,8 +49,6 @@ function sortApplicantsByField1(applicants: Answer[]) {
         passStateOrder[a.state.passState] - passStateOrder[b.state.passState]
       );
     }
-
-    // passState가 같다면 field1에 따라 정렬
     return field1Order[a.field1] - field1Order[b.field1];
   });
 }

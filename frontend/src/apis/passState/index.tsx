@@ -18,6 +18,7 @@ interface AllApplicantReq {
   answers: Answer[];
 }
 
+// 인공지능으로 만든 목데이터. 실제 지원자가 아닙니다.
 const _mock: AllApplicantReq = {
   answers: [
     {
@@ -44,15 +45,6 @@ const _mock: AllApplicantReq = {
       field2: "AI",
       name: "송지훈",
       id: "dev021",
-      year: 28,
-      state: { passState: "final-passed" },
-    },
-    {
-      field: "개발자",
-      field1: "APP",
-      field2: "GAME",
-      name: "임수진",
-      id: "dev022",
       year: 28,
       state: { passState: "final-passed" },
     },
@@ -85,28 +77,10 @@ const _mock: AllApplicantReq = {
     },
     {
       field: "개발자",
-      field1: "APP",
-      field2: "WEB",
-      name: "송민우",
-      id: "dev010",
-      year: 28,
-      state: { passState: "final-passed" },
-    },
-    {
-      field: "개발자",
       field1: "WEB",
       field2: "AI",
       name: "이유나",
       id: "dev025",
-      year: 28,
-      state: { passState: "final-passed" },
-    },
-    {
-      field: "개발자",
-      field1: "GAME",
-      field2: "AI",
-      name: "최유진",
-      id: "dev004",
       year: 28,
       state: { passState: "final-passed" },
     },
@@ -152,24 +126,6 @@ const _mock: AllApplicantReq = {
       field2: "APP",
       name: "임지안",
       id: "dev008",
-      year: 28,
-      state: { passState: "first-passed" },
-    },
-    {
-      field: "개발자",
-      field1: "WEB",
-      field2: "AI",
-      name: "한지원",
-      id: "dev009",
-      year: 28,
-      state: { passState: "first-passed" },
-    },
-    {
-      field: "기획자",
-      field1: "WEB",
-      field2: "APP",
-      name: "서혜린",
-      id: "plan002",
       year: 28,
       state: { passState: "first-passed" },
     },
@@ -229,46 +185,10 @@ const _mock: AllApplicantReq = {
     },
     {
       field: "개발자",
-      field1: "APP",
-      field2: "WEB",
-      name: "윤소민",
-      id: "dev018",
-      year: 28,
-      state: { passState: "non-passed" },
-    },
-    {
-      field: "개발자",
-      field1: "AI",
-      field2: "GAME",
-      name: "서동현",
-      id: "dev019",
-      year: 28,
-      state: { passState: "non-passed" },
-    },
-    {
-      field: "개발자",
       field1: "GAME",
       field2: "APP",
       name: "한서영",
       id: "dev020",
-      year: 28,
-      state: { passState: "non-passed" },
-    },
-    {
-      field: "개발자",
-      field1: "WEB",
-      field2: "AI",
-      name: "정수빈",
-      id: "dev005",
-      year: 28,
-      state: { passState: "non-passed" },
-    },
-    {
-      field: "개발자",
-      field1: "APP",
-      field2: "GAME",
-      name: "강동훈",
-      id: "dev006",
       year: 28,
       state: { passState: "non-passed" },
     },
@@ -294,7 +214,7 @@ const _mock: AllApplicantReq = {
 };
 
 const getAllApplicantsPath = (generation: string) =>
-  `/page/1/year/${generation}/pass-states?order=state`;
+  `year/${generation}/applicants/pass-states?order=newest`;
 
 const getApplicantByIdWithField = ({
   applicantsId,
@@ -305,6 +225,7 @@ const getApplicantByIdWithField = ({
 }) => `/applicants/${applicantsId}/state?afterState=${afterState}`;
 
 const getAllApplicantsWithPassState = async (generation: string) => {
+  // TODO: 머지 하기 전 주석 해제 및 목데이터 삭제
   // const { data } = await https.get<AllApplicantReq>(
   //   getAllApplicantsPath(generation)
   // );
