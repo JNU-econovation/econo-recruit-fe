@@ -10,21 +10,7 @@ import { CURRENT_GENERATION } from "@/src/constants";
 import { cn } from "@/src/utils/cn";
 import { usePathname } from "next/navigation";
 import Txt from "../common/Txt.component";
-import { ApplicantPassState } from "@/src/apis/kanban";
-
-// TODO: 함수 util 등으로 빼기
-function getApplicantPassState(passState: ApplicantPassState) {
-  switch (passState) {
-    case "non-processed":
-      return "처리중";
-    case "first-passed":
-      return "1차 합격";
-    case "final-passed":
-      return "최종 합격";
-    case "non-passed":
-      return "탈락";
-  }
-}
+import { getApplicantPassState } from "@/src/functions/formatter";
 
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
