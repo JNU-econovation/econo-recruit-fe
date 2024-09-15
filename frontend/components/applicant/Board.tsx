@@ -77,7 +77,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
 
   return (
     <Board
-      wapperClassname="divide-x"
+      wrapperClassname="divide-x"
       boardData={createSearchData(true) ?? boardData}
       onClick={onClick}
     >
