@@ -8,8 +8,9 @@ import { useAtom } from "jotai";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
 import { useSearchParams } from "next/navigation";
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
-import { ORDER_MENU } from "@/src/constants";
+import { CHARACTERS, ORDER_MENU } from "@/src/constants";
 import { useSearchQuery } from "@/src/hooks/useSearchQuery";
+import { removeAll } from "@/src/functions/replacer";
 
 interface InterviewBoardProps {
   generation: string;
@@ -55,11 +56,14 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
       id: value.applicantId,
       title: value.name,
       subElements: [
-        value.field1.split('"').join(""),
-        value.field2.split('"').join(""),
-        `${value.grade.split('"').join("")} ${value.semester
-          .split('"')
-          .join("")}`,
+        removeAll(value.field1, CHARACTERS.DOUBLE_QUOTE).concat(
+          CHARACTERS.SLASH,
+          removeAll(value.field2, CHARACTERS.DOUBLE_QUOTE)
+        ),
+        removeAll(value.grade, CHARACTERS.DOUBLE_QUOTE).concat(
+          CHARACTERS.SPACE,
+          removeAll(value.semester, CHARACTERS.DOUBLE_QUOTE)
+        ),
       ],
     };
   });
