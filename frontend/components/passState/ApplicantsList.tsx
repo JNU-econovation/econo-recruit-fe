@@ -6,11 +6,9 @@ import {
   usePostApplicantPassState,
 } from "@/src/apis/passState";
 import { CURRENT_GENERATION } from "@/src/constants";
-import { cn } from "@/src/utils/cn";
 import { usePathname } from "next/navigation";
 import Txt from "../common/Txt.component";
 import { getApplicantPassState } from "@/src/functions/formatter";
-import { gridRatio } from "@/src/constants/passState";
 
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
@@ -96,7 +94,10 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
     <ul className="flex flex-col gap-4">
       {applicants.map(
         ({ state: { passState }, field, field1, field2, id, name }) => (
-          <li key={id} className={cn("grid items-center ", gridRatio)}>
+          <li
+            key={id}
+            className="grid grid-cols-[8fr_8fr_4fr_3fr] gap-4 items-center"
+          >
             <Txt typography="h6" className="text-left truncate">
               {`[${field}] ${name}`}
             </Txt>

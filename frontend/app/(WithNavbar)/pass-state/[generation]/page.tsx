@@ -1,8 +1,6 @@
 import Txt from "@/components/common/Txt.component";
 import ApplicantsList from "@/components/passState/ApplicantsList";
 import { CURRENT_GENERATION } from "@/src/constants";
-import { gridRatio } from "@/src/constants/passState";
-import { cn } from "@/src/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,7 +26,7 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
           <div className="mt-8" />
         </Link>
       )}
-      <div className={cn("grid", gridRatio)}>
+      <div className="grid grid-cols-[8fr_8fr_4fr_3fr] gap-4">
         <Txt typography="h6" className="text-left text-secondary-100">
           지원자 이름
         </Txt>
