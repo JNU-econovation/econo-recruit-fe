@@ -1,5 +1,9 @@
 import Txt from "@/components/common/Txt.component";
+import ApplicantsList from "@/components/passState/ApplicantsList";
 import { CURRENT_GENERATION } from "@/src/constants";
+import { cn } from "@/src/utils/cn";
+
+export const gridRatio = "grid-cols-[4fr_2fr_2fr_1fr] gap-4";
 
 const PassStatePage = () => {
   return (
@@ -8,42 +12,23 @@ const PassStatePage = () => {
       <Txt typography="h3">
         {CURRENT_GENERATION}기 지원자 합격 상태 관리 페이지
       </Txt>
-      <div className="mt-10" />
-      {/* main section */}
-      <section className="flex flex-col">
-        <div className="border-b mb-4">
-          <div className="flex py-4 justify-between">
-            <Txt
-              typography="h6"
-              className="flex-[1_0_0] text-left text-secondary-100"
-            >
-              Member Name
-            </Txt>
-            <Txt className="flex-[2_0_0] text-left text-secondary-100">
-              기수
-            </Txt>
-            <Txt className="w-[28.5rem] text-left text-secondary-100">
-              Status
-            </Txt>
-          </div>
-        </div>
-        {/* {userData.map((user, index) => (
-        <div className="flex py-4 justify-between" key={index}>
-        <Txt typography="h6" className="flex-[1_0_0] text-left truncate">
-        {user.name}
+      <div className="mt-8" />
+
+      <div className={cn("grid", gridRatio)}>
+        <Txt typography="h6" className="text-left text-secondary-100">
+          지원자 이름
         </Txt>
-        <Txt className="flex-[2_0_0] text-left truncate">{`${user.year}기`}</Txt>
-        <div className="flex gap-6">
-        {roleKeys.map((role, index) => (
-          <InterViewerUpdateButton role={role} user={user} key={index} />
-          ))}
-          <button onClick={() => onUserDelete(user.name, user.id)}>
-          <Icon icon="trashSquareFill" />
-          </button>
-          </div>
-          </div>
-          ))} */}
-      </section>
+        <Txt typography="h6" className="text-left text-secondary-100">
+          분야
+        </Txt>
+        <Txt typography="h6" className="text-left text-secondary-100">
+          합격 상태
+        </Txt>
+      </div>
+      <div className="mt-2" />
+      <hr />
+      <div className="mt-4" />
+      <ApplicantsList />
     </div>
   );
 };

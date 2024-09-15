@@ -71,10 +71,10 @@ const ApplicantsList = () => {
   const { answers: applicants } = allApplicants;
 
   return (
-    <ul className="flex flex-col gap-8">
+    <ul className="flex flex-col gap-4">
       {applicants.map(
         ({ state: { passState }, field, field1, field2, id, name }) => (
-          <li key={id} className={cn("grid items-center", gridRatio)}>
+          <li key={id} className={cn("grid items-center ", gridRatio)}>
             <Txt typography="h6" className="text-left truncate">
               {`[${field}] ${name}`}
             </Txt>
@@ -84,7 +84,7 @@ const ApplicantsList = () => {
             </Txt>
             <div className="flex justify-between">
               <button
-                className="border px-4 py-2 rounded-lg"
+                className="border px-4 py-2 rounded-lg hover:bg-primary-100"
                 onClick={() =>
                   onChangeapplicantsPassState(name, {
                     applicantsId: id,
@@ -95,7 +95,7 @@ const ApplicantsList = () => {
                 합격
               </button>
               <button
-                className="border px-4 py-2 rounded-lg"
+                className="border px-4 rounded-lg hover:bg-primary-100"
                 onClick={() =>
                   onChangeapplicantsPassState(name, {
                     applicantsId: id,
