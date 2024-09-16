@@ -1,6 +1,7 @@
 import { getAllInterviewerWithOrder } from "@/src/apis/interview";
 import { APPLICANT_KEYS } from "@/src/constants";
 import { https } from "@/src/functions/axios";
+import { ApplicantPassState, getKanbanCards, KanbanCardReq } from "../kanban";
 
 export interface ApplicantReq {
   name: string;
@@ -128,6 +129,17 @@ export const postApplicantLabel = async (
 
 export const getApplicantTimeTables = async (id: string) => {
   const { data } = await https.get<number[]>(`/applicants/${id}/timetables`);
+
+  return data;
+};
+
+export const patchApplicantState = async (
+  id: string,
+  afterState: "non-pass" | "pass"
+) => {
+  const { data } = await https.patch<KanbanCardReq["state"]>(
+    `/applicants/${id}/state?afterState=${afterState}`
+  );
 
   return data;
 };
