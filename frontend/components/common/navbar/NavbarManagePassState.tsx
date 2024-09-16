@@ -15,13 +15,13 @@ export const NavbarManagePassState = ({
 }: NavbarManagePassStateProps) => {
   const currentPath = usePathname();
   const generation = currentPath.split("/")[2];
-  const { data: userData } = useQuery(["user"], getMyInfo);
-  if (!userData) {
-    return <div></div>;
+  const { data: userData, isLoading } = useQuery(["user"], getMyInfo);
+  if (isLoading || !userData) {
+    return <div>Loading...</div>;
   }
 
   if (userData.role !== "ROLE_OPERATION") {
-    return <div></div>;
+    return <div>관리자만 접근이 가능합니다.</div>;
   }
 
   return (
