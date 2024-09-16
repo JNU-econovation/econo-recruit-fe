@@ -1,23 +1,104 @@
 import Txt from "@/components/common/Txt.component";
-import { ApplicantReq } from "@/src/apis/applicant";
+import {
+  ApplicantReq,
+  getApplicantState,
+  patchApplicantState,
+} from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
 import Portfolio from "./Portfolio";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import KanbanCardApplicantStatusLabel from "@/components/kanban/card/CardApplicantStatusLabel";
+import { ApplicantPassState, getAllKanbanData } from "@/src/apis/kanban";
+import { useAtomValue } from "jotai";
+import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
+import { getMyInfo } from "@/src/apis/interview";
 interface ApplicantResourceProps {
   data: ApplicantReq[];
   postId: string;
+  generation: string;
 }
 
-const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
+const ApplicantResource = ({
+  data,
+  postId,
+  generation,
+}: ApplicantResourceProps) => {
+  const navbarId = useAtomValue(KanbanSelectedButtonNumberState);
+  const searchParams = useSearchParams();
+  const applicantId = searchParams.get("applicantId");
+  const queryClient = useQueryClient();
+
+  const { data: initialState, isLoading } = useQuery(
+    ["applicantState", applicantId],
+    () => getApplicantState(navbarId, applicantId as string, generation)
+  );
+
+  const { data: myInfo } = useQuery(["user"], getMyInfo);
+
+  const [passState, setPassState] =
+    useState<ApplicantPassState>("non-processed");
+
+  const { mutate } = useMutation({
+    mutationFn: (afterState: "non-pass" | "pass") =>
+      patchApplicantState(applicantId as string, afterState),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries(["kanbanDataArray", generation]);
+      setPassState(data.passState);
+    },
+  });
+
+  const handleFailedButtonClick = () => {
+    mutate("non-pass");
+  };
+
+  const handlePassedButtonClick = () => {
+    mutate("pass");
+  };
+
+  useEffect(() => {
+    if (initialState) {
+      setPassState(initialState);
+    }
+  }, [initialState]);
+
+  if (isLoading) {
+    return <></>;
+  }
+
   return (
     <>
-      <div className="flex flex-col gap-1 mb-2">
-        <Txt className="text-xl text-secondary-200 font-medium">
-          {applicantDataFinder(data, "major")}
-        </Txt>
-        <Txt typography="h2">{`[${applicantDataFinder(
-          data,
-          "field"
-        )}] ${applicantDataFinder(data, "name")}`}</Txt>
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-1 mb-2">
+          <div className="flex justify-between items-center">
+            <Txt className="text-xl text-secondary-200 font-medium">
+              {applicantDataFinder(data, "major")}
+            </Txt>
+            <KanbanCardApplicantStatusLabel passState={passState} />
+          </div>
+          <Txt typography="h2">{`[${applicantDataFinder(
+            data,
+            "field"
+          )}] ${applicantDataFinder(data, "name")}`}</Txt>
+        </div>
+        {(myInfo?.role === "ROLE_OPERATION" ||
+          myInfo?.role === "ROLE_PRESIDENT") && (
+          <div className="flex gap-5">
+            <button
+              onClick={handleFailedButtonClick}
+              className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
+            >
+              불합격
+            </button>
+            <button
+              onClick={handlePassedButtonClick}
+              className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
+            >
+              합격
+            </button>
+          </div>
+        )}
       </div>
       <div className="flex gap-4 mb-8">
         <div className="flex gap-1">

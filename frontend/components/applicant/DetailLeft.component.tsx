@@ -24,7 +24,7 @@ const ApplicantDetailLeft = ({
 
   return (
     <>
-      <ApplicantResource data={data} postId={postId} />
+      <ApplicantResource data={data} postId={postId} generation={generation} />
       <ApplicantLabel postId={postId} generation={generation} />
       <ApplicantComment
         cardId={cardId}
