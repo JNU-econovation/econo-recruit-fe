@@ -18,7 +18,7 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
         {CURRENT_GENERATION}기 지원자 합격 상태 관리 페이지
       </Txt>
       <div className="mt-8" />
-      {sortedBy && sortedBy === "field" && (
+      {sortedBy === "field" && (
         <Link href={`/pass-state/${CURRENT_GENERATION}`}>
           <Txt typography="h5" className="text-secondary-200">
             현재 분야별로 정렬되어 있습니다. (WEB - APP - AI - GAME)
