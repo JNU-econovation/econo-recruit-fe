@@ -18,12 +18,16 @@ const Portfolio = ({ data }: PortfolioProps) => {
     .split(regex)
     .map((url: string) => url.trim());
 
+  const fileUrlForPlanner = applicantDataFinder(data, "fileUrlforPlanner")
+    .split(regex)
+    .map((url: string) => url.trim());
+
   return (
     <>
       <Txt typography="h4">포트폴리오</Txt>
       <div className="flex gap-4">
         <div className="flex-1 flex flex-col">
-          <Txt typography="h6">링크</Txt>
+          <Txt typography="h6">링크(개발자)</Txt>
           {portfolio.map((url: string, index: number) => {
             return (
               <Link href={url} target="_blank" key={index}>
@@ -42,6 +46,18 @@ const Portfolio = ({ data }: PortfolioProps) => {
             );
           })}
         </div>
+        {!!fileUrlForPlanner && (
+          <div className="flex-1 flex flex-col">
+            <Txt typography="h6">이번 학기 프로젝트 기획서</Txt>
+            {fileUrlForPlanner.map((url: string, index: number) => {
+              return (
+                <Link href={url} target="_blank" key={index}>
+                  <Txt className="break-all">{url}</Txt>
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );
