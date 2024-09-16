@@ -143,3 +143,14 @@ export const patchApplicantState = async (
 
   return data;
 };
+
+export const getApplicantState = async (
+  navigationId: string,
+  applicantId: string,
+  generation: string
+): Promise<ApplicantPassState | undefined> => {
+  const cardsData = await getKanbanCards(navigationId, generation);
+
+  return cardsData.find((card) => card.applicantId === applicantId)?.state
+    .passState;
+};
