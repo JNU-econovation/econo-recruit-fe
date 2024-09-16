@@ -119,11 +119,11 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
             <Txt
               className="text-left truncate"
               color={
-                getApplicantPassState(passState) === "최종 합격"
-                  ? "blue"
-                  : getApplicantPassState(passState) === "탈락"
+                passState === "non-passed"
                   ? "red"
-                  : "gray"
+                  : passState === "final-passed"
+                  ? "blue"
+                  : "black"
               }
             >
               {getApplicantPassState(passState)}
