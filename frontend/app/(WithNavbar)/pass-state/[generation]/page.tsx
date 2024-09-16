@@ -41,7 +41,7 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
           </Txt>
           <Image
             src={"/icons/chevron-down.svg"}
-            alt=""
+            alt="sort by field"
             width={16}
             height={16}
           />
