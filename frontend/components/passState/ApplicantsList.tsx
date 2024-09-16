@@ -86,10 +86,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
 
   const onChangeApplicantsPassState = (
     applicantName: string,
-    params: {
-      applicantsId: string;
-      afterState: "pass" | "non-pass";
-    }
+    params: PostApplicantPassStateParams
   ) => {
     const ok = confirm(
       `${applicantName}님을 ${params.afterState} 처리하시겠습니까?`
@@ -98,8 +95,10 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
     updateApplicantPassState(params);
   };
 
-  let applicants = allApplicants;
-  if (sortedBy === "field") applicants = sortApplicantsByField1(applicants);
+  const applicants =
+    sortedBy === "field"
+      ? sortApplicantsByField1(allApplicants)
+      : allApplicants;
 
   return (
     <ul className="flex flex-col gap-4">

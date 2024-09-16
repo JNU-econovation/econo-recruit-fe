@@ -206,14 +206,6 @@ const _mock: Answer[] = [
   },
 ];
 
-export const getApplicantByIdWithField = ({
-  applicantsId,
-  afterState,
-}: {
-  applicantsId: string;
-  afterState: "non-pass" | "pass";
-}) => `/applicants/${applicantsId}/state?afterState=${afterState}`;
-
 export const getAllApplicantsWithPassState = async (generation: string) => {
   // TODO: 머지 하기 전 주석 해제 및 목데이터 삭제
   // const { data } = await https.get<Answer[]>(
@@ -233,5 +225,7 @@ export const postApplicantPassState = async ({
   afterState,
   applicantsId,
 }: PostApplicantPassStateParams) => {
-  await https.post(getApplicantByIdWithField({ applicantsId, afterState }));
+  await https.post(
+    `/applicants/${applicantsId}/state?afterState=${afterState}`
+  );
 };
