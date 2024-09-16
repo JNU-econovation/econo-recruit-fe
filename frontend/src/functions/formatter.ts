@@ -27,14 +27,12 @@ export const scoreObjectToList = (scores: Score[]) => {
 };
 
 export function getApplicantPassState(passState: ApplicantPassState) {
-  switch (passState) {
-    case "non-processed":
-      return "처리중";
-    case "first-passed":
-      return "1차 합격";
-    case "final-passed":
-      return "최종 합격";
-    case "non-passed":
-      return "탈락";
-  }
+  const passStateMap = {
+    "non-processed": "처리중",
+    "first-passed": "1차 합격",
+    "final-passed": "최종 합격",
+    "non-passed": "탈락",
+  };
+
+  return passStateMap[passState];
 }
