@@ -73,7 +73,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
     }
   }
 
-  const onChangeapplicantsPassState = (
+  const onChangeApplicantsPassState = (
     applicantName: string,
     params: {
       applicantsId: string;
@@ -121,7 +121,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
               <button
                 className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100"
                 onClick={() =>
-                  onChangeapplicantsPassState(name, {
+                  onChangeApplicantsPassState(name, {
                     applicantsId: id,
                     afterState: "pass",
                   })
@@ -132,7 +132,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
               <button
                 className="border px-4 rounded-lg truncate hover:bg-primary-100"
                 onClick={() =>
-                  onChangeapplicantsPassState(name, {
+                  onChangeApplicantsPassState(name, {
                     applicantsId: id,
                     afterState: "non-pass",
                   })
