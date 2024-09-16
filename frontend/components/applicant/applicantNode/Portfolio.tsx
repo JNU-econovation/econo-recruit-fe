@@ -27,7 +27,7 @@ const Portfolio = ({ data }: PortfolioProps) => {
       <Txt typography="h4">포트폴리오</Txt>
       <div className="flex gap-4">
         <div className="flex-1 flex flex-col">
-          <Txt typography="h6">링크(개발자)</Txt>
+          <Txt typography="h6">링크</Txt>
           {portfolio.map((url: string, index: number) => {
             return (
               <Link href={url} target="_blank" key={index}>
