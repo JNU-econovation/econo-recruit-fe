@@ -50,6 +50,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
   } = useAllApplicantsWithPassState({
     generation: `${CURRENT_GENERATION}`,
   });
+
   const { mutate: updateApplicantPassState } = usePostApplicantPassState({
     generation: `${CURRENT_GENERATION}`,
   });
@@ -86,8 +87,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
     updateApplicantPassState(params);
   };
 
-  let { answers: applicants } = allApplicants;
-
+  let applicants = allApplicants;
   if (sortedBy === "field") applicants = sortApplicantsByField1(applicants);
 
   return (
