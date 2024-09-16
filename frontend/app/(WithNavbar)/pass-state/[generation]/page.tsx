@@ -31,9 +31,9 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
           지원자 이름
         </Txt>
         <Link
-          href={`/pass-state/${CURRENT_GENERATION}${
-            sortedBy ? "" : "?sortedBy=field"
-          }`}
+          href={`/pass-state/${CURRENT_GENERATION}?${new URLSearchParams(
+            "sortedBy=field"
+          )}`}
           className="text-start flex justify-between pr-4 items-center"
         >
           <Txt typography="h6" className="text-left text-secondary-100">
