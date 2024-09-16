@@ -207,7 +207,7 @@ const _mock: Answer[] = [
   },
 ];
 
-const getApplicantByIdWithField = ({
+export const getApplicantByIdWithField = ({
   applicantsId,
   afterState,
 }: {
@@ -215,7 +215,7 @@ const getApplicantByIdWithField = ({
   afterState: "non-pass" | "pass";
 }) => `/applicants/${applicantsId}/state?afterState=${afterState}`;
 
-const getAllApplicantsWithPassState = async (generation: string) => {
+export const getAllApplicantsWithPassState = async (generation: string) => {
   // TODO: 머지 하기 전 주석 해제 및 목데이터 삭제
   // const { data } = await https.get<Answer[]>(
   //   `year/${generation}/applicants/pass-states?order=newest`
@@ -226,48 +226,13 @@ const getAllApplicantsWithPassState = async (generation: string) => {
   return data;
 };
 
-const postApplicantPassState = async ({
+export interface PostApplicantPassStateParams {
+  applicantsId: string;
+  afterState: "non-pass" | "pass";
+}
+export const postApplicantPassState = async ({
   afterState,
   applicantsId,
-}: {
-  applicantsId: string;
-  afterState: "non-pass" | "pass";
-}) => {
+}: PostApplicantPassStateParams) => {
   await https.post(getApplicantByIdWithField({ applicantsId, afterState }));
-};
-
-interface useAllApplicantsWithPassStateParams {
-  generation: string;
-}
-export const useAllApplicantsWithPassState = ({
-  generation,
-}: useAllApplicantsWithPassStateParams) => {
-  return useQuery(
-    ["allApplicantsWithPassState", generation],
-    () => getAllApplicantsWithPassState(generation),
-    {
-      enabled: !!generation,
-    }
-  );
-};
-
-interface usePostApplicantPassStateParams {
-  applicantsId: string;
-  afterState: "non-pass" | "pass";
-}
-export const usePostApplicantPassState = ({
-  generation,
-}: {
-  generation: string;
-}) => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (params: usePostApplicantPassStateParams) =>
-      postApplicantPassState(params),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["allApplicantsWithPassState", generation],
-      });
-    },
-  });
 };

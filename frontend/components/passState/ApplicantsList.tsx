@@ -1,14 +1,18 @@
 "use client";
 
 import {
-  Answer,
-  useAllApplicantsWithPassState,
-  usePostApplicantPassState,
+  getAllApplicantsWithPassState,
+  postApplicantPassState,
 } from "@/src/apis/passState";
 import { CURRENT_GENERATION } from "@/src/constants";
 import { usePathname } from "next/navigation";
 import Txt from "../common/Txt.component";
 import { getApplicantPassState } from "@/src/functions/formatter";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import type {
+  PostApplicantPassStateParams,
+  Answer,
+} from "@/src/apis/passState";
 
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
@@ -42,17 +46,24 @@ interface ApplicantsListProps {
 }
 const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
   const selectedGeneration = usePathname().split("/")[2];
+  const queryClient = useQueryClient();
 
   const {
     data: allApplicants,
     isLoading,
     isError,
-  } = useAllApplicantsWithPassState({
-    generation: `${CURRENT_GENERATION}`,
-  });
+  } = useQuery(["allApplicantsWithPassState", selectedGeneration], () =>
+    getAllApplicantsWithPassState(selectedGeneration)
+  );
 
-  const { mutate: updateApplicantPassState } = usePostApplicantPassState({
-    generation: `${CURRENT_GENERATION}`,
+  const { mutate: updateApplicantPassState } = useMutation({
+    mutationFn: (params: PostApplicantPassStateParams) =>
+      postApplicantPassState(params),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["allApplicantsWithPassState", selectedGeneration],
+      });
+    },
   });
 
   {
