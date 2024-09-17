@@ -32,7 +32,7 @@ const ApplicantResource = ({
 
   const { data: initialState, isLoading } = useQuery(
     ["applicantState", applicantId],
-    () => getApplicantState(navbarId, applicantId as string, generation)
+    () => getApplicantState(navbarId, `${applicantId}`, generation)
   );
 
   const { data: myInfo } = useQuery(["user"], getMyInfo);
@@ -42,7 +42,7 @@ const ApplicantResource = ({
 
   const { mutate } = useMutation({
     mutationFn: (afterState: "non-pass" | "pass") =>
-      patchApplicantState(applicantId as string, afterState),
+      patchApplicantState(`${applicantId}`, afterState),
     onSuccess: (data) => {
       queryClient.invalidateQueries(["kanbanDataArray", generation]);
       setPassState(data.passState);
