@@ -71,7 +71,7 @@ const ApplicantResource = ({
   }, [initialState]);
 
   if (!initialState || isLoading || !myInfo || myInfoLoading) {
-    return <></>;
+    return <div>로딩중...</div>;
   }
 
   if (isError || myInfoError) {
