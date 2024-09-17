@@ -133,22 +133,28 @@ export const getApplicantTimeTables = async (id: string) => {
   return data;
 };
 
+interface patchApplicantStateRes {
+  passState: ApplicantPassState;
+}
+
 export const patchApplicantState = async (
   id: string,
   afterState: "non-pass" | "pass"
 ) => {
-  const { data } = await https.patch<KanbanCardReq["state"]>(
+  const { data } = await https.patch<patchApplicantStateRes>(
     `/applicants/${id}/state?afterState=${afterState}`
   );
 
   return data;
 };
 
+type getApplicantStateRes = ApplicantPassState | undefined;
+
 export const getApplicantState = async (
   navigationId: string,
   applicantId: string,
   generation: string
-): Promise<ApplicantPassState | undefined> => {
+): Promise<getApplicantStateRes> => {
   const cardsData = await getKanbanCards(navigationId, generation);
 
   return cardsData.find((card) => card.applicantId === applicantId)?.state
