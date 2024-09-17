@@ -35,7 +35,10 @@ const ApplicantResource = ({
     () => getApplicantState(navbarId, `${applicantId}`, generation)
   );
 
-  const { data: myInfo } = useQuery(["user"], getMyInfo);
+  const { data: myInfo, isLoading: myInfoLoading } = useQuery(
+    ["user"],
+    getMyInfo
+  );
 
   const [passState, setPassState] =
     useState<ApplicantPassState>("non-processed");
@@ -63,7 +66,7 @@ const ApplicantResource = ({
     }
   }, [initialState]);
 
-  if (isLoading) {
+  if (!initialState || isLoading || !myInfo || myInfoLoading) {
     return <></>;
   }
 
