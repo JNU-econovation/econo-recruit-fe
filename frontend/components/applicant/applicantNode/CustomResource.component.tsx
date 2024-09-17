@@ -30,15 +30,19 @@ const ApplicantResource = ({
   const applicantId = searchParams.get("applicantId");
   const queryClient = useQueryClient();
 
-  const { data: initialState, isLoading } = useQuery(
-    ["applicantState", applicantId],
-    () => getApplicantState(navbarId, `${applicantId}`, generation)
+  const {
+    data: initialState,
+    isLoading,
+    isError,
+  } = useQuery(["applicantState", applicantId], () =>
+    getApplicantState(navbarId, `${applicantId}`, generation)
   );
 
-  const { data: myInfo, isLoading: myInfoLoading } = useQuery(
-    ["user"],
-    getMyInfo
-  );
+  const {
+    data: myInfo,
+    isLoading: myInfoLoading,
+    isError: myInfoError,
+  } = useQuery(["user"], getMyInfo);
 
   const [passState, setPassState] =
     useState<ApplicantPassState>("non-processed");
@@ -68,6 +72,10 @@ const ApplicantResource = ({
 
   if (!initialState || isLoading || !myInfo || myInfoLoading) {
     return <></>;
+  }
+
+  if (isError || myInfoError) {
+    return <div>에러 발생</div>;
   }
 
   return (
