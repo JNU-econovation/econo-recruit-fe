@@ -49,11 +49,11 @@ const ApplicantResource = ({
     },
   });
 
-  const handleFailedButtonClick = () => {
+  const onFailedButtonClick = () => {
     mutate("non-pass");
   };
 
-  const handlePassedButtonClick = () => {
+  const onPassedButtonClick = () => {
     mutate("pass");
   };
 
@@ -86,13 +86,13 @@ const ApplicantResource = ({
           myInfo?.role === "ROLE_PRESIDENT") && (
           <div className="flex gap-5">
             <button
-              onClick={handleFailedButtonClick}
+              onClick={onFailedButtonClick}
               className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
             >
               불합격
             </button>
             <button
-              onClick={handlePassedButtonClick}
+              onClick={onPassedButtonClick}
               className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
             >
               합격
