@@ -94,8 +94,8 @@ const ApplicantResource = ({
             "field"
           )}] ${applicantDataFinder(data, "name")}`}</Txt>
         </div>
-        {(myInfo?.role === "ROLE_OPERATION" ||
-          myInfo?.role === "ROLE_PRESIDENT") && (
+        {(myInfo.role === "ROLE_OPERATION" ||
+          myInfo.role === "ROLE_PRESIDENT") && (
           <div className="flex gap-5">
             <button
               onClick={onFailedButtonClick}
