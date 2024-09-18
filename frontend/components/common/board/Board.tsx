@@ -1,8 +1,6 @@
 "use client";
 
-import { PropsWithChildren, useState } from "react";
-import BoardCell from "./BoardCell.component";
-import Txt from "../Txt.component";
+import { PropsWithChildren } from "react";
 import useModalState from "../../../src/hooks/useModalState";
 import BoardModal from "./BoardModal";
 import BoardTable from "./BoardTable";
