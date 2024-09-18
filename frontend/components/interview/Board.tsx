@@ -8,8 +8,9 @@ import { useAtom } from "jotai";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
 import { useSearchParams } from "next/navigation";
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
-import { ORDER_MENU } from "@/src/constants";
+import { CHARACTERS, ORDER_MENU } from "@/src/constants";
 import { useSearchQuery } from "@/src/hooks/useSearchQuery";
+import { removeAll } from "@/src/functions/replacer";
 
 interface InterviewBoardProps {
   generation: string;
@@ -34,7 +35,7 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
     });
   };
 
-  const { data, isLoading } = useQuery({
+  const { data, status } = useQuery({
     queryKey: ["allInterviewRecord", pageIndex, order, generation],
     queryFn: () =>
       getInterviewRecordByPageWithOrder({
@@ -44,29 +45,35 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
       }),
   });
 
-  if (!data || isLoading) {
+  if (status === "loading") {
     return <div>loading...</div>;
   }
 
-  const { records } = data;
+  if (status === "error") {
+    return <div>에러가 발생하였습니다. 잠시 후 다시 시도해보세요.</div>;
+  }
 
-  const boardData = records.map((value) => {
+  const boardData = data.records.map((value) => {
     return {
       id: value.applicantId,
       title: value.name,
       subElements: [
-        value.field1.split('"').join(""),
-        value.field2.split('"').join(""),
-        `${value.grade.split('"').join("")} ${value.semester
-          .split('"')
-          .join("")}`,
+        removeAll(value.field1, CHARACTERS.DOUBLE_QUOTE).concat(
+          CHARACTERS.SLASH,
+          removeAll(value.field2, CHARACTERS.DOUBLE_QUOTE)
+        ),
+        removeAll(value.grade, CHARACTERS.DOUBLE_QUOTE).concat(
+          CHARACTERS.SPACE,
+          removeAll(value.semester, CHARACTERS.DOUBLE_QUOTE)
+        ),
       ],
+      passState: value.state.passState,
     };
   });
 
   return (
     <Board
-      wapperClassname="divide-x"
+      wrapperClassName="divide-x"
       boardData={createSearchData() ?? boardData}
       onClick={(id) => onClick(id)}
     >

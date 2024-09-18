@@ -39,3 +39,6 @@ export const replacer = (value: string, type: ReplacerType) => {
 
 export const replaceTwoString = (original: number, by: string = "0") =>
   original.toString().padStart(2, by);
+
+export const removeAll = (str: string, pattern: string | RegExp) =>
+  str.replaceAll(pattern, "");

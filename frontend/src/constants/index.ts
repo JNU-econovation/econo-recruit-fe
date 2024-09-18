@@ -177,3 +177,9 @@ export const needValidatePath = [
 ];
 
 export const MAX_TEXT_LENGTH = 1000;
+
+export const CHARACTERS = {
+  DOUBLE_QUOTE: '"',
+  SLASH: "/",
+  SPACE: " ",
+};
