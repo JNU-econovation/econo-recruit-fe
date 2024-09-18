@@ -67,6 +67,7 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
           removeAll(value.semester, CHARACTERS.DOUBLE_QUOTE)
         ),
       ],
+      passState: value.state.passState,
     };
   });
 

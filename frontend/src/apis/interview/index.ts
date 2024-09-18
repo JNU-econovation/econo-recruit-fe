@@ -1,5 +1,6 @@
 import { https } from "@/src/functions/axios";
 import { PageInfo } from "../applicant";
+import { type ApplicantPassState } from "../kanban";
 
 export interface RecordsRes {
   applicantId: string;
@@ -12,6 +13,10 @@ export interface RecordsRes {
   grade: string;
   semester: string;
   modifiedAt: string;
+  // TODO: 더 범용적이고 재사용 가능하게 타입 선언이 필요함.
+  state: {
+    passState: ApplicantPassState;
+  };
 }
 
 interface RecordsByPageRes {
