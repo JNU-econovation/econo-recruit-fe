@@ -2,18 +2,18 @@ import Txt from "@/components/common/Txt.component";
 import {
   ApplicantReq,
   getApplicantState,
+  getApplicantStateRes,
   patchApplicantState,
 } from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
 import Portfolio from "./Portfolio";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import KanbanCardApplicantStatusLabel from "@/components/kanban/card/CardApplicantStatusLabel";
-import { ApplicantPassState } from "@/src/apis/kanban";
 import { useAtomValue } from "jotai";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import { getMyInfo } from "@/src/apis/interview";
+
 interface ApplicantResourceProps {
   data: ApplicantReq[];
   postId: string;
@@ -43,17 +43,36 @@ const ApplicantResource = ({
     data: myInfo,
     isLoading: myInfoLoading,
     isError: myInfoError,
-  } = useQuery(["user"], getMyInfo);
-
-  const [passState, setPassState] =
-    useState<ApplicantPassState>("non-processed");
-
+  } = useQuery({
+    queryKey: ["user"],
+    queryFn: getMyInfo,
+  });
   const { mutate } = useMutation({
     mutationFn: (afterState: "non-pass" | "pass") =>
       patchApplicantState(`${applicantId}`, afterState),
-    onSuccess: (data) => {
+    onMutate: async () => {
+      await queryClient.cancelQueries([
+        "applicantState",
+        applicantId,
+        navbarId,
+      ]);
+
+      const snapshotState = queryClient.getQueryData<getApplicantStateRes>([
+        "applicantState",
+        applicantId,
+        navbarId,
+      ]);
+
+      return { snapshotState };
+    },
+    onSuccess: () => {
       queryClient.invalidateQueries(["kanbanDataArray", generation]);
-      setPassState(data.passState);
+    },
+    onError: (error, variables, context) => {
+      window.alert("상태 변경에 실패했습니다.");
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(["applicantState", applicantId, navbarId]);
     },
   });
 
@@ -64,12 +83,6 @@ const ApplicantResource = ({
   const onPassedButtonClick = () => {
     mutate("pass");
   };
-
-  useEffect(() => {
-    if (initialState) {
-      setPassState(initialState);
-    }
-  }, [initialState]);
 
   if (!initialState || isLoading || !myInfo || myInfoLoading) {
     return <div>로딩중...</div>;
@@ -87,7 +100,7 @@ const ApplicantResource = ({
             <Txt className="text-xl text-secondary-200 font-medium">
               {applicantDataFinder(data, "major")}
             </Txt>
-            <KanbanCardApplicantStatusLabel passState={passState} />
+            <KanbanCardApplicantStatusLabel passState={initialState} />
           </div>
           <Txt typography="h2">{`[${applicantDataFinder(
             data,

@@ -148,7 +148,7 @@ export const patchApplicantState = async (
   return data;
 };
 
-type getApplicantStateRes = ApplicantPassState | undefined;
+export type getApplicantStateRes = ApplicantPassState | undefined;
 
 export const getApplicantState = async (
   navigationId: string,
