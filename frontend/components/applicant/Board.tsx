@@ -56,7 +56,6 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
       "name"
     )}`,
     subElements: [
-      applicantDataFinder(value, "passState"),
       applicantDataFinder(value, "field1"),
       applicantDataFinder(value, "field2"),
       `${applicantDataFinder(value, "grade")} ${applicantDataFinder(

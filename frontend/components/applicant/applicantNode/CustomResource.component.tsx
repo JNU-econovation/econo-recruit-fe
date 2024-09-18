@@ -2,6 +2,7 @@ import Txt from "@/components/common/Txt.component";
 import { ApplicantReq } from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
 import Portfolio from "./Portfolio";
+import { getApplicantPassState } from "@/src/functions/formatter";
 interface ApplicantResourceProps {
   data: ApplicantReq[];
   postId: string;
@@ -14,10 +15,15 @@ const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
         <Txt className="text-xl text-secondary-200 font-medium">
           {applicantDataFinder(data, "major")}
         </Txt>
-        <Txt typography="h2">{`[${applicantDataFinder(
-          data,
-          "field"
-        )}] ${applicantDataFinder(data, "name")}`}</Txt>
+        <div className="flex gap-8 items-center">
+          <Txt typography="h2">{`[${applicantDataFinder(
+            data,
+            "field"
+          )}] ${applicantDataFinder(data, "name")}`}</Txt>
+          <Txt typography="h5" color="light_gray">
+            {getApplicantPassState(applicantDataFinder(data, "passState"))}
+          </Txt>
+        </div>
       </div>
       <div className="flex gap-4 mb-8">
         <div className="flex gap-1">
