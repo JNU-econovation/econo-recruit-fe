@@ -18,6 +18,7 @@ export const useSearchQuery = (pageIndex: string) => {
 
   const searchEndPage = search?.endPage;
 
+  // TODO: Search는 대대적인 개편이 들어갈 예정이라, 따로 passState에 대한 처리를 하지 않음.
   const createSearchData = (isIncludeUploadDate = false) => {
     return search?.answers?.map((value) => {
       const searchInterviewData = {
