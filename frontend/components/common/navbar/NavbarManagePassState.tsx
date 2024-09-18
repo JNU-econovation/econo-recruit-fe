@@ -5,34 +5,34 @@ import CommonNavbarCell from "./NavbarCell";
 import { getMyInfo } from "@/src/apis/interview";
 import { usePathname } from "next/navigation";
 
-type NavbarOperationProps = {
-  currentType: string;
+type NavbarManagePassStateProps = {
   isShort: boolean;
+  currentType: string;
 };
-export const NavbarOperation = ({
+export const NavbarManagePassState = ({
   currentType,
   isShort,
-}: NavbarOperationProps) => {
+}: NavbarManagePassStateProps) => {
   const currentPath = usePathname();
   const generation = currentPath.split("/")[2];
-  const { data: userData } = useQuery(["user"], getMyInfo);
-  if (!userData) {
-    return <div></div>;
+  const { data: userData, isLoading } = useQuery(["user"], getMyInfo);
+  if (isLoading || !userData) {
+    return <div>Loading...</div>;
   }
 
   if (userData.role !== "ROLE_OPERATION") {
-    return <div></div>;
+    return <div>관리자만 접근이 가능합니다.</div>;
   }
 
   return (
     <CommonNavbarCell
       currentType={currentType}
       isShort={isShort}
-      href={`/admin/${generation}`}
-      short_title="관리자"
-      title="관리자 페이지"
+      href={`/pass-state/${generation}`}
+      short_title="합/불 관리"
+      title="합/불 상태 관리"
       target="_self"
-      type="admin"
+      type="pass-state"
     />
   );
 };

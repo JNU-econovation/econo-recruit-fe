@@ -43,7 +43,8 @@ export interface NavbarItem {
     | "applicant"
     | "sharepoint"
     | "admin"
-    | "toggle";
+    | "toggle"
+    | "pass-state";
   target?: "_blank" | "_self" | "_parent" | "_top";
   href: string;
 }
@@ -74,13 +75,13 @@ export const MainNavbar = (generation: number): NavbarItem[] => [
     type: "applicant",
     href: `/applicant/${generation}`,
   },
-  {
-    title: "신입모집 쉐어 포인트",
-    short_title: "쉐어포인트",
-    type: "sharepoint",
-    target: "_blank",
-    href: "https://ejnu.sharepoint.com/sites/msteams_bbf640/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Fmsteams_bbf640%2FShared%20Documents%2F2023%EB%85%84%2F1%ED%95%99%EA%B8%B0%2F%EC%8B%A0%EC%9E%85%EB%AA%A8%EC%A7%91&p=true&ga=1",
-  },
+  // {
+  //   title: "신입모집 쉐어 포인트",
+  //   short_title: "쉐어포인트",
+  //   type: "sharepoint",
+  //   target: "_blank",
+  //   href: "https://ejnu.sharepoint.com/sites/msteams_bbf640/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Fmsteams_bbf640%2FShared%20Documents%2F2023%EB%85%84%2F1%ED%95%99%EA%B8%B0%2F%EC%8B%A0%EC%9E%85%EB%AA%A8%EC%A7%91&p=true&ga=1",
+  // },
 ];
 
 export const APPLICANT_KEYS = [

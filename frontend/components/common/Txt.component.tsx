@@ -18,6 +18,7 @@ const colorType = {
   white: "text-white",
   blue: "text-primary",
   light_gray: "text-secondary-200",
+  red: "text-error",
 };
 
 interface TxtProps extends PropsWithChildren {

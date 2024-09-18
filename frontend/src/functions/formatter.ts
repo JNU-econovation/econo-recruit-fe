@@ -1,3 +1,4 @@
+import { ApplicantPassState } from "../apis/kanban";
 import { Score, ScoreKeyword } from "../constants/applicant/28";
 
 export const scoreListToObject = (
@@ -24,3 +25,14 @@ export const scoreObjectToList = (scores: Score[]) => {
     []
   );
 };
+
+export function getApplicantPassState(passState: ApplicantPassState) {
+  const passStateMap = {
+    "non-processed": "처리중",
+    "first-passed": "1차 합격",
+    "final-passed": "최종 합격",
+    "non-passed": "탈락",
+  };
+
+  return passStateMap[passState];
+}

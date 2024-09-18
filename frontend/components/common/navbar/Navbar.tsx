@@ -6,6 +6,7 @@ import { NavbarOperation } from "./NavbarOperation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NavbarGenerationToggle } from "./NavbarGenerationToggle";
+import { NavbarManagePassState } from "./NavbarManagePassState";
 
 const CommonNavbar = () => {
   const [_, currentType, generation] = usePathname().split("/");
@@ -31,7 +32,8 @@ const CommonNavbar = () => {
           />
         ))}
         <NavbarGenerationToggle generation={generation} isShort={isShort} />
-        <NavbarOperation currentType={currentType} />
+        <NavbarManagePassState currentType={currentType} isShort={isShort} />
+        <NavbarOperation currentType={currentType} isShort={isShort} />
       </div>
       <NavbarUserInfo />
     </nav>
