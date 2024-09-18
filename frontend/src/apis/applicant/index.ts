@@ -147,16 +147,3 @@ export const patchApplicantState = async (
 
   return data;
 };
-
-export type getApplicantStateRes = ApplicantPassState | undefined;
-
-export const getApplicantState = async (
-  navigationId: string,
-  applicantId: string,
-  generation: string
-): Promise<getApplicantStateRes> => {
-  const cardsData = await getKanbanCards(navigationId, generation);
-
-  return cardsData.find((card) => card.applicantId === applicantId)?.state
-    .passState;
-};

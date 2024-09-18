@@ -1,10 +1,5 @@
 import Txt from "@/components/common/Txt.component";
-import {
-  ApplicantReq,
-  getApplicantState,
-  getApplicantStateRes,
-  patchApplicantState,
-} from "@/src/apis/applicant";
+import { ApplicantReq, patchApplicantState } from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
 import Portfolio from "./Portfolio";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -13,6 +8,8 @@ import KanbanCardApplicantStatusLabel from "@/components/kanban/card/CardApplica
 import { useAtomValue } from "jotai";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import { getMyInfo } from "@/src/apis/interview";
+import { findApplicantState } from "@/src/utils/applicant";
+import { ApplicantPassState, getKanbanCards } from "@/src/apis/kanban";
 
 interface ApplicantResourceProps {
   data: ApplicantReq[];
@@ -36,7 +33,12 @@ const ApplicantResource = ({
     isError,
   } = useQuery({
     queryKey: ["applicantState", applicantId, navbarId],
-    queryFn: () => getApplicantState(navbarId, `${applicantId}`, generation),
+    queryFn: async () =>
+      findApplicantState(
+        await getKanbanCards(navbarId, generation),
+        `${applicantId}`
+      ),
+    staleTime: 3000,
   });
 
   const {
@@ -57,7 +59,7 @@ const ApplicantResource = ({
         navbarId,
       ]);
 
-      const snapshotState = queryClient.getQueryData<getApplicantStateRes>([
+      const snapshotState = queryClient.getQueryData<ApplicantPassState>([
         "applicantState",
         applicantId,
         navbarId,
