@@ -18,6 +18,7 @@ const BoardTable = ({ boardRows, handleModalOpen }: BoardTableProps) => {
               key={item.id}
               title={item.title}
               subElements={item.subElements}
+              passState={item.passState}
               onClick={handleModalOpen(item.id)}
             />
           ))}

@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { ORDER_MENU } from "@/src/constants";
 import { useSearchQuery } from "@/src/hooks/useSearchQuery";
+import { type ApplicantPassState } from "../../src/apis/kanban";
 
 interface ApplicantBoardProps {
   generation: string;
@@ -59,7 +60,6 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
       "name"
     )}`,
     subElements: [
-      `${applicantDataFinder(value, "passState").passState}`,
       `${applicantDataFinder(value, "field1")}/${applicantDataFinder(
         value,
         "field2"
@@ -74,6 +74,9 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
             Number(applicantDataFinder(value, "uploadDate"))
           ).toLocaleString("ko-KR", { dateStyle: "short" }),
     ],
+    passState: `${
+      applicantDataFinder(value, "passState").passState
+    }` as ApplicantPassState,
   }));
 
   return (
