@@ -13,13 +13,13 @@ const BoardTable = ({ boardRows, handleModalOpen }: BoardTableProps) => {
         <Txt>검색결과가 없습니다.</Txt>
       ) : (
         <>
-          {boardRows.map((item) => (
+          {boardRows.map(({ id, title, subElements, passState }) => (
             <BoardCell
-              key={item.id}
-              title={item.title}
-              subElements={item.subElements}
-              passState={item.passState}
-              onClick={handleModalOpen(item.id)}
+              key={id}
+              title={title}
+              subElements={subElements}
+              passState={passState}
+              onClick={handleModalOpen(id)}
             />
           ))}
         </>
