@@ -3,11 +3,12 @@ import { ApplicantReq } from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
 import Portfolio from "./Portfolio";
 import { getApplicantPassState } from "@/src/functions/formatter";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   postApplicantPassState,
   PostApplicantPassStateParams,
 } from "@/src/apis/passState";
+import { getMyInfo } from "@/src/apis/interview";
 interface ApplicantResourceProps {
   data: ApplicantReq[];
   postId: string;
@@ -27,6 +28,7 @@ const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
       });
     },
   });
+  const { data: userData, isLoading } = useQuery(["user"], getMyInfo);
 
   return (
     <>
@@ -44,31 +46,32 @@ const ApplicantResource = ({ data, postId }: ApplicantResourceProps) => {
               {getApplicantPassState(applicantDataFinder(data, "passState")) ||
                 "에러 발생"}
             </Txt>
-
-            <div className="flex gap-4">
-              <button
-                className="border rounded-lg px-4 py-2 truncate"
-                onClick={() => {
-                  updateApplicantPassState({
-                    applicantsId: applicantDataFinder(data, "id"),
-                    afterState: "pass",
-                  });
-                }}
-              >
-                합격
-              </button>
-              <button
-                className="border rounded-lg px-4 py-2 truncate"
-                onClick={() => {
-                  updateApplicantPassState({
-                    applicantsId: applicantDataFinder(data, "id"),
-                    afterState: "non-pass",
-                  });
-                }}
-              >
-                불합격
-              </button>
-            </div>
+            {userData?.role === "ROLE_OPERATION" && (
+              <div className="flex gap-4">
+                <button
+                  className="border rounded-lg px-4 py-2 truncate"
+                  onClick={() => {
+                    updateApplicantPassState({
+                      applicantsId: applicantDataFinder(data, "id"),
+                      afterState: "pass",
+                    });
+                  }}
+                >
+                  합격
+                </button>
+                <button
+                  className="border rounded-lg px-4 py-2 truncate"
+                  onClick={() => {
+                    updateApplicantPassState({
+                      applicantsId: applicantDataFinder(data, "id"),
+                      afterState: "non-pass",
+                    });
+                  }}
+                >
+                  불합격
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
