@@ -1,6 +1,6 @@
 "use client";
 
-import { PropsWithChildren } from "react";
+import { type PropsWithChildren } from "react";
 import useModalState from "../../../src/hooks/useModalState";
 import BoardModal from "./BoardModal";
 import BoardTable from "./BoardTable";
