@@ -59,6 +59,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
       "name"
     )}`,
     subElements: [
+      `${applicantDataFinder(value, "passState").passState}`,
       `${applicantDataFinder(value, "field1")}/${applicantDataFinder(
         value,
         "field2"
