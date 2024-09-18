@@ -10,7 +10,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import KanbanCardApplicantStatusLabel from "@/components/kanban/card/CardApplicantStatusLabel";
-import { ApplicantPassState, getAllKanbanData } from "@/src/apis/kanban";
+import { ApplicantPassState } from "@/src/apis/kanban";
 import { useAtomValue } from "jotai";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import { getMyInfo } from "@/src/apis/interview";
