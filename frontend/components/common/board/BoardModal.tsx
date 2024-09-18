@@ -23,11 +23,11 @@ const modalStyle = {
 } as const;
 
 interface BoardModalProps extends Modal.Props {
-  wrapperClassname?: string;
+  wrapperClassName?: string;
 }
 
 const BoardModal = ({
-  wrapperClassname,
+  wrapperClassName,
   style,
   children,
   ...props
@@ -40,7 +40,7 @@ const BoardModal = ({
       <div
         className={cn(
           "flex pt-8 absolute h-[calc(100%-6rem)] w-[calc(100%-6rem)]",
-          wrapperClassname
+          wrapperClassName
         )}
       >
         {children}

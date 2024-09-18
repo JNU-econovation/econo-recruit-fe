@@ -73,7 +73,7 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
 
   return (
     <Board
-      wrapperClassname="divide-x"
+      wrapperClassName="divide-x"
       boardData={createSearchData() ?? boardData}
       onClick={(id) => onClick(id)}
     >

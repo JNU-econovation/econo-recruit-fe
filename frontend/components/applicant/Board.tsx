@@ -81,7 +81,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
 
   return (
     <Board
-      wrapperClassname="divide-x"
+      wrapperClassName="divide-x"
       boardData={createSearchData(true) ?? boardData}
       onClick={onClick}
     >

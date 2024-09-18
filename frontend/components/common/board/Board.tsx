@@ -16,14 +16,14 @@ export interface BoardData {
 
 interface BoardProps extends PropsWithChildren {
   onClick?: (id: string) => void;
-  wrapperClassname?: string;
+  wrapperClassName?: string;
   boardData: BoardData[];
 }
 
 const Board = ({
   children,
   onClick,
-  wrapperClassname,
+  wrapperClassName,
   boardData,
 }: BoardProps) => {
   const { isOpen, openModal, closeModal } = useModalState();
@@ -40,7 +40,7 @@ const Board = ({
         isOpen={isOpen}
         onRequestClose={closeModal}
         ariaHideApp={false}
-        wrapperClassname={wrapperClassname}
+        wrapperClassName={wrapperClassName}
       >
         {children}
       </BoardModal>
