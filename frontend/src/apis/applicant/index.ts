@@ -133,7 +133,7 @@ export const getApplicantTimeTables = async (id: string) => {
   return data;
 };
 
-interface patchApplicantStateRes {
+interface PatchApplicantStateRes {
   passState: ApplicantPassState;
 }
 
@@ -141,7 +141,7 @@ export const patchApplicantState = async (
   id: string,
   afterState: "non-pass" | "pass"
 ) => {
-  const { data } = await https.patch<patchApplicantStateRes>(
+  const { data } = await https.patch<PatchApplicantStateRes>(
     `/applicants/${id}/state?afterState=${afterState}`
   );
 
