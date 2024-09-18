@@ -34,9 +34,10 @@ const ApplicantResource = ({
     data: initialState,
     isLoading,
     isError,
-  } = useQuery(["applicantState", applicantId], () =>
-    getApplicantState(navbarId, `${applicantId}`, generation)
-  );
+  } = useQuery({
+    queryKey: ["applicantState", applicantId, navbarId],
+    queryFn: () => getApplicantState(navbarId, `${applicantId}`, generation),
+  });
 
   const {
     data: myInfo,
