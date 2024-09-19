@@ -57,7 +57,10 @@ const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
     <>
       <CustomResource
         data={data}
-        ableToEdit={userData?.role === "ROLE_OPERATION"}
+        ableToEdit={
+          userData?.role === "ROLE_OPERATION" ||
+          userData?.role === "ROLE_PRESIDENT"
+        }
         onClickPass={onClickPass}
         onClickNonPass={onClickNonPass}
       />
