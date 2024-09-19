@@ -30,5 +30,7 @@ export const patchApplicantPassState = async ({
   afterState,
   applicantId,
 }: PatchApplicantPassStateParams) => {
-  await https.post(`/applicants/${applicantId}/state?afterState=${afterState}`);
+  await https.patch(
+    `/applicants/${applicantId}/state?afterState=${afterState}`
+  );
 };
