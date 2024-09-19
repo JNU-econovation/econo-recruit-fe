@@ -2,7 +2,7 @@
 
 import {
   getAllApplicantsWithPassState,
-  postApplicantPassState,
+  patchApplicantPassState,
 } from "@/src/apis/passState";
 import { CURRENT_GENERATION } from "@/src/constants";
 import { usePathname } from "next/navigation";
@@ -10,7 +10,7 @@ import Txt from "../common/Txt.component";
 import { getApplicantPassState } from "@/src/functions/formatter";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type {
-  PostApplicantPassStateParams,
+  PatchApplicantPassStateParams,
   Answer,
 } from "@/src/apis/passState";
 
@@ -57,8 +57,8 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
   );
 
   const { mutate: updateApplicantPassState } = useMutation({
-    mutationFn: (params: PostApplicantPassStateParams) =>
-      postApplicantPassState(params),
+    mutationFn: (params: PatchApplicantPassStateParams) =>
+      patchApplicantPassState(params),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["allApplicantsWithPassState", selectedGeneration],
@@ -86,7 +86,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
 
   const onChangeApplicantsPassState = (
     applicantName: string,
-    params: PostApplicantPassStateParams
+    params: PatchApplicantPassStateParams
   ) => {
     const ok = confirm(
       `${applicantName}님을 ${params.afterState} 처리하시겠습니까?`
