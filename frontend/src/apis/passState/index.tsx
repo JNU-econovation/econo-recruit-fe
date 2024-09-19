@@ -23,14 +23,12 @@ export const getAllApplicantsWithPassState = async (generation: string) => {
 };
 
 export interface PostApplicantPassStateParams {
-  applicantsId: string;
+  applicantId: string;
   afterState: "non-pass" | "pass";
 }
 export const postApplicantPassState = async ({
   afterState,
-  applicantsId,
+  applicantId,
 }: PostApplicantPassStateParams) => {
-  await https.post(
-    `/applicants/${applicantsId}/state?afterState=${afterState}`
-  );
+  await https.post(`/applicants/${applicantId}/state?afterState=${afterState}`);
 };
