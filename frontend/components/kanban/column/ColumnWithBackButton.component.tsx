@@ -30,9 +30,11 @@ const KanbanColumnDetailCard = ({
     data: kanbanDataArray,
     isError,
     isLoading,
-  } = useQuery<KanbanColumnData[]>(["kanbanDataArray", generation], () =>
-    getAllKanbanData(navbarId, generation)
-  );
+  } = useQuery<KanbanColumnData[]>({
+    queryKey: ["kanbanDataArray", generation],
+    queryFn: () => getAllKanbanData(navbarId, generation),
+    staleTime: 3000,
+  });
 
   if (!kanbanDataArray || isLoading) {
     return <div>로딩중...</div>;
