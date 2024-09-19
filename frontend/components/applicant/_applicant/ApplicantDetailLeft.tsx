@@ -4,8 +4,8 @@ import { ApplicantReq } from "@/src/apis/applicant";
 import CustomResource from "./_applicantNode/CustomResource";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
-  postApplicantPassState,
-  PostApplicantPassStateParams,
+  patchApplicantPassState,
+  PatchApplicantPassStateParams,
 } from "@/src/apis/passState";
 import { applicantDataFinder } from "@/src/functions/finder";
 import { getMyInfo } from "@/src/apis/interview";
@@ -20,8 +20,8 @@ interface DetailLeftProps {
 const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
   const queryClient = useQueryClient();
   const { mutate: updateApplicantPassState } = useMutation({
-    mutationFn: (params: PostApplicantPassStateParams) =>
-      postApplicantPassState(params),
+    mutationFn: (params: PatchApplicantPassStateParams) =>
+      patchApplicantPassState(params),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [
