@@ -18,7 +18,7 @@ interface ApplicantLabelProps {
 const ApplicantLabel = ({ postId, generation }: ApplicantLabelProps) => {
   const [openAdditional, setOpenAdditional] = useState(false);
 
-  const { data, error, isLoading } = useQuery<ApplicantLabelReq[]>(
+  const { data, error, isLoading } = useQuery(
     ["applicantLabel", postId],
     () => getApplicantLabel(postId),
     {
@@ -38,6 +38,8 @@ const ApplicantLabel = ({ postId, generation }: ApplicantLabelProps) => {
     setOpenAdditional((prev) => !prev);
   };
 
+  const omitLabels = openAdditional ? data : data.slice(0, 6);
+
   return (
     <div className="my-12">
       <div className="text-lg font-semibold">
@@ -48,25 +50,14 @@ const ApplicantLabel = ({ postId, generation }: ApplicantLabelProps) => {
       </div>
       <div className="flex items-baseline gap-2">
         <div className="grid grid-cols-6 gap-2 my-4 w-fit">
-          {openAdditional
-            ? data.map((label) => (
-                <ApplicantLabelButton
-                  generation={generation}
-                  key={label.name}
-                  label={label}
-                  postId={postId}
-                />
-              ))
-            : data
-                .map((label) => (
-                  <ApplicantLabelButton
-                    generation={generation}
-                    key={label.name}
-                    label={label}
-                    postId={postId}
-                  />
-                ))
-                .slice(0, 6)}
+          {omitLabels.map((label) => (
+            <ApplicantLabelButton
+              generation={generation}
+              key={label.id}
+              label={label}
+              postId={postId}
+            />
+          ))}
         </div>
         <button
           onClick={toggleOpen}

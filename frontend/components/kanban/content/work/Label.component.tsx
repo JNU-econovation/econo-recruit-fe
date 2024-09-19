@@ -14,7 +14,7 @@ interface WorkLabelProps {
 const WorkLabel = ({ cardId, generation }: WorkLabelProps) => {
   const [openAdditional, setOpenAdditional] = useState(false);
 
-  const { data, error, isLoading } = useQuery<WorkLabelReq[]>(
+  const { data, error, isLoading } = useQuery(
     ["workLabel", cardId],
     () => getWorkLabel(cardId),
     {
@@ -34,6 +34,8 @@ const WorkLabel = ({ cardId, generation }: WorkLabelProps) => {
     setOpenAdditional((prev) => !prev);
   };
 
+  const omitLabels = openAdditional ? data : data.slice(0, 6);
+
   return (
     <div className="my-12">
       <div className="text-lg font-semibold">
@@ -44,25 +46,14 @@ const WorkLabel = ({ cardId, generation }: WorkLabelProps) => {
       </div>
       <div className="flex items-baseline gap-2">
         <div className="grid grid-cols-6 gap-2 my-4 w-fit">
-          {openAdditional
-            ? data.map((label) => (
-                <WorkLabelButton
-                  generation={generation}
-                  key={label.name}
-                  label={label}
-                  cardId={cardId}
-                />
-              ))
-            : data
-                .map((label) => (
-                  <WorkLabelButton
-                    generation={generation}
-                    key={label.name}
-                    label={label}
-                    cardId={cardId}
-                  />
-                ))
-                .slice(0, 6)}
+          {omitLabels.map((label) => (
+            <WorkLabelButton
+              key={label.id}
+              generation={generation}
+              label={label}
+              cardId={cardId}
+            />
+          ))}
         </div>
         <button
           onClick={toggleOpen}

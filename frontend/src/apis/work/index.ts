@@ -34,6 +34,7 @@ export const deleteWork = async (cardId: string) => {
 };
 
 export interface WorkLabelReq {
+  id: number;
   name: string;
   active: boolean;
 }
@@ -44,7 +45,7 @@ export const postWorkLabel = async (cardId: number) => {
   return data;
 };
 
-export const getWorkLabel = async (cardId: number) => {
+export const getWorkLabel = async (cardId: number): Promise<WorkLabelReq[]> => {
   const allInterviewers = await getAllInterviewerWithOrder("");
 
   try {
@@ -52,12 +53,14 @@ export const getWorkLabel = async (cardId: number) => {
     return allInterviewers.map((interviewer) => {
       const label = data.find((label) => label === interviewer.name);
       return {
+        id: interviewer.id,
         name: interviewer.name,
         active: !!label,
       };
     });
   } catch (e) {
     return allInterviewers.map((interviewer) => ({
+      id: interviewer.id,
       name: interviewer.name,
       active: false,
     }));

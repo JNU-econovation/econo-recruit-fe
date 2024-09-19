@@ -91,11 +91,14 @@ export const getApplicationById = async (id: string) => {
 };
 
 export interface ApplicantLabelReq {
+  id: number;
   name: string;
   active: boolean;
 }
 
-export const getApplicantLabel = async (id: string) => {
+export const getApplicantLabel = async (
+  id: string
+): Promise<ApplicantLabelReq[]> => {
   const allInterviewers = await getAllInterviewerWithOrder("name");
 
   try {
@@ -104,6 +107,7 @@ export const getApplicantLabel = async (id: string) => {
       .map((interviewer) => {
         const label = data.find((label) => label === interviewer.name);
         return {
+          id: interviewer.id,
           name: interviewer.name,
           active: !!label,
         };
@@ -111,6 +115,7 @@ export const getApplicantLabel = async (id: string) => {
       .sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
   } catch (e) {
     return allInterviewers.map((interviewer) => ({
+      id: interviewer.id,
       name: interviewer.name,
       active: false,
     }));
