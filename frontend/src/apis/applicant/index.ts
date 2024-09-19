@@ -12,6 +12,46 @@ interface AllApplicantReq {
   [string: string]: string;
 }
 
+interface ApplicantByPageReqAnswer {
+  field: string;
+  field1: string;
+  field2: string;
+  name: string;
+  contacted: string;
+  classOf: string;
+  registered: string;
+  grade: string;
+  semester: string;
+  major: string;
+  doubleMajor: string;
+  minor: string;
+  activity: string;
+  reason: string;
+  future: string;
+  experience: string;
+  experienceTextarea: string;
+  restoration: string;
+  deep: string;
+  collaboration: string;
+  studyPlan: string;
+  portfolio: string;
+  fileUrl: string;
+  email: string;
+  check: string;
+  personalInformationAgree: string;
+  personalInformationAgreeForPortfolio: string;
+  generation: string;
+  uploadDate: string;
+  channel: string;
+  timeline: number[];
+  id: string;
+  year: number;
+  created_at: string;
+  passState: {
+    passState: ApplicantPassState;
+  };
+}
+
 export const getApplicantByIdWithField = async (
   id: string,
   fields?: string[]
@@ -36,9 +76,29 @@ export interface PageInfo {
   boardLimit: number;
 }
 
+function formatApplicantsDataToApplicantReq(
+  applicants: ApplicantByPageReqAnswer[]
+) {
+  return applicants.map(
+    (applicant) =>
+      Object.keys(applicant).map((key) => {
+        if (key === "passState") {
+          return {
+            name: "passState",
+            answer: applicant.passState.passState,
+          };
+        }
+        return {
+          name: key,
+          answer: applicant[key as keyof ApplicantByPageReqAnswer],
+        };
+      }) as ApplicantReq[]
+  );
+}
+
 interface ApplicantByPageReq {
   pageInfo: PageInfo;
-  answers: AllApplicantReq[];
+  answers: ApplicantByPageReqAnswer[];
 }
 
 export const getApplicantByPageWithGeneration = async (
@@ -54,12 +114,7 @@ export const getApplicantByPageWithGeneration = async (
 
   return {
     maxPage: pageInfo.endPage,
-    applicants: answers.map((applicant) =>
-      Object.keys(applicant).map((key) => ({
-        name: key,
-        answer: applicant[key],
-      }))
-    ),
+    applicants: formatApplicantsDataToApplicantReq(answers),
   };
 };
 
