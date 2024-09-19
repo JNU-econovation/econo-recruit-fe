@@ -3,7 +3,6 @@
 import Board from "@/components/common/board/Board";
 import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
 import ApplicantDetailRight from "./DetailRight.component";
-import ApplicantDetailLeft from "./DetailLeft.component";
 import { useState } from "react";
 import { ApplicantReq } from "@/src/apis/application";
 import { applicantDataFinder } from "@/src/functions/finder";
@@ -12,6 +11,8 @@ import { useSearchParams } from "next/navigation";
 import { ORDER_MENU } from "@/src/constants";
 import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 import { type ApplicantPassState } from "../../src/apis/kanban";
+import ApplicantDetailLeft from "./_applicant/ApplicantDetailLeft";
+import { findApplicantState } from "@/src/utils/applicant";
 
 interface ApplicantBoardProps {
   generation: string;
@@ -74,9 +75,10 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
             Number(applicantDataFinder(value, "uploadDate"))
           ).toLocaleString("ko-KR", { dateStyle: "short" }),
     ],
-    passState: `${
-      applicantDataFinder(value, "passState").passState
-    }` as ApplicantPassState,
+    passState: `${applicantDataFinder(
+      value,
+      "passState"
+    )}` as ApplicantPassState,
   }));
 
   return (
