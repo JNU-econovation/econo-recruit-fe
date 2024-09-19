@@ -1,6 +1,7 @@
 import Txt from "@/components/common/Txt.component";
 import { ApplicantReq } from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
+import { changeIntactUrl } from "@/src/utils/applicant";
 import Link from "next/link";
 
 interface PortfolioProps {
@@ -12,15 +13,15 @@ const Portfolio = ({ data }: PortfolioProps) => {
 
   const portfolio = applicantDataFinder(data, "portfolio")
     .split(regex)
-    .map((url: string) => url.trim());
+    .map((url: string) => changeIntactUrl(url.trim()));
 
   const file = applicantDataFinder(data, "fileUrl")
     .split(regex)
-    .map((url: string) => url.trim());
+    .map((url: string) => changeIntactUrl(url.trim()));
 
   const fileUrlForPlanner = applicantDataFinder(data, "fileUrlforPlanner")
     .split(regex)
-    .map((url: string) => url.trim());
+    .map((url: string) => changeIntactUrl(url.trim()));
 
   return (
     <>
