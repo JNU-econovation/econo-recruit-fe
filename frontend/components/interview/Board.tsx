@@ -40,7 +40,7 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
     queryFn: () =>
       getInterviewRecordByPageWithOrder({
         page: +pageIndex,
-        sortType: order,
+        order: order,
         year: generation,
       }),
   });

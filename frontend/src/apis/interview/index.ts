@@ -26,7 +26,7 @@ interface RecordsByPageRes {
 
 interface GetInterviewRecordByPageWithOrderReq {
   page: number;
-  sortType: string;
+  order: string;
   year: string;
 }
 
