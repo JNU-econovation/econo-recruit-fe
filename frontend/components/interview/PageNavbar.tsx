@@ -33,7 +33,7 @@ const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
     () =>
       getInterviewRecordByPageWithOrder({
         page: +pageIndex,
-        sortType: order,
+        order: order,
         year: generation,
       }),
     {
