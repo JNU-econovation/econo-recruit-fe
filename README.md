@@ -5,14 +5,6 @@
 매 신입기수 채용시 필요한 다양한 서비스들을 통합 관리 및 지원합니다.
 협업을 위한 칸반보드식 업무 프로세스 지원 서비스, 지원서 작성 및 제출, TF 선정 및 전체 프로세스 관리자 페이지, 현 지원자 통계 페이지를 제공합니다.
 
-## Requirements
-- jdk-17
-- java 11
-- Spring Boot 2.6.7
-- jjwt:0.9.1
-- stomp-websocket:2.3.3
-- swagger : springdoc-openapi-ui:1.6.6
-
 ## Usage
 다음 서비스 다음 신입모집 기수에 다시 런칭 예정
 
