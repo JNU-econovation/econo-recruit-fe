@@ -11,12 +11,10 @@ const checkQuestion = (
   return "id" in node;
 };
 
-// FIXME: 타입 오타 수정 바람 (Junctin -> Junction)
-interface JunctinOrLayoutProps {
+interface JunctionOrLayoutProps {
   node: ApplicationQuestion | ApplicationNode;
 }
-// FIXME: 컴포넌트 오타 수정 바람 (Junctin -> Junction)
-export const JunctinOrLayout = ({ node }: JunctinOrLayoutProps) => {
+export const JunctionOrLayout = ({ node }: JunctionOrLayoutProps) => {
   return checkQuestion(node) ? (
     <ApplicationLayout applicationQuestion={node} />
   ) : (

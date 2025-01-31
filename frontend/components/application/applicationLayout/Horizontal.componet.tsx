@@ -2,7 +2,7 @@
 
 import Txt from "@/components/common/Txt.component";
 import type { ApplicationQuestion } from "@/src/constants/application/type";
-import { JunctinOrLayout } from "../JunctionOrLayout";
+import { JunctionOrLayout } from "../JunctionOrLayout";
 
 interface ApplicationHorizontalLayoutProps {
   applicationQuestion: ApplicationQuestion;
@@ -36,7 +36,7 @@ const ApplicationHorizontalLayout = ({
       <div className="flex-1">
         {applicationQuestion.nodes.map((node, index) => (
           <div key={`${applicationQuestion.id} ${index}`} className="mb-4">
-            <JunctinOrLayout node={node} />
+            <JunctionOrLayout node={node} />
           </div>
         ))}
       </div>
