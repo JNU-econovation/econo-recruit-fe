@@ -8,24 +8,34 @@ import {
 
 import { useState } from "react";
 import ApplicationText from "./Text.component";
+import { getLocalStorage } from "@/src/utils/applicant";
 
 interface ApplicationAddTextProps {
   data: ApplicationNode;
 }
 
 const ApplicationAddText = ({ data }: ApplicationAddTextProps) => {
+  const localStorageData = getLocalStorage([
+    "Github",
+    "Blog",
+    "Notion",
+    "Website",
+    "기타",
+  ]);
+
   const textData = data as ApplicationAddText;
+
   const id = Date.now().toString();
   const [selectedCategories, setSelectedCategories] = useState<
-    { category: string; id: string }[]
-  >([{ category: "Github", id: id }]);
+    { category: string; id: string; value: string }[]
+  >(localStorageData || [{ category: "Github", id: id, value: "" }]);
 
   const onAddCategory = () => {
     const newId = Date.now().toString();
 
     setSelectedCategories([
       ...selectedCategories,
-      { category: "Github", id: newId },
+      { category: "Github", id: newId, value: "" },
     ]);
   };
 
@@ -60,10 +70,10 @@ const ApplicationAddText = ({ data }: ApplicationAddTextProps) => {
 export default ApplicationAddText;
 
 interface ApplicationUrlTextProps {
-  selectedCategory: { category: string; id: string };
-  selectedCategories: { category: string; id: string }[];
+  selectedCategory: { category: string; id: string; value: string };
+  selectedCategories: { category: string; id: string; value: string }[];
   setSelectedCategories: (
-    categories: { category: string; id: string }[]
+    categories: { category: string; id: string; value: string }[]
   ) => void;
   textData: ApplicationAddText;
 }
