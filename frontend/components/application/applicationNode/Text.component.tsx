@@ -22,7 +22,7 @@ const ApplicationText = ({ data }: ApplicationTextProps) => {
   const [isError, setIsError] = useState(false);
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {textData.title && (
         <label>
           <Txt typography="h6">{`${textData.title}${

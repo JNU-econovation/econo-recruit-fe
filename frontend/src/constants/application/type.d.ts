@@ -41,6 +41,12 @@ interface ApplicationText extends ApplicationNodeBase {
   minLength?: number;
 }
 
+interface ApplicationAddText extends ApplicationNodeBase {
+  type: "addText";
+  category: ("Github" | "Blog" | "Notion" | "Website" | "기타")[];
+  alert: string;
+}
+
 interface ApplicationTextarea extends ApplicationNodeBase {
   type: "textarea";
 }
@@ -103,7 +109,8 @@ type ApplicationNode =
   | ApplicationJustText
   | ApplicationCheckboxType
   | ApplicationCheckboxWithEtcType
-  | ApplicationTimelineType;
+  | ApplicationTimelineType
+  | ApplicationAddText;
 
 type ApplicationQuestion = {
   id: number;

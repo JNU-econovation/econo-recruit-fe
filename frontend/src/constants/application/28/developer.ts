@@ -132,18 +132,12 @@ export const APPLICATION_DEVELOPER: ApplicationQuestion[] = [
     direction: "horizontal",
     nodes: [
       {
+        type: "addText",
         name: "portfolio",
         require: false,
-        type: "text",
         title: "참고 URL",
-        subtitle: "Github, Blog, Notion, Website 등",
-      },
-      {
-        name: "fileUrl",
-        require: false,
-        type: "text",
-        title: "파일 URL",
-        subtitle: "Google Drive 등",
+        category: ["Github", "Blog", "Notion", "Website", "기타"],
+        alert: "(입력창 하나당 하나의 URL을 입력해주세요.)",
       },
     ],
   },

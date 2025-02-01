@@ -8,6 +8,7 @@ import ApplicationCheckboxWithEtc from "./applicationNode/CheckboxWithEtc.compon
 import ApplicationTextarea from "./applicationNode/Textarea.component";
 import ApplicationBar from "./applicationNode/Bar.component";
 import ApplicationJustText from "./applicationNode/JustText.component";
+import ApplicationAddText from "./applicationNode/AddText";
 
 interface JunctionQuestionProps {
   applicationNodeData: ApplicationNode;
@@ -28,6 +29,7 @@ export const JunctionQuestion = ({
     checkboxWithEtc: <ApplicationCheckboxWithEtc data={applicationNodeData} />,
     checkbox: <></>,
     timeline: <></>,
+    addText: <ApplicationAddText data={applicationNodeData} />,
   };
 
   return jsxNode[applicationNodeData.type];
