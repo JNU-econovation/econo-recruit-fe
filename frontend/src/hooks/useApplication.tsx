@@ -17,6 +17,7 @@ import {
   applicationDataAtom,
   applicationIndexAtom,
 } from "../stores/application";
+import { getLocalStorage } from "../utils/applicant";
 
 export const useApplication = () => {
   // TODO: 질문의 이름마다 side effect가 있으니 주의하면 좋을 것
@@ -130,6 +131,21 @@ export const useApplication = () => {
     sendValues.push({
       name: "timeline",
       answer: JSON.stringify(timeline),
+    });
+
+    const portfolioUrls = getLocalStorage([
+      "Github",
+      "Blog",
+      "Notion",
+      "Website",
+      "기타",
+    ]);
+
+    portfolioUrls.forEach((portfolioUrl) => {
+      sendValues.push({
+        name: `${portfolioUrl.category} - ${portfolioUrl.id}`,
+        answer: JSON.parse(portfolioUrl.value),
+      });
     });
 
     const applicationName = Array.from(
