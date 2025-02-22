@@ -64,14 +64,14 @@ const SignInForm = ({ onSubmit, data, setForm }: SignInProps) => {
         wrongMessage={"이메일 형식이 올바르지 않습니다."}
       />
       <InputFormItem
-        placeholder={"********"}
+        placeholder={"**********"}
         type="password"
         value={password}
         onChange={(e) => setForm({ name: "password", value: e.target.value })}
         isWrong={isWarning.password}
-        wrongMessage={"비밀번호는 8자 이상 20자 이하입니다."}
-        maxLength={20}
-        minLength={8}
+        wrongMessage={
+          "비밀번호는 10자이상, 숫자 최소 1자 이상, 특수문자 최소 1자 이상이어야 합니다."
+        }
       />
       <div className="w-full mt-8">
         <button
