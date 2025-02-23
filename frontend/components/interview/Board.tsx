@@ -8,15 +8,10 @@ import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom
 import BoardTable from "../common/board/BoardTable";
 import useModalState from "../../src/hooks/useModalState";
 import BoardModal from "../common/board/BoardModal";
-import { ApplicantPassState } from "../../src/apis/kanban";
+import { BoardData } from "../common/board/Board";
 
 interface InterviewBoardProps {
-  interviewRecords: {
-    id: string;
-    title: string;
-    subElements: string[];
-    passState: ApplicantPassState;
-  }[];
+  interviewRecords: BoardData[];
 }
 
 const InterviewBoard = ({ interviewRecords }: InterviewBoardProps) => {
