@@ -38,7 +38,7 @@ export const getInterviewRecordByPageWithOrder = async ({
   searchKeyword,
 }: GetInterviewRecordByPageWithOrderReq) => {
   const queryParams = new URLSearchParams({ order, year });
-  if (searchKeyword !== undefined) {
+  if (searchKeyword !== undefined && searchKeyword.trim() !== "") {
     queryParams.append("searchKeyword", searchKeyword);
   }
 

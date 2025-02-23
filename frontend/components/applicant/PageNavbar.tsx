@@ -1,23 +1,20 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import PageNavbarComponent from "../common/PageNavbar.component";
-import { useSearchParams } from "next/navigation";
 import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
-import { ORDER_MENU } from "@/src/constants";
 import { useCreateQueryString } from "@/src/hooks/useCreateQueryString";
+import useApplicantPaginationParams from "../../src/hooks/applicant/useApplicantPaginationParams";
 
 type ApplicantPageNavbarProps = {
   generation: string;
 };
 
 const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
-  const searchParams = useSearchParams();
-  const pageIndex = searchParams.get("page") || "1";
-  const type = searchParams.get("type") ?? "list";
-  const order = searchParams.get("order") ?? ORDER_MENU.APPLICANT[0].type;
-  const page = searchParams.get("page") ?? "1";
-  const search = searchParams.get("search") || "";
-  const queryParams = { search, type, order };
+  const { pageIndex, type, order, searchKeyword } =
+    useApplicantPaginationParams();
+
+  const queryParams = { search: searchKeyword, type, order };
+
   const { createQueryString } = useCreateQueryString();
 
   const {
@@ -25,9 +22,14 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
     isLoading,
     isError,
   } = useQuery(
-    ["allApplicant", { generation, order, pageIndex, search }],
+    ["allApplicant", { generation, order, pageIndex, search: searchKeyword }],
     () =>
-      getApplicantByPageWithGeneration(+pageIndex, generation, order, search),
+      getApplicantByPageWithGeneration(
+        +pageIndex,
+        generation,
+        order,
+        searchKeyword
+      ),
     {
       enabled: !!generation,
     }
@@ -43,10 +45,11 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
 
   const { maxPage } = allData;
 
+  // Search 넣어야 함!!!
   return (
     <PageNavbarComponent
       maxLength={maxPage}
-      page={+page}
+      page={+pageIndex}
       url={`/applicant/${generation}?${createQueryString(
         Object.keys(queryParams),
         Object.values(queryParams)

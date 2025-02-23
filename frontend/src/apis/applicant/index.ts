@@ -109,7 +109,7 @@ export const getApplicantByPageWithGeneration = async (
 ): Promise<{ maxPage: number; applicants: ApplicantReq[][] }> => {
   const queryParams = new URLSearchParams({ order });
 
-  if (searchKeyword !== undefined) {
+  if (searchKeyword !== undefined && searchKeyword.trim() !== "") {
     queryParams.append("searchKeyword", searchKeyword);
   }
 

@@ -6,15 +6,13 @@ import { useState } from "react";
 import { ApplicantReq } from "@/src/apis/application";
 import { applicantDataFinder } from "@/src/functions/finder";
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
-import { ORDER_MENU } from "@/src/constants";
 import { type ApplicantPassState } from "../../src/apis/kanban";
 import ApplicantDetailLeft from "./_applicant/ApplicantDetailLeft";
-import { findApplicantState } from "@/src/utils/applicant";
 import BoardTable from "../common/board/BoardTable";
 import useModalState from "../../src/hooks/useModalState";
 import BoardModal from "../common/board/BoardModal";
 import LoadingSpinner from "../common/LoadingSpinner";
+import useApplicantPaginationParams from "../../src/hooks/applicant/useApplicantPaginationParams";
 
 interface ApplicantBoardProps {
   generation: string;
@@ -24,10 +22,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   const [selectedApplicant, setSelectedApplicant] = useState<ApplicantReq[]>(
     []
   );
-  const searchParams = useSearchParams();
-  const pageIndex = searchParams.get("page") || "1";
-  const order = searchParams.get("order") || ORDER_MENU.APPLICANT[0].type;
-  const searchKeyword = searchParams.get("search") || undefined;
+  const { pageIndex, order, searchKeyword } = useApplicantPaginationParams();
 
   const { isOpen, openModal, closeModal } = useModalState();
 
@@ -93,7 +88,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   const onClick = (id: string) => {
     if (!allData) return;
     setSelectedApplicant(
-      applicants?.filter((value) => applicantDataFinder(value, "id") === id)[0]
+      applicants.filter((value) => applicantDataFinder(value, "id") === id)[0]
     );
   };
 

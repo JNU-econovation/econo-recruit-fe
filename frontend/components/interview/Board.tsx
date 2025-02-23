@@ -5,13 +5,13 @@ import InterviewDetailRightComponent from "./modal/DetailRight.component";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
-import { useSearchParams } from "next/navigation";
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
-import { CHARACTERS, ORDER_MENU } from "@/src/constants";
+import { CHARACTERS } from "@/src/constants";
 import { removeAll } from "@/src/functions/replacer";
 import BoardTable from "../common/board/BoardTable";
 import useModalState from "../../src/hooks/useModalState";
 import BoardModal from "../common/board/BoardModal";
+import useInterviewerPaginationParams from "../../src/hooks/interview/useInterviewerPaginationParams";
 
 interface InterviewBoardProps {
   generation: string;
@@ -19,10 +19,7 @@ interface InterviewBoardProps {
 
 const InterviewBoard = ({ generation }: InterviewBoardProps) => {
   const [applicantId, setApplicantId] = useAtom(interViewApplicantIdState);
-  const searchParams = useSearchParams();
-  const searchKeyword = searchParams.get("search") || undefined;
-  const pageIndex = searchParams.get("page") || "1";
-  const order = searchParams.get("order") || ORDER_MENU.INTERVIEW[0].type;
+  const { pageIndex, order, searchKeyword } = useInterviewerPaginationParams();
 
   const queryClient = useQueryClient();
   const { isOpen, openModal, closeModal } = useModalState();

@@ -1,24 +1,19 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import PageNavbarComponent from "../common/PageNavbar.component";
-import { useSearchParams } from "next/navigation";
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
-import { ORDER_MENU } from "@/src/constants";
 import { useCreateQueryString } from "@/src/hooks/useCreateQueryString";
+import useInterviewerPaginationParams from "../../src/hooks/interview/useInterviewerPaginationParams";
 
 type InterviewPageNavbarProps = {
   generation: string;
 };
 
 const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
-  const searchParams = useSearchParams();
-  const pageIndex = searchParams.get("page") || "1";
-  const type = searchParams.get("type") ?? "list";
-  const order = searchParams.get("order") ?? ORDER_MENU.INTERVIEW[0].type;
-  const page = searchParams.get("page") ?? "1";
-  const search = searchParams.get("search") || undefined;
+  const { pageIndex, type, order, searchKeyword } =
+    useInterviewerPaginationParams();
 
-  const queryParams = { type, order, search: search || "" };
+  const queryParams = { type, order, search: searchKeyword };
 
   const { createQueryString } = useCreateQueryString();
 
@@ -27,13 +22,13 @@ const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
     isLoading,
     isError,
   } = useQuery(
-    ["allInterViewRecord", { generation, order, pageIndex, search }],
+    ["allInterviewRecord", { generation, order, pageIndex, searchKeyword }],
     () =>
       getInterviewRecordByPageWithOrder({
         page: +pageIndex,
         order: order,
         year: generation,
-        searchKeyword: search,
+        searchKeyword,
       }),
     {
       enabled: !!generation,
@@ -53,7 +48,7 @@ const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
   return (
     <PageNavbarComponent
       maxLength={maxPage}
-      page={+page}
+      page={+pageIndex}
       url={`/interview/${generation}?${createQueryString(
         Object.keys(queryParams),
         Object.values(queryParams)
