@@ -17,11 +17,12 @@ const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
   const type = searchParams.get("type") ?? "list";
   const order = searchParams.get("order") ?? ORDER_MENU.INTERVIEW[0].type;
   const page = searchParams.get("page") ?? "1";
-  const search = searchParams.get("search") || "";
+  const search = searchParams.get("search") || undefined;
 
   const { searchEndPage } = useSearchQuery(pageIndex);
 
-  const queryParams = { search, type, order };
+  const queryParams = { type, order, search: search || "" };
+
   const { createQueryString } = useCreateQueryString();
 
   const {
@@ -29,12 +30,13 @@ const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
     isLoading,
     isError,
   } = useQuery(
-    ["allApplicant", order, generation],
+    ["allInterViewRecord", { generation, order, pageIndex, search }],
     () =>
       getInterviewRecordByPageWithOrder({
         page: +pageIndex,
         order: order,
         year: generation,
+        searchKeyword: search,
       }),
     {
       enabled: !!generation,
