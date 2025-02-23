@@ -20,7 +20,9 @@ interface ApplicantBoardProps {
 }
 
 const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
-  const [data, setData] = useState<ApplicantReq[]>([]);
+  const [selectedApplicant, setSelectedApplicant] = useState<ApplicantReq[]>(
+    []
+  );
   const searchParams = useSearchParams();
   const pageIndex = searchParams.get("page") || "1";
   const order = searchParams.get("order") || ORDER_MENU.APPLICANT[0].type;
@@ -30,7 +32,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
 
   const onClick = (id: string) => {
     if (!allData) return;
-    setData(
+    setSelectedApplicant(
       applicants?.filter((value) => applicantDataFinder(value, "id") === id)[0]
     );
   };
@@ -108,14 +110,14 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
           <div className="flex-1 overflow-auto px-12 min-w-[40rem]">
             <ApplicantDetailLeft
               cardId={-1}
-              data={data}
+              data={selectedApplicant}
               generation={generation}
             />
           </div>
         </div>
         <div className="flex flex-1 min-h-0">
           <div className="flex-1 overflow-auto px-12">
-            <ApplicantDetailRight data={data} />
+            <ApplicantDetailRight data={selectedApplicant} />
           </div>
         </div>
       </BoardModal>
