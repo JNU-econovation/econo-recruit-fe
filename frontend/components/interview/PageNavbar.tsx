@@ -4,7 +4,6 @@ import PageNavbarComponent from "../common/PageNavbar.component";
 import { useSearchParams } from "next/navigation";
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
 import { ORDER_MENU } from "@/src/constants";
-import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 import { useCreateQueryString } from "@/src/hooks/useCreateQueryString";
 
 type InterviewPageNavbarProps = {
@@ -18,8 +17,6 @@ const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
   const order = searchParams.get("order") ?? ORDER_MENU.INTERVIEW[0].type;
   const page = searchParams.get("page") ?? "1";
   const search = searchParams.get("search") || undefined;
-
-  const { searchEndPage } = useSearchQuery(pageIndex);
 
   const queryParams = { type, order, search: search || "" };
 
@@ -52,9 +49,10 @@ const InterviewPageNavbar = ({ generation }: InterviewPageNavbarProps) => {
   }
 
   const { maxPage } = allData;
+
   return (
     <PageNavbarComponent
-      maxLength={searchEndPage ?? maxPage}
+      maxLength={maxPage}
       page={+page}
       url={`/interview/${generation}?${createQueryString(
         Object.keys(queryParams),

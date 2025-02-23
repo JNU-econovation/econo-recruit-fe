@@ -1,7 +1,6 @@
 "use client";
 
 import InterviewDetailLeftComponent from "./modal/DetailLeft.component";
-import Board from "../common/board/Board";
 import InterviewDetailRightComponent from "./modal/DetailRight.component";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
@@ -9,7 +8,6 @@ import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom
 import { useSearchParams } from "next/navigation";
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
 import { CHARACTERS, ORDER_MENU } from "@/src/constants";
-import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 import { removeAll } from "@/src/functions/replacer";
 import BoardTable from "../common/board/BoardTable";
 import useModalState from "../../src/hooks/useModalState";

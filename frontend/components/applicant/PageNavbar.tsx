@@ -4,7 +4,6 @@ import PageNavbarComponent from "../common/PageNavbar.component";
 import { useSearchParams } from "next/navigation";
 import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
 import { ORDER_MENU } from "@/src/constants";
-import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 import { useCreateQueryString } from "@/src/hooks/useCreateQueryString";
 
 type ApplicantPageNavbarProps = {
@@ -18,9 +17,6 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
   const order = searchParams.get("order") ?? ORDER_MENU.APPLICANT[0].type;
   const page = searchParams.get("page") ?? "1";
   const search = searchParams.get("search") || "";
-
-  const { searchEndPage } = useSearchQuery(pageIndex);
-
   const queryParams = { search, type, order };
   const { createQueryString } = useCreateQueryString();
 
@@ -29,8 +25,9 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
     isLoading,
     isError,
   } = useQuery(
-    ["allApplicant", { generation, order, pageIndex }],
-    () => getApplicantByPageWithGeneration(+pageIndex, generation, order),
+    ["allApplicant", { generation, order, pageIndex, search }],
+    () =>
+      getApplicantByPageWithGeneration(+pageIndex, generation, order, search),
     {
       enabled: !!generation,
     }
@@ -48,7 +45,7 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
 
   return (
     <PageNavbarComponent
-      maxLength={searchEndPage ?? maxPage}
+      maxLength={maxPage}
       page={+page}
       url={`/applicant/${generation}?${createQueryString(
         Object.keys(queryParams),
