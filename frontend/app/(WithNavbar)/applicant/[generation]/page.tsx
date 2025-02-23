@@ -1,8 +1,7 @@
-import ApplicantBoard from "@/components/applicant/Board";
-import ApplicantPageNavbar from "@/components/applicant/PageNavbar";
 import SortList from "@/components/common/SortList";
 import Search from "@/components/common/Search";
 import { ORDER_MENU } from "@/src/constants";
+import ApplicantList from "../../../../components/applicant/ApplicantList";
 
 interface ApplicantPageProps {
   params: {
@@ -19,8 +18,7 @@ const ApplicantPage = ({ params }: ApplicantPageProps) => {
         <Search />
         <SortList sortList={ORDER_MENU.APPLICANT} />
       </div>
-      <ApplicantBoard generation={generation} />
-      <ApplicantPageNavbar generation={generation} />
+      <ApplicantList generation={generation} />
     </div>
   );
 };

@@ -1,62 +1,26 @@
 "use client";
 
-import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
 import ApplicantDetailRight from "./DetailRight.component";
 import { useState } from "react";
 import { ApplicantReq } from "@/src/apis/application";
 import { applicantDataFinder } from "@/src/functions/finder";
-import { useQuery } from "@tanstack/react-query";
 import { type ApplicantPassState } from "../../src/apis/kanban";
 import ApplicantDetailLeft from "./_applicant/ApplicantDetailLeft";
 import BoardTable from "../common/board/BoardTable";
 import useModalState from "../../src/hooks/useModalState";
 import BoardModal from "../common/board/BoardModal";
-import LoadingSpinner from "../common/LoadingSpinner";
-import useApplicantPaginationParams from "../../src/hooks/applicant/useApplicantPaginationParams";
 
 interface ApplicantBoardProps {
   generation: string;
+  applicants: ApplicantReq[][];
 }
 
-const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
+const ApplicantBoard = ({ generation, applicants }: ApplicantBoardProps) => {
   const [selectedApplicant, setSelectedApplicant] = useState<ApplicantReq[]>(
     []
   );
-  const { pageIndex, order, searchKeyword } = useApplicantPaginationParams();
 
   const { isOpen, openModal, closeModal } = useModalState();
-
-  const {
-    data: allData,
-    isLoading,
-    isError,
-  } = useQuery(
-    ["allApplicant", { pageIndex, order, generation, searchKeyword }],
-    () =>
-      getApplicantByPageWithGeneration(
-        +pageIndex,
-        generation,
-        order,
-        searchKeyword
-      ),
-    {
-      enabled: !!generation,
-    }
-  );
-
-  if (!allData || isLoading) {
-    return (
-      <section className="flex flex-col">
-        <LoadingSpinner size={8} />
-      </section>
-    );
-  }
-
-  if (isError) {
-    return <section className="flex flex-col">에러 발생</section>;
-  }
-
-  const { applicants } = allData;
 
   const boardData = applicants.map((value) => ({
     id: applicantDataFinder(value, "id"),
@@ -86,7 +50,6 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   }));
 
   const onClick = (id: string) => {
-    if (!allData) return;
     setSelectedApplicant(
       applicants.filter((value) => applicantDataFinder(value, "id") === id)[0]
     );
