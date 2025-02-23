@@ -25,7 +25,7 @@ const Search = () => {
         params.delete("search");
       }
 
-      replace(`${pathname}?${params.toString()}`);
+      replace(`${pathname}?${params}`);
     });
   }, [debouncedSearchTerm, pathname]);
 
