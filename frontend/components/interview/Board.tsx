@@ -25,7 +25,8 @@ const InterviewBoard = ({ interviewRecords }: InterviewBoardProps) => {
   const queryClient = useQueryClient();
   const { isOpen, openModal, closeModal } = useModalState();
 
-  const onClick = (id: string) => {
+  const handleModalOpen = (id: string) => () => {
+    openModal();
     setApplicantId(id);
     queryClient.invalidateQueries({
       queryKey: ["record", applicantId],
@@ -33,11 +34,6 @@ const InterviewBoard = ({ interviewRecords }: InterviewBoardProps) => {
     queryClient.invalidateQueries({
       queryKey: ["score", applicantId],
     });
-  };
-
-  const handleModalOpen = (id: string) => () => {
-    openModal();
-    onClick && onClick(id);
   };
 
   return (

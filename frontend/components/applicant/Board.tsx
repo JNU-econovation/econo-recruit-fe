@@ -49,15 +49,11 @@ const ApplicantBoard = ({ generation, applicants }: ApplicantBoardProps) => {
     )}` as ApplicantPassState,
   }));
 
-  const onClick = (id: string) => {
+  const handleModalOpen = (id: string) => () => {
+    openModal();
     setSelectedApplicant(
       applicants.filter((value) => applicantDataFinder(value, "id") === id)[0]
     );
-  };
-
-  const handleModalOpen = (id: string) => () => {
-    openModal();
-    onClick && onClick(id);
   };
 
   return (
