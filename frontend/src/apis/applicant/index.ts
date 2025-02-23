@@ -104,12 +104,19 @@ interface ApplicantByPageReq {
 export const getApplicantByPageWithGeneration = async (
   page: number,
   generation: string,
-  order: string
+  order: string,
+  searchKeyword?: string
 ): Promise<{ maxPage: number; applicants: ApplicantReq[][] }> => {
+  const queryParams = new URLSearchParams({ order });
+
+  if (searchKeyword !== undefined) {
+    queryParams.append("searchKeyword", searchKeyword);
+  }
+
   const {
     data: { pageInfo, answers },
   } = await https.get<ApplicantByPageReq>(
-    `/page/${page}/year/${+generation}/applicants?order=${order}`
+    `/page/${page}/year/${+generation}/applicants?${queryParams}`
   );
 
   return {
