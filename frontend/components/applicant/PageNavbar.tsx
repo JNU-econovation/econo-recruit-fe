@@ -29,7 +29,7 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
     isLoading,
     isError,
   } = useQuery(
-    ["allApplicant", generation],
+    ["allApplicant", { generation, order, pageIndex }],
     () => getApplicantByPageWithGeneration(+pageIndex, generation, order),
     {
       enabled: !!generation,
@@ -45,6 +45,7 @@ const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
   }
 
   const { maxPage } = allData;
+
   return (
     <PageNavbarComponent
       maxLength={searchEndPage ?? maxPage}
