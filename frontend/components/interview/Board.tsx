@@ -11,6 +11,9 @@ import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
 import { CHARACTERS, ORDER_MENU } from "@/src/constants";
 import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 import { removeAll } from "@/src/functions/replacer";
+import BoardTable from "../common/board/BoardTable";
+import useModalState from "../../src/hooks/useModalState";
+import BoardModal from "../common/board/BoardModal";
 
 interface InterviewBoardProps {
   generation: string;
@@ -19,11 +22,12 @@ interface InterviewBoardProps {
 const InterviewBoard = ({ generation }: InterviewBoardProps) => {
   const [applicantId, setApplicantId] = useAtom(interViewApplicantIdState);
   const searchParams = useSearchParams();
+  const searchKeyword = searchParams.get("search") || undefined;
   const pageIndex = searchParams.get("page") || "1";
   const order = searchParams.get("order") || ORDER_MENU.INTERVIEW[0].type;
-  const { createSearchData } = useSearchQuery(pageIndex);
 
   const queryClient = useQueryClient();
+  const { isOpen, openModal, closeModal } = useModalState();
 
   const onClick = (id: string) => {
     setApplicantId(id);
@@ -36,12 +40,16 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
   };
 
   const { data, status } = useQuery({
-    queryKey: ["allInterviewRecord", pageIndex, order, generation],
+    queryKey: [
+      "allInterviewRecord",
+      { pageIndex, order, generation, searchKeyword },
+    ],
     queryFn: () =>
       getInterviewRecordByPageWithOrder({
         page: +pageIndex,
         order: order,
         year: generation,
+        searchKeyword,
       }),
   });
 
@@ -71,23 +79,32 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
     };
   });
 
+  const handleModalOpen = (id: string) => () => {
+    openModal();
+    onClick && onClick(id);
+  };
+
   return (
-    <Board
-      wrapperClassName="divide-x"
-      boardData={createSearchData() ?? boardData}
-      onClick={(id) => onClick(id)}
-    >
-      <div className="flex flex-1 min-h-0">
-        <div className="flex-1 overflow-auto px-12">
-          <InterviewDetailLeftComponent />
+    <>
+      <BoardTable boardRows={boardData} handleModalOpen={handleModalOpen} />
+      <BoardModal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        ariaHideApp={false}
+        wrapperClassName="divide-x"
+      >
+        <div className="flex flex-1 min-h-0">
+          <div className="flex-1 overflow-auto px-12">
+            <InterviewDetailLeftComponent />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-1 min-h-0">
-        <div className="flex-1 overflow-auto px-12">
-          <InterviewDetailRightComponent />
+        <div className="flex flex-1 min-h-0">
+          <div className="flex-1 overflow-auto px-12">
+            <InterviewDetailRightComponent />
+          </div>
         </div>
-      </div>
-    </Board>
+      </BoardModal>
+    </>
   );
 };
 
