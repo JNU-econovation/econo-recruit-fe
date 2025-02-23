@@ -14,6 +14,7 @@ import { findApplicantState } from "@/src/utils/applicant";
 import BoardTable from "../common/board/BoardTable";
 import useModalState from "../../src/hooks/useModalState";
 import BoardModal from "../common/board/BoardModal";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 interface ApplicantBoardProps {
   generation: string;
@@ -29,18 +30,6 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   const searchKeyword = searchParams.get("search") || undefined;
 
   const { isOpen, openModal, closeModal } = useModalState();
-
-  const onClick = (id: string) => {
-    if (!allData) return;
-    setSelectedApplicant(
-      applicants?.filter((value) => applicantDataFinder(value, "id") === id)[0]
-    );
-  };
-
-  const handleModalOpen = (id: string) => () => {
-    openModal();
-    onClick && onClick(id);
-  };
 
   const {
     data: allData,
@@ -61,11 +50,15 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   );
 
   if (!allData || isLoading) {
-    return <div>로딩중...</div>;
+    return (
+      <section className="flex flex-col">
+        <LoadingSpinner size={8} />
+      </section>
+    );
   }
 
   if (isError) {
-    return <div>에러 발생</div>;
+    return <section className="flex flex-col">에러 발생</section>;
   }
 
   const { applicants } = allData;
@@ -96,6 +89,18 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
       "passState"
     )}` as ApplicantPassState,
   }));
+
+  const onClick = (id: string) => {
+    if (!allData) return;
+    setSelectedApplicant(
+      applicants?.filter((value) => applicantDataFinder(value, "id") === id)[0]
+    );
+  };
+
+  const handleModalOpen = (id: string) => () => {
+    openModal();
+    onClick && onClick(id);
+  };
 
   return (
     <>
