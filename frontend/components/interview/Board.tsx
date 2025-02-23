@@ -2,24 +2,25 @@
 
 import InterviewDetailLeftComponent from "./modal/DetailLeft.component";
 import InterviewDetailRightComponent from "./modal/DetailRight.component";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom";
-import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
-import { CHARACTERS } from "@/src/constants";
-import { removeAll } from "@/src/functions/replacer";
 import BoardTable from "../common/board/BoardTable";
 import useModalState from "../../src/hooks/useModalState";
 import BoardModal from "../common/board/BoardModal";
-import useInterviewerPaginationParams from "../../src/hooks/interview/useInterviewerPaginationParams";
+import { ApplicantPassState } from "../../src/apis/kanban";
 
 interface InterviewBoardProps {
-  generation: string;
+  interviewRecords: {
+    id: string;
+    title: string;
+    subElements: string[];
+    passState: ApplicantPassState;
+  }[];
 }
 
-const InterviewBoard = ({ generation }: InterviewBoardProps) => {
+const InterviewBoard = ({ interviewRecords }: InterviewBoardProps) => {
   const [applicantId, setApplicantId] = useAtom(interViewApplicantIdState);
-  const { pageIndex, order, searchKeyword } = useInterviewerPaginationParams();
 
   const queryClient = useQueryClient();
   const { isOpen, openModal, closeModal } = useModalState();
@@ -34,46 +35,6 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
     });
   };
 
-  const { data, status } = useQuery({
-    queryKey: [
-      "allInterviewRecord",
-      { pageIndex, order, generation, searchKeyword },
-    ],
-    queryFn: () =>
-      getInterviewRecordByPageWithOrder({
-        page: +pageIndex,
-        order: order,
-        year: generation,
-        searchKeyword,
-      }),
-  });
-
-  if (status === "loading") {
-    return <div>loading...</div>;
-  }
-
-  if (status === "error") {
-    return <div>에러가 발생하였습니다. 잠시 후 다시 시도해보세요.</div>;
-  }
-
-  const boardData = data.records.map((value) => {
-    return {
-      id: value.applicantId,
-      title: value.name,
-      subElements: [
-        removeAll(value.field1, CHARACTERS.DOUBLE_QUOTE).concat(
-          CHARACTERS.SLASH,
-          removeAll(value.field2, CHARACTERS.DOUBLE_QUOTE)
-        ),
-        removeAll(value.grade, CHARACTERS.DOUBLE_QUOTE).concat(
-          CHARACTERS.SPACE,
-          removeAll(value.semester, CHARACTERS.DOUBLE_QUOTE)
-        ),
-      ],
-      passState: value.state.passState,
-    };
-  });
-
   const handleModalOpen = (id: string) => () => {
     openModal();
     onClick && onClick(id);
@@ -81,7 +42,10 @@ const InterviewBoard = ({ generation }: InterviewBoardProps) => {
 
   return (
     <>
-      <BoardTable boardRows={boardData} handleModalOpen={handleModalOpen} />
+      <BoardTable
+        boardRows={interviewRecords}
+        handleModalOpen={handleModalOpen}
+      />
       <BoardModal
         isOpen={isOpen}
         onRequestClose={closeModal}

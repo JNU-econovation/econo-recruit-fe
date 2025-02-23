@@ -1,8 +1,7 @@
 import SortList from "@/components/common/SortList";
-import InterviewBoard from "@/components/interview/Board";
-import InterviewPageNavbar from "@/components/interview/PageNavbar";
 import Search from "@/components/common/Search";
 import { ORDER_MENU } from "@/src/constants";
+import InterviewerList from "../../../../components/interview/InterviewerList";
 
 interface InterviewPageProps {
   params: {
@@ -17,8 +16,7 @@ const InterviewPage = ({ params: { generation } }: InterviewPageProps) => {
         <Search />
         <SortList sortList={ORDER_MENU.INTERVIEW} />
       </div>
-      <InterviewBoard generation={generation} />
-      <InterviewPageNavbar generation={generation} />
+      <InterviewerList generation={generation} />
     </div>
   );
 };
