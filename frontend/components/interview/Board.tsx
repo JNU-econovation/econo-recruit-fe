@@ -8,7 +8,7 @@ import { interViewApplicantIdState } from "@/src/stores/interview/Interview.atom
 import BoardTable from "../common/board/BoardTable";
 import useModalState from "../../src/hooks/useModalState";
 import BoardModal from "../common/board/BoardModal";
-import { BoardData } from "../common/board/Board";
+import { BoardData } from "../common/board/types";
 
 interface InterviewBoardProps {
   interviewRecords: BoardData[];
