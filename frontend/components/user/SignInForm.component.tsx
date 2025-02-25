@@ -70,7 +70,7 @@ const SignInForm = ({ onSubmit, data, setForm }: SignInProps) => {
         onChange={(e) => setForm({ name: "password", value: e.target.value })}
         isWrong={isWarning.password}
         wrongMessage={
-          "비밀번호는 10자이상, 숫자 최소 1자 이상, 특수문자 최소 1자 이상이어야 합니다."
+          "비밀번호는 10자 이상이어야 하며, 최소 1개의 숫자와 1개의 특수문자를 포함해야 합니다."
         }
       />
       <div className="w-full mt-8">
