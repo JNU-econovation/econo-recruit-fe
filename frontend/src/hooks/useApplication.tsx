@@ -141,10 +141,10 @@ export const useApplication = () => {
       "기타",
     ]);
 
-    portfolioUrls.forEach((portfolioUrl) => {
+    portfolioUrls.forEach(({ category, id, value }) => {
       sendValues.push({
-        name: `${portfolioUrl.category} - ${portfolioUrl.id}`,
-        answer: JSON.parse(portfolioUrl.value),
+        name: `${category} - ${id}`,
+        answer: JSON.parse(value),
       });
     });
 
