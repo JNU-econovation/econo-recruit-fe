@@ -21,9 +21,10 @@ const ApplicationAddText = ({ data }: ApplicationAddTextProps) => {
   const textData = data as ApplicationAddText;
 
   const id = Date.now().toString();
-  const [selectedCategories, setSelectedCategories] = useState<
-    { category: string; id: string; value: string }[]
-  >(localStorageData || [{ category: "Github", id: id, value: "" }]);
+  const [selectedCategories, setSelectedCategories] =
+    useState<{ category: string; id: string; value: string }[]>(
+      localStorageData
+    );
 
   const onAddCategory = () => {
     const newId = Date.now().toString();

@@ -10,26 +10,20 @@ export const findApplicantState = (
 };
 
 export const getLocalStorage = (category: typeof portfolioCategory) => {
-  const data = [];
-
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-
-    if (key && category.some((cat) => key.includes(cat))) {
-      const value = localStorage.getItem(key);
-
+  const data = Object.keys(localStorage)
+    .filter((key) =>
+      category.some((cat) => key.includes(cat) && key.includes(" - "))
+    )
+    .map((key) => {
+      const value = localStorage.getItem(key) || "";
       const parts = key.split(" - ");
-      if (parts.length === 2) {
-        const category = parts[0];
-        const id = parts[1];
-        data.push({
-          category,
-          id,
-          value: value || "",
-        });
-      }
-    }
-  }
+
+      return {
+        category: parts[0],
+        id: parts[1],
+        value,
+      };
+    });
 
   return data;
 };
