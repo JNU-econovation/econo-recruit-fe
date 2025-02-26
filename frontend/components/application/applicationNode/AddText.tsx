@@ -25,7 +25,7 @@ const ApplicationAddText = ({ data }: ApplicationAddTextProps) => {
   const [selectedCategories, setSelectedCategories] = useState<
     { category: string; id: string; value: string }[]
   >(
-    localStorageData.length === 0
+    !localStorageData.length
       ? [{ category: "Github", id, value: "" }]
       : localStorageData
   );
