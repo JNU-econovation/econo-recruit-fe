@@ -1,4 +1,5 @@
 import { KanbanCardReq } from "@/src/apis/kanban";
+import { portfolioCategory } from "@/src/constants/application";
 
 export const findApplicantState = (
   cardsData: KanbanCardReq[],
@@ -8,7 +9,7 @@ export const findApplicantState = (
     .passState;
 };
 
-export const getLocalStorage = (category: string[]) => {
+export const getLocalStorage = (category: typeof portfolioCategory) => {
   const data = [];
 
   for (let i = 0; i < localStorage.length; i++) {

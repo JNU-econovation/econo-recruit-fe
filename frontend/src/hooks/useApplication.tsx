@@ -18,6 +18,7 @@ import {
   applicationIndexAtom,
 } from "../stores/application";
 import { getLocalStorage } from "../utils/applicant";
+import { portfolioCategory } from "../constants/application";
 
 export const useApplication = () => {
   // TODO: 질문의 이름마다 side effect가 있으니 주의하면 좋을 것
@@ -133,13 +134,7 @@ export const useApplication = () => {
       answer: JSON.stringify(timeline),
     });
 
-    const portfolioUrls = getLocalStorage([
-      "Github",
-      "Blog",
-      "Notion",
-      "Website",
-      "기타",
-    ]);
+    const portfolioUrls = getLocalStorage(portfolioCategory);
 
     portfolioUrls.forEach(({ category, id, value }) => {
       sendValues.push({

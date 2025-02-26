@@ -9,19 +9,14 @@ import {
 import { useState } from "react";
 import ApplicationText from "./Text.component";
 import { getLocalStorage } from "@/src/utils/applicant";
+import { portfolioCategory } from "@/src/constants/application";
 
 interface ApplicationAddTextProps {
   data: ApplicationNode;
 }
 
 const ApplicationAddText = ({ data }: ApplicationAddTextProps) => {
-  const localStorageData = getLocalStorage([
-    "Github",
-    "Blog",
-    "Notion",
-    "Website",
-    "기타",
-  ]);
+  const localStorageData = getLocalStorage(portfolioCategory);
 
   const textData = data as ApplicationAddText;
 

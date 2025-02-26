@@ -1,5 +1,6 @@
 import { ReplacerType } from "@/src/functions/replacer";
 import { ValidatorType } from "@/src/functions/validator";
+import { portfolioCategory } from ".";
 
 interface ApplicationNodeBase {
   title?: string;
@@ -43,7 +44,7 @@ interface ApplicationText extends ApplicationNodeBase {
 
 interface ApplicationAddText extends ApplicationNodeBase {
   type: "addText";
-  category: ("Github" | "Blog" | "Notion" | "Website" | "기타")[];
+  category: (typeof portfolioCategory)[number][];
   alert: string;
 }
 
