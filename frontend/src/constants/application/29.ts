@@ -191,16 +191,16 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
   seperate: 30,
   time: [
     {
-      startTime: new Date(2024, 8, 23, 10, 0, 0),
-      endTime: new Date(2024, 8, 23, 20, 30, 0),
+      startTime: new Date(2025, 2, 17, 10, 0, 0),
+      endTime: new Date(2025, 2, 17, 20, 30, 0),
     },
     {
-      startTime: new Date(2024, 8, 24, 10, 0, 0),
-      endTime: new Date(2024, 8, 24, 20, 30, 0),
+      startTime: new Date(2025, 2, 18, 10, 0, 0),
+      endTime: new Date(2025, 2, 18, 20, 30, 0),
     },
     {
-      startTime: new Date(2024, 8, 25, 10, 0, 0),
-      endTime: new Date(2024, 8, 25, 20, 30, 0),
+      startTime: new Date(2025, 2, 19, 10, 0, 0),
+      endTime: new Date(2025, 2, 19, 20, 30, 0),
     },
   ],
   disableTime: [],
