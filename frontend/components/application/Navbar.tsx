@@ -9,61 +9,72 @@ import { useAtom, useAtomValue } from "jotai";
 import Txt from "@/components/common/Txt.component";
 import { cn } from "@/src/utils/cn";
 import { getApplicationNames } from "@/src/functions/getApplication";
-import { useApplication } from "@/src/hooks/useApplication";
+import { localStorage } from "@/src/functions/localstorage";
 
 interface ApplicationNavbarProps {
-  generation: string;
   className?: string;
 }
 
-const ApplicationNavbar = ({
-  generation,
-  className,
-}: ApplicationNavbarProps) => {
+const ApplicationNavbar = ({ className }: ApplicationNavbarProps) => {
   const [applicationIndex, setApplicationIndex] = useAtom(applicationIndexAtom);
   const applicationNavbar = useAtomValue(applicationNavbarAtom);
   const applicationData = useAtomValue(applicationDataAtom);
-  const { canApplicationNext } = useApplication();
 
   const onNavbarClick = (id: number) => {
-    const applicationName = Array.from({ length: id - 1 }, (_, i) =>
-      Array.from(getApplicationNames(applicationData[i].nodes))
-    ).flat();
-    if (!canApplicationNext(applicationName)) {
-      return;
-    }
+    // const applicationName = Array.from({ length: id - 1 }, (_, i) =>
+    //   Array.from(getApplicationNames(applicationData[i].nodes))
+    // ).flat();
+    // if (!canApplicationNext(applicationName)) return;
+
     setApplicationIndex(id - 1);
   };
 
+  const checkIsWritten = (id: number) => {
+    const applicationName = getApplicationNames(applicationData[id - 1].nodes);
+    const keys = Array.from(applicationName);
+
+    return keys.every((key) => {
+      const value = localStorage.get(key, "");
+      return value !== "";
+    });
+  };
+
   return (
-    <nav className={cn("pl-12 w-full h-full", className)}>
-      {applicationNavbar.map((navItem, index) => (
+    <nav className="pl-12 w-full h-full flex-1">
+      {applicationNavbar.map(({ id, title }, index) => (
         <button
           className={"text-left p-4 relative"}
-          onClick={() => onNavbarClick(navItem.id)}
-          key={navItem.id}
+          onClick={() => onNavbarClick(id)}
+          key={id}
         >
           {/* 마지막 선은 그리지 않기 */}
           {index !== applicationNavbar.length - 1 && (
             <div
               className={cn(
-                "absolute border-l-2 h-full -left-[13px] top-8 -z-10",
-                applicationIndex > navItem.id - 1
-                  ? "border-black"
-                  : "border-gray-300"
+                "absolute border-l-2 h-full -left-[13px] top-8 -z-10 transition-all",
+                applicationIndex > id - 1 ? "border-black" : "border-gray-300"
               )}
-            ></div>
+            />
           )}
-          <Txt
+          <div
             className={cn(
-              "relative transition-all before:h-2 before:w-2 before:rounded-full before:absolute before:translate-y-full before:-translate-x-8",
-              applicationIndex >= navItem.id - 1
+              "before:h-2 before:w-2 before:rounded-full before:absolute before:translate-y-full before:-translate-x-8 transition-all",
+              id <= applicationIndex + 1
                 ? "before:bg-black text-black"
                 : "before:bg-gray-300 text-gray-300"
             )}
           >
-            {navItem.title}
-          </Txt>
+            <Txt
+              className={cn(
+                "transition-all",
+                checkIsWritten(id)
+                  ? "before:bg-black text-black"
+                  : "before:bg-gray-300 text-gray-300"
+              )}
+            >
+              {title}
+            </Txt>
+          </div>
         </button>
       ))}
     </nav>

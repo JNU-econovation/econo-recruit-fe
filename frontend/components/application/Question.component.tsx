@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Txt from "../common/Txt.component";
 import { useAtomValue } from "jotai";
 import { applicationIndexAtom } from "@/src/stores/application";
@@ -19,13 +18,8 @@ const ApplicationQuestion = ({
   applicationQuestions,
 }: ApplicationQuestionProps) => {
   const applicationIndex = useAtomValue(applicationIndexAtom);
-  const [applicationQuestion, setApplicationQuestion] = useState(
-    applicationQuestions[applicationIndex]
-  );
 
-  useEffect(() => {
-    setApplicationQuestion(applicationQuestions[applicationIndex]);
-  }, [applicationIndex]);
+  const applicationQuestion = applicationQuestions[applicationIndex];
 
   return (
     <article className={cn("flex flex-col justify-between", className)}>
@@ -33,7 +27,7 @@ const ApplicationQuestion = ({
         <Txt typography="h1" className="uppercase">
           ECONOVATION 신입모집 신청
         </Txt>
-        <div className="my-6 h-1 bg-gray-300 w-full"></div>
+        <div className="my-6 h-1 bg-gray-300 w-full" />
         <ApplicationLayout applicationQuestion={applicationQuestion} />
       </div>
       <div className="translate-x-[calc(100%+1.5rem)] w-[calc(50%-2.3rem)]">

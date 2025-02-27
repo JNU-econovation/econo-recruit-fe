@@ -18,15 +18,15 @@ const ApplicationNextButton = ({
   const { applicationIndex, goNextIndex, goPrevIndex } =
     useApplicationIndexControll();
   const applicationData = useAtomValue(applicationDataAtom);
-  const { canApplicationNext, postApplication } = useApplication();
+  const { postApplication } = useApplication();
 
   const onNextClick = () => {
-    const applicationName = getApplicationNames(
-      applicationData[applicationIndex].nodes
-    );
-    if (!canApplicationNext(Array.from(applicationName))) {
-      return;
-    }
+    // const applicationName = getApplicationNames(
+    //   applicationData[applicationIndex].nodes
+    // );
+    // if (!canApplicationNext(Array.from(applicationName))) {
+    //   return;
+    // }
 
     if (isLast) {
       postApplication(applicationData);
