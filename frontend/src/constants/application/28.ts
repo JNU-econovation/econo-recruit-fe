@@ -35,6 +35,18 @@ export const APPLICATION: ApplicationQuestion[] = [
           },
         ],
       },
+      {
+        type: "text",
+        name: "specificField",
+        title: "구체적인 희망 분야",
+        require: false,
+        maxLength: 30,
+        example: [
+          "# 프론트엔드 개발을 시작한 UI/UX 디자이너",
+          "# Computer Vision 위주의 프로젝트 개발",
+          "# Android",
+        ],
+      },
     ],
   },
   {
