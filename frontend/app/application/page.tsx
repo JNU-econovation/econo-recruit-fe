@@ -66,10 +66,7 @@ const ApplicationPage = () => {
 
   return (
     <section className="flex gap-24 mt-24 min-w-[1280px]">
-      <ApplicationNavbar
-        className="flex-1"
-        generation={`${CURRENT_GENERATION}`}
-      />
+      <ApplicationNavbar />
       <ApplicationQuestion
         className="flex-[3_0_0]"
         applicationQuestions={applicationQuestions}
