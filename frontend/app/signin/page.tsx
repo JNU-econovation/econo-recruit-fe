@@ -31,6 +31,7 @@ const SignInPage = () => {
 
   const onSubmit = async () => {
     if (await signIn(signInData)) {
+      setError("");
       navigate.push("/");
       return;
     }
