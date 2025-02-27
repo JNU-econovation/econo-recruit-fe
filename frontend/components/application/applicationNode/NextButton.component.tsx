@@ -1,6 +1,6 @@
 "use client";
 
-import useApplicationIndexControl from "@/src/hooks/useApplicationIndexControll.hook";
+import useApplicationIndexControl from "@/src/hooks/useApplicationIndexControl.hook";
 import { useAtomValue } from "jotai";
 import { applicationDataAtom } from "@/src/stores/application";
 import { cn } from "@/src/utils/cn";
