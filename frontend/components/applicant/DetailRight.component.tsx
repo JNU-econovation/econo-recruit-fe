@@ -9,7 +9,6 @@ import { applicantDataFinder } from "@/src/functions/finder";
 import { JunctionApplicant } from "./Junction.component";
 import { useAtom } from "jotai";
 import { applicantQuestionsAtom } from "@/src/stores/applicant";
-
 import { CURRENT_GENERATION } from "@/src/constants";
 
 interface ApplicantDetailRightProps {
@@ -17,14 +16,17 @@ interface ApplicantDetailRightProps {
 }
 
 const ApplicantDetailRight = ({ data }: ApplicantDetailRightProps) => {
-  const APPLICANT_DEVELOPER =
-    require(`@/src/constants/applicant/${CURRENT_GENERATION}/developer.ts`).APPLICANT_DEVELOPER;
+  const APPLICANT_DEVELOPER = require(
+    `@/src/constants/applicant/${CURRENT_GENERATION}/developer.ts`
+  ).APPLICANT_DEVELOPER;
 
-  const APPLICANT_DESIGNER =
-    require(`@/src/constants/applicant/${CURRENT_GENERATION}/designer.ts`).APPLICANT_DESIGNER;
+  const APPLICANT_DESIGNER = require(
+    `@/src/constants/applicant/${CURRENT_GENERATION}/designer.ts`
+  ).APPLICANT_DESIGNER;
 
-  const APPLICANT_MANAGER =
-    require(`@/src/constants/applicant/${CURRENT_GENERATION}/manager.ts`).APPLICANT_MANAGER;
+  const APPLICANT_MANAGER = require(
+    `@/src/constants/applicant/${CURRENT_GENERATION}/manager.ts`
+  ).APPLICANT_MANAGER;
 
   const [applicantData, setApplicantData] = useAtom(applicantQuestionsAtom);
 
