@@ -185,7 +185,7 @@ export const APPLICATION_MANAGER: ApplicationQuestion[] = [
     require: false,
   },
   {
-    id: 15,
+    id: 14,
     direction: "horizontal",
     title:
       "에코노베이션은 3학기 이상의 활동과 매주 금요일 17시 주간발표 참여가 필수이며, 최종 합격 시 신입 기수로 구성된 팀으로 한 학기 동안 활동하게 됩니다. \n또한, 에코노베이션에서 운영되고 있는 다양한 부서 활동과 네트워킹 행사에 적극적인 참여를 권장합니다.",
