@@ -16,7 +16,7 @@ const ApplicationHorizontalLayout = ({
       <div className="flex-1">
         <div className="mb-4 flex gap-2">
           <Txt typography="h6">{`${applicationQuestion.id}. `}</Txt>
-          <Txt typography="h6" className="break-keep">{`${
+          <Txt typography="h6" className="break-all">{`${
             applicationQuestion.title
           }${applicationQuestion.require ? "*" : ""}`}</Txt>
         </div>

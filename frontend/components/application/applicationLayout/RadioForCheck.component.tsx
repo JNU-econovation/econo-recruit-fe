@@ -33,8 +33,8 @@ const RadioCell = ({
           radioForCheckData.name === "personalInformationAgree"
             ? "/application/consent#common"
             : radioForCheckData.name === "personalInformationAgreeForPortfolio"
-            ? "/application/consent#portfolio"
-            : ""
+              ? "/application/consent#portfolio"
+              : ""
         }
         target="_blank"
       >
@@ -91,7 +91,7 @@ const ApplicationRadioForCheckLayout = ({
       {applicationQuestion.id !== -1 && applicationQuestion.title && (
         <>
           <Txt typography="h6">{`${applicationQuestion.id}. `}</Txt>
-          <Txt typography="h6" className="break-keep">{`${
+          <Txt typography="h6" className="break-all">{`${
             applicationQuestion.title
           }${applicationQuestion.require ? "*" : ""}`}</Txt>
         </>
