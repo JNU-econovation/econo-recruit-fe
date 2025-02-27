@@ -1,6 +1,6 @@
 "use client";
 
-import useApplicationIndexControll from "@/src/hooks/useApplicationIndexControll.hook";
+import useApplicationIndexControl from "@/src/hooks/useApplicationIndexControll.hook";
 import { useAtomValue } from "jotai";
 import { applicationDataAtom } from "@/src/stores/application";
 import { cn } from "@/src/utils/cn";
@@ -15,7 +15,7 @@ const ApplicationNextButton = ({
   isLast = false,
 }: ApplicationNextButtonProps) => {
   const { applicationIndex, goNextIndex, goPrevIndex } =
-    useApplicationIndexControll();
+    useApplicationIndexControl();
   const applicationData = useAtomValue(applicationDataAtom);
   const { postApplication } = useApplication();
 
