@@ -35,7 +35,10 @@ const CommonNavbar = () => {
         <NavbarManagePassState currentType={currentType} isShort={isShort} />
         <NavbarOperation currentType={currentType} isShort={isShort} />
       </div>
-      <NavbarUserInfo />
+
+      <div className="h-12">
+        <NavbarUserInfo />
+      </div>
     </nav>
   );
 };
