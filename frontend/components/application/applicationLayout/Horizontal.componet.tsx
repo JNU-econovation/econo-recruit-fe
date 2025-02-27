@@ -16,13 +16,15 @@ const ApplicationHorizontalLayout = ({
       <div className="flex-1">
         <div className="mb-4 flex gap-2">
           <Txt typography="h6">{`${applicationQuestion.id}. `}</Txt>
-          <Txt typography="h6" className="break-all">{`${
-            applicationQuestion.title
-          }${applicationQuestion.require ? "*" : ""}`}</Txt>
+          <Txt typography="h6" className="break-all whitespace-pre-wrap">
+            {`${applicationQuestion.title}${applicationQuestion.require ? "*" : ""}`}
+          </Txt>
         </div>
         {applicationQuestion.subtitle && (
           <div className="pl-6">
-            <Txt className="text-sm">{applicationQuestion.subtitle}</Txt>
+            <Txt className="text-sm whitespace-pre-wrap">
+              {applicationQuestion.subtitle}
+            </Txt>
             {applicationQuestion.alert && (
               <div className="mt-4">
                 <Txt className=" underline font-semibold">
