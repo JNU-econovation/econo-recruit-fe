@@ -39,7 +39,7 @@ const ApplicationNavbar = ({
     <nav className={cn("pl-12 w-full h-full", className)}>
       {applicationNavbar.map((navItem, index) => (
         <button
-          className={"text-left p-4 relative"}
+          className={"text-left p-4 relative w-full"}
           onClick={() => onNavbarClick(navItem.id)}
           key={navItem.id}
         >
