@@ -1,7 +1,9 @@
+import { CURRENT_GENERATION } from "@/src/constants";
 import { atom } from "jotai";
 
-const applicantQuestions = require(`@/src/constants/applicant/28`)
-  .APPLICANT as ApplicantNode[];
+const applicantQuestions =
+  require(`@/src/constants/applicant/${CURRENT_GENERATION}`)
+    .APPLICANT as ApplicantNode[];
 
 export const applicantQuestionsAtom = atom(applicantQuestions);
 

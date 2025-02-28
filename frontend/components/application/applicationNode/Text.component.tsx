@@ -60,6 +60,16 @@ const ApplicationText = ({ data }: ApplicationTextProps) => {
       ) : (
         ""
       )}
+      {textData.example?.map((example, index) => {
+        return (
+          <div
+            key={index}
+            className="flex items-center justify-center rounded-full border border-gray-300 bg-gray-200 text-sm p-2 pl-4 pr-4 my-2 text-gray-400 w-fit"
+          >
+            {example}
+          </div>
+        );
+      })}
     </div>
   );
 };

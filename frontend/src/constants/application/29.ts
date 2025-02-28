@@ -215,9 +215,9 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
  * @property {number} seconds - 1차 모집 마감 시간(초) (0-59)
  */
 export const END_DATE = {
-  year: 2024,
-  month: 9,
-  date: 15,
+  year: 2025,
+  month: 3,
+  date: 12,
   hours: 23,
   minutes: 59,
   seconds: 59,
@@ -230,9 +230,9 @@ export const END_DATE = {
  * @property {number} date - 1차 합격자 공지 일 (1-31)
  */
 export const FIRST_NOTIFICATION_DATE = {
-  year: 2024,
-  month: 9,
-  date: 20,
+  year: 2025,
+  month: 3,
+  date: 14,
 };
 
 /**
@@ -242,7 +242,7 @@ export const FIRST_NOTIFICATION_DATE = {
  * @property {number} date - 최종 모집 마감 일 (1-31)
  */
 export const FINAL_DATE = {
-  year: 2024,
-  month: 9,
-  date: 30,
+  year: 2025,
+  month: 3,
+  date: 24,
 };

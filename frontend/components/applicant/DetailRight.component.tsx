@@ -7,17 +7,25 @@ import Txt from "../common/Txt.component";
 import ApplicantTimelineNode from "./applicantNode/Timeline.component";
 import { applicantDataFinder } from "@/src/functions/finder";
 import { JunctionApplicant } from "./Junction.component";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { applicantQuestionsAtom } from "@/src/stores/applicant";
-import { APPLICANT_DEVELOPER } from "@/src/constants/applicant/28/developer";
-import { APPLICANT_DESIGNER } from "@/src/constants/applicant/28/designer";
-import { APPLICANT_MANAGER } from "@/src/constants/applicant/28/manager";
+
+import { CURRENT_GENERATION } from "@/src/constants";
 
 interface ApplicantDetailRightProps {
   data: ApplicantReq[];
 }
 
 const ApplicantDetailRight = ({ data }: ApplicantDetailRightProps) => {
+  const APPLICANT_DEVELOPER =
+    require(`@/src/constants/applicant/${CURRENT_GENERATION}/developer.ts`).APPLICANT_DEVELOPER;
+
+  const APPLICANT_DESIGNER =
+    require(`@/src/constants/applicant/${CURRENT_GENERATION}/designer.ts`).APPLICANT_DESIGNER;
+
+  const APPLICANT_MANAGER =
+    require(`@/src/constants/applicant/${CURRENT_GENERATION}/manager.ts`).APPLICANT_MANAGER;
+
   const [applicantData, setApplicantData] = useAtom(applicantQuestionsAtom);
 
   useEffect(() => {

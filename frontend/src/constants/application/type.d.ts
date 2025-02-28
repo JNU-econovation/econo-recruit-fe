@@ -39,6 +39,7 @@ interface ApplicationText extends ApplicationNodeBase {
   replace?: ReplacerType;
   maxLength?: number;
   minLength?: number;
+  example?: string[];
 }
 
 interface ApplicationTextarea extends ApplicationNodeBase {
