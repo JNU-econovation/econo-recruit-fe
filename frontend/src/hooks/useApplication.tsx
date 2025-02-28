@@ -42,7 +42,9 @@ export const useApplication = () => {
           case "email":
             return !isEmail(localStorageValueFromName) ? "email" : "";
           case "check":
-            return localStorageValueFromName !== "확인했습니다" ? "check" : "";
+            return !localStorageValueFromName.includes("확인했습니다")
+              ? "check"
+              : "";
           case "channel":
             return localStorageValueFromName.length === 0 &&
               localStorage.get("channelEtc", EMPTY_STRING).length === 0

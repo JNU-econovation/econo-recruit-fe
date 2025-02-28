@@ -190,14 +190,14 @@ export const APPLICATION_MANAGER: ApplicationQuestion[] = [
     title:
       "에코노베이션은 3학기 이상의 활동과 매주 금요일 17시 주간발표 참여가 필수이며, 최종 합격 시 신입 기수로 구성된 팀으로 한 학기 동안 활동하게 됩니다. \n또한, 에코노베이션에서 운영되고 있는 다양한 부서 활동과 네트워킹 행사에 적극적인 참여를 권장합니다.",
     subtitle:
-      "위 내용을 확인하셨으면 <b>'확인했습니다'</b>를 기입해주세요.\n확인하지 않았을 시 합격이 취소될 수 있습니다.",
+      "위 내용을 확인하셨으면 <b>'확인했습니다.'</b>를 기입해주세요.\n확인하지 않았을 시 합격이 취소될 수 있습니다.",
     require: true,
     nodes: [
       {
         type: "text",
         name: "check",
         validate: "confirmationString",
-        errorMessages: '"확인했습니다"를 입력해주세요.',
+        errorMessages: '"확인했습니다."를 입력해주세요.',
         require: true,
       },
     ],
