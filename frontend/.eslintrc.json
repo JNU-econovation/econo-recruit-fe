@@ -15,6 +15,7 @@
     "prettier"
   ],
   "rules": {
+    "useTabs": false,
     "@typescript-eslint/no-redeclare": "off",
     "@next/next/no-img-element": "off",
     "react/react-in-jsx-scope": "off",
