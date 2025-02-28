@@ -23,9 +23,9 @@ export const useApplication = () => {
   const setApplicationIndex = useSetAtom(applicationIndexAtom);
   const applicationData = useAtomValue(applicationDataAtom);
 
-  const {
-    END_DATE,
-  } = require(`@/src/constants/application/${CURRENT_GENERATION}.ts`);
+  const { END_DATE } = require(
+    `@/src/constants/application/${CURRENT_GENERATION}.ts`
+  );
 
   const canApplicationNext = (applicationNames: Array<string>) => {
     const nonValidatedQuestion = applicationNames
@@ -65,7 +65,7 @@ export const useApplication = () => {
         alert("이메일을 입력해주세요.");
         break;
       case "check":
-        alert("확인했습니다.를 체크해주세요.");
+        alert("확인했습니다.를 입력해주세요.");
         break;
       case "channel":
         alert("지원 경로를 선택해주세요.");
