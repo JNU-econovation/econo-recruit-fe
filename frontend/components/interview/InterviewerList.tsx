@@ -33,7 +33,7 @@ const InterviewerList = ({ generation }: InterviewerListProps) => {
   if (status === "loading") {
     return (
       <section className="flex flex-col">
-        <LoadingSpinner size={8} />
+        <LoadingSpinner size="s" />
       </section>
     );
   }
