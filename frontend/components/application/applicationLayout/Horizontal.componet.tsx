@@ -22,28 +22,26 @@ const ApplicationHorizontalLayout = ({
         </div>
         {applicationQuestion.subtitle && (
           <div className="pl-6">
-            <>
-              {applicationQuestion.subtitle
-                .split(/<b>|<\/b>/)
-                .map((line, index) =>
-                  index % 2 === 1 ? (
-                    <Txt
-                      typography="h6"
-                      className="break-all text-sm whitespace-pre-wrap black"
-                      key={index}
-                    >
-                      {line}
-                    </Txt>
-                  ) : (
-                    <Txt
-                      className="break-all text-sm whitespace-pre-wrap"
-                      key={index}
-                    >
-                      {line}
-                    </Txt>
-                  )
-                )}
-            </>
+            {applicationQuestion.subtitle
+              .split(/<b>|<\/b>/)
+              .map((line, index) =>
+                index % 2 === 1 ? (
+                  <Txt
+                    typography="h6"
+                    className="break-all text-sm whitespace-pre-wrap black"
+                    key={index}
+                  >
+                    {line}
+                  </Txt>
+                ) : (
+                  <Txt
+                    className="break-all text-sm whitespace-pre-wrap"
+                    key={index}
+                  >
+                    {line}
+                  </Txt>
+                )
+              )}
             {applicationQuestion.alert && (
               <div className="mt-4">
                 <Txt className=" underline font-semibold">
