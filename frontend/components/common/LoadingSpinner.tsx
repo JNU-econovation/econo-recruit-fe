@@ -1,45 +1,29 @@
-type TailwindSize =
-  | 0
-  | 0.5
-  | 1
-  | 1.5
-  | 2
-  | 2.5
-  | 3
-  | 3.5
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 14
-  | 16
-  | 20
-  | 24
-  | 28
-  | 32
-  | 36
-  | 40
-  | 44
-  | 48
-  | 52
-  | 56
-  | 60
-  | 64
-  | 72
-  | 80
-  | 96;
+import { cn } from "../../src/utils/cn";
 
 interface LoadingSpinnerProps {
-  size?: TailwindSize;
+  size?: "s" | "m" | "l" | "xl";
 }
-const LoadingSpinner = ({ size = 6 }: LoadingSpinnerProps) => {
+
+const getSize = (size: "s" | "m" | "l" | "xl") => {
+  switch (size) {
+    case "s":
+      return cn("w-6", "h-6");
+    case "m":
+      return cn("w-12", "h-12");
+    case "l":
+      return cn("w-18", "h-18");
+    case "xl":
+      return cn("w-24 h-24");
+    default:
+      throw new Error(
+        "Error: Loading Spinner의 `size` Props는 s, m, l, xl 중 하나 입니다."
+      );
+  }
+};
+
+const LoadingSpinner = ({ size = "s" }: LoadingSpinnerProps) => {
   return (
-    <div className={`w-${size} h-${size}`}>
+    <div className={getSize(size)}>
       <svg
         className="mr-3 -ml-1 size-5 animate-spin text-black"
         fill="none"
