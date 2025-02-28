@@ -1,7 +1,7 @@
 import SortList from "@/components/common/SortList";
 import Search from "@/components/common/Search";
 import { ORDER_MENU } from "@/src/constants";
-import InterviewerList from "../../../../components/interview/InterviewerList";
+import InterviewerList from "@/components/interview/InterviewerList";
 
 interface InterviewPageProps {
   params: {

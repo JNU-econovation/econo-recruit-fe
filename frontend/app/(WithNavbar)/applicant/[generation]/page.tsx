@@ -1,7 +1,7 @@
 import SortList from "@/components/common/SortList";
 import Search from "@/components/common/Search";
 import { ORDER_MENU } from "@/src/constants";
-import ApplicantList from "../../../../components/applicant/ApplicantList";
+import ApplicantList from "@/components/applicant/ApplicantList";
 
 interface ApplicantPageProps {
   params: {
