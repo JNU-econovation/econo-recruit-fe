@@ -28,11 +28,7 @@ const ApplicantList = ({ generation }: ApplicantListProps) => {
   );
 
   if (status === "loading") {
-    return (
-      <div>
-        <LoadingSpinner size={8} />
-      </div>
-    );
+    return <LoadingSpinner size={8} />;
   }
   if (status === "error") {
     return <div>에러 발생</div>;
