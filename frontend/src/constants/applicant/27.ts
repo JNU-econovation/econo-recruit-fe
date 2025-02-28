@@ -16,7 +16,7 @@ const APPLICANT: ApplicantNode[] = [
     title: "기본 인적 사항을 입력해주세요.",
     type: "customHuman",
     value: {
-      hunamName: { name: "name" },
+      humanName: { name: "name" },
       humanEmail: { name: "email" },
       humanPhone: { name: "contacted" },
       humanEtc: [
