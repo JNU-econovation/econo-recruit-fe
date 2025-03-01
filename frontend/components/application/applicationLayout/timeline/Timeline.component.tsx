@@ -71,7 +71,7 @@ const ApplicationTimelineLayout = ({
       {applicationQuestion.id !== -1 && applicationQuestion.title && (
         <div className="pb-6">
           <Txt typography="h6">{`${applicationQuestion.id}. `}</Txt>
-          <Txt typography="h6" className="break-keep">{`${
+          <Txt typography="h6" className="break-all">{`${
             applicationQuestion.title
           }${applicationQuestion.require ? "*" : ""}`}</Txt>
         </div>
@@ -79,7 +79,7 @@ const ApplicationTimelineLayout = ({
       {applicationQuestion.subtitle && (
         <>
           {applicationQuestion.subtitle.split("\n").map((line, index) => (
-            <Txt className="break-keep block" key={index}>
+            <Txt className="break-all block" key={index}>
               {line}
             </Txt>
           ))}

@@ -7,8 +7,7 @@ export const APPLICANT_MANAGER = [
   } as ApplicantTextareaNode,
   {
     id: 6,
-    title:
-      "본인이 계획하고 있는 진로와 이를 위해 노력한 내용을 말씀해주세요.(IT 분야가 아니어도 괜찮습니다)",
+    title: "기획자를 희망하는 이유는 무엇인가요?",
     type: "textarea",
     value: { name: "future" },
   } as ApplicantTextareaNode,
@@ -34,14 +33,14 @@ export const APPLICANT_MANAGER = [
   {
     id: 9,
     title:
-      "어떤 일에 도전하고 실패해 본 경험이 있나요? 그 실패를 어떻게 극복했는지 서술해 주세요. (소프트웨어 분야 관련 경험이 아니어도 좋습니다.)",
+      "무언가에 깊게 빠지거나 파고 들어본 적이 있나요? 좋아하는 것을 위해서 주변에서 인정할 정도로 깊게  빠져본 적이 있다면 서술해주세요. (소프트웨어 분야 관련 경험이 아니어도 좋습니다.)",
     type: "textarea",
     value: { name: "failual" },
   } as ApplicantTextareaNode,
   {
     id: 10,
     title:
-      "무언가에 깊게 빠지거나 파고 들어본 적이 있나요? 좋아하는 것을 위해서 주변에서 인정할 정도로 깊게  빠져본 적이 있다면 서술해주세요. (소프트웨어 분야 관련 경험이 아니어도 좋습니다.)",
+      "어떤 일에 도전하고 실패해 본 경험이 있나요? 그 실패를 어떻게 극복했는지 서술해 주세요. (소프트웨어 분야 관련 경험이 아니어도 좋습니다.)",
     type: "textarea",
     value: { name: "deep" },
   } as ApplicantTextareaNode,
@@ -54,15 +53,14 @@ export const APPLICANT_MANAGER = [
   } as ApplicantTextareaNode,
   {
     id: 12,
-    title:
-      "에코노베이션에 최종 합격 시 신입 기수로 구성된 팀으로 개발 프로젝트에 참여하고, 목표를 달성하기 위해 스스로 끊임없이 배우고 노력합니다. 에코노베이션에 들어오게 된다면 어떤 목표와 학습 계획을 바탕으로 활동하고 싶나요?",
+    title: "에코노베이션에서의 활동 목표와 학습 계획을 이야기해주세요.",
     type: "textarea",
     value: { name: "studyPlan" },
   } as ApplicantTextareaNode,
   {
-    id: 15,
+    id: 14,
     title:
-      "에코노베이션은 3학기 이상의 활동과 매주 금요일 17시 주간발표에 필수로 참여해야 합니다.\n위 내용을 확인하셨으면 '확인했습니다'를 기입해주세요.",
+      "에코노베이션은 3학기 이상의 활동과 매주 금요일 17시 주간발표 참여가 필수이며, 최종 합격 시 신입 기수로 구성된 팀으로 한 학기 동안 활동하게 됩니다. \n또한, 에코노베이션에서 운영되고 있는 다양한 부서 활동과 네트워킹 행사에 적극적인 참여를 권장합니다.",
     type: "textarea",
     value: { name: "check" },
   } as ApplicantTextareaNode,

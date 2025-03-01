@@ -18,7 +18,7 @@ interface ApplicantCustomFieldNode extends ApplicantNodeBase {
 interface ApplicantCustomHumanNode extends ApplicantNodeBase {
   type: "customHuman";
   value: {
-    hunamName: ApplicantValue;
+    humanName: ApplicantValue;
     humanPhone: ApplicantValue;
     humanEmail: ApplicantValue;
     humanEtc: ApplicantValue[];

@@ -31,10 +31,10 @@ const TextArea = ({ node }: TextAreaProps) => {
     <div className="flex gap-6">
       <div className="flex-1">
         <div className="pl-8">
-          <Txt typography="h6" className="mb-4 block break-keep">
+          <Txt typography="h6" className="mb-4 block break-all">
             {`1) ${node.title}`}
           </Txt>
-          <Txt className="pl-4 block break-keep">{node.subtitle}</Txt>
+          <Txt className="pl-4 block break-all">{node.subtitle}</Txt>
         </div>
       </div>
       <div className="flex-1 relative">
@@ -72,13 +72,13 @@ const ApplicationBooleanTextareaLayout = ({
         <div className="flex-1">
           <div className="mb-4 flex gap-2">
             <Txt typography="h6">{`${applicationQuestion.id}. `}</Txt>
-            <Txt typography="h6" className="break-keep">{`${
+            <Txt typography="h6" className="break-all">{`${
               applicationQuestion.title
             }${applicationQuestion.require ? "*" : ""}`}</Txt>
           </div>
           {applicationQuestion.subtitle && (
             <div className="pl-6">
-              <Txt className="text-sm break-keep">
+              <Txt className="text-sm break-all">
                 {applicationQuestion.subtitle}
               </Txt>
             </div>
