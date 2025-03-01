@@ -3,7 +3,7 @@
 import Txt from "../common/Txt.component";
 import { useAtomValue } from "jotai";
 import { applicationIndexAtom } from "@/src/stores/application";
-import ApplicationNextButton from "./applicationNode/NextButton.component";
+import ApplicationNextButton from "./applicationNode/NextButton";
 import { ApplicationLayout } from "./Layout.component";
 import type { ApplicationQuestion } from "@/src/constants/application/type";
 import { cn } from "@/src/utils/cn";
