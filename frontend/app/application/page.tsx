@@ -1,8 +1,7 @@
 "use client";
 
-import ApplicationNavbar from "@/components/application/Navbar";
-import ApplicationQuestion from "@/components/application/Question.component";
-import { CURRENT_GENERATION } from "@/src/constants";
+// import ApplicationNavbar from "@/components/application/Navbar";
+// import ApplicationQuestion from "@/components/application/Question";
 import {
   APPLICATION_DESIGN,
   APPLICATION_NAVBAR_DESIGN,
@@ -21,7 +20,22 @@ import {
   applicationNavbarAtom,
 } from "@/src/stores/application";
 import { useAtom, useSetAtom } from "jotai";
+import dynamic from "next/dynamic";
 import { useEffect } from "react";
+
+const ApplicationNavbar = dynamic(
+  () => import("@/components/application/Navbar"),
+  {
+    ssr: false,
+  }
+);
+
+const ApplicationQuestion = dynamic(
+  () => import("@/components/application/Question"),
+  {
+    ssr: false,
+  }
+);
 
 const ApplicationPage = () => {
   const [applicationQuestions, setApplicationDate] =
