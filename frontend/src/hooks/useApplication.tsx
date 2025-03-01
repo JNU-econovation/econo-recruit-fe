@@ -50,14 +50,25 @@ export const useApplication = () => {
         return true;
       }
 
-      // [예외] 개인정보 수집 질문 확인
+      // [예외] 필수 확인사항 질문 확인
       if (
         (fieldData == "개발자" && questionId === 13) ||
         (fieldData == "기획자" && questionId === 14) ||
         (fieldData == "디자이너" && questionId === 15)
       ) {
-        const email = localStorage.get<string>("email", "");
         const check = localStorage.get<string>("check", "");
+
+        if (check !== "확인했습니다.") return false;
+        return true;
+      }
+
+      // [예외] 개인정보 수집 질문 확인
+      if (
+        (fieldData == "개발자" && questionId === 14) ||
+        (fieldData == "기획자" && questionId === 15) ||
+        (fieldData == "디자이너" && questionId === 16)
+      ) {
+        const email = localStorage.get<string>("email", "");
         const personalInformationAgree = localStorage.get<string>(
           "personalInformationAgree",
           ""
@@ -68,7 +79,6 @@ export const useApplication = () => {
         );
 
         if (email.length === 0) return false;
-        if (check !== "확인했습니다") return false;
         if (personalInformationAgree !== "동의합니다.") return false;
         if (personalInformationAgreeForPortfolio !== "동의합니다.")
           return false;
@@ -78,9 +88,9 @@ export const useApplication = () => {
 
       // [예외] 면접 가능 시간 확인
       if (
-        (fieldData == "개발자" && questionId === 14) ||
-        (fieldData == "기획자" && questionId === 15) ||
-        (fieldData == "디자이너" && questionId === 16)
+        (fieldData == "개발자" && questionId === 15) ||
+        (fieldData == "기획자" && questionId === 16) ||
+        (fieldData == "디자이너" && questionId === 17)
       ) {
         const timeline = localStorage.get<number[]>("timeline", []);
         if (!Array.isArray(timeline) || timeline.length === 0) {
