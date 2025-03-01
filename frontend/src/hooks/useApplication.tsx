@@ -18,11 +18,13 @@ import {
   applicationIndexAtom,
 } from "../stores/application";
 import { groupRequiredNamesByQuestionId } from "../functions/application";
+import { useCallback } from "react";
 
 export const useApplication = () => {
   // TODO: 질문의 이름마다 side effect가 있으니 주의하면 좋을 것
   const setApplicationIndex = useSetAtom(applicationIndexAtom);
   const applicationData = useAtomValue(applicationDataAtom);
+  const fieldData = localStorage.get<string>("field", "");
 
   const {
     END_DATE,
@@ -32,53 +34,72 @@ export const useApplication = () => {
    * @param questionId 질문의 index
    * @description 해당 입력 화면의 필수 질문이 모두 작성되었는지 확인하는 함수
    */
-  const validateRequiredQuestion = (questionId: number) => {
-    if (typeof window === "undefined") return null;
+  const validateRequiredQuestion = useCallback(
+    (questionId: number) => {
+      if (typeof window === "undefined") return null;
+      let result = true;
 
-    let result = true;
+      // [예외] 지원 경로 질문에서 채널 "혹은" 기타를 입력한 경우 확인
+      if (questionId === 4) {
+        const activity = localStorage.get("activity", "");
+        const channel = localStorage.get("channel", []);
+        const channelEtc = localStorage.get("channelEtc", "");
 
-    // [예외] 지원 경로 질문에서 채널 "혹은" 기타를 입력한 경우 확인
-    if (questionId === 4) {
-      const activity = localStorage.get(
-        groupRequiredNamesByQuestionId(applicationData)[questionId][0],
-        ""
+        if (activity.length === 0) return false;
+        if (channel.length === 0 && channelEtc.length === 0) return false;
+        return true;
+      }
+
+      // [예외] 개인정보 수집 질문 확인
+      if (
+        (fieldData == "개발자" && questionId === 13) ||
+        (fieldData == "기획자" && questionId === 14) ||
+        (fieldData == "디자이너" && questionId === 15)
+      ) {
+        const email = localStorage.get<string>("email", "");
+        const check = localStorage.get<string>("check", "");
+        const personalInformationAgree = localStorage.get<string>(
+          "personalInformationAgree",
+          ""
+        );
+        const personalInformationAgreeForPortfolio = localStorage.get<string>(
+          "personalInformationAgreeForPortfolio",
+          ""
+        );
+
+        if (email.length === 0) return false;
+        if (check !== "확인했습니다") return false;
+        if (personalInformationAgree !== "동의합니다.") return false;
+        if (personalInformationAgreeForPortfolio !== "동의합니다.")
+          return false;
+
+        return result;
+      }
+
+      // [예외] 면접 가능 시간 확인
+      if (
+        (fieldData == "개발자" && questionId === 14) ||
+        (fieldData == "기획자" && questionId === 15) ||
+        (fieldData == "디자이너" && questionId === 16)
+      ) {
+        const timeline = localStorage.get<number[]>("timeline", []);
+        if (!Array.isArray(timeline) || timeline.length === 0) {
+          result = false;
+        }
+      }
+
+      // [일반] 필수 질문 확인
+      groupRequiredNamesByQuestionId(applicationData)[questionId]?.forEach(
+        (name) => {
+          const value = localStorage.get(name, "");
+          if (value === "") result = false;
+        }
       );
-      const channel = localStorage.get("channel", []);
-      const channelEtc = localStorage.get("channelEtc", "");
 
-      if (activity.length === 0) return false;
-      if (channel.length === 0 && channelEtc.length === 0) return false;
-      return true;
-    }
-
-    // [예외] 개인정보 수집 질문 확인
-    if (questionId === 13) {
-      groupRequiredNamesByQuestionId(applicationData)[-1]?.forEach((name) => {
-        const value = localStorage.get(name, "");
-        if (value === "") result = false;
-      });
       return result;
-    }
-
-    // [예외] 면접 가능 시간 확인
-    if (questionId === 14) {
-      const name = groupRequiredNamesByQuestionId(applicationData)[16][0];
-      const value = localStorage.get(name, "");
-      if (value.length === 0) {
-        result = false;
-      }
-    }
-
-    // [일반] 필수 질문 확인
-    groupRequiredNamesByQuestionId(applicationData)[questionId]?.forEach(
-      (name) => {
-        const value = localStorage.get(name, "");
-        if (value === "") result = false;
-      }
-    );
-
-    return result;
-  };
+    },
+    [applicationData, fieldData]
+  );
 
   //TODO: applicationNames의 타입 안정성 보장하기
   const getRequiredQuestionValidateMessage = (
