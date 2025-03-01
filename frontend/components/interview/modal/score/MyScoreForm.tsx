@@ -79,6 +79,7 @@ const MyScoreForm = ({
       <div className="w-full flex justify-between">
         {myScores.map(({ fieldName, score }) => (
           <ScoreInput
+            key={fieldName}
             fieldName={fieldName}
             score={score}
             onChangeScore={onChangeScore}

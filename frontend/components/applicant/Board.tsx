@@ -1,58 +1,26 @@
 "use client";
 
-import Board from "@/components/common/board/Board";
-import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
 import ApplicantDetailRight from "./DetailRight.component";
 import { useState } from "react";
 import { ApplicantReq } from "@/src/apis/application";
 import { applicantDataFinder } from "@/src/functions/finder";
-import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
-import { ORDER_MENU } from "@/src/constants";
-import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 import { type ApplicantPassState } from "../../src/apis/kanban";
 import ApplicantDetailLeft from "./_applicant/ApplicantDetailLeft";
-import { findApplicantState } from "@/src/utils/applicant";
+import BoardTable from "../common/board/BoardTable";
+import useModalState from "../../src/hooks/useModalState";
+import BoardModal from "../common/board/BoardModal";
 
 interface ApplicantBoardProps {
   generation: string;
+  applicants: ApplicantReq[][];
 }
 
-const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
-  const [data, setData] = useState<ApplicantReq[]>([]);
-  const searchParams = useSearchParams();
-  const pageIndex = searchParams.get("page") || "1";
-  const order = searchParams.get("order") || ORDER_MENU.APPLICANT[0].type;
-  const { createSearchData } = useSearchQuery(pageIndex);
-
-  const onClick = (id: string) => {
-    if (!allData) return;
-    setData(
-      applicants?.filter((value) => applicantDataFinder(value, "id") === id)[0]
-    );
-  };
-
-  const {
-    data: allData,
-    isLoading,
-    isError,
-  } = useQuery(
-    ["allApplicant", pageIndex, order],
-    () => getApplicantByPageWithGeneration(+pageIndex, generation, order),
-    {
-      enabled: !!generation,
-    }
+const ApplicantBoard = ({ generation, applicants }: ApplicantBoardProps) => {
+  const [selectedApplicant, setSelectedApplicant] = useState<ApplicantReq[]>(
+    []
   );
 
-  if (!allData || isLoading) {
-    return <div>로딩중...</div>;
-  }
-
-  if (isError) {
-    return <div>에러 발생</div>;
-  }
-
-  const { applicants } = allData;
+  const { isOpen, openModal, closeModal } = useModalState();
 
   const boardData = applicants.map((value) => ({
     id: applicantDataFinder(value, "id"),
@@ -81,27 +49,38 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
     )}` as ApplicantPassState,
   }));
 
+  const handleModalOpen = (id: string) => () => {
+    openModal();
+    setSelectedApplicant(
+      applicants.filter((value) => applicantDataFinder(value, "id") === id)[0]
+    );
+  };
+
   return (
-    <Board
-      wrapperClassName="divide-x"
-      boardData={createSearchData(true) ?? boardData}
-      onClick={onClick}
-    >
-      <div className="flex flex-1">
-        <div className="flex-1 overflow-auto px-12 min-w-[40rem]">
-          <ApplicantDetailLeft
-            cardId={-1}
-            data={data}
-            generation={generation}
-          />
+    <>
+      <BoardTable boardRows={boardData} handleModalOpen={handleModalOpen} />
+      <BoardModal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        ariaHideApp={false}
+        wrapperClassName="divide-x"
+      >
+        <div className="flex flex-1">
+          <div className="flex-1 overflow-auto px-12 min-w-[40rem]">
+            <ApplicantDetailLeft
+              cardId={-1}
+              data={selectedApplicant}
+              generation={generation}
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-1 min-h-0">
-        <div className="flex-1 overflow-auto px-12">
-          <ApplicantDetailRight data={data} />
+        <div className="flex flex-1 min-h-0">
+          <div className="flex-1 overflow-auto px-12">
+            <ApplicantDetailRight data={selectedApplicant} />
+          </div>
         </div>
-      </div>
-    </Board>
+      </BoardModal>
+    </>
   );
 };
 

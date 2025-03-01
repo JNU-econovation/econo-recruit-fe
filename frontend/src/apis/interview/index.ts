@@ -28,17 +28,23 @@ interface GetInterviewRecordByPageWithOrderReq {
   page: number;
   order: string;
   year: string;
+  searchKeyword?: string;
 }
 
 export const getInterviewRecordByPageWithOrder = async ({
   page,
-  ...queryParams
+  order,
+  year,
+  searchKeyword,
 }: GetInterviewRecordByPageWithOrderReq) => {
+  const queryParams = new URLSearchParams({ order, year });
+  if (searchKeyword !== undefined && searchKeyword.trim() !== "") {
+    queryParams.append("searchKeyword", searchKeyword);
+  }
+
   const {
     data: { records, pageInfo },
-  } = await https.get<RecordsByPageRes>(
-    `/page/${page}/records?${new URLSearchParams(queryParams)}`
-  );
+  } = await https.get<RecordsByPageRes>(`/page/${page}/records?${queryParams}`);
 
   return {
     maxPage: pageInfo.endPage,
