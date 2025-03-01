@@ -2,7 +2,6 @@
 
 import Txt from "@/components/common/Txt.component";
 import { useApplication } from "@/src/hooks/useApplication";
-import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
 import {
   applicationIndexAtom,
   applicationNavbarAtom,
@@ -37,7 +36,7 @@ const ApplicationNavbar = () => {
 
         return (
           <button
-            className={"text-left p-4 relative"}
+            className={"text-left p-4 relative block"}
             onClick={() => onNavbarClick(id)}
             key={`id${id}-index${index}`}
           >
@@ -63,6 +62,7 @@ const ApplicationNavbar = () => {
                 )}
               >
                 {title}
+                {id}
               </Txt>
             </div>
           </button>
