@@ -39,7 +39,8 @@ const SignUpPage = () => {
         year: +signUpData.generation,
       })
     ) {
-      navigate.push("/");
+      setError("");
+      navigate.push("/signin");
       alert("회원가입이 완료되었습니다.");
     }
     setError("회원가입이 실패했습니다.");

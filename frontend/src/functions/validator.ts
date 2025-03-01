@@ -29,7 +29,7 @@ export const isEmail = (email: string): boolean => {
 };
 
 export const isPassword = (password: string): boolean => {
-  const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{10,}$/;
+  const re = /^(?=.*[!@#$%^&*])(?=.*\d).{10,}$/;
   return re.test(password);
 };
 

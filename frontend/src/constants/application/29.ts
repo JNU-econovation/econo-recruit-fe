@@ -119,7 +119,8 @@ export const APPLICATION: ApplicationQuestion[] = [
   },
   {
     id: 3,
-    title: "기본 인적 사항을 입력해주세요.",
+
+    title: "전공을 입력해주세요.",
     subtitle: "복수 전공과 부전공은 선택 입력사항입니다.",
     direction: "horizontal",
     require: false,
@@ -182,7 +183,7 @@ export const APPLICATION: ApplicationQuestion[] = [
 export const APPLICATION_NAVBAR = [
   { id: 1, title: "프로젝트 희망 분야를 선택해주세요." },
   { id: 2, title: "기본 인적 사항을 입력해주세요." },
-  { id: 3, title: "기본 인적 사항을 입력해주세요." },
+  { id: 3, title: "전공을 입력해주세요." },
   { id: 4, title: "기타 질문 사항에 답변해주세요." },
 ];
 
@@ -190,16 +191,16 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
   seperate: 30,
   time: [
     {
-      startTime: new Date(2024, 8, 23, 10, 0, 0),
-      endTime: new Date(2024, 8, 23, 20, 30, 0),
+      startTime: new Date(2025, 2, 17, 10, 0, 0),
+      endTime: new Date(2025, 2, 17, 20, 30, 0),
     },
     {
-      startTime: new Date(2024, 8, 24, 10, 0, 0),
-      endTime: new Date(2024, 8, 24, 20, 30, 0),
+      startTime: new Date(2025, 2, 18, 10, 0, 0),
+      endTime: new Date(2025, 2, 18, 20, 30, 0),
     },
     {
-      startTime: new Date(2024, 8, 25, 10, 0, 0),
-      endTime: new Date(2024, 8, 25, 20, 30, 0),
+      startTime: new Date(2025, 2, 19, 10, 0, 0),
+      endTime: new Date(2025, 2, 19, 20, 30, 0),
     },
   ],
   disableTime: [],

@@ -85,16 +85,18 @@ const SignUpForm = ({ onSubmit, data, setForm }: SignUpProps) => {
       />
       <InputFormItem
         label={"비밀번호"}
-        placeholder={"********"}
+        placeholder={"**********"}
         type="password"
         value={password}
         onChange={(e) => setForm({ name: "password", value: e.target.value })}
         isWrong={isWarning.password}
-        wrongMessage={"비밀번호는 8자 이상이어야 합니다."}
+        wrongMessage={
+          "비밀번호는 10자 이상이어야 하며, 최소 1개의 숫자와 1개의 특수문자를 포함해야 합니다."
+        }
       />
       <InputFormItem
         label={"비밀번호 확인"}
-        placeholder={"********"}
+        placeholder={"**********"}
         type="password"
         value={passwordConfirm ?? ""}
         onChange={(e) =>

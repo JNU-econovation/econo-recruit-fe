@@ -17,7 +17,7 @@ const APPLICANT: ApplicantNode[] = [
     title: "기본 인적 사항을 입력해주세요.",
     type: "customHuman",
     value: {
-      hunamName: { name: "name" },
+      humanName: { name: "name" },
       humanEmail: { name: "email" },
       humanPhone: { name: "contacted" },
       humanEtc: [
@@ -42,11 +42,7 @@ const APPLICANT: ApplicantNode[] = [
   },
 ];
 
-export type ScoreKeyword =
-  | "실천력"
-  | "동아리 활동의지"
-  | "협업"
-  | "베풀려는 마음";
+export type ScoreKeyword = "열정" | "협업" | "성실" | "에코노베이션";
 
 // type ScoreKeywordName =
 //   | "passion"
@@ -57,10 +53,10 @@ export type ScoreKeyword =
 export const ScoreSequence: {
   [key: number]: ScoreKeyword;
 } = {
-  0: "실천력",
-  1: "동아리 활동의지",
-  2: "협업",
-  3: "베풀려는 마음",
+  0: "열정",
+  1: "협업",
+  2: "성실",
+  3: "에코노베이션",
 };
 
 export type Score = {

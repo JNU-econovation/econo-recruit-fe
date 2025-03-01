@@ -1,6 +1,6 @@
 import Txt from "../Txt.component";
-import { BoardData } from "./Board";
 import BoardCell from "./BoardCell.component";
+import { BoardData } from "./types";
 
 interface BoardTableProps {
   boardRows: BoardData[];

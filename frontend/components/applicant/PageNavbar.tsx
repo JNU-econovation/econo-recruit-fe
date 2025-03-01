@@ -1,54 +1,29 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
 import PageNavbarComponent from "../common/PageNavbar.component";
-import { useSearchParams } from "next/navigation";
-import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
-import { ORDER_MENU } from "@/src/constants";
-import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 import { useCreateQueryString } from "@/src/hooks/useCreateQueryString";
+import useApplicantPaginationParams from "../../src/hooks/applicant/useApplicantPaginationParams";
 
 type ApplicantPageNavbarProps = {
   generation: string;
+  maxPage: number;
 };
 
-const ApplicantPageNavbar = ({ generation }: ApplicantPageNavbarProps) => {
-  const searchParams = useSearchParams();
-  const pageIndex = searchParams.get("page") || "1";
-  const type = searchParams.get("type") ?? "list";
-  const order = searchParams.get("order") ?? ORDER_MENU.APPLICANT[0].type;
-  const page = searchParams.get("page") ?? "1";
-  const search = searchParams.get("search") || "";
+const ApplicantPageNavbar = ({
+  generation,
+  maxPage,
+}: ApplicantPageNavbarProps) => {
+  const { pageIndex, type, order, searchKeyword } =
+    useApplicantPaginationParams();
 
-  const { searchEndPage } = useSearchQuery(pageIndex);
+  const queryParams = { search: searchKeyword, type, order };
 
-  const queryParams = { search, type, order };
   const { createQueryString } = useCreateQueryString();
 
-  const {
-    data: allData,
-    isLoading,
-    isError,
-  } = useQuery(
-    ["allApplicant", generation],
-    () => getApplicantByPageWithGeneration(+pageIndex, generation, order),
-    {
-      enabled: !!generation,
-    }
-  );
-
-  if (!allData || isLoading) {
-    return <div>로딩중...</div>;
-  }
-
-  if (isError) {
-    return <div>에러 발생</div>;
-  }
-
-  const { maxPage } = allData;
+  // Search 넣어야 함!!!
   return (
     <PageNavbarComponent
-      maxLength={searchEndPage ?? maxPage}
-      page={+page}
+      maxLength={maxPage}
+      page={+pageIndex}
       url={`/applicant/${generation}?${createQueryString(
         Object.keys(queryParams),
         Object.values(queryParams)

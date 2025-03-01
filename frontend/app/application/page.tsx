@@ -3,11 +3,11 @@
 import {
   APPLICATION_DESIGN,
   APPLICATION_NAVBAR_DESIGN,
-} from "@/src/constants/application/28/designer";
+} from "@/src/constants/application/29/designer";
 import {
   APPLICATION_DEVELOPER,
   APPLICATION_NAVBAR_DEVELOPER,
-} from "@/src/constants/application/28/developer";
+} from "@/src/constants/application/29/developer";
 import {
   APPLICATION_MANAGER,
   APPLICATION_NAVBAR_MANAGER,
