@@ -1,14 +1,13 @@
 "use client";
 
+import Txt from "@/components/common/Txt.component";
+import { useApplication } from "@/src/hooks/useApplication";
 import {
   applicationIndexAtom,
   applicationNavbarAtom,
 } from "@/src/stores/application";
-import { useAtom, useAtomValue } from "jotai";
-import Txt from "@/components/common/Txt.component";
 import { cn } from "@/src/utils/cn";
-import { useApplication } from "@/src/hooks/useApplication";
-// import { useEffect, useState } from "react";
+import { useAtom, useAtomValue } from "jotai";
 
 const ApplicationNavbar = () => {
   const [applicationIndex, setApplicationIndex] = useAtom(applicationIndexAtom);

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   postApplicant,
   postApplicantBackup,
@@ -29,9 +28,48 @@ export const useApplication = () => {
     END_DATE,
   } = require(`@/src/constants/application/${CURRENT_GENERATION}.ts`);
 
+  /**
+   * @param questionId 질문의 index
+   * @description 해당 입력 화면의 필수 질문이 모두 작성되었는지 확인하는 함수
+   */
   const validateRequiredQuestion = (questionId: number) => {
+    if (typeof window === "undefined") return null;
+
     let result = true;
 
+    // [예외] 지원 경로 질문에서 채널 "혹은" 기타를 입력한 경우 확인
+    if (questionId === 4) {
+      const activity = localStorage.get(
+        groupRequiredNamesByQuestionId(applicationData)[questionId][0],
+        ""
+      );
+      const channel = localStorage.get("channel", []);
+      const channelEtc = localStorage.get("channelEtc", "");
+
+      if (activity.length === 0) return false;
+      if (channel.length === 0 && channelEtc.length === 0) return false;
+      return true;
+    }
+
+    // [예외] 개인정보 수집 질문 확인
+    if (questionId === 13) {
+      groupRequiredNamesByQuestionId(applicationData)[-1]?.forEach((name) => {
+        const value = localStorage.get(name, "");
+        if (value === "") result = false;
+      });
+      return result;
+    }
+
+    // [예외] 면접 가능 시간 확인
+    if (questionId === 14) {
+      const name = groupRequiredNamesByQuestionId(applicationData)[16][0];
+      const value = localStorage.get(name, "");
+      if (value.length === 0) {
+        result = false;
+      }
+    }
+
+    // [일반] 필수 질문 확인
     groupRequiredNamesByQuestionId(applicationData)[questionId]?.forEach(
       (name) => {
         const value = localStorage.get(name, "");
@@ -46,7 +84,6 @@ export const useApplication = () => {
   const getRequiredQuestionValidateMessage = (
     applicationNames: Array<string>
   ) => {
-    console.log(applicationNames);
     const nonValidatedQuestion = applicationNames.filter((name) => {
       const localStorageValueFromName = localStorage.get<string>(name, "");
 
@@ -77,7 +114,7 @@ export const useApplication = () => {
       case "email":
         return "이메일을 입력해주세요.";
       case "check":
-        return "확인했습니다.를 체크해주세요.";
+        return "확인했습니다.를 입력해주세요.";
       case "channel":
         return "지원 경로를 선택해주세요.";
       default:
