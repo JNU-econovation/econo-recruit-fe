@@ -1,7 +1,5 @@
 "use client";
 
-// import ApplicationNavbar from "@/components/application/Navbar";
-// import ApplicationQuestion from "@/components/application/Question";
 import {
   APPLICATION_DESIGN,
   APPLICATION_NAVBAR_DESIGN,
