@@ -12,7 +12,6 @@ import { CURRENT_GENERATION, ORDER_MENU } from "@/src/constants";
 import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 import { type ApplicantPassState } from "../../src/apis/kanban";
 import ApplicantDetailLeft from "./_applicant/ApplicantDetailLeft";
-import { findApplicantState } from "@/src/utils/applicant";
 
 interface ApplicantBoardProps {
   generation: string;

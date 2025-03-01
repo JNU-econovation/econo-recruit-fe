@@ -4,7 +4,7 @@ import { applicantDataFinder } from "@/src/functions/finder";
 import Portfolio from "./Portfolio";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import KanbanCardApplicantStatusLabel from "@/components/kanban/card/CardApplicantStatusLabel";
+import CardApplicantStatusLabel from "@/components/common/CardApplicantStatusLabel";
 import { useAtomValue } from "jotai";
 import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
 import { getMyInfo } from "@/src/apis/interview";
@@ -102,7 +102,7 @@ const ApplicantResource = ({
             <Txt className="text-xl text-secondary-200 font-medium">
               {applicantDataFinder(data, "major")}
             </Txt>
-            <KanbanCardApplicantStatusLabel passState={initialState} />
+            <CardApplicantStatusLabel passState={initialState} />
           </div>
           <Txt typography="h2">{`[${applicantDataFinder(
             data,
