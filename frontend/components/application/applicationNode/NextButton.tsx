@@ -1,10 +1,9 @@
 "use client";
 
-import useApplicationIndexControll from "@/src/hooks/useApplicationIndexControll.hook";
+import useApplicationIndexControl from "@/src/hooks/useApplicationIndexControl.hook";
 import { useAtomValue } from "jotai";
 import { applicationDataAtom } from "@/src/stores/application";
 import { cn } from "@/src/utils/cn";
-import { getApplicationNames } from "@/src/functions/getApplication";
 
 import { useApplication } from "@/src/hooks/useApplication";
 
@@ -16,23 +15,13 @@ const ApplicationNextButton = ({
   isLast = false,
 }: ApplicationNextButtonProps) => {
   const { applicationIndex, goNextIndex, goPrevIndex } =
-    useApplicationIndexControll();
+    useApplicationIndexControl();
   const applicationData = useAtomValue(applicationDataAtom);
-  const { canApplicationNext, postApplication } = useApplication();
+  const { postApplication } = useApplication();
 
   const onNextClick = () => {
-    const applicationName = getApplicationNames(
-      applicationData[applicationIndex].nodes
-    );
-    if (!canApplicationNext(Array.from(applicationName))) {
-      return;
-    }
-
-    if (isLast) {
-      postApplication(applicationData);
-    } else {
-      goNextIndex();
-    }
+    if (isLast) return postApplication(applicationData);
+    goNextIndex();
   };
 
   return (

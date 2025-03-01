@@ -1,7 +1,7 @@
 import type { ApplicationQuestion } from "@/src/constants/application/type";
 import ApplicationHorizontalLayout from "./applicationLayout/Horizontal.componet";
 import ApplicationVerticalLayout from "./applicationLayout/Vertical.component";
-import ApplicationBooleanTextareaLayout from "./applicationLayout/BooleanTextarea.component";
+import ApplicationBooleanTextareaLayout from "./applicationLayout/BooleanTextarea";
 import ApplicationRadioForCheckLayout from "./applicationLayout/RadioForCheck.component";
 import ApplicationTimelineLayout from "./applicationLayout/timeline/Timeline.component";
 

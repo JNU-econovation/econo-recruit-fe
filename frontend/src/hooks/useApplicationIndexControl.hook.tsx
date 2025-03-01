@@ -1,7 +1,7 @@
 import { applicationIndexAtom } from "@/src/stores/application";
 import { useAtom } from "jotai";
 
-const useApplicationIndexControll = () => {
+const useApplicationIndexControl = () => {
   const [applicationIndex, setIndex] = useAtom(applicationIndexAtom);
   const goNextIndex = () => {
     setIndex((index) => index + 1);
@@ -12,4 +12,4 @@ const useApplicationIndexControll = () => {
   return { applicationIndex, goNextIndex, goPrevIndex };
 };
 
-export default useApplicationIndexControll;
+export default useApplicationIndexControl;
