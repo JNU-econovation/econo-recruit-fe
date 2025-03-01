@@ -3,12 +3,14 @@ import Portfolio from "../../applicantNode/Portfolio";
 import { ApplicantReq } from "@/src/apis/applicant";
 import Txt from "@/components/common/Txt.component";
 import { getApplicantPassState } from "@/src/functions/formatter";
+import { ApplicantPassState } from "@/src/apis/kanban";
 
 interface CustomResourceProps {
   data: ApplicantReq[];
   ableToEdit?: boolean;
   onClickPass?: () => void;
   onClickNonPass?: () => void;
+  passState: ApplicantPassState;
 }
 
 const CustomResource = ({
@@ -16,6 +18,7 @@ const CustomResource = ({
   ableToEdit = false,
   onClickPass,
   onClickNonPass,
+  passState,
 }: CustomResourceProps) => {
   return (
     <>
@@ -30,8 +33,7 @@ const CustomResource = ({
           )}] ${applicantDataFinder(data, "name")}`}</Txt>
           <div className="flex justify-between grow items-center">
             <Txt typography="h5" color="light_gray" className="truncate">
-              {getApplicantPassState(applicantDataFinder(data, "passState")) ||
-                "에러 발생"}
+              {getApplicantPassState(passState)}
             </Txt>
             {ableToEdit && (
               <div className="flex gap-4">
