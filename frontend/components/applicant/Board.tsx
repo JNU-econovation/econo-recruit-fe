@@ -7,8 +7,8 @@ import { useState } from "react";
 import { ApplicantReq } from "@/src/apis/application";
 import { applicantDataFinder } from "@/src/functions/finder";
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
-import { ORDER_MENU } from "@/src/constants";
+import { useRouter, useSearchParams } from "next/navigation";
+import { CURRENT_GENERATION, ORDER_MENU } from "@/src/constants";
 import { useSearchQuery } from "@/src/hooks/useSearchQuery";
 import { type ApplicantPassState } from "../../src/apis/kanban";
 import ApplicantDetailLeft from "./_applicant/ApplicantDetailLeft";
@@ -21,12 +21,14 @@ interface ApplicantBoardProps {
 const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
   const [data, setData] = useState<ApplicantReq[]>([]);
   const searchParams = useSearchParams();
+  const navigate = useRouter();
   const pageIndex = searchParams.get("page") || "1";
   const order = searchParams.get("order") || ORDER_MENU.APPLICANT[0].type;
   const { createSearchData } = useSearchQuery(pageIndex);
 
   const onClick = (id: string) => {
     if (!allData) return;
+    navigate.replace(`/applicant/${CURRENT_GENERATION}?applicantId=${id}`);
     setData(
       applicants?.filter((value) => applicantDataFinder(value, "id") === id)[0]
     );
@@ -96,6 +98,7 @@ const ApplicantBoard = ({ generation }: ApplicantBoardProps) => {
           />
         </div>
       </div>
+
       <div className="flex flex-1 min-h-0">
         <div className="flex-1 overflow-auto px-12">
           <ApplicantDetailRight data={data} />
