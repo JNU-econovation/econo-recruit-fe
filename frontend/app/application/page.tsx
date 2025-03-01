@@ -12,12 +12,12 @@ import {
   APPLICATION_MANAGER,
   APPLICATION_NAVBAR_MANAGER,
 } from "@/src/constants/application/28/manager";
-import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
+import { localStorage } from "@/src/functions/localstorage";
 import {
   applicationDataAtom,
   applicationNavbarAtom,
 } from "@/src/stores/application";
-import { useAtom, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 
@@ -36,9 +36,8 @@ const ApplicationQuestion = dynamic(
 );
 
 const ApplicationPage = () => {
-  const [applicationQuestions, setApplicationDate] =
-    useAtom(applicationDataAtom);
-  const [fieldData, _] = useLocalStorage<string>("field", "");
+  const setApplicationDate = useSetAtom(applicationDataAtom);
+  const fieldData = localStorage.get<string>("field", "");
   const setApplicationNavbar = useSetAtom(applicationNavbarAtom);
 
   useEffect(() => {
@@ -79,10 +78,7 @@ const ApplicationPage = () => {
   return (
     <section className="flex gap-24 mt-24 min-w-[1280px]">
       <ApplicationNavbar />
-      <ApplicationQuestion
-        className="flex-[3_0_0]"
-        applicationQuestions={applicationQuestions}
-      />
+      <ApplicationQuestion />
     </section>
   );
 };
