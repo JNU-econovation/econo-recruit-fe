@@ -2,27 +2,21 @@
 
 import Txt from "../common/Txt.component";
 import { useAtomValue } from "jotai";
-import { applicationIndexAtom } from "@/src/stores/application";
+import {
+  applicationDataAtom,
+  applicationIndexAtom,
+} from "@/src/stores/application";
 import ApplicationNextButton from "./applicationNode/NextButton";
 import { ApplicationLayout } from "./Layout.component";
-import type { ApplicationQuestion } from "@/src/constants/application/type";
-import { cn } from "@/src/utils/cn";
 
-interface ApplicationQuestionProps {
-  className?: string;
-  applicationQuestions: ApplicationQuestion[];
-}
-
-const ApplicationQuestion = ({
-  className,
-  applicationQuestions,
-}: ApplicationQuestionProps) => {
+const ApplicationQuestion = () => {
   const applicationIndex = useAtomValue(applicationIndexAtom);
+  const applicationQuestions = useAtomValue(applicationDataAtom);
 
   const applicationQuestion = applicationQuestions[applicationIndex];
 
   return (
-    <article className={cn("flex flex-col justify-between", className)}>
+    <article className="flex flex-col justify-between flex-[3_0_0]">
       <div>
         <Txt typography="h1" className="uppercase">
           ECONOVATION 신입모집 신청
