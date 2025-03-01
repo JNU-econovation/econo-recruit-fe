@@ -17,8 +17,6 @@ const ApplicationNavbar = () => {
 
   const [_, flush] = useState(false);
 
-  const [fieldData] = useLocalStorage<string>("field", "");
-
   const { validateRequiredQuestion } = useApplication();
 
   const onNavbarClick = (id: number) => setApplicationIndex(id - 1);
