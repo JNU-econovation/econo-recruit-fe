@@ -1,5 +1,7 @@
 "use client";
 
+import NavbarSkeleton from "@/components/application/loader/Navbar.skeleton";
+import QuestionSkeleton from "@/components/application/loader/Question.skeleton";
 import {
   APPLICATION_DESIGN,
   APPLICATION_NAVBAR_DESIGN,
@@ -25,6 +27,7 @@ const ApplicationNavbar = dynamic(
   () => import("@/components/application/Navbar"),
   {
     ssr: false,
+    loading: () => <NavbarSkeleton />,
   }
 );
 
@@ -32,6 +35,7 @@ const ApplicationQuestion = dynamic(
   () => import("@/components/application/Question"),
   {
     ssr: false,
+    loading: () => <QuestionSkeleton />,
   }
 );
 
