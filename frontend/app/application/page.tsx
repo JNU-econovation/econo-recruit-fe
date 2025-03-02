@@ -11,7 +11,7 @@ import {
 import {
   APPLICATION_MANAGER,
   APPLICATION_NAVBAR_MANAGER,
-} from "@/src/constants/application/28/manager";
+} from "@/src/constants/application/29/manager";
 import { localStorage } from "@/src/functions/localstorage";
 import {
   applicationDataAtom,
