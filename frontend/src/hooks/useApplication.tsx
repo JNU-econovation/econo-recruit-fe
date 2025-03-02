@@ -58,7 +58,7 @@ export const useApplication = () => {
       ) {
         const check = localStorage.get<string>("check", "");
 
-        if (check !== "확인했습니다.") return false;
+        if (check !== "확인했습니다") return false;
         return true;
       }
 
