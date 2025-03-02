@@ -2,31 +2,23 @@
 
 import Txt from "@/components/common/Txt.component";
 import { useApplication } from "@/src/hooks/useApplication";
+import useFlush from "@/src/hooks/useFlush";
 import {
   applicationIndexAtom,
   applicationNavbarAtom,
 } from "@/src/stores/application";
 import { cn } from "@/src/utils/cn";
 import { useAtom, useAtomValue } from "jotai";
-import { useEffect, useState } from "react";
 
 const ApplicationNavbar = () => {
   const [applicationIndex, setApplicationIndex] = useAtom(applicationIndexAtom);
   const applicationNavbar = useAtomValue(applicationNavbarAtom);
 
-  const [_, flush] = useState(false);
+  useFlush();
 
   const { validateRequiredQuestion } = useApplication();
 
   const onNavbarClick = (id: number) => setApplicationIndex(id - 1);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      flush((prev) => !prev);
-    }, 400);
-
-    return () => clearInterval(intervalId);
-  }, []);
 
   return (
     <nav className="pl-12 w-full h-full flex-1">
