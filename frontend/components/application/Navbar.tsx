@@ -21,7 +21,7 @@ const ApplicationNavbar = () => {
   const onNavbarClick = (id: number) => setApplicationIndex(id - 1);
 
   return (
-    <nav className="pl-12 w-full h-full flex-1">
+    <nav className="pl-12 max-w-[444px] h-full flex-1">
       {applicationNavbar.map(({ id, title }, index) => {
         const isActive = id <= applicationIndex + 1;
         const isWritten = validateRequiredQuestion(id);
