@@ -62,7 +62,6 @@ const ApplicationNavbar = () => {
                 )}
               >
                 {title}
-                {id}
               </Txt>
             </div>
           </button>
