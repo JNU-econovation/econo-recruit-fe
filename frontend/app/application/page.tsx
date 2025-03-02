@@ -1,8 +1,7 @@
 "use client";
 
-import ApplicationNavbar from "@/components/application/Navbar";
-import ApplicationQuestion from "@/components/application/Question.component";
-import { CURRENT_GENERATION } from "@/src/constants";
+import NavbarSkeleton from "@/components/application/loader/Navbar.skeleton";
+import QuestionSkeleton from "@/components/application/loader/Question.skeleton";
 import {
   APPLICATION_DESIGN,
   APPLICATION_NAVBAR_DESIGN,
@@ -15,18 +14,34 @@ import {
   APPLICATION_MANAGER,
   APPLICATION_NAVBAR_MANAGER,
 } from "@/src/constants/application/29/manager";
-import { useLocalStorage } from "@/src/hooks/useLocalstorage.hook";
+import { localStorage } from "@/src/functions/localstorage";
 import {
   applicationDataAtom,
   applicationNavbarAtom,
 } from "@/src/stores/application";
-import { useAtom, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
+import dynamic from "next/dynamic";
 import { useEffect } from "react";
 
+const ApplicationNavbar = dynamic(
+  () => import("@/components/application/Navbar"),
+  {
+    ssr: false,
+    loading: () => <NavbarSkeleton />,
+  }
+);
+
+const ApplicationQuestion = dynamic(
+  () => import("@/components/application/Question"),
+  {
+    ssr: false,
+    loading: () => <QuestionSkeleton />,
+  }
+);
+
 const ApplicationPage = () => {
-  const [applicationQuestions, setApplicationDate] =
-    useAtom(applicationDataAtom);
-  const [fieldData, _] = useLocalStorage<string>("field", "");
+  const setApplicationDate = useSetAtom(applicationDataAtom);
+  const fieldData = localStorage.get<string>("field", "");
   const setApplicationNavbar = useSetAtom(applicationNavbarAtom);
 
   useEffect(() => {
@@ -66,14 +81,8 @@ const ApplicationPage = () => {
 
   return (
     <section className="flex gap-24 mt-24 min-w-[1280px]">
-      <ApplicationNavbar
-        className="flex-1"
-        generation={`${CURRENT_GENERATION}`}
-      />
-      <ApplicationQuestion
-        className="flex-[3_0_0]"
-        applicationQuestions={applicationQuestions}
-      />
+      <ApplicationNavbar />
+      <ApplicationQuestion />
     </section>
   );
 };

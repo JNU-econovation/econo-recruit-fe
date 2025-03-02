@@ -17,65 +17,168 @@ import {
   applicationDataAtom,
   applicationIndexAtom,
 } from "../stores/application";
+import { groupRequiredNamesByQuestionId } from "../functions/application";
+import { useCallback } from "react";
 
 export const useApplication = () => {
   // TODO: 질문의 이름마다 side effect가 있으니 주의하면 좋을 것
   const setApplicationIndex = useSetAtom(applicationIndexAtom);
   const applicationData = useAtomValue(applicationDataAtom);
+  const fieldData = localStorage.get<string>("field", "");
 
-  const { END_DATE } = require(
-    `@/src/constants/application/${CURRENT_GENERATION}.ts`
+  const {
+    END_DATE,
+  } = require(`@/src/constants/application/${CURRENT_GENERATION}.ts`);
+
+  /**
+   * @param questionId 질문의 index
+   * @description 해당 입력 화면의 필수 질문이 모두 작성되었는지 확인하는 함수
+   */
+  const validateRequiredQuestion = useCallback(
+    (questionId: number) => {
+      if (typeof window === "undefined") return null;
+      let result = true;
+
+      // [예외] 지원 경로 질문에서 채널 "혹은" 기타를 입력한 경우 확인
+      if (questionId === 4) {
+        const activity = localStorage.get("activity", "");
+        const channel = localStorage.get("channel", []);
+        const channelEtc = localStorage.get("channelEtc", "");
+
+        if (activity.length === 0) return false;
+        if (channel.length === 0 && channelEtc.length === 0) return false;
+        return true;
+      }
+
+      // [예외] 필수 확인사항 질문 확인
+      if (
+        (fieldData == "개발자" && questionId === 13) ||
+        (fieldData == "기획자" && questionId === 14) ||
+        (fieldData == "디자이너" && questionId === 15)
+      ) {
+        const check = localStorage.get<string>("check", "");
+
+        if (check !== "확인했습니다") return false;
+        return true;
+      }
+
+      // [예외] 개인정보 수집 질문 확인
+      if (
+        (fieldData == "개발자" && questionId === 14) ||
+        (fieldData == "기획자" && questionId === 15) ||
+        (fieldData == "디자이너" && questionId === 16)
+      ) {
+        const email = localStorage.get<string>("email", "");
+        const personalInformationAgree = localStorage.get<string>(
+          "personalInformationAgree",
+          ""
+        );
+        const personalInformationAgreeForPortfolio = localStorage.get<string>(
+          "personalInformationAgreeForPortfolio",
+          ""
+        );
+
+        if (email.length === 0) return false;
+        if (personalInformationAgree !== "동의합니다.") return false;
+        if (personalInformationAgreeForPortfolio !== "동의합니다.")
+          return false;
+
+        return result;
+      }
+
+      // [예외] 면접 가능 시간 확인
+      if (
+        (fieldData == "개발자" && questionId === 15) ||
+        (fieldData == "기획자" && questionId === 16) ||
+        (fieldData == "디자이너" && questionId === 17)
+      ) {
+        const timeline = localStorage.get<number[]>("timeline", []);
+        if (!Array.isArray(timeline) || timeline.length === 0) {
+          result = false;
+        }
+      }
+
+      // [일반] 필수 질문 확인
+      groupRequiredNamesByQuestionId(applicationData)[questionId]?.forEach(
+        (name) => {
+          const value = localStorage.get(name, "");
+          if (value === "") result = false;
+        }
+      );
+
+      return result;
+    },
+    [applicationData, fieldData]
   );
 
-  const canApplicationNext = (applicationNames: Array<string>) => {
-    const nonValidatedQuestion = applicationNames
-      .map((name) => {
-        const EMPTY_STRING: string = "";
-        const localStorageValueFromName = localStorage.get(name, EMPTY_STRING);
+  //TODO: applicationNames의 타입 안정성 보장하기
+  const getRequiredQuestionValidateMessage = (
+    applicationNames: Array<string>
+  ) => {
+    const nonValidatedQuestion = applicationNames.filter((name) => {
+      const localStorageValueFromName = localStorage.get<string>(name, "");
 
-        switch (name) {
-          case "personalInformationAgreeForPortfolio":
-          case "personalInformationAgree":
-            return localStorageValueFromName !== "동의합니다."
-              ? "personalInformationAgree"
-              : "";
-          case "email":
-            return !isEmail(localStorageValueFromName) ? "email" : "";
-          case "check":
-            return !localStorageValueFromName.includes("확인했습니다")
-              ? "check"
-              : "";
-          case "channel":
-            return localStorageValueFromName.length === 0 &&
-              localStorage.get("channelEtc", EMPTY_STRING).length === 0
-              ? "channel"
-              : "";
-          default:
-            return localStorageValueFromName.length === 0 ? name : "";
-        }
-      })
-      .filter((name) => name.length !== 0);
+      switch (name) {
+        case "personalInformationAgreeForPortfolio":
+        case "personalInformationAgree":
+          return localStorageValueFromName !== "동의합니다.";
+        case "email":
+          return !isEmail(localStorageValueFromName);
+        case "check":
+          return localStorageValueFromName !== "확인했습니다";
+        case "channel":
+          return (
+            localStorageValueFromName.length === 0 &&
+            localStorage.get("channelEtc", "").length === 0
+          );
+        default:
+          return localStorageValueFromName.length === 0;
+      }
+    });
 
-    if (nonValidatedQuestion.length === 0) return true;
     const name = nonValidatedQuestion[0];
+
     switch (name) {
       case "personalInformationAgreeForPortfolio":
       case "personalInformationAgree":
-        alert("개인정보 수집 및 이용에 동의해주세요.");
-        break;
+        return "개인정보 수집 및 이용에 동의해주세요.";
       case "email":
-        alert("이메일을 입력해주세요.");
-        break;
+        return "이메일을 입력해주세요.";
       case "check":
-        alert("확인했습니다.를 입력해주세요.");
-        break;
+        return "확인했습니다.를 입력해주세요.";
       case "channel":
-        alert("지원 경로를 선택해주세요.");
-        break;
+        return "지원 경로를 선택해주세요.";
       default:
-        alert("필수 질문을 작성해주세요.");
-        break;
+        return "필수 질문을 작성해주세요.";
     }
+  };
+
+  const moveToInvalidInput = (applicationNames: Array<string>) => {
+    //검사할 질문들을 필터링
+    const nonValidatedQuestion = applicationNames.filter((name) => {
+      const EMPTY_STRING: string = "";
+      const localStorageValueFromName = localStorage.get(name, EMPTY_STRING);
+
+      switch (name) {
+        case "personalInformationAgreeForPortfolio":
+        case "personalInformationAgree":
+          return localStorageValueFromName !== "동의합니다.";
+        case "email":
+          return !isEmail(localStorageValueFromName);
+        case "check":
+          return localStorageValueFromName !== "확인했습니다";
+        case "channel":
+          return (
+            localStorageValueFromName.length === 0 &&
+            localStorage.get("channelEtc", EMPTY_STRING).length === 0
+          );
+        default:
+          return localStorageValueFromName.length === 0;
+      }
+    });
+
+    const name = nonValidatedQuestion[0];
+
     Array.from({ length: applicationData.length }, (_, i) =>
       Array.from(getApplicationNames(applicationData[i].nodes))
     ).forEach((applicationName, applicantIndex) => {
@@ -83,8 +186,19 @@ export const useApplication = () => {
         setApplicationIndex(applicantIndex);
       }
     });
-    return nonValidatedQuestion.length === 0;
   };
+
+  const canApplicationNext = (applicationNames: Array<string>) => {
+    const requiredQuestionValidateMessage =
+      getRequiredQuestionValidateMessage(applicationNames);
+
+    if (requiredQuestionValidateMessage) {
+      alert(requiredQuestionValidateMessage);
+      moveToInvalidInput(applicationNames);
+      return false;
+    }
+  };
+
   const postApplication = async (
     applicationQuestions: ApplicationQuestion[]
   ) => {
@@ -169,5 +283,5 @@ export const useApplication = () => {
     return true;
   };
 
-  return { canApplicationNext, postApplication };
+  return { validateRequiredQuestion, canApplicationNext, postApplication };
 };
