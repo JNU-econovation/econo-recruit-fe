@@ -2,7 +2,7 @@
 
 import Txt from "@/components/common/Txt.component";
 import { useApplication } from "@/src/hooks/useApplication";
-import useFlush from "@/src/hooks/useFlush";
+import useFlushInterval from "@/src/hooks/useFlushInterval";
 import {
   applicationIndexAtom,
   applicationNavbarAtom,
@@ -14,7 +14,7 @@ const ApplicationNavbar = () => {
   const [applicationIndex, setApplicationIndex] = useAtom(applicationIndexAtom);
   const applicationNavbar = useAtomValue(applicationNavbarAtom);
 
-  useFlush();
+  useFlushInterval();
 
   const { validateRequiredQuestion } = useApplication();
 
