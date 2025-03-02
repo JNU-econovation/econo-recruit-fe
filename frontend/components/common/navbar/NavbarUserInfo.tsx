@@ -2,10 +2,9 @@
 
 import { getMyInfo } from "@/src/apis/interview";
 import { useQuery } from "@tanstack/react-query";
-import econoLogo from "@/public/images/econo-3d-logo.png";
 import Txt from "../Txt.component";
 import LogoutBtn from "./LogoutBtn";
-import Image from "next/image";
+import ProfileHoverCard from "./ProfileHoverCard";
 
 const roleTranslater = (role: keyof typeof roleMap) => {
   const roleMap = {
@@ -24,32 +23,14 @@ const NavbarUserInfo = () => {
     isError,
   } = useQuery(["user"], () => getMyInfo());
 
-  const renderContent = (content: React.ReactNode) => (
-    <div className="flex items-center">
-      <div className="relative group">
-        <div className="w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center overflow-hidden">
-          <Image
-            src={econoLogo}
-            alt="Econo 3D Logo"
-            className="w-full h-full object-contain"
-          />
-        </div>
-
-        <div className="absolute left-full top-0 ml-2 transition-all duration-300 ease-in-out opacity-0 transform -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 pointer-events-none whitespace-nowrap">
-          {content}
-        </div>
-      </div>
-    </div>
-  );
-
   if (!loggedInUserInfo || isLoading) {
     return (
       <div className="fixed bottom-12">
-        {renderContent(
+        <ProfileHoverCard>
           <div className="bg-white shadow-md rounded-lg p-2 text-sm">
             loading...
           </div>
-        )}
+        </ProfileHoverCard>
       </div>
     );
   }
@@ -57,9 +38,9 @@ const NavbarUserInfo = () => {
   if (isError) {
     return (
       <div className="fixed bottom-12">
-        {renderContent(
+        <ProfileHoverCard>
           <div className="bg-white shadow-md rounded-lg p-2 text-sm">error</div>
-        )}
+        </ProfileHoverCard>
       </div>
     );
   }
@@ -68,7 +49,7 @@ const NavbarUserInfo = () => {
 
   return (
     <div className="fixed bottom-12">
-      {renderContent(
+      <ProfileHoverCard>
         <div className="bg-white shadow-md rounded-lg px-3 py-2">
           <div className="flex items-center justify-between">
             <Txt className="font-medium">{name}</Txt>
@@ -80,7 +61,7 @@ const NavbarUserInfo = () => {
             </Txt>
           </div>
         </div>
-      )}
+      </ProfileHoverCard>
     </div>
   );
 };

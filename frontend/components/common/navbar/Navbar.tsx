@@ -1,7 +1,7 @@
 "use client";
 import { MainNavbar } from "@/src/constants";
 import CommonNavbarCell from "./NavbarCell";
-import NavbarUserInfo from "./UserInfo";
+import NavbarUserInfo from "./NavbarUserInfo";
 import { NavbarOperation } from "./NavbarOperation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
