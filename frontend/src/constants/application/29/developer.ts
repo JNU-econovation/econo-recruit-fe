@@ -39,7 +39,7 @@ export const APPLICATION_DEVELOPER: ApplicationQuestion[] = [
     require: true,
     nodes: [
       {
-        name: "reason",
+        name: "experience",
         require: true,
         type: "textarea",
         errorMessages: "주도적 경험을 입력해주세요.",
