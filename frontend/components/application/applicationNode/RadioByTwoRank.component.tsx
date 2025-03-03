@@ -30,7 +30,7 @@ const ApplicationRadioByTwoRank = ({
           }`}</Txt>
         </div>
       )}
-      <Txt className="my-4 block">{`${firstNode.title}${
+      <Txt className="my-4 block" typography="h6">{`${firstNode.title}${
         radioByTwoRankData.require ? "*" : ""
       }`}</Txt>
       <RadioGroup
@@ -47,7 +47,7 @@ const ApplicationRadioByTwoRank = ({
       />
       {firstValue !== "init" && (
         <>
-          <Txt className="my-4 block">{`${secondNode.title}${
+          <Txt className="my-4 block" typography="h6">{`${secondNode.title}${
             radioByTwoRankData.require ? "*" : ""
           }`}</Txt>{" "}
           <RadioGroup
