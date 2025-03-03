@@ -2,17 +2,15 @@
 
 import { ApplicantReq } from "@/src/apis/applicant";
 import CustomResource from "./_applicantNode/CustomResource";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  patchApplicantPassState,
-  PatchApplicantPassStateParams,
-} from "@/src/apis/passState";
+import { useQuery } from "@tanstack/react-query";
+
 import { applicantDataFinder } from "@/src/functions/finder";
 import { getMyInfo } from "@/src/apis/interview";
 import ApplicantLabel from "../applicantNode/Label.component";
 import ApplicantComment from "../applicantNode/comment/Comment.component";
 import { useApplicantById } from "@/src/hooks/useApplicantById";
 import { useSearchParams } from "next/navigation";
+import { useOptimisticApplicantPassUpdate } from "@/src/hooks/useOptimisticApplicantPassUpdate";
 
 interface DetailLeftProps {
   data: ApplicantReq[];
@@ -20,50 +18,15 @@ interface DetailLeftProps {
   cardId: number;
 }
 const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
-  const queryClient = useQueryClient();
   const searchParams = useSearchParams();
   const userId = searchParams.get("applicantId");
-  const { mutate: updateApplicantPassState } = useMutation({
-    mutationFn: (params: PatchApplicantPassStateParams) =>
-      patchApplicantPassState(params),
-    onMutate: async (newData) => {
-      await queryClient.cancelQueries([
-        "allApplicantsWithPassState",
-        generation,
-      ]);
-      const previousData = queryClient.getQueryData([
-        "allApplicantsWithPassState",
-        generation,
-      ]);
-
-      queryClient.setQueryData(
-        ["allApplicantsWithPassState", generation],
-        (oldData: any) => {
-          if (!oldData) return oldData;
-          return oldData.map((applicant: any) =>
-            applicant.id === postId
-              ? { ...applicant, passState: newData.afterState }
-              : applicant
-          );
-        }
-      );
-
-      return { previousData };
-    },
-    onError: (err, newData, context) => {
-      queryClient.setQueryData(
-        ["allApplicantsWithPassState", generation],
-        context?.previousData
-      );
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries(["allApplicantsWithPassState", generation]);
-    },
-  });
+  const postId = applicantDataFinder(data, "id");
+  const { mutate: updateApplicantPassState } = useOptimisticApplicantPassUpdate(
+    generation,
+    postId
+  );
 
   const { data: userData } = useQuery(["user"], getMyInfo);
-
-  const postId = applicantDataFinder(data, "id");
 
   const { applicant, isLoading, isError } = useApplicantById(userId);
 

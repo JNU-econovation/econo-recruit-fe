@@ -14,6 +14,7 @@ import {
   patchApplicantPassState,
   PatchApplicantPassStateParams,
 } from "@/src/apis/passState";
+import { useOptimisticApplicantPassUpdate } from "@/src/hooks/useOptimisticApplicantPassUpdate";
 
 interface ApplicantResourceProps {
   data: ApplicantReq[];
@@ -31,6 +32,9 @@ const ApplicantResource = ({
   const applicantId = searchParams.get("applicantId");
   const queryClient = useQueryClient();
 
+  console.log(postId);
+
+  //아래 초기 합/불 상태 가져오는 로직 내가 만든 훅으로 변경하기
   const {
     data: initialState,
     isLoading,
@@ -53,34 +57,10 @@ const ApplicantResource = ({
     queryKey: ["user"],
     queryFn: getMyInfo,
   });
-  const { mutate: updateApplicantPassState } = useMutation({
-    mutationFn: (params: PatchApplicantPassStateParams) =>
-      patchApplicantPassState(params),
-    onMutate: async () => {
-      await queryClient.cancelQueries([
-        "applicantState",
-        applicantId,
-        navbarId,
-      ]);
-
-      const snapshotState = queryClient.getQueryData<ApplicantPassState>([
-        "applicantState",
-        applicantId,
-        navbarId,
-      ]);
-
-      return { snapshotState };
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(["kanbanDataArray", generation]);
-    },
-    onError: (error, variables, context) => {
-      window.alert("상태 변경에 실패했습니다.");
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries(["applicantState", applicantId, navbarId]);
-    },
-  });
+  const { mutate: updateApplicantPassState } = useOptimisticApplicantPassUpdate(
+    generation,
+    postId
+  );
 
   const onClickPass = () => {
     const ok = confirm("합격 처리하시겠습니까?");
