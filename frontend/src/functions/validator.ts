@@ -18,7 +18,7 @@ const isEmailString = (emailString: string) => {
 };
 
 const isConfirmationString = (confirmationString: string) =>
-  /확인했습니다/.test(confirmationString);
+  /확인했습니다./.test(confirmationString);
 
 export const isEmail = (email: string): boolean => {
   const re =
