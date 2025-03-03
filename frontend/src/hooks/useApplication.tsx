@@ -117,7 +117,6 @@ export const useApplication = () => {
   ) => {
     const nonValidatedQuestion = applicationNames.filter((name) => {
       const localStorageValueFromName = localStorage.get<string>(name, "");
-
       switch (name) {
         case "personalInformationAgreeForPortfolio":
         case "personalInformationAgree":
@@ -135,7 +134,6 @@ export const useApplication = () => {
           return localStorageValueFromName.length === 0;
       }
     });
-
     const name = nonValidatedQuestion[0];
 
     if (!name) return;
@@ -193,12 +191,12 @@ export const useApplication = () => {
   const canApplicationNext = (applicationNames: Array<string>) => {
     const requiredQuestionValidateMessage =
       getRequiredQuestionValidateMessage(applicationNames);
-
     if (requiredQuestionValidateMessage) {
       alert(requiredQuestionValidateMessage);
       moveToInvalidInput(applicationNames);
       return false;
     }
+    return true;
   };
 
   const postApplication = async (
