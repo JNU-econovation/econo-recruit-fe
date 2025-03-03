@@ -58,7 +58,7 @@ export const useApplication = () => {
       ) {
         const check = localStorage.get<string>("check", "");
 
-        if (check !== "확인했습니다") return false;
+        if (check !== "확인했습니다.") return false;
         return true;
       }
 
@@ -125,7 +125,7 @@ export const useApplication = () => {
         case "email":
           return !isEmail(localStorageValueFromName);
         case "check":
-          return localStorageValueFromName !== "확인했습니다";
+          return localStorageValueFromName !== "확인했습니다.";
         case "channel":
           return (
             localStorageValueFromName.length === 0 &&
@@ -137,6 +137,8 @@ export const useApplication = () => {
     });
 
     const name = nonValidatedQuestion[0];
+
+    if (!name) return;
 
     switch (name) {
       case "personalInformationAgreeForPortfolio":
@@ -166,7 +168,7 @@ export const useApplication = () => {
         case "email":
           return !isEmail(localStorageValueFromName);
         case "check":
-          return localStorageValueFromName !== "확인했습니다";
+          return localStorageValueFromName !== "확인했습니다.";
         case "channel":
           return (
             localStorageValueFromName.length === 0 &&
@@ -204,6 +206,8 @@ export const useApplication = () => {
   ) => {
     const isSend = confirm("지원서를 제출하시겠습니까?");
     if (!isSend) return false;
+
+    // 지원 기간 확인
     if (
       Date.now() >
       Date.UTC(
@@ -219,12 +223,14 @@ export const useApplication = () => {
       return false;
     }
 
+    // 시간표 선택 여부 확인
     const timeline = localStorage.get<number[]>("timeline", []);
     if (!Array.isArray(timeline) || timeline.length === 0) {
       alert("시간표를 선택해주세요.");
       return false;
     }
 
+    // 지원 경로 확인
     const channel = localStorage.get<string[]>("channel", []);
     channel.push(localStorage.get("channelEtc", ""));
 
