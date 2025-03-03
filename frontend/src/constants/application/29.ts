@@ -171,7 +171,7 @@ export const APPLICATION: ApplicationQuestion[] = [
           "홍보 포스터 / 현수막",
           "지인 소개",
           "인스타그램",
-          "페이스북",
+          "알림아리",
           "에브리타임",
         ],
         errorMessages: "지원 경로를 선택해주세요.",
