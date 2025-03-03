@@ -96,18 +96,20 @@ export const APPLICATION: ApplicationQuestion[] = [
       },
       {
         type: "radioByTwoRank",
-        title: "학년 및 학기",
+        title: "",
         name: "",
         require: true,
         subtitle: "'휴학'일 경우 휴학 직전 학기를 선택해 주세요.",
         subNodes: [
           {
+            title: "학년",
             splitNumber: 4,
             name: "grade",
             require: true,
             value: ["1학년", "2학년", "3학년", "4학년"],
           },
           {
+            title: "학기",
             splitNumber: 2,
             name: "semester",
             require: true,
