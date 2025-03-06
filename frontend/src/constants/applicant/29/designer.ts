@@ -7,7 +7,8 @@ export const APPLICANT_DESIGNER = [
   } as ApplicantTextareaNode,
   {
     id: 6,
-    title: "디자이너를 희망하는 이유는 무엇인가요?",
+    title:
+      "디자이너를 희망하는 이유는 무엇인가요?\n본인이 생각하는 디자이너는 무엇인지, 디자이너를 희망하게 된 이유는 무엇인지 구체적으로 작성해주세요.",
     type: "textarea",
     value: { name: "future" },
   } as ApplicantTextareaNode,
@@ -42,7 +43,7 @@ export const APPLICANT_DESIGNER = [
   {
     id: 11,
     title:
-      "어떤 일에 도전하고 실패해 본 경험이 있나요? 그 실패를 어떻게 극복했는지 서술해 주세요.(소프트웨어 분야 관련 경험이 아니어도 좋습니다.)",
+      "어떤 일에 도전하고 실패해 본 경험이 있나요? 그 실패를 어떻게 극복했는지 서술해 주세요.\nIT 관련 경험이 아니어도 좋습니다.",
     type: "textarea",
     value: { name: "drain" },
   } as ApplicantTextareaNode,
