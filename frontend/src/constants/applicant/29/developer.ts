@@ -16,32 +16,27 @@ export const APPLICANT_DEVELOPER = [
     id: 7,
     title:
       "소프트웨어 프로젝트에서 주도적으로 개발한 경험이 있나요?(캡스톤 디자인 제외)\n없다면, 주도적으로 진행한 다양한 경험을 이야기 해주세요.",
-    type: "booleanTextarea",
-    booleanValue: { name: "experience" },
-    subtitle: [
-      "본인이 어떤 역할을 했고, 그 경험을 통해 무엇을 얻었는지 서술해 주세요.",
-      "앞으로 해보고 싶은 프로젝트가 무엇인가요? 그 이유와 함께 서술해 주세요.",
-    ],
+    type: "textarea",
     value: { name: "experienceTextarea" },
-  } as ApplicantBooleanTextareaNode,
+  } as ApplicantTextareaNode,
   {
     id: 8,
     title:
-      "무언가에 깊게 빠지거나 파고 들어본 적이 있나요? 좋아하는 것을 위해서 주변에서 인정할 정도로 깊게  빠져본 적이 있다면 서술해주세요.",
+      "무언가에 깊게 빠지거나 파고 들어본 적이 있나요? 좋아하는 것을 위해 주변에서 인정할 정도로 깊게  빠져본 적이 있다면 서술해주세요.",
     type: "textarea",
-    value: { name: "restoration" },
+    value: { name: "deep" },
   } as ApplicantTextareaNode,
   {
     id: 9,
     title:
       "어떤 일에 도전하고 실패해 본 경험이 있나요? 그 실패를 어떻게 극복했는지 서술해 주세요.",
     type: "textarea",
-    value: { name: "deep" },
+    value: { name: "restoration" },
   } as ApplicantTextareaNode,
   {
     id: 10,
     title:
-      "협업(프로젝트, 팀 활동)에 있어서 가장 중요하다고 생각되는 것은 무엇인지 그 이유와 함께 지원자님의 생각을 서술해 주세요.",
+      "협업(프로젝트, 팀 활동)에 있어서 가장 중요하다고 생각되는 것은 무엇인지 그 이유와 함께 지원자님의 생각을 서술해 주세요.\n본인의 경험에 기반하여 말씀해주세요.",
     type: "textarea",
     value: { name: "collaboration" },
   } as ApplicantTextareaNode,
