@@ -26,7 +26,10 @@ const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
     useOptimisticApplicantPassUpdate(generation);
   const { data: userData } = useQuery(["user"], getMyInfo);
 
-  const { applicant, isLoading, isError } = useApplicantById(applicantId);
+  const { applicant, isLoading, isError } = useApplicantById({
+    applicantId,
+    generation,
+  });
 
   const onClickPass = () => {
     const ok = confirm("합격 처리하시겠습니까?");

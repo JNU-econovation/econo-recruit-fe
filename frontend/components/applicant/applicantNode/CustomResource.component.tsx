@@ -2,19 +2,14 @@ import Txt from "@/components/common/Txt.component";
 import { ApplicantReq } from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
 import Portfolio from "./Portfolio";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import CardApplicantStatusLabel from "@/components/common/CardApplicantStatusLabel";
-import { useAtomValue } from "jotai";
-import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
+
 import { getMyInfo } from "@/src/apis/interview";
-import { findApplicantState } from "@/src/utils/applicant";
-import { ApplicantPassState, getKanbanCards } from "@/src/apis/kanban";
-import {
-  patchApplicantPassState,
-  PatchApplicantPassStateParams,
-} from "@/src/apis/passState";
+
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
+import { useApplicantById } from "@/src/hooks/applicant/useApplicantById";
 
 interface ApplicantResourceProps {
   data: ApplicantReq[];
@@ -27,25 +22,14 @@ const ApplicantResource = ({
   postId,
   generation,
 }: ApplicantResourceProps) => {
-  const navbarId = useAtomValue(KanbanSelectedButtonNumberState);
   const searchParams = useSearchParams();
   const applicantId = searchParams.get("applicantId");
 
-  // 아래 초기 합/불 내가 만든 훅으로 변경
-
   const {
-    data: initialState,
+    applicant: initialState,
     isLoading,
     isError,
-  } = useQuery({
-    queryKey: ["applicantState", applicantId, navbarId],
-    queryFn: async () =>
-      findApplicantState(
-        await getKanbanCards(navbarId, generation),
-        `${applicantId}`
-      ),
-    staleTime: 3000,
-  });
+  } = useApplicantById({ applicantId, generation });
 
   const {
     data: myInfo,
@@ -92,7 +76,13 @@ const ApplicantResource = ({
             <Txt className="text-xl text-secondary-200 font-medium">
               {applicantDataFinder(data, "major")}
             </Txt>
-            <CardApplicantStatusLabel passState={initialState} />
+            <CardApplicantStatusLabel
+              passState={
+                initialState && !Array.isArray(initialState)
+                  ? initialState.state.passState
+                  : "non-processed"
+              }
+            />
           </div>
           <Txt typography="h2">{`[${applicantDataFinder(
             data,

@@ -1,13 +1,15 @@
 import { getAllApplicantsWithPassState } from "@/src/apis/passState";
 import { useQuery } from "@tanstack/react-query";
 
-import { usePathname } from "next/navigation";
+interface ApplicantByIdParams {
+  applicantId?: string | null;
+  generation: string;
+}
 
-export function useApplicantById(applicantId?: string | null) {
-  const pathname = usePathname();
-  const segments = pathname.split("/").filter((segment) => segment.length > 0);
-  const generation = segments[segments.length - 1];
-
+export function useApplicantById({
+  applicantId,
+  generation,
+}: ApplicantByIdParams) {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["allApplicantsWithPassState", generation],
     queryFn: () => getAllApplicantsWithPassState(generation),
