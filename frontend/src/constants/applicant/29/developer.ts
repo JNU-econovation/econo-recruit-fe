@@ -17,7 +17,7 @@ export const APPLICANT_DEVELOPER = [
     title:
       "소프트웨어 프로젝트에서 주도적으로 개발한 경험이 있나요?(캡스톤 디자인 제외)\n없다면, 주도적으로 진행한 다양한 경험을 이야기 해주세요.",
     type: "textarea",
-    value: { name: "experienceTextarea" },
+    value: { name: "experience" },
   } as ApplicantTextareaNode,
   {
     id: 8,
