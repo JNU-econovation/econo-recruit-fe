@@ -2,7 +2,7 @@ import { KanbanCardData } from "@/src/stores/kanban/Kanban.atoms";
 import { cn } from "@/src/utils/cn";
 import { useParams, useRouter } from "next/navigation";
 import Icon from "@/components/common/Icon";
-import KanbanCardApplicantStatusLabel from "./CardApplicantStatusLabel";
+import CardApplicantStatusLabel from "../../common/CardApplicantStatusLabel";
 
 type KanbanCardComponentType = {
   data: KanbanCardData | null;
@@ -57,7 +57,7 @@ function KanbanCardComponent({
     >
       <div className="text-xs text-secondary-200 flex justify-between items-center">
         {major}
-        <KanbanCardApplicantStatusLabel passState={passState} />
+        <CardApplicantStatusLabel passState={passState} />
       </div>
       <div className="font-bold truncate">{title}</div>
       <div className="mt-2 flex justify-between items-center text-sm text-secondary-200">

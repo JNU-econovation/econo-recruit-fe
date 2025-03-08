@@ -4,6 +4,7 @@ import { ApplicantReq } from "@/src/apis/applicant";
 import Txt from "@/components/common/Txt.component";
 import { getApplicantPassState } from "@/src/functions/formatter";
 import { ApplicantPassState } from "@/src/apis/kanban";
+import CardApplicantStatusLabel from "@/components/common/CardApplicantStatusLabel";
 
 interface CustomResourceProps {
   data: ApplicantReq[];
@@ -32,9 +33,7 @@ const CustomResource = ({
             "field"
           )}] ${applicantDataFinder(data, "name")}`}</Txt>
           <div className="flex justify-between grow items-center">
-            <Txt typography="h5" color="light_gray" className="truncate">
-              {getApplicantPassState(passState)}
-            </Txt>
+            <CardApplicantStatusLabel passState={passState} />
             {ableToEdit && (
               <div className="flex gap-4">
                 <button
