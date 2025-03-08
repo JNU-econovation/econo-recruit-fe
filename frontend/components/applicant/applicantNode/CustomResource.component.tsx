@@ -1,5 +1,5 @@
 import Txt from "@/components/common/Txt.component";
-import { ApplicantReq, patchApplicantState } from "@/src/apis/applicant";
+import { ApplicantReq } from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
 import Portfolio from "./Portfolio";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -10,6 +10,10 @@ import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atom
 import { getMyInfo } from "@/src/apis/interview";
 import { findApplicantState } from "@/src/utils/applicant";
 import { ApplicantPassState, getKanbanCards } from "@/src/apis/kanban";
+import {
+  patchApplicantPassState,
+  PatchApplicantPassStateParams,
+} from "@/src/apis/passState";
 
 interface ApplicantResourceProps {
   data: ApplicantReq[];
@@ -49,9 +53,9 @@ const ApplicantResource = ({
     queryKey: ["user"],
     queryFn: getMyInfo,
   });
-  const { mutate } = useMutation({
-    mutationFn: (afterState: "non-pass" | "pass") =>
-      patchApplicantState(`${applicantId}`, afterState),
+  const { mutate: updateApplicantPassState } = useMutation({
+    mutationFn: (params: PatchApplicantPassStateParams) =>
+      patchApplicantPassState(params),
     onMutate: async () => {
       await queryClient.cancelQueries([
         "applicantState",
@@ -78,12 +82,22 @@ const ApplicantResource = ({
     },
   });
 
-  const onFailedButtonClick = () => {
-    mutate("non-pass");
+  const onClickPass = () => {
+    const ok = confirm("합격 처리하시겠습니까?");
+    if (!ok) return;
+    updateApplicantPassState({
+      applicantId: postId,
+      afterState: "pass",
+    });
   };
 
-  const onPassedButtonClick = () => {
-    mutate("pass");
+  const onClickNonPass = () => {
+    const ok = confirm("불합격 처리하시겠습니까?");
+    if (!ok) return;
+    updateApplicantPassState({
+      applicantId: postId,
+      afterState: "non-pass",
+    });
   };
 
   if (!initialState || isLoading || !myInfo || myInfoLoading) {
@@ -113,16 +127,16 @@ const ApplicantResource = ({
           myInfo.role === "ROLE_PRESIDENT") && (
           <div className="flex gap-5">
             <button
-              onClick={onFailedButtonClick}
-              className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
-            >
-              불합격
-            </button>
-            <button
-              onClick={onPassedButtonClick}
+              onClick={onClickPass}
               className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
             >
               합격
+            </button>
+            <button
+              onClick={onClickNonPass}
+              className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
+            >
+              불합격
             </button>
           </div>
         )}
