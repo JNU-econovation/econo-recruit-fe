@@ -18,16 +18,13 @@ export interface IAnswer {
   };
 }
 
-export const useOptimisticApplicantPassUpdate = (
-  generation: string,
-  postId: string
-) => {
+export const useOptimisticApplicantPassUpdate = (generation: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (params: PatchApplicantPassStateParams) =>
       patchApplicantPassState(params),
-    onMutate: async (variables) => {
+    onMutate: async (params) => {
       await queryClient.cancelQueries([
         "allApplicantsWithPassState",
         generation,
@@ -43,8 +40,8 @@ export const useOptimisticApplicantPassUpdate = (
         (oldData: IAnswer[] | undefined) => {
           if (!oldData) return oldData;
           return oldData.map((applicant: IAnswer) =>
-            applicant.id === postId
-              ? { ...applicant, passState: variables.afterState }
+            applicant.id === params.applicantId
+              ? { ...applicant, passState: params.afterState }
               : applicant
           );
         }

@@ -22,10 +22,8 @@ const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
   const applicantId = searchParams.get("applicantId");
   const postId = applicantDataFinder(data, "id");
 
-  const { mutate: updateApplicantPassState } = useOptimisticApplicantPassUpdate(
-    generation,
-    postId
-  );
+  const { mutate: updateApplicantPassState } =
+    useOptimisticApplicantPassUpdate(generation);
   const { data: userData } = useQuery(["user"], getMyInfo);
 
   const { applicant, isLoading, isError } = useApplicantById(applicantId);

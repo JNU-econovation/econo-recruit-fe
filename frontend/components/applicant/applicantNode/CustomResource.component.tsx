@@ -55,10 +55,8 @@ const ApplicantResource = ({
     queryKey: ["user"],
     queryFn: getMyInfo,
   });
-  const { mutate: updateApplicantPassState } = useOptimisticApplicantPassUpdate(
-    generation,
-    postId
-  );
+  const { mutate: updateApplicantPassState } =
+    useOptimisticApplicantPassUpdate(generation);
 
   const onClickPass = () => {
     const ok = confirm("합격 처리하시겠습니까?");
