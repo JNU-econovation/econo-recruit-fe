@@ -9,8 +9,6 @@ import ApplicantDetailLeft from "./_applicant/ApplicantDetailLeft";
 import BoardTable from "../common/board/BoardTable";
 import useModalState from "../../src/hooks/useModalState";
 import BoardModal from "../common/board/BoardModal";
-import { useRouter } from "next/navigation";
-import { CURRENT_GENERATION } from "@/src/constants";
 
 interface ApplicantBoardProps {
   generation: string;
@@ -21,8 +19,6 @@ const ApplicantBoard = ({ generation, applicants }: ApplicantBoardProps) => {
   const [selectedApplicant, setSelectedApplicant] = useState<ApplicantReq[]>(
     []
   );
-
-  const navigate = useRouter();
 
   const { isOpen, openModal, closeModal } = useModalState();
 
@@ -54,7 +50,6 @@ const ApplicantBoard = ({ generation, applicants }: ApplicantBoardProps) => {
   }));
 
   const handleModalOpen = (id: string) => () => {
-    navigate.replace(`/applicant/${CURRENT_GENERATION}?applicantId=${id}`);
     openModal();
     setSelectedApplicant(
       applicants.filter((value) => applicantDataFinder(value, "id") === id)[0]

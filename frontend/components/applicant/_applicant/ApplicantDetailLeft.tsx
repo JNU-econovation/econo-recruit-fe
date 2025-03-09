@@ -9,7 +9,7 @@ import { getMyInfo } from "@/src/apis/interview";
 import ApplicantLabel from "../applicantNode/Label.component";
 import ApplicantComment from "../applicantNode/comment/Comment.component";
 import { useApplicantById } from "@/src/hooks/applicant/useApplicantById";
-import { useSearchParams } from "next/navigation";
+
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
 
 interface DetailLeftProps {
@@ -18,8 +18,6 @@ interface DetailLeftProps {
   cardId: number;
 }
 const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
-  const searchParams = useSearchParams();
-  const applicantId = searchParams.get("applicantId");
   const postId = applicantDataFinder(data, "id");
 
   const { mutate: updateApplicantPassState } =
@@ -27,7 +25,7 @@ const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
   const { data: userData } = useQuery(["user"], getMyInfo);
 
   const { applicant, isLoading, isError } = useApplicantById({
-    applicantId,
+    applicantId: postId,
     generation,
   });
 
