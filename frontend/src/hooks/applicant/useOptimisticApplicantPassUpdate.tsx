@@ -36,7 +36,6 @@ export const useOptimisticApplicantPassUpdate = (generation: string) => {
       queryClient.setQueryData(
         ["allApplicantsWithPassState", generation],
         (oldData: Answer[] | undefined) => {
-          console.log(oldData);
           if (!oldData) return oldData;
           return oldData.map((applicant: Answer) =>
             applicant.id === params.applicantId

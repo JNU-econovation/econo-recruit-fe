@@ -53,8 +53,10 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
     getAllApplicantsWithPassState(selectedGeneration)
   );
 
-  const { mutate: updateApplicantPassState, isLoading: mutationLoading } =
-    useOptimisticApplicantPassUpdate(selectedGeneration);
+  const {
+    mutate: updateApplicantPassState,
+    // isLoading: isUpdatingApplicantPassState,
+  } = useOptimisticApplicantPassUpdate(selectedGeneration);
 
   {
     if (+selectedGeneration !== CURRENT_GENERATION) {
