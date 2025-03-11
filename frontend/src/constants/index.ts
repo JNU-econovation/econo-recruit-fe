@@ -88,6 +88,7 @@ export const APPLICANT_KEYS = [
   "field",
   "field1",
   "field2",
+  "specificField",
   "name",
   "contacted",
   "classOf",
