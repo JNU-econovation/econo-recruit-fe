@@ -13,12 +13,12 @@ export function useApplicantById({
   const { data, isLoading, isError } = useQuery({
     queryKey: ["allApplicantsWithPassState", generation],
     queryFn: () => getAllApplicantsWithPassState(generation),
-    staleTime: 3000,
   });
 
-  const applicant = applicantId
-    ? data?.find((item) => item.id === applicantId) || null
-    : data || [];
+  const applicant =
+    data && applicantId
+      ? data.find((item) => item.id === applicantId)
+      : data || [];
 
   return { applicant, isLoading, isError };
 }

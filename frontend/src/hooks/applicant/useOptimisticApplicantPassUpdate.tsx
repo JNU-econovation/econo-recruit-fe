@@ -5,7 +5,7 @@ import {
 } from "@/src/apis/passState";
 import { ApplicantPassState } from "@/src/apis/kanban";
 
-interface Answer {
+export interface ApplicantPartialRes {
   field: "개발자" | "디자이너" | "기획자";
   field1: "APP" | "WEB" | "AI" | "GAME";
   field2: "APP" | "WEB" | "AI" | "GAME" | "선택 없음";
@@ -35,9 +35,9 @@ export const useOptimisticApplicantPassUpdate = (generation: string) => {
 
       queryClient.setQueryData(
         ["allApplicantsWithPassState", generation],
-        (oldData: Answer[] | undefined) => {
+        (oldData: ApplicantPartialRes[] | undefined) => {
           if (!oldData) return oldData;
-          return oldData.map((applicant: Answer) =>
+          return oldData.map((applicant: ApplicantPartialRes) =>
             applicant.id === params.applicantId
               ? { ...applicant, passState: params.afterState }
               : applicant

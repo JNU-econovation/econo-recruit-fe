@@ -11,6 +11,7 @@ import ApplicantComment from "../applicantNode/comment/Comment.component";
 import { useApplicantById } from "@/src/hooks/applicant/useApplicantById";
 
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
+import { getPassState } from "@/src/functions/passState";
 
 interface DetailLeftProps {
   data: ApplicantReq[];
@@ -47,6 +48,10 @@ const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
     });
   };
 
+  if (!applicant) {
+    return <div>로딩중...</div>;
+  }
+
   return (
     <>
       <CustomResource
@@ -57,11 +62,7 @@ const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
         }
         onClickPass={onClickPass}
         onClickNonPass={onClickNonPass}
-        passState={
-          applicant && !Array.isArray(applicant)
-            ? applicant.state.passState
-            : "non-processed"
-        }
+        passState={getPassState(applicant)}
       />
       <ApplicantLabel postId={postId} generation={generation} />
       <ApplicantComment

@@ -10,6 +10,7 @@ import { getMyInfo } from "@/src/apis/interview";
 
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
 import { useApplicantById } from "@/src/hooks/applicant/useApplicantById";
+import { getPassState } from "@/src/functions/passState";
 
 interface ApplicantResourceProps {
   data: ApplicantReq[];
@@ -76,13 +77,7 @@ const ApplicantResource = ({
             <Txt className="text-xl text-secondary-200 font-medium">
               {applicantDataFinder(data, "major")}
             </Txt>
-            <CardApplicantStatusLabel
-              passState={
-                initialState && !Array.isArray(initialState)
-                  ? initialState.state.passState
-                  : "non-processed"
-              }
-            />
+            <CardApplicantStatusLabel passState={getPassState(initialState)} />
           </div>
           <Txt typography="h2">{`[${applicantDataFinder(
             data,
