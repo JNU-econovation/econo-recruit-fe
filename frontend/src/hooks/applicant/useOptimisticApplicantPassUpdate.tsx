@@ -5,7 +5,7 @@ import {
 } from "@/src/apis/passState";
 import { ApplicantPassState } from "@/src/apis/kanban";
 
-export interface IAnswer {
+interface Answer {
   field: "개발자" | "디자이너" | "기획자";
   field1: "APP" | "WEB" | "AI" | "GAME";
   field2: "APP" | "WEB" | "AI" | "GAME" | "선택 없음";
@@ -14,7 +14,11 @@ export interface IAnswer {
   year: number;
   state: {
     passState: ApplicantPassState;
-    passStateToEnum: string;
+    passStateToEnum:
+      | "non-processed"
+      | "non-passed"
+      | "first-passed"
+      | "final-passed";
   };
 }
 
@@ -25,10 +29,9 @@ export const useOptimisticApplicantPassUpdate = (generation: string) => {
     mutationFn: (params: PatchApplicantPassStateParams) =>
       patchApplicantPassState(params),
     onMutate: async (params) => {
-      await queryClient.cancelQueries([
-        "allApplicantsWithPassState",
-        generation,
-      ]);
+      await queryClient.cancelQueries({
+        queryKey: ["allApplicantsWithPassState", generation],
+      });
 
       const previousData = queryClient.getQueryData([
         "allApplicantsWithPassState",
@@ -37,15 +40,17 @@ export const useOptimisticApplicantPassUpdate = (generation: string) => {
 
       queryClient.setQueryData(
         ["allApplicantsWithPassState", generation],
-        (oldData: IAnswer[] | undefined) => {
+        (oldData: Answer[] | undefined) => {
+          console.log(oldData);
           if (!oldData) return oldData;
-          return oldData.map((applicant: IAnswer) =>
+          return oldData.map((applicant: Answer) =>
             applicant.id === params.applicantId
               ? { ...applicant, passState: params.afterState }
               : applicant
           );
         }
       );
+
       return { previousData };
     },
     onError: (err, variables, context) => {
@@ -55,7 +60,9 @@ export const useOptimisticApplicantPassUpdate = (generation: string) => {
       );
     },
     onSettled: () => {
-      queryClient.invalidateQueries(["allApplicantsWithPassState", generation]);
+      queryClient.invalidateQueries({
+        queryKey: ["allApplicantsWithPassState", generation],
+      });
     },
   });
 };
