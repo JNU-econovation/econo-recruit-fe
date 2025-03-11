@@ -14,11 +14,6 @@ interface Answer {
   year: number;
   state: {
     passState: ApplicantPassState;
-    passStateToEnum:
-      | "non-processed"
-      | "non-passed"
-      | "first-passed"
-      | "final-passed";
   };
 }
 
