@@ -2,6 +2,14 @@ import { https } from "@/src/functions/axios";
 import { PageInfo } from "../applicant";
 import { type ApplicantPassState } from "../kanban";
 
+export type Role =
+  | "ROLE_GUEST"
+  | "ROLE_TF"
+  | "ROLE_OPERATION"
+  | "ROLE_PRESIDENT";
+
+export type RoleName = "GUEST" | "TF" | "OPERATION" | "PRESIDENT";
+
 export interface RecordsRes {
   applicantId: string;
   scores: number;
@@ -75,12 +83,18 @@ export interface InterviewerReq {
   id: number;
   name: string;
   year: number;
-  role: "ROLE_GUEST" | "ROLE_TF" | "ROLE_OPERATION" | "ROLE_PRESIDENT";
+  role: Role;
 }
 
-export const getAllInterviewerWithOrder = async (order: string) => {
+export const getInterviewer = async ({
+  order,
+  roles,
+}: {
+  order: string;
+  roles?: RoleName[];
+}) => {
   const { data } = await https.get<InterviewerReq[]>(
-    `/interviewers?order=${order}`
+    `/interviewers?order=${order}${roles && `&roles=${roles.join(",")}`}`
   );
 
   return data;
@@ -91,7 +105,7 @@ interface ApplicantReq {
   name: string;
   year: number;
   email: string;
-  role: "ROLE_GUEST" | "ROLE_TF" | "ROLE_OPERATION" | "ROLE_PRESIDENT";
+  role: Role;
 }
 
 export const getMyInfo = async () => {
@@ -101,7 +115,7 @@ export const getMyInfo = async () => {
 
 export interface putInterviewerReq {
   id: number;
-  role: "GUEST" | "TF" | "OPERATION" | "PRESIDENT";
+  role: RoleName;
 }
 
 export const putInterviewer = async ({ id, role }: putInterviewerReq) => {
