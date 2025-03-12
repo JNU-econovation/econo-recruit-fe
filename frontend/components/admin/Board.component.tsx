@@ -3,7 +3,7 @@
 import {
   InterviewerReq,
   deleteInterviewer,
-  getAllInterviewerWithOrder,
+  getInterviewer,
   getMyInfo,
   putInterviewer,
 } from "@/src/apis/interview";
@@ -62,9 +62,7 @@ const AdminBoard = () => {
     data: userData,
     isLoading,
     isError,
-  } = useQuery(["interviewers", order], () =>
-    getAllInterviewerWithOrder(order)
-  );
+  } = useQuery(["interviewers", order], () => getInterviewer({ order }));
 
   const {
     data: myInfo,
