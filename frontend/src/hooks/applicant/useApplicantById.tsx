@@ -2,7 +2,7 @@ import { getAllApplicantsWithPassState } from "@/src/apis/passState";
 import { useQuery } from "@tanstack/react-query";
 
 interface ApplicantByIdParams {
-  applicantId?: string | null;
+  applicantId: string;
   generation: string;
 }
 

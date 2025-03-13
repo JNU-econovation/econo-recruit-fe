@@ -24,7 +24,7 @@ const ApplicantResource = ({
   generation,
 }: ApplicantResourceProps) => {
   const searchParams = useSearchParams();
-  const applicantId = searchParams.get("applicantId");
+  const applicantId = searchParams.get("applicantId") ?? "";
 
   const {
     applicant: initialState,
