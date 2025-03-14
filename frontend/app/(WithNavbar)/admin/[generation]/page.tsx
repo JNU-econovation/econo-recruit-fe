@@ -7,18 +7,12 @@ import { getInterviewer, getMyInfo } from "@/src/apis/interview";
 import getQueryClient from "@/src/functions/getQueryClient";
 
 interface AdminPageProps {
-  params: {
-    generation: string;
-  };
   searchParams: {
-    order: string;
+    order: (typeof ORDER_MENU.ADMIN)[number]["type"];
   };
 }
 
-const AdminPage = async ({
-  params,
-  searchParams: { order = "" },
-}: AdminPageProps) => {
+const AdminPage = async ({ searchParams: { order } }: AdminPageProps) => {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["interviewers"],

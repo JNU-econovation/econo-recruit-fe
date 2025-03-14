@@ -56,7 +56,9 @@ const InterViewerUpdateButton = ({
 
 const AdminBoard = () => {
   const searchParams = useSearchParams();
-  const order = searchParams.get("order") || ORDER_MENU.ADMIN[0].type;
+  const order =
+    (searchParams.get("order") as (typeof ORDER_MENU.ADMIN)[number]["type"]) ||
+    ORDER_MENU.ADMIN[0].type;
 
   const {
     data: userData,

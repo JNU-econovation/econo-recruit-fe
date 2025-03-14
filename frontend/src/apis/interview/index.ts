@@ -1,6 +1,7 @@
 import { https } from "@/src/functions/axios";
 import { PageInfo } from "../applicant";
 import { type ApplicantPassState } from "../kanban";
+import { ORDER_MENU } from "@/src/constants";
 
 export type Role =
   | "ROLE_GUEST"
@@ -90,12 +91,18 @@ export const getInterviewer = async ({
   order,
   roles,
 }: {
-  order: string;
+  order?: "name" | "newest";
   roles?: RoleName[];
-}) => {
-  const { data } = await https.get<InterviewerReq[]>(
-    `/interviewers?order=${order}${roles && `&roles=${roles.join(",")}`}`
-  );
+} = {}) => {
+  const params = new URLSearchParams();
+  if (roles !== undefined) {
+    params.append("roles", roles.join(","));
+  }
+  if (order !== undefined) {
+    params.append("order", order);
+  }
+
+  const { data } = await https.get<InterviewerReq[]>(`/interviewers?${params}`);
 
   return data;
 };

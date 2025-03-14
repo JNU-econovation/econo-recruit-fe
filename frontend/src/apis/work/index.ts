@@ -46,7 +46,7 @@ export const postWorkLabel = async (cardId: number) => {
 };
 
 export const getWorkLabel = async (cardId: number): Promise<WorkLabelReq[]> => {
-  const allInterviewers = await getInterviewer({ order: "" });
+  const allInterviewers = await getInterviewer();
 
   try {
     const { data } = await https.get<string[]>(`/cards/${cardId}/labels`);
