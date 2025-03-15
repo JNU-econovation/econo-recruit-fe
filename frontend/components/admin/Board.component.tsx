@@ -3,7 +3,7 @@
 import {
   InterviewerReq,
   deleteInterviewer,
-  getAllInterviewerWithOrder,
+  getInterviewer,
   getMyInfo,
   putInterviewer,
 } from "@/src/apis/interview";
@@ -56,15 +56,15 @@ const InterViewerUpdateButton = ({
 
 const AdminBoard = () => {
   const searchParams = useSearchParams();
-  const order = searchParams.get("order") || ORDER_MENU.ADMIN[0].type;
+  const order =
+    (searchParams.get("order") as (typeof ORDER_MENU.ADMIN)[number]["type"]) ||
+    ORDER_MENU.ADMIN[0].type;
 
   const {
     data: userData,
     isLoading,
     isError,
-  } = useQuery(["interviewers", order], () =>
-    getAllInterviewerWithOrder(order)
-  );
+  } = useQuery(["interviewers", order], () => getInterviewer({ order }));
 
   const {
     data: myInfo,

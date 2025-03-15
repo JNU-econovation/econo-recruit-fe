@@ -1,4 +1,4 @@
-import { getAllInterviewerWithOrder } from "@/src/apis/interview";
+import { getInterviewer } from "@/src/apis/interview";
 import { APPLICANT_KEYS } from "@/src/constants";
 import { https } from "@/src/functions/axios";
 import { ApplicantPassState, getKanbanCards, KanbanCardReq } from "../kanban";
@@ -161,7 +161,10 @@ export interface ApplicantLabelReq {
 export const getApplicantLabel = async (
   id: string
 ): Promise<ApplicantLabelReq[]> => {
-  const allInterviewers = await getAllInterviewerWithOrder("name");
+  const allInterviewers = await getInterviewer({
+    order: "name",
+    roles: ["TF", "OPERATION", "PRESIDENT"],
+  });
 
   try {
     const { data } = await https.get<string[]>(`/applicants/${id}/labels`);
