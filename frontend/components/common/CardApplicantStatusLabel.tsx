@@ -25,9 +25,7 @@ export const labelConfig: Record<ApplicantPassState, labelConfigType> = {
   },
 };
 
-const KanbanCardApplicantStatusLabel = ({
-  passState,
-}: KanbanCardReq["state"]) => {
+const CardApplicantStatusLabel = ({ passState }: KanbanCardReq["state"]) => {
   const { backgroundColor, label } = labelConfig[passState];
   return (
     <div className={cn("text-xs px-2.5 py-1 rounded-lg", backgroundColor)}>
@@ -36,4 +34,4 @@ const KanbanCardApplicantStatusLabel = ({
   );
 };
 
-export default KanbanCardApplicantStatusLabel;
+export default CardApplicantStatusLabel;

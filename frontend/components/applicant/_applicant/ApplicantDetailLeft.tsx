@@ -2,15 +2,16 @@
 
 import { ApplicantReq } from "@/src/apis/applicant";
 import CustomResource from "./_applicantNode/CustomResource";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  patchApplicantPassState,
-  PatchApplicantPassStateParams,
-} from "@/src/apis/passState";
+import { useQuery } from "@tanstack/react-query";
+
 import { applicantDataFinder } from "@/src/functions/finder";
 import { getMyInfo } from "@/src/apis/interview";
 import ApplicantLabel from "../applicantNode/Label.component";
 import ApplicantComment from "../applicantNode/comment/Comment.component";
+import { useApplicantById } from "@/src/hooks/applicant/useApplicantById";
+
+import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
+import { getPassState } from "@/src/functions/passState";
 
 interface DetailLeftProps {
   data: ApplicantReq[];
@@ -18,22 +19,16 @@ interface DetailLeftProps {
   cardId: number;
 }
 const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
-  const queryClient = useQueryClient();
-  const { mutate: updateApplicantPassState } = useMutation({
-    mutationFn: (params: PatchApplicantPassStateParams) =>
-      patchApplicantPassState(params),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [
-          "allApplicantsWithPassState",
-          applicantDataFinder(data, "generation"),
-        ],
-      });
-    },
-  });
+  const postId = applicantDataFinder(data, "id");
+
+  const { mutate: updateApplicantPassState } =
+    useOptimisticApplicantPassUpdate(generation);
   const { data: userData } = useQuery(["user"], getMyInfo);
 
-  const postId = applicantDataFinder(data, "id");
+  const { applicant, isLoading, isError } = useApplicantById({
+    applicantId: postId,
+    generation,
+  });
 
   const onClickPass = () => {
     const ok = confirm("합격 처리하시겠습니까?");
@@ -53,6 +48,10 @@ const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
     });
   };
 
+  if (!applicant) {
+    return <div>로딩중...</div>;
+  }
+
   return (
     <>
       <CustomResource
@@ -63,6 +62,7 @@ const ApplicantDetailLeft = ({ data, cardId, generation }: DetailLeftProps) => {
         }
         onClickPass={onClickPass}
         onClickNonPass={onClickNonPass}
+        passState={getPassState(applicant)}
       />
       <ApplicantLabel postId={postId} generation={generation} />
       <ApplicantComment

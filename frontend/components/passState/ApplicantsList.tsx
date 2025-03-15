@@ -1,18 +1,16 @@
 "use client";
 
-import {
-  getAllApplicantsWithPassState,
-  patchApplicantPassState,
-} from "@/src/apis/passState";
+import { getAllApplicantsWithPassState } from "@/src/apis/passState";
 import { CURRENT_GENERATION } from "@/src/constants";
 import { usePathname } from "next/navigation";
 import Txt from "../common/Txt.component";
 import { getApplicantPassState } from "@/src/functions/formatter";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import type {
   PatchApplicantPassStateParams,
   Answer,
 } from "@/src/apis/passState";
+import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
 
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
@@ -46,7 +44,6 @@ interface ApplicantsListProps {
 }
 const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
   const selectedGeneration = usePathname().split("/")[2];
-  const queryClient = useQueryClient();
 
   const {
     data: allApplicants,
@@ -56,15 +53,10 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
     getAllApplicantsWithPassState(selectedGeneration)
   );
 
-  const { mutate: updateApplicantPassState } = useMutation({
-    mutationFn: (params: PatchApplicantPassStateParams) =>
-      patchApplicantPassState(params),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["allApplicantsWithPassState", selectedGeneration],
-      });
-    },
-  });
+  const {
+    mutate: updateApplicantPassState,
+    // isLoading: isUpdatingApplicantPassState,
+  } = useOptimisticApplicantPassUpdate(selectedGeneration);
 
   {
     if (+selectedGeneration !== CURRENT_GENERATION) {
@@ -121,8 +113,8 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
                 passState === "non-passed"
                   ? "red"
                   : passState === "final-passed"
-                  ? "blue"
-                  : "black"
+                    ? "blue"
+                    : "black"
               }
             >
               {getApplicantPassState(passState)}

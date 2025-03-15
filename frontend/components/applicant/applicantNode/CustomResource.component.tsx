@@ -1,15 +1,16 @@
 import Txt from "@/components/common/Txt.component";
-import { ApplicantReq, patchApplicantState } from "@/src/apis/applicant";
+import { ApplicantReq } from "@/src/apis/applicant";
 import { applicantDataFinder } from "@/src/functions/finder";
 import Portfolio from "./Portfolio";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import KanbanCardApplicantStatusLabel from "@/components/kanban/card/CardApplicantStatusLabel";
-import { useAtomValue } from "jotai";
-import { KanbanSelectedButtonNumberState } from "@/src/stores/kanban/Navbar.atoms";
+import CardApplicantStatusLabel from "@/components/common/CardApplicantStatusLabel";
+
 import { getMyInfo } from "@/src/apis/interview";
-import { findApplicantState } from "@/src/utils/applicant";
-import { ApplicantPassState, getKanbanCards } from "@/src/apis/kanban";
+
+import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
+import { useApplicantById } from "@/src/hooks/applicant/useApplicantById";
+import { getPassState } from "@/src/functions/passState";
 
 interface ApplicantResourceProps {
   data: ApplicantReq[];
@@ -22,24 +23,14 @@ const ApplicantResource = ({
   postId,
   generation,
 }: ApplicantResourceProps) => {
-  const navbarId = useAtomValue(KanbanSelectedButtonNumberState);
   const searchParams = useSearchParams();
-  const applicantId = searchParams.get("applicantId");
-  const queryClient = useQueryClient();
+  const applicantId = searchParams.get("applicantId") ?? "";
 
   const {
-    data: initialState,
+    applicant: initialState,
     isLoading,
     isError,
-  } = useQuery({
-    queryKey: ["applicantState", applicantId, navbarId],
-    queryFn: async () =>
-      findApplicantState(
-        await getKanbanCards(navbarId, generation),
-        `${applicantId}`
-      ),
-    staleTime: 3000,
-  });
+  } = useApplicantById({ applicantId, generation });
 
   const {
     data: myInfo,
@@ -49,41 +40,25 @@ const ApplicantResource = ({
     queryKey: ["user"],
     queryFn: getMyInfo,
   });
-  const { mutate } = useMutation({
-    mutationFn: (afterState: "non-pass" | "pass") =>
-      patchApplicantState(`${applicantId}`, afterState),
-    onMutate: async () => {
-      await queryClient.cancelQueries([
-        "applicantState",
-        applicantId,
-        navbarId,
-      ]);
+  const { mutate: updateApplicantPassState } =
+    useOptimisticApplicantPassUpdate(generation);
 
-      const snapshotState = queryClient.getQueryData<ApplicantPassState>([
-        "applicantState",
-        applicantId,
-        navbarId,
-      ]);
-
-      return { snapshotState };
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(["kanbanDataArray", generation]);
-    },
-    onError: (error, variables, context) => {
-      window.alert("상태 변경에 실패했습니다.");
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries(["applicantState", applicantId, navbarId]);
-    },
-  });
-
-  const onFailedButtonClick = () => {
-    mutate("non-pass");
+  const onClickPass = () => {
+    const ok = confirm("합격 처리하시겠습니까?");
+    if (!ok) return;
+    updateApplicantPassState({
+      applicantId: postId,
+      afterState: "pass",
+    });
   };
 
-  const onPassedButtonClick = () => {
-    mutate("pass");
+  const onClickNonPass = () => {
+    const ok = confirm("불합격 처리하시겠습니까?");
+    if (!ok) return;
+    updateApplicantPassState({
+      applicantId: postId,
+      afterState: "non-pass",
+    });
   };
 
   if (!initialState || isLoading || !myInfo || myInfoLoading) {
@@ -102,7 +77,7 @@ const ApplicantResource = ({
             <Txt className="text-xl text-secondary-200 font-medium">
               {applicantDataFinder(data, "major")}
             </Txt>
-            <KanbanCardApplicantStatusLabel passState={initialState} />
+            <CardApplicantStatusLabel passState={getPassState(initialState)} />
           </div>
           <Txt typography="h2">{`[${applicantDataFinder(
             data,
@@ -113,16 +88,16 @@ const ApplicantResource = ({
           myInfo.role === "ROLE_PRESIDENT") && (
           <div className="flex gap-5">
             <button
-              onClick={onFailedButtonClick}
-              className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
-            >
-              불합격
-            </button>
-            <button
-              onClick={onPassedButtonClick}
+              onClick={onClickPass}
               className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
             >
               합격
+            </button>
+            <button
+              onClick={onClickNonPass}
+              className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
+            >
+              불합격
             </button>
           </div>
         )}
