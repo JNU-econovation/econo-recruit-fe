@@ -1,4 +1,4 @@
-import { ScoreKeyword } from "@/src/constants/applicant/28";
+import { ScoreKeyword } from "@/src/constants/applicant/29";
 
 interface ScoreCellProps {
   fieldName: ScoreKeyword;

@@ -1,4 +1,4 @@
-import { Score } from "@/src/constants/applicant/28";
+import { Score } from "@/src/constants/applicant/29";
 import { useState } from "react";
 import MyScoreForm from "./MyScoreForm";
 import MyScoreViewer from "./MyScoreViewer";
