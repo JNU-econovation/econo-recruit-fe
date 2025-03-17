@@ -12,21 +12,14 @@ const InterviewPageNavbar = ({
   maxPage,
   generation,
 }: InterviewPageNavbarProps) => {
-  const { pageIndex, type, order, searchKeyword } =
-    useInterviewerPaginationParams();
-
-  const queryParams = { type, order, search: searchKeyword };
-
-  const { createQueryString } = useCreateQueryString();
+  const { pageIndex, order, searchKeyword } = useInterviewerPaginationParams();
 
   return (
     <PageNavbarComponent
       maxLength={maxPage}
       page={+pageIndex}
-      url={`/interview/${generation}?${createQueryString(
-        Object.keys(queryParams),
-        Object.values(queryParams)
-      )}`}
+      url={`/interview/${generation}`}
+      query={{ order, searchKeyword }}
     />
   );
 };
