@@ -1,5 +1,5 @@
 import { ApplicantPassState } from "../apis/kanban";
-import { Score, ScoreKeyword } from "../constants/applicant/28";
+import { Score, ScoreKeyword } from "../constants/applicant/29";
 
 export const scoreListToObject = (
   scores: number[],
