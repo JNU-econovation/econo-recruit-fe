@@ -33,6 +33,7 @@ const useAllInterviewRecordQuery = ({
         year: generation,
         searchKeyword,
       }),
+    keepPreviousData: true,
   });
 
   const queryClient = useQueryClient();

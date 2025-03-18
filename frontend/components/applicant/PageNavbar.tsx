@@ -15,7 +15,6 @@ const ApplicantPageNavbar = ({
 
   const queryParams = { search: searchKeyword, order };
 
-  // Search 넣어야 함!!!
   return (
     <PageNavbarComponent
       maxLength={maxPage}
