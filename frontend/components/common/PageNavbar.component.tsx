@@ -19,7 +19,10 @@ const PageNavbarComponent = ({
       {Array.from({ length: maxLength }).map((_, i) => (
         <Link
           key={i}
-          href={{ pathname: url, query: { ...query, page: i + 1 } }}
+          href={{
+            pathname: url,
+            query: { ...query, search: query.searchKeyword, page: i + 1 },
+          }}
           className={i + 1 === page ? "p-3" : "text-secondary-100 p-3"}
         >
           {i + 1}

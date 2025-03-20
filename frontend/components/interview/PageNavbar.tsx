@@ -1,6 +1,5 @@
 "use client";
 import PageNavbarComponent from "../common/PageNavbar.component";
-import { useCreateQueryString } from "@/src/hooks/useCreateQueryString";
 import useInterviewerPaginationParams from "../../src/hooks/interview/useInterviewerPaginationParams";
 
 type InterviewPageNavbarProps = {
