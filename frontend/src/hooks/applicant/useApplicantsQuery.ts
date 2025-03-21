@@ -4,11 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { type ApplicantPaginationParams } from "./useApplicantPaginationParams";
 import { getApplicantByPageWithGeneration } from "@/src/apis/applicant";
 
-interface UseApplicantsQueryProps
-  extends Pick<
-    ApplicantPaginationParams,
-    "order" | "pageIndex" | "searchKeyword"
-  > {
+interface UseApplicantsQueryProps extends ApplicantPaginationParams {
   generation: string;
 }
 

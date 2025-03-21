@@ -4,11 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
 import { type IntervieweePaginationParams } from "./useIntervieweePaginationParams";
 
-interface UseAllInterviewRecordQueryProps
-  extends Pick<
-    IntervieweePaginationParams,
-    "pageIndex" | "order" | "searchKeyword"
-  > {
+interface UseAllInterviewRecordQueryProps extends IntervieweePaginationParams {
   generation: string;
 }
 
@@ -18,14 +14,17 @@ const useAllInterviewRecordQuery = ({
   order,
   searchKeyword,
 }: UseAllInterviewRecordQueryProps) => {
-  const queryKeys = [
+  // TODO: 나중에 밖으로 분리해내거나, query-key-factory 사용으로 변경할 것.
+  // 지금은 의존성이 이 페이지 밖에 없어서 상관없으나, 확장되면 문제가 발생할 수도 있음.
+  const allInterviewRecord = (page: number) => [
     "allInterviewRecord",
-    { pageIndex, order, generation, searchKeyword },
+    { page, order, generation, searchKeyword },
   ];
+
   const currentPage = +pageIndex;
 
   const query = useQuery({
-    queryKey: queryKeys,
+    queryKey: allInterviewRecord(currentPage),
     queryFn: () =>
       getInterviewRecordByPageWithOrder({
         page: currentPage,
@@ -49,10 +48,7 @@ const useAllInterviewRecordQuery = ({
     if (!query.data) return;
     if (!query.isPreviousData && query.data.maxPage > currentPage) {
       queryClient.prefetchQuery({
-        queryKey: [
-          "allInterviewRecord",
-          { pageIndex: `${nextPage}`, order, generation, searchKeyword },
-        ],
+        queryKey: allInterviewRecord(nextPage),
         queryFn: () =>
           getInterviewRecordByPageWithOrder({
             page: nextPage,
