@@ -1,22 +1,22 @@
 "use client";
 import InterviewBoard from "./Board";
-import InterviewPageNavbar from "./PageNavbar";
+import IntervieweePageNavbar from "./PageNavbar";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { removeAll } from "@/src/functions/replacer";
 import { CHARACTERS } from "@/src/constants";
 import {
   useAllInterviewRecordQuery,
-  useInterviewerPaginationParams,
+  useIntervieweePaginationParams,
 } from "@/src/hooks/interview";
 
-interface InterviewerListProps {
+interface IntervieweeListProps {
   generation: string;
 }
 
-const InterviewerList = ({ generation }: InterviewerListProps) => {
-  const { data: interviewers, status } = useAllInterviewRecordQuery({
+const IntervieweeList = ({ generation }: IntervieweeListProps) => {
+  const { data: interviewees, status } = useAllInterviewRecordQuery({
     generation,
-    ...useInterviewerPaginationParams(),
+    ...useIntervieweePaginationParams(),
   });
 
   if (status === "loading") {
@@ -31,7 +31,7 @@ const InterviewerList = ({ generation }: InterviewerListProps) => {
     return <div>에러가 발생하였습니다. 잠시 후 다시 시도해보세요.</div>;
   }
 
-  const interviewRecords = interviewers.records.map((value) => {
+  const interviewRecords = interviewees.records.map((value) => {
     return {
       id: value.applicantId,
       title: value.name,
@@ -52,12 +52,12 @@ const InterviewerList = ({ generation }: InterviewerListProps) => {
   return (
     <>
       <InterviewBoard interviewRecords={interviewRecords} />
-      <InterviewPageNavbar
+      <IntervieweePageNavbar
         generation={generation}
-        maxPage={interviewers.maxPage}
+        maxPage={interviewees.maxPage}
       />
     </>
   );
 };
 
-export default InterviewerList;
+export default IntervieweeList;

@@ -2,13 +2,13 @@ import { useSearchParams } from "next/navigation";
 import { ORDER_MENU } from "../../constants";
 
 // TODO: ApplicantPaginationParams와 같은 타입임.
-export interface InterviewerPaginationParams {
+export interface IntervieweePaginationParams {
   pageIndex: string;
   order: string;
   searchKeyword: string;
 }
 
-const useInterviewerPaginationParams: () => InterviewerPaginationParams =
+const useIntervieweePaginationParams: () => IntervieweePaginationParams =
   () => {
     const searchParams = useSearchParams();
     const pageIndex = searchParams.get("page") || "1";
@@ -18,4 +18,4 @@ const useInterviewerPaginationParams: () => InterviewerPaginationParams =
     return { pageIndex, order, searchKeyword };
   };
 
-export default useInterviewerPaginationParams;
+export default useIntervieweePaginationParams;

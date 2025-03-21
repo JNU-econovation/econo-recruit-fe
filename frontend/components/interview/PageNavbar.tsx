@@ -1,17 +1,17 @@
 "use client";
+import { useIntervieweePaginationParams } from "@/src/hooks/interview";
 import PageNavbarComponent from "../common/PageNavbar.component";
-import useInterviewerPaginationParams from "../../src/hooks/interview/useInterviewerPaginationParams";
 
-type InterviewPageNavbarProps = {
+type IntervieweePageNavbarProps = {
   maxPage: number;
   generation: string;
 };
 
-const InterviewPageNavbar = ({
+const IntervieweePageNavbar = ({
   maxPage,
   generation,
-}: InterviewPageNavbarProps) => {
-  const { pageIndex, order, searchKeyword } = useInterviewerPaginationParams();
+}: IntervieweePageNavbarProps) => {
+  const { pageIndex, order, searchKeyword } = useIntervieweePaginationParams();
 
   return (
     <PageNavbarComponent
@@ -23,4 +23,4 @@ const InterviewPageNavbar = ({
   );
 };
 
-export default InterviewPageNavbar;
+export default IntervieweePageNavbar;

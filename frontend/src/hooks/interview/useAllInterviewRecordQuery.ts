@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { getInterviewRecordByPageWithOrder } from "@/src/apis/interview";
-import { type InterviewerPaginationParams } from "./useInterviewerPaginationParams";
+import { type IntervieweePaginationParams } from "./useIntervieweePaginationParams";
 
 interface UseAllInterviewRecordQueryProps
   extends Pick<
-    InterviewerPaginationParams,
+    IntervieweePaginationParams,
     "pageIndex" | "order" | "searchKeyword"
   > {
   generation: string;
