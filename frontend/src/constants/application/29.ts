@@ -220,7 +220,7 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
 export const END_DATE = {
   year: 2025,
   month: 3,
-  date: 12,
+  date: 24,
   hours: 23,
   minutes: 59,
   seconds: 59,
