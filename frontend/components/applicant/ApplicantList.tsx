@@ -1,32 +1,20 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import useApplicantPaginationParams from "../../src/hooks/applicant/useApplicantPaginationParams";
-import { getApplicantByPageWithGeneration } from "../../src/apis/applicant";
 import LoadingSpinner from "../common/LoadingSpinner";
 import ApplicantBoard from "./Board";
 import ApplicantPageNavbar from "./PageNavbar";
+import { useApplicantsQuery } from "@/src/hooks/applicant";
 
 interface ApplicantListProps {
   generation: string;
 }
 
 const ApplicantList = ({ generation }: ApplicantListProps) => {
-  const { pageIndex, order, searchKeyword } = useApplicantPaginationParams();
-  const { data: applicants, status } = useQuery(
-    ["allApplicant", { generation, order, pageIndex, searchKeyword }],
-    () =>
-      getApplicantByPageWithGeneration(
-        +pageIndex,
-        generation,
-        order,
-        searchKeyword
-      ),
-    {
-      enabled: !!generation,
-    }
-  );
-
+  const { data: applicants, status } = useApplicantsQuery({
+    generation,
+    ...useApplicantPaginationParams(),
+  });
   if (status === "loading") {
     return <LoadingSpinner size="s" />;
   }
