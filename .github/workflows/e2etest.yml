@@ -45,9 +45,11 @@ jobs:
 
       - name: Merge Cypress JUnit test results
         run: junit-merge frontend/results/*.xml > frontend/results/merged-test-results.xml
+        if: always()
 
       - name: Upload merged test results as PR comment
         uses: mikepenz/action-junit-report@v4
+        if: always()
         with:
           report_paths: 'frontend/results/merged-test-results.xml'
           github_token: ${{ secrets.PR_RW_TOKEN }}
