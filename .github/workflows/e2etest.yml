@@ -38,6 +38,11 @@ jobs:
           wait-on: 'http://localhost:3000'
           summary-title: 'Cypress Tests In Development'
           publish-summary: true
+
+      - name: Install junit-merge
+        run: pnpm add -g junit-merge
+        if: always()
+
       - name: Merge Cypress JUnit test results
         run: junit-merge frontend/results/*.xml > frontend/results/merged-test-results.xml
 

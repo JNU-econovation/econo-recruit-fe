@@ -11,7 +11,6 @@ export default defineConfig({
     reporter: "junit",
     reporterOptions: {
       mochaFile: "results/test-report-[hash].xml",
-      toConsole: true,
     },
   },
 });
