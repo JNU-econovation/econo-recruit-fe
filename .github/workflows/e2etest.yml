@@ -36,3 +36,5 @@ jobs:
           working-directory: frontend
           start: pnpm run dev
           wait-on: 'http://localhost:3000'
+          summary-title: 'Cypress Tests In Development'
+          publish-summary: true
