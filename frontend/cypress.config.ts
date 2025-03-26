@@ -8,5 +8,10 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    reporter: "junit",
+    reporterOptions: {
+      mochaFile: "results/test-report-[hash].xml",
+      toConsole: true,
+    },
   },
 });
