@@ -34,5 +34,5 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: frontend
-          start: pnpm start
+          start: pnpm run dev
           wait-on: 'http://localhost:3000'
