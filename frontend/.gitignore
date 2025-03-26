@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# Ignore Cypress screenshots and results
+frontend/cypress/screenshots/
+frontend/results/
+
 # next.js
 /.next/
 /out/
