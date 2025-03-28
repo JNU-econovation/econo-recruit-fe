@@ -9,4 +9,5 @@ export default defineConfig({
       // implement node event listeners here
     },
   },
+  projectId: "4k3nb1",
 });
