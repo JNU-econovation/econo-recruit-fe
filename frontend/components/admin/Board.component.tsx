@@ -99,6 +99,9 @@ const AdminBoard = () => {
 
   return (
     <section className="flex flex-col">
+      <Txt className="mb-8" typography="h3">
+        멤버 권한 변경
+      </Txt>
       <div className="border-b mb-4">
         <div className="flex py-4 justify-between">
           <Txt

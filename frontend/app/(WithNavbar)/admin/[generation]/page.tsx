@@ -1,6 +1,6 @@
 import { dehydrate, Hydrate } from "@tanstack/react-query";
 import AdminBoard from "@/components/admin/Board.component";
-import AdminSearch from "@/components/admin/Search.component";
+
 import SortList from "@/components/common/SortList";
 import { ORDER_MENU } from "@/src/constants";
 import { getInterviewer, getMyInfo } from "@/src/apis/interview";
@@ -27,11 +27,11 @@ const AdminPage = async ({ searchParams: { order } }: AdminPageProps) => {
   const dehydrateState = dehydrate(queryClient);
 
   return (
-    <div className="flex-1 ml-32 min-w-[46rem] mb-12">
+    <div>
       <div className="flex w-full justify-end gap-8 my-12">
-        <AdminSearch />
         <SortList sortList={ORDER_MENU.ADMIN} />
       </div>
+
       <Hydrate state={dehydrateState}>
         <AdminBoard />
       </Hydrate>
