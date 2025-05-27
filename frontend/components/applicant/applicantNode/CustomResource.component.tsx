@@ -96,9 +96,8 @@ const ApplicantResource = ({
               disabled={isPass}
               onClick={onClickPass}
               className={`${
-                isPass &&
-                "disabled:bg-zinc-300 disabled:cursor-not-allowed disabled:hover:bg-zinc-300"
-              }  w-20 h-20 bg-sky-300 hover:bg-sky-400 rounded-xl`}
+                isPass && "disabled:bg-zinc-200 disabled:cursor-not-allowed "
+              }  w-20 h-20 bg-zinc-200 hover:bg-sky-400 rounded-xl`}
             >
               합격
             </button>
@@ -106,9 +105,8 @@ const ApplicantResource = ({
               disabled={isNonPass}
               onClick={onClickNonPass}
               className={` ${
-                isNonPass &&
-                "disabled:bg-zinc-300 disabled:cursor-not-allowed disabled:hover:bg-zinc-300"
-              } w-20 h-20 bg-rose-300 hover:bg-rose-400 rounded-xl`}
+                isNonPass && "disabled:bg-zinc-200 disabled:cursor-not-allowed"
+              } w-20 h-20 bg-zinc-200 hover:bg-sky-400 rounded-xl`}
             >
               불합격
             </button>
