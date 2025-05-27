@@ -113,15 +113,22 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
                 passState === "non-passed"
                   ? "red"
                   : passState === "final-passed"
-                    ? "blue"
-                    : "black"
+                  ? "blue"
+                  : "black"
               }
             >
               {getApplicantPassState(passState)}
             </Txt>
             <div className="flex justify-between">
               <button
-                className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100"
+                disabled={
+                  passState === "final-passed" || passState === "first-passed"
+                }
+                className={`${
+                  passState === "final-passed" ||
+                  (passState === "first-passed" &&
+                    "disabled:bg-primary-100 disabled:cursor-not-allowed ")
+                } border px-4 py-2 rounded-lg truncate hover:bg-primary-100`}
                 onClick={() =>
                   onChangeApplicantsPassState(name, {
                     applicantId: id,
@@ -132,7 +139,11 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
                 합격
               </button>
               <button
-                className="border px-4 rounded-lg truncate hover:bg-primary-100"
+                disabled={passState === "non-passed"}
+                className={`${
+                  passState === "non-passed" &&
+                  "disabled:bg-primary-100 disabled:cursor-not-allowed "
+                } border px-4 rounded-lg truncate hover:bg-primary-100`}
                 onClick={() =>
                   onChangeApplicantsPassState(name, {
                     applicantId: id,
