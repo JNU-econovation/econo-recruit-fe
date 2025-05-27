@@ -69,6 +69,11 @@ const ApplicantResource = ({
     return <div>에러 발생</div>;
   }
 
+  const passState = getPassState(initialState);
+
+  const isPass = passState === "first-passed" || passState === "final-passed";
+  const isNonPass = passState === "non-passed";
+
   return (
     <>
       <div className="flex justify-between items-center">
@@ -77,7 +82,7 @@ const ApplicantResource = ({
             <Txt className="text-xl text-secondary-200 font-medium">
               {applicantDataFinder(data, "major")}
             </Txt>
-            <CardApplicantStatusLabel passState={getPassState(initialState)} />
+            <CardApplicantStatusLabel passState={passState} />
           </div>
           <Txt typography="h2">{`[${applicantDataFinder(
             data,
@@ -88,14 +93,22 @@ const ApplicantResource = ({
           myInfo.role === "ROLE_PRESIDENT") && (
           <div className="flex gap-5">
             <button
+              disabled={isPass}
               onClick={onClickPass}
-              className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
+              className={`${
+                isPass &&
+                "disabled:bg-zinc-300 disabled:cursor-not-allowed disabled:hover:bg-zinc-300"
+              }  w-20 h-20 bg-sky-300 hover:bg-sky-400 rounded-xl`}
             >
               합격
             </button>
             <button
+              disabled={isNonPass}
               onClick={onClickNonPass}
-              className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
+              className={` ${
+                isNonPass &&
+                "disabled:bg-zinc-300 disabled:cursor-not-allowed disabled:hover:bg-zinc-300"
+              } w-20 h-20 bg-rose-300 hover:bg-rose-400 rounded-xl`}
             >
               불합격
             </button>
