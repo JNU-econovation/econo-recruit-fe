@@ -3,7 +3,7 @@ import {
   ApplicationQuestion,
 } from "../constants/application/type";
 
-const isCellPhoneNumber = (phoneNumber: string) =>
+export const isCellPhoneNumber = (phoneNumber: string) =>
   /^\(?(\d{3})\)?[- ]?(\d{4})[- ]?(\d{4})$/.test(phoneNumber);
 
 const isUndergradeNumber = (isUndergradeNumber: string) =>
