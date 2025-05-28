@@ -11,7 +11,11 @@ import {
   getApplicationValues,
 } from "../functions/getApplication";
 import { AxiosError } from "axios";
-import { isEmail } from "../functions/validator";
+import {
+  isEmail,
+  isCellPhoneNumber,
+  isUndergradeNumber,
+} from "../functions/validator";
 import { useAtomValue, useSetAtom } from "jotai";
 import {
   applicationDataAtom,
@@ -26,9 +30,9 @@ export const useApplication = () => {
   const applicationData = useAtomValue(applicationDataAtom);
   const fieldData = localStorage.get<string>("field", "");
 
-  const {
-    END_DATE,
-  } = require(`@/src/constants/application/${CURRENT_GENERATION}.ts`);
+  const { END_DATE } = require(
+    `@/src/constants/application/${CURRENT_GENERATION}.ts`
+  );
 
   /**
    * @param questionId 질문의 index
@@ -38,6 +42,14 @@ export const useApplication = () => {
     (questionId: number) => {
       if (typeof window === "undefined") return null;
       let result = true;
+
+      if (questionId === 2) {
+        const cellPhoneNumber = localStorage.get("contacted", "");
+        const classOf = localStorage.get("classOf", "");
+
+        if (!isCellPhoneNumber(cellPhoneNumber)) return false;
+        if (!isUndergradeNumber(classOf)) return false;
+      }
 
       // [예외] 지원 경로 질문에서 채널 "혹은" 기타를 입력한 경우 확인
       if (questionId === 4) {
