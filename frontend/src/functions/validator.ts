@@ -6,7 +6,7 @@ import {
 export const isCellPhoneNumber = (phoneNumber: string) =>
   /^\(?(\d{3})\)?[- ]?(\d{4})[- ]?(\d{4})$/.test(phoneNumber);
 
-const isUndergradeNumber = (isUndergradeNumber: string) =>
+export const isUndergradeNumber = (isUndergradeNumber: string) =>
   /^[0-9]{6}$/.test(isUndergradeNumber);
 
 const isEmailString = (emailString: string) => {

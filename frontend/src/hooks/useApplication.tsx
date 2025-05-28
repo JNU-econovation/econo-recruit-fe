@@ -11,7 +11,11 @@ import {
   getApplicationValues,
 } from "../functions/getApplication";
 import { AxiosError } from "axios";
-import { isEmail, isCellPhoneNumber } from "../functions/validator";
+import {
+  isEmail,
+  isCellPhoneNumber,
+  isUndergradeNumber,
+} from "../functions/validator";
 import { useAtomValue, useSetAtom } from "jotai";
 import {
   applicationDataAtom,
@@ -44,7 +48,7 @@ export const useApplication = () => {
         const classOf = localStorage.get("classOf", "");
 
         if (!isCellPhoneNumber(cellPhoneNumber)) return false;
-        if (classOf.length !== 6) return false;
+        if (!isUndergradeNumber(classOf)) return false;
       }
 
       // [예외] 지원 경로 질문에서 채널 "혹은" 기타를 입력한 경우 확인
