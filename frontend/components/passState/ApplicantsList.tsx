@@ -11,6 +11,7 @@ import type {
   Answer,
 } from "@/src/apis/passState";
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
+import { cn } from "@/src/utils/cn";
 
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
@@ -124,11 +125,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
                 disabled={
                   passState === "final-passed" || passState === "first-passed"
                 }
-                className={`${
-                  passState === "final-passed" ||
-                  (passState === "first-passed" &&
-                    "disabled:bg-primary-100 disabled:cursor-not-allowed ")
-                } border px-4 py-2 rounded-lg truncate hover:bg-primary-100`}
+                className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
                 onClick={() =>
                   onChangeApplicantsPassState(name, {
                     applicantId: id,
@@ -140,10 +137,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
               </button>
               <button
                 disabled={passState === "non-passed"}
-                className={`${
-                  passState === "non-passed" &&
-                  "disabled:bg-primary-100 disabled:cursor-not-allowed "
-                } border px-4 rounded-lg truncate hover:bg-primary-100`}
+                className="border px-4 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
                 onClick={() =>
                   onChangeApplicantsPassState(name, {
                     applicantId: id,

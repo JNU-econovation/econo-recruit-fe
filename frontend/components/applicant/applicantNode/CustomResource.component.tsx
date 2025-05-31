@@ -11,6 +11,7 @@ import { getMyInfo } from "@/src/apis/interview";
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
 import { useApplicantById } from "@/src/hooks/applicant/useApplicantById";
 import { getPassState } from "@/src/functions/passState";
+import { cn } from "@/src/utils/cn";
 
 interface ApplicantResourceProps {
   data: ApplicantReq[];
@@ -95,18 +96,14 @@ const ApplicantResource = ({
             <button
               disabled={isPass}
               onClick={onClickPass}
-              className={`${
-                isPass && "disabled:bg-zinc-200 disabled:cursor-not-allowed "
-              }  w-20 h-20 bg-zinc-200 hover:bg-sky-400 rounded-xl`}
+              className="w-20 h-20 bg-zinc-200 hover:bg-sky-400 rounded-xl disabled:bg-zinc-200 disabled:cursor-not-allowed"
             >
               합격
             </button>
             <button
               disabled={isNonPass}
               onClick={onClickNonPass}
-              className={` ${
-                isNonPass && "disabled:bg-zinc-200 disabled:cursor-not-allowed"
-              } w-20 h-20 bg-zinc-200 hover:bg-sky-400 rounded-xl`}
+              className="w-20 h-20 bg-zinc-200 hover:bg-sky-400 rounded-xl disabled:bg-zinc-200 disabled:cursor-not-allowed"
             >
               불합격
             </button>
