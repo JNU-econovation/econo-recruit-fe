@@ -11,6 +11,7 @@ import { getMyInfo } from "@/src/apis/interview";
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
 import { useApplicantById } from "@/src/hooks/applicant/useApplicantById";
 import { getPassState } from "@/src/functions/passState";
+import { cn } from "@/src/utils/cn";
 
 interface ApplicantResourceProps {
   data: ApplicantReq[];
@@ -69,6 +70,11 @@ const ApplicantResource = ({
     return <div>에러 발생</div>;
   }
 
+  const passState = getPassState(initialState);
+
+  const isPass = passState === "first-passed" || passState === "final-passed";
+  const isNonPass = passState === "non-passed";
+
   return (
     <>
       <div className="flex justify-between items-center">
@@ -77,7 +83,7 @@ const ApplicantResource = ({
             <Txt className="text-xl text-secondary-200 font-medium">
               {applicantDataFinder(data, "major")}
             </Txt>
-            <CardApplicantStatusLabel passState={getPassState(initialState)} />
+            <CardApplicantStatusLabel passState={passState} />
           </div>
           <Txt typography="h2">{`[${applicantDataFinder(
             data,
@@ -88,14 +94,16 @@ const ApplicantResource = ({
           myInfo.role === "ROLE_PRESIDENT") && (
           <div className="flex gap-5">
             <button
+              disabled={isPass}
               onClick={onClickPass}
-              className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
+              className="w-20 h-20 bg-zinc-200 hover:bg-sky-400 rounded-xl disabled:bg-zinc-200 disabled:cursor-not-allowed"
             >
               합격
             </button>
             <button
+              disabled={isNonPass}
               onClick={onClickNonPass}
-              className="bg-zinc-200 w-20 h-20 hover:bg-sky-400 rounded-xl"
+              className="w-20 h-20 bg-zinc-200 hover:bg-sky-400 rounded-xl disabled:bg-zinc-200 disabled:cursor-not-allowed"
             >
               불합격
             </button>

@@ -11,6 +11,7 @@ import type {
   Answer,
 } from "@/src/apis/passState";
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
+import { cn } from "@/src/utils/cn";
 
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
@@ -113,15 +114,18 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
                 passState === "non-passed"
                   ? "red"
                   : passState === "final-passed"
-                    ? "blue"
-                    : "black"
+                  ? "blue"
+                  : "black"
               }
             >
               {getApplicantPassState(passState)}
             </Txt>
             <div className="flex justify-between">
               <button
-                className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100"
+                disabled={
+                  passState === "final-passed" || passState === "first-passed"
+                }
+                className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
                 onClick={() =>
                   onChangeApplicantsPassState(name, {
                     applicantId: id,
@@ -132,7 +136,8 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
                 합격
               </button>
               <button
-                className="border px-4 rounded-lg truncate hover:bg-primary-100"
+                disabled={passState === "non-passed"}
+                className="border px-4 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
                 onClick={() =>
                   onChangeApplicantsPassState(name, {
                     applicantId: id,
