@@ -11,7 +11,6 @@ import type {
   Answer,
 } from "@/src/apis/passState";
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
-import { cn } from "@/src/utils/cn";
 
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
