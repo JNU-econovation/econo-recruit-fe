@@ -21,6 +21,9 @@ const CustomResource = ({
   onClickNonPass,
   passState,
 }: CustomResourceProps) => {
+  const isPass = passState === "first-passed" || passState === "final-passed";
+  const isNonPass = passState === "non-passed";
+
   return (
     <>
       <div className="flex flex-col gap-1 mb-2">
@@ -37,13 +40,15 @@ const CustomResource = ({
             {ableToEdit && (
               <div className="flex gap-4">
                 <button
-                  className="border rounded-lg px-4 py-2 truncate hover:bg-primary-100"
+                  disabled={isPass}
+                  className="border rounded-lg px-4 py-2 truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
                   onClick={onClickPass}
                 >
                   합격
                 </button>
                 <button
-                  className="border rounded-lg px-4 py-2 truncate hover:bg-primary-100"
+                  disabled={isNonPass}
+                  className="border rounded-lg px-4 py-2 truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
                   onClick={onClickNonPass}
                 >
                   불합격
