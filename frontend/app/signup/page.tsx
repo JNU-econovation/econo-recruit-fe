@@ -58,6 +58,7 @@ const SignUpPage = () => {
   });
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (isLoading) return;
     e.preventDefault();
 
     submitSignUp(signUpData);
@@ -65,7 +66,12 @@ const SignUpPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <SignUpForm onSubmit={onSubmit} data={signUpData} setForm={setForm} />
+      <SignUpForm
+        onSubmit={onSubmit}
+        data={signUpData}
+        setForm={setForm}
+        isLoading={isLoading}
+      />
     </div>
   );
 };
