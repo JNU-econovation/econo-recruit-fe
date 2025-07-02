@@ -21,6 +21,7 @@ interface SignUpProps {
     name: "email" | "password" | "passwordConfirm" | "username" | "generation";
     value: string;
   }) => void;
+  isLoading?: boolean;
 }
 
 /**
@@ -28,10 +29,11 @@ interface SignUpProps {
  * @param {function} onSubmit - form이 submit될 때 실행되는 함수
  * @param {object} data - form의 input value를 담고 있는 객체
  * @param {function} setForm - form의 input value를 변경하는 함수
+ * @param {boolean} isLoading - form이 submit 중일 때를 표시하는 불리언 값
  * @returns {JSX.Element} - SignUpForm component
  * @constructor
  */
-const SignUpForm = ({ onSubmit, data, setForm }: SignUpProps) => {
+const SignUpForm = ({ onSubmit, data, setForm, isLoading }: SignUpProps) => {
   const [isWarning, setWarning] = useState({
     email: false,
     password: false,
@@ -107,8 +109,9 @@ const SignUpForm = ({ onSubmit, data, setForm }: SignUpProps) => {
       />
       <div className="w-full mt-8">
         <button
-          className="w-full p-4 rounded-md bg-blue-500 hover:bg-blue-600 text-white"
+          className="w-full p-4 rounded-md bg-blue-500 hover:bg-blue-600 text-white disabled:cursor-not-allowed"
           type="submit"
+          disabled={isLoading}
         >
           회원가입
         </button>
