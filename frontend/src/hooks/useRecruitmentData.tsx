@@ -22,7 +22,7 @@ export const useRecruitmentData = () => {
   const recruitments = recruitmentData?.responses || [];
   const pageInfo = recruitmentData?.pageInfo;
 
-  const totalPages = pageInfo?.endPage || 1;
+  const totalPages = Math.max(pageInfo?.endPage || 1, currentPage);
   const totalCount = pageInfo?.listCount || 0;
 
   const handlePageChange = (page: number) => {
