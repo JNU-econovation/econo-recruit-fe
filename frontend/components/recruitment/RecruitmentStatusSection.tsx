@@ -6,24 +6,34 @@ import {
   findCurrentRecruitment,
   filterPreviousRecruitments,
 } from "@/src/functions/recruitment";
+import { Pagination } from "../common/Pagination";
 
 interface RecruitmentStatusSectionProps {
   recruitments: RecruitmentResponse[];
+  currentPage: number;
+  totalPages: number;
+  totalCount: number;
   onCancel: () => void;
+  onPageChange: (page: number) => void;
   isLoading: boolean;
+  isCancelLoading: boolean;
 }
 
 export function RecruitmentStatusSection({
   recruitments,
+  currentPage,
+  totalPages,
+  totalCount,
   onCancel,
+  onPageChange,
   isLoading,
+  isCancelLoading,
 }: RecruitmentStatusSectionProps) {
   const currentRecruitment = findCurrentRecruitment(recruitments);
   const previousRecruitments = filterPreviousRecruitments(recruitments);
 
   return (
     <div className="w-full bg-[#F9FAFB] rounded-md p-4 border border-[#ESE7EB]">
-      {/* 현재 접수 기간 */}
       <h3 className="text-sm mb-3">현재 접수 기간</h3>
 
       {currentRecruitment ? (
@@ -52,9 +62,9 @@ export function RecruitmentStatusSection({
             <button
               onClick={onCancel}
               className="px-8 py-2 bg-[#2160FF] text-white text-xs rounded-md max-h-[30px]"
-              disabled={isLoading}
+              disabled={isCancelLoading}
             >
-              {isLoading ? <LoadingSpinner size="s" /> : "취소하기"}
+              {isCancelLoading ? <LoadingSpinner size="s" /> : "취소하기"}
             </button>
           </div>
         </>
@@ -89,6 +99,12 @@ export function RecruitmentStatusSection({
           </div>
         )}
       </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
+      />
     </div>
   );
 }

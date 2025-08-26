@@ -1,14 +1,10 @@
 "use client";
 
-import {
-  getRecruitmentTime,
-  RecruitmentListResponse,
-} from "@/src/apis/recruitment";
-import { useQuery } from "@tanstack/react-query";
 import { RecruitmentStatusSection } from "@/components/recruitment/RecruitmentStatusSection";
 import { RecruitmentForm } from "@/components/recruitment/RecruitmentForm";
 import { useRecruitmentMutations } from "@/src/hooks/useRecruitmentMutations";
 import { findCurrentRecruitment } from "@/src/functions/recruitment";
+import { useRecruitmentData } from "@/src/hooks/useRecruitmentData";
 
 export default function Page() {
   const {
@@ -18,12 +14,15 @@ export default function Page() {
     handleDeleteRecruitment,
   } = useRecruitmentMutations();
 
-  const { data: recruitmentData } = useQuery<RecruitmentListResponse>({
-    queryKey: ["recruitmentTime"],
-    queryFn: () => getRecruitmentTime(1),
-  });
+  const {
+    recruitments,
+    currentPage,
+    totalPages,
+    totalCount,
+    isLoading,
+    handlePageChange,
+  } = useRecruitmentData();
 
-  const recruitments = recruitmentData?.responses || [];
   const currentRecruitment = findCurrentRecruitment(recruitments);
 
   const handleCancel = () => {
@@ -47,8 +46,13 @@ export default function Page() {
     <div className="flex flex-col gap-6 mt-10">
       <RecruitmentStatusSection
         recruitments={recruitments}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        totalCount={totalCount}
         onCancel={handleCancel}
-        isLoading={deleteRecruitmentMutation.isLoading}
+        onPageChange={handlePageChange}
+        isLoading={isLoading}
+        isCancelLoading={deleteRecruitmentMutation.isLoading}
       />
 
       <RecruitmentForm

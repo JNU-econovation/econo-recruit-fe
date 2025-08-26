@@ -10,7 +10,7 @@ export interface RecruitmentResponse {
   endAt: string;
   recruitmentId: number;
   startAt: string;
-  states: "ACTIVE" | "NON_START" | "END";
+  states: "ACTIVE" | "NON_START" | "END" | "RECRUITING";
 }
 
 export interface PageInfo {
@@ -41,7 +41,7 @@ export const postRecruitmentTime = async ({
 };
 
 export const getRecruitmentTime = async (
-  page = 1
+  page: number
 ): Promise<RecruitmentListResponse> => {
   const { data } = await https.get(`/page/${page}/recruitments`);
   return data;

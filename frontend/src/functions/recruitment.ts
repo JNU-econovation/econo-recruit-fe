@@ -7,7 +7,10 @@ export const findCurrentRecruitment = (
   recruitments: RecruitmentResponse[]
 ): RecruitmentResponse | undefined => {
   return recruitments.find(
-    (r) => r.states === "ACTIVE" || r.states === "NON_START"
+    (r) =>
+      r.states === "ACTIVE" ||
+      r.states === "NON_START" ||
+      r.states === "RECRUITING"
   );
 };
 
