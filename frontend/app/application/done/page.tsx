@@ -13,7 +13,7 @@ const ApplicationDonePage = ({
 }: ApplicantDonePageProps) => {
   const generation = `${CURRENT_GENERATION}`;
 
-  const endDate =
+  const firstNotificationDate =
     require(`@/src/constants/application/${generation}.ts`).FIRST_NOTIFICATION_DATE;
 
   return (
@@ -29,8 +29,8 @@ const ApplicationDonePage = ({
           되었습니다
         </div>
         <div>
-          서류 합격 결과는 {endDate.month}월 {endDate.date}일에 개인 메일으로
-          공지 될 예정입니다.
+          서류 합격 결과는 {firstNotificationDate.month}월{" "}
+          {firstNotificationDate.date}일에 개인 메일으로 공지 될 예정입니다.
         </div>
         <div>
           <Link

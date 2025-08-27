@@ -220,7 +220,7 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
 export const END_DATE = {
   year: 2025,
   month: 9,
-  date: 12,
+  date: 10,
   hours: 23,
   minutes: 59,
   seconds: 59,
@@ -234,8 +234,8 @@ export const END_DATE = {
  */
 export const FIRST_NOTIFICATION_DATE = {
   year: 2025,
-  month: 3,
-  date: 14,
+  month: 9,
+  date: 12,
 };
 
 /**
@@ -246,6 +246,6 @@ export const FIRST_NOTIFICATION_DATE = {
  */
 export const FINAL_DATE = {
   year: 2025,
-  month: 3,
-  date: 24,
+  month: 9,
+  date: 22,
 };
