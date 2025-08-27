@@ -97,7 +97,8 @@ export const APPLICATION_DEVELOPER: ApplicationQuestion[] = [
   {
     id: 11,
     title: "에코노베이션에서의 활동 목표와 학습 계획을 이야기해주세요.",
-    subtitle: "본인이 하고 싶은 프로젝트와 연관하여 설명해주세요.",
+    subtitle:
+      "단순히 개발 역량 향상에 그치지 말고, 동아리 활동을 통해 이루고 싶은 성장과 기여를 함께 서술해주세요. 구체적인 프로젝트 아이디어나 학습 계획이 있다면 제시해 주세요.",
     direction: "horizontal",
     require: true,
     nodes: [
