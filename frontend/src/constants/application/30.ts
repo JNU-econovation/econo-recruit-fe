@@ -209,6 +209,24 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
 };
 
 /**
+ * @description 개인정보 수집에 대한 1차 모집 시작일 상수 데이터
+ * @property {number} year - 1차 모집 시작 연도
+ * @property {number} month - 1차 모집 시작 달 (1-12)
+ * @property {number} date - 1차 모집 시작 날짜 (1-31)
+ * @property {number} hours - 1차 모집 시작 시간(시) (0-23)
+ * @property {number} minutes - 1차 모집 시작 시간(분) (0-59)
+ * @property {number} seconds - 1차 모집 시작 시간(초) (0-59)
+ */
+export const START_DATE = {
+  year: 2025,
+  month: 9,
+  date: 1,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+};
+
+/**
  * @description 개인정보 수집에 대한 1차 모집 마감일 상수 데이터
  * @property {number} year - 1차 모집 마감 연도
  * @property {number} month - 1차 모집 마감 달 (1-12)

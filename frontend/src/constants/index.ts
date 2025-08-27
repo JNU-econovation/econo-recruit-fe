@@ -184,3 +184,5 @@ export const CHARACTERS = {
   SLASH: "/",
   SPACE: " ",
 };
+
+export const PRODUCTION_HOSTNAME = "recruit.econovation.kr";
