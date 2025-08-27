@@ -5,15 +5,15 @@ import QuestionSkeleton from "@/components/application/loader/Question.skeleton"
 import {
   APPLICATION_DESIGN,
   APPLICATION_NAVBAR_DESIGN,
-} from "@/src/constants/application/29/designer";
+} from "@/src/constants/application/30/designer";
 import {
   APPLICATION_DEVELOPER,
   APPLICATION_NAVBAR_DEVELOPER,
-} from "@/src/constants/application/29/developer";
+} from "@/src/constants/application/30/developer";
 import {
   APPLICATION_MANAGER,
   APPLICATION_NAVBAR_MANAGER,
-} from "@/src/constants/application/29/manager";
+} from "@/src/constants/application/30/manager";
 import { localStorage } from "@/src/functions/localstorage";
 import {
   applicationDataAtom,
