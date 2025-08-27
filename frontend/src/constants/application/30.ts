@@ -159,9 +159,9 @@ export const APPLICATION: ApplicationQuestion[] = [
         require: true,
         type: "text",
         title:
-          "학업 외에 병행하고 있거나 향후 계획 중에 있는 활동이 있으시다면 서술해 주세요.",
+          "학업 외에 병행하고 있거나 향후 계획 중에 있는 활동이 있으시다면 ‘꼭’ 서술해 주세요.",
         subtitle:
-          "(동아리, 연구실, 아르바이트, 스터디, 교환학생 등), 없을 경우, 없음으로 기재해 주세요.",
+          "(동아리, 연구실, 아르바이트, 스터디, 교환학생 등), 없을 경우, 없음으로 기재해 주세요. 기재하지 않고 추후 적발시 최종 합불 논의에 불이익이 있을 수 있습니다.)",
       },
       {
         name: "channel",
@@ -219,7 +219,7 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
  */
 export const END_DATE = {
   year: 2025,
-  month: 3,
+  month: 9,
   date: 12,
   hours: 23,
   minutes: 59,
