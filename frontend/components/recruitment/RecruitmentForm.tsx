@@ -13,14 +13,14 @@ interface RecruitmentFormProps {
 }
 
 export function RecruitmentForm({ onSubmit, isLoading }: RecruitmentFormProps) {
-  const [year, setYear] = useState("");
+  const [generation, setGeneration] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!year || !startDate || !endDate) {
+    if (!generation || !startDate || !endDate) {
       alert("모든 필드를 입력해주세요.");
       return;
     }
@@ -31,11 +31,11 @@ export function RecruitmentForm({ onSubmit, isLoading }: RecruitmentFormProps) {
       const endTimestamp = new Date(endDate).getTime();
 
       onSubmit({
-        year: Number(year),
+        year: Number(generation),
         startDate: startTimestamp,
         endDate: endTimestamp,
       });
-      setYear("");
+      setGeneration("");
       setStartDate("");
       setEndDate("");
     } catch (error) {
@@ -49,15 +49,15 @@ export function RecruitmentForm({ onSubmit, isLoading }: RecruitmentFormProps) {
       <form onSubmit={handleSubmit}>
         <div className="flex justify-between items-center gap-3 mb-3">
           <div className="flex flex-col gap-2 w-1/3">
-            <label htmlFor="year" className="text-xs">
-              년도
+            <label htmlFor="generation" className="text-xs">
+              기수
             </label>
             <input
-              id="year"
+              id="generation"
               type="text"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              placeholder="년도"
+              value={generation}
+              onChange={(e) => setGeneration(e.target.value)}
+              placeholder="기수"
               className="text-sm px-2 border boder-[#D1D5DB] rounded-md h-8"
             />
           </div>
