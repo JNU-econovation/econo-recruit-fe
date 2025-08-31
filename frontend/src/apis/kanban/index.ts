@@ -1,4 +1,4 @@
-import { https } from "@/src/functions/axios";
+import { apiV2, https } from "@/src/functions/axios";
 import { KanbanColumnData } from "../../stores/kanban/Kanban.atoms";
 
 export type ApplicantPassState =
@@ -45,9 +45,11 @@ interface KanbanNavigationReq {
   nextColumnsId: number;
 }
 
-export const getColums = async (navigationId: string) => {
-  const { data } = await https.get<KanbanNavigationReq[]>(
-    `/boards/navigations/${navigationId}/columns`
+export const getColums = async (navigationId: string, generation: string) => {
+  const { data } = await apiV2.get<KanbanNavigationReq[]>(
+    `/boards/navigations/${navigationId}/columns?${new URLSearchParams({
+      year: generation,
+    })}`
   );
 
   const startColumn = data.filter((column) => column.nextColumnsId === null);
@@ -71,14 +73,19 @@ export const getColums = async (navigationId: string) => {
 interface addColumnReq {
   navigationId: string;
   title: string;
+  year?: number;
 }
 
-export const postAddColumn = async ({ navigationId, title }: addColumnReq) => {
-  const { data } = await https.post<string>(
+export const postAddColumn = async ({
+  navigationId,
+  title,
+  year,
+}: addColumnReq) => {
+  const { data } = await apiV2.post<string>(
     `/boards/navigations/${navigationId}/columns`,
-    null,
     {
-      params: { title },
+      title,
+      year,
     }
   );
 
@@ -104,7 +111,7 @@ export const getAllKanbanData = async (
   navigationId: string,
   generation: string
 ): Promise<KanbanColumnData[]> => {
-  const columnsData = await getColums(navigationId);
+  const columnsData = await getColums(navigationId, generation);
   const cardsData = await getKanbanCards(navigationId, generation);
 
   return columnsData.map((column) => {

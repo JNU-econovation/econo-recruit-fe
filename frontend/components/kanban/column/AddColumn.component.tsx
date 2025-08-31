@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import React, { useState } from "react";
 import Icon from "@/components/common/Icon";
+import { CURRENT_GENERATION } from "@/src/constants";
 
 function KanbanAddColumnComponent() {
   const [title, setTitle] = useState("");
@@ -22,7 +23,7 @@ function KanbanAddColumnComponent() {
   });
   const addColumnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addColumn({ navigationId, title });
+    addColumn({ navigationId, title, year: CURRENT_GENERATION });
     setTitle("");
     setIsOpenAddColumn(false);
   };
