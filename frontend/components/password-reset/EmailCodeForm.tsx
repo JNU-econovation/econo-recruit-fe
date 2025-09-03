@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState, ChangeEvent, useContext, FormEvent } from "react";
 import InputFormItem from "../common/InputFormItem.component";
-import { PageStatusContext } from "@/app/password-reset/page";
+import { PageStatusContext } from "@/src/context";
 import { verifyCode, verifyEmail } from "@/src/apis/user";
 
 export default function EmailCodeForm() {

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { PageStatusContext } from "@/app/password-reset/page";
+import { PageStatusContext } from "@/src/context";
 import EmailCodeForm from "./EmailCodeForm";
 import PasswordSetForm from "./PasswordSetForm";
 import EmailForm from "./EmailForm";

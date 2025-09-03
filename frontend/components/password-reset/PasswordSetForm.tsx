@@ -4,7 +4,7 @@ import { isPassword } from "@/src/functions/validator";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { resetPassword } from "@/src/apis/user";
-import { PageStatusContext } from "@/app/password-reset/page";
+import { PageStatusContext } from "@/src/context";
 
 export default function PasswordSetForm() {
   const router = useRouter();
