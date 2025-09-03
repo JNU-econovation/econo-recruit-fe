@@ -77,7 +77,6 @@ export const verifyEmail = async ({ email }: VerifyEmailReq) => {
 interface VerifyCodeReq {
   email: string;
   code: string;
-  codeValid: boolean;
 }
 
 export const verifyCode = async (request: VerifyCodeReq) => {
@@ -91,5 +90,20 @@ export const verifyCode = async (request: VerifyCodeReq) => {
     // 이메일을 안보낸 상태에서 인증을 하려 시도할 때
     if (serverError.response?.data.code === "EMAIL_VERIFICATION_404_1")
       return false;
+  }
+};
+
+interface ResetPasswordReq {
+  email: string;
+  password: string;
+}
+
+export const resetPassword = async (request: ResetPasswordReq) => {
+  // TODO: 서버에서 오는 에러를 핸들링해서, 컴포넌트에서 커스텀하게 사용할 수 있게 변경해야 한다.
+  try {
+    await https.post("/password/reset", request);
+    return true;
+  } catch (error) {
+    return false;
   }
 };

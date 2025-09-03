@@ -1,8 +1,10 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import InputFormItem from "../common/InputFormItem.component";
 import { isPassword } from "@/src/functions/validator";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { resetPassword } from "@/src/apis/user";
+import { PageStatusContext } from "@/app/password-reset/page";
 
 export default function PasswordSetForm() {
   const router = useRouter();
@@ -17,6 +19,8 @@ export default function PasswordSetForm() {
     errorMsg: "",
   });
 
+  const { verifiedEmail } = useContext(PageStatusContext);
+
   const isPasswordMatch = passwordConfirm.value === password.value;
   const isSubmitButtonDisabled =
     password.isError ||
@@ -25,20 +29,14 @@ export default function PasswordSetForm() {
     !passwordConfirm.value;
 
   const { mutate } = useMutation({
-    // FIXME: API 넣기
-    mutationFn: async () => {
-      return new Promise((res, _) => {
-        setTimeout(() => {
-          res(123456);
-        }, 1000);
-      });
-    },
-    onSuccess: () => {
-      router.back();
-    },
-    onError: () => {
-      // TODO: 에러 처리
-      alert("비밀번호 재설정 오류");
+    mutationFn: resetPassword,
+    onSuccess: (result) => {
+      if (result) {
+        alert("비밀번호 재설정에 성공했습니다.");
+        router.push("/");
+        return;
+      }
+      alert("비밀번호 재설정에 실패했습니다.");
     },
   });
 
@@ -62,7 +60,11 @@ export default function PasswordSetForm() {
   };
 
   const onSubmitPasswordSet = (e: FormEvent<HTMLFormElement>) => {
-    mutate();
+    e.preventDefault();
+    mutate({
+      email: verifiedEmail,
+      password: password.value,
+    });
   };
 
   return (
@@ -77,7 +79,7 @@ export default function PasswordSetForm() {
       >
         <InputFormItem
           placeholder={"**********"}
-          type="text"
+          type="password"
           label="비밀번호"
           value={password.value}
           onChange={passwordHandler}
@@ -86,7 +88,7 @@ export default function PasswordSetForm() {
         />
         <InputFormItem
           placeholder={"**********"}
-          type="text"
+          type="password"
           label="비밀번호 확인"
           value={passwordConfirm.value}
           onChange={passwordConfirmHandler}

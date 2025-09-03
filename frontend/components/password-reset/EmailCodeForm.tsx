@@ -44,7 +44,6 @@ export default function EmailCodeForm() {
     mutateEmailCode({
       email: verifiedEmail,
       code: emailCode,
-      codeValid: true,
     });
   };
 
