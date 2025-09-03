@@ -1,4 +1,4 @@
-export const CURRENT_GENERATION = 29;
+export const CURRENT_GENERATION = 30;
 
 export const MAIN_MENU = [
   {
@@ -184,3 +184,5 @@ export const CHARACTERS = {
   SLASH: "/",
   SPACE: " ",
 };
+
+export const PRODUCTION_HOSTNAME = "recruit.econovation.kr";
