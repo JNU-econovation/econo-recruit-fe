@@ -233,12 +233,8 @@ export const useApplication = () => {
       return false;
     }
 
-    // 시간표 선택 여부 확인
+    // 선택된 시간표
     const timeline = localStorage.get<number[]>("timeline", []);
-    if (!Array.isArray(timeline) || timeline.length === 0) {
-      alert("시간표를 선택해주세요.");
-      return false;
-    }
 
     // 지원 경로 확인
     const channel = localStorage.get<string[]>("channel", []);
@@ -264,12 +260,19 @@ export const useApplication = () => {
       answer: JSON.stringify(timeline),
     });
 
+    //필수 항목 입력 확인
     const applicationName = Array.from(
       { length: applicationData.length },
       (_, i) => Array.from(getApplicationNames(applicationData[i].nodes))
     ).flat();
     if (!canApplicationNext(applicationName)) {
       return;
+    }
+
+    // 시간표 선택 여부 확인
+    if (!Array.isArray(timeline) || timeline.length === 0) {
+      alert("시간표를 선택해주세요.");
+      return false;
     }
 
     let applicantId = "";
