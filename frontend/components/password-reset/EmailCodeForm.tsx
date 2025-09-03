@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState, ChangeEvent, useContext, FormEvent } from "react";
 import InputFormItem from "../common/InputFormItem.component";
 import { PageStatusContext } from "@/app/password-reset/page";
+import { verifyCode, verifyEmail } from "@/src/apis/user";
 
 export default function EmailCodeForm() {
   // 인증코드 입력
@@ -13,33 +14,44 @@ export default function EmailCodeForm() {
     setEmailCode(e.target.value);
   };
 
-  const { handlePageStatus } = useContext(PageStatusContext);
+  const { verifiedEmail, handlePageStatus } = useContext(PageStatusContext);
 
   const { mutate: mutateEmailCode, isLoading } = useMutation({
-    // FIXME: API 넣기
-    mutationFn: async () => {
-      return new Promise((res, _) => {
-        setTimeout(() => {
-          res(123456);
-        }, 1000);
-      });
-    },
+    mutationFn: verifyCode,
     onSuccess: () => {
       handlePageStatus("PASSWORD_SET");
     },
     onError: () => {
-      // TODO: 에러 처리
       setIsEmailCodeWrong(true);
+    },
+  });
+
+  const { mutate: mutateSendEmailCode } = useMutation({
+    mutationFn: verifyEmail,
+    onSuccess: (result) => {
+      // TODO: data를 받아서 성공/실패 여부를 결정하고
+      // TODO: 분기처리
+      if (result) {
+        alert("인증번호가 발송되었습니다.");
+        return;
+      }
+      alert("인증번호 재발송에 실패했습니다.");
     },
   });
 
   const onSubmitEmailCode = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutateEmailCode();
+    mutateEmailCode({
+      email: verifiedEmail,
+      code: emailCode,
+      codeValid: true,
+    });
   };
 
   const onClickResendEmailCode = () => {
-    mutateEmailCode();
+    mutateSendEmailCode({
+      email: verifiedEmail,
+    });
   };
 
   return (

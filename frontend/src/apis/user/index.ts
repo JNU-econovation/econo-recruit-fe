@@ -73,3 +73,23 @@ export const verifyEmail = async ({ email }: VerifyEmailReq) => {
     if (serverError.response?.data.code === "INTERVIEWER_404_1") return false;
   }
 };
+
+interface VerifyCodeReq {
+  email: string;
+  code: string;
+  codeValid: boolean;
+}
+
+export const verifyCode = async (request: VerifyCodeReq) => {
+  try {
+    await https.post("/verify-code", request);
+
+    return true;
+  } catch (error) {
+    const serverError = error as AxiosError<{ code: string }>;
+    //TODO: 서버 에러 처리 방식 고민해보기(다른 api 에서도 적용할 수 있도록)
+    // 이메일을 안보낸 상태에서 인증을 하려 시도할 때
+    if (serverError.response?.data.code === "EMAIL_VERIFICATION_404_1")
+      return false;
+  }
+};
