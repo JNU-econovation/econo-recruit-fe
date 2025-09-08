@@ -90,6 +90,9 @@ export const verifyCode = async (request: VerifyCodeReq) => {
     // 이메일을 안보낸 상태에서 인증을 하려 시도할 때
     if (serverError.response?.data.code === "EMAIL_VERIFICATION_404_1")
       return false;
+    // 인증번호가 틀릴 때
+    if (serverError.response?.data.code === "EMAIL_VERIFICATION_400_1")
+      return false;
   }
 };
 
