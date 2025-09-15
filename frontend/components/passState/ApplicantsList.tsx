@@ -121,9 +121,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
             </Txt>
             <div className="flex justify-between">
               <button
-                disabled={
-                  passState === "final-passed" || passState === "first-passed"
-                }
+                disabled={passState === "final-passed"}
                 className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
                 onClick={() =>
                   onChangeApplicantsPassState(name, {
