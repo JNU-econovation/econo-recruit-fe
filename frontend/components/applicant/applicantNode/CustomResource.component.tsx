@@ -72,7 +72,7 @@ const ApplicantResource = ({
 
   const passState = getPassState(initialState);
 
-  const isPass = passState === "first-passed" || passState === "final-passed";
+  const isPass = passState === "final-passed";
   const isNonPass = passState === "non-passed";
 
   return (
