@@ -18,8 +18,12 @@ export default function EmailCodeForm() {
 
   const { mutate: mutateEmailCode, isLoading } = useMutation({
     mutationFn: verifyCode,
-    onSuccess: () => {
-      handlePageStatus("PASSWORD_SET");
+    onSuccess: (data) => {
+      if (data) {
+        handlePageStatus("PASSWORD_SET");
+      } else {
+        setIsEmailCodeWrong(true);
+      }
     },
     onError: () => {
       setIsEmailCodeWrong(true);
