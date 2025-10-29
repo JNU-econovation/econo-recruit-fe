@@ -10,6 +10,8 @@ export interface Answer {
   year: number;
   state: {
     passState: ApplicantPassState;
+    isPassable: boolean;
+    isNonPassable: boolean;
   };
 }
 

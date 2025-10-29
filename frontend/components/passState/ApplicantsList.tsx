@@ -95,7 +95,14 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
   return (
     <ul className="flex flex-col gap-4">
       {applicants.map(
-        ({ state: { passState }, field, field1, field2, id, name }) => (
+        ({
+          state: { passState, isNonPassable, isPassable },
+          field,
+          field1,
+          field2,
+          id,
+          name,
+        }) => (
           <li
             key={id}
             className="grid grid-cols-[8fr_8fr_4fr_3fr] gap-4 items-center"
@@ -123,24 +130,28 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
               <button
                 disabled={passState === "final-passed"}
                 className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
-                onClick={() =>
-                  onChangeApplicantsPassState(name, {
-                    applicantId: id,
-                    afterState: "pass",
-                  })
-                }
+                onClick={() => {
+                  if (!isPassable && isNonPassable)
+                    onChangeApplicantsPassState(name, {
+                      applicantId: id,
+                      afterState: "pass",
+                    });
+                  else alert("지원 기간이 아닙니다!");
+                }}
               >
                 합격
               </button>
               <button
                 disabled={passState === "non-passed"}
                 className="border px-4 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
-                onClick={() =>
-                  onChangeApplicantsPassState(name, {
-                    applicantId: id,
-                    afterState: "non-pass",
-                  })
-                }
+                onClick={() => {
+                  if (isPassable && !isNonPassable)
+                    onChangeApplicantsPassState(name, {
+                      applicantId: id,
+                      afterState: "non-pass",
+                    });
+                  else alert("지원 기간이 아닙니다!");
+                }}
               >
                 불합격
               </button>
