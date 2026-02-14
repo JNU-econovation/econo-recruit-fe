@@ -37,7 +37,7 @@ const ApplicationTexarea = ({ data }: ApplicationTextareaProps) => {
           rows={20}
           name={textData.name}
           value={value}
-          maxLength={500}
+          maxLength={MAX_TEXT_LENGTH}
           onInput={onInput}
         />
         <div className="absolute bottom-3 right-4 bg-white text-sm">{`(${value.length}/${MAX_TEXT_LENGTH})`}</div>
