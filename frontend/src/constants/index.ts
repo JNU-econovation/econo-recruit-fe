@@ -177,7 +177,7 @@ export const needValidatePath = [
   "/kanban",
 ];
 
-export const MAX_TEXT_LENGTH = 500;
+export const MAX_TEXT_LENGTH = 1000;
 
 export const CHARACTERS = {
   DOUBLE_QUOTE: '"',
