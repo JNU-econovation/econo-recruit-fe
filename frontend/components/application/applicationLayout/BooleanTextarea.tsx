@@ -41,7 +41,7 @@ const TextArea = ({ node }: TextAreaProps) => {
         <textarea
           className="border rounded-lg px-4 py-6 w-full resize-none"
           rows={20}
-          maxLength={1000}
+          maxLength={MAX_TEXT_LENGTH}
           name={node.name}
           value={textValue}
           onInput={onInput}

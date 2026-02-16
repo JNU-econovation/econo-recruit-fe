@@ -15,6 +15,7 @@ interface ApplicationTextareaProps {
 
 const ApplicationTexarea = ({ data }: ApplicationTextareaProps) => {
   const textData = data as ApplicationTextarea;
+  const maxLength = ['deep', 'restoration', 'studyPlan'].includes(textData.name) ? 500 : 800;
   const [value, setValue] = useLocalStorage(textData.name, "");
 
   const onInput = (e: FormEvent<HTMLTextAreaElement>) => {
@@ -37,10 +38,10 @@ const ApplicationTexarea = ({ data }: ApplicationTextareaProps) => {
           rows={20}
           name={textData.name}
           value={value}
-          maxLength={1000}
+          maxLength={maxLength}
           onInput={onInput}
         />
-        <div className="absolute bottom-3 right-4 bg-white text-sm">{`(${value.length}/${MAX_TEXT_LENGTH})`}</div>
+        <div className="absolute bottom-3 right-4 bg-white text-sm">{`(${value.length}/${maxLength})`}</div>
       </div>
     </>
   );
