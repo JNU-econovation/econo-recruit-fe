@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
+import { formatToLocalISOString } from "@/src/functions/recruitment";
 
 interface RecruitmentFormProps {
   onSubmit: (data: {
@@ -26,8 +27,8 @@ export function RecruitmentForm({ onSubmit, isLoading }: RecruitmentFormProps) {
     }
     onSubmit({
       year: Number(generation),
-      startDate: startDate + ":00",
-      endDate: endDate + ":00",
+      startDate: formatToLocalISOString(startDate),
+      endDate: formatToLocalISOString(endDate),
     });
     setGeneration("");
     setStartDate("");
