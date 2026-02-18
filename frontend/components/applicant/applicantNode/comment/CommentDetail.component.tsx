@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ApplicantCommentEditorOrViewer from "./EditorOrViewer.component";
+import BlurredComment from "./BlurredComment.component";
 import { deleteComment } from "@/src/apis/comment";
 import { postCommentsLike } from "@/src/apis/comment";
 import Icon from "@/components/common/Icon";
@@ -87,9 +88,7 @@ const ApplicantCommentDetail = ({
         </button>
       </div>
       {comment.isBlurred ? (
-        <div className="relative select-none">
-          <div className="blur-sm text-sm">자신의 댓글만 조회할 수 있습니다.</div>
-        </div>
+        <BlurredComment />
       ) : (
         <>
           <ApplicantCommentEditorOrViewer
