@@ -36,8 +36,8 @@ export default function Page() {
 
   const handleFormSubmit = (data: {
     year: number;
-    startDate: number;
-    endDate: number;
+    startDate: string;
+    endDate: string;
   }) => {
     handleCreateRecruitment(data);
   };

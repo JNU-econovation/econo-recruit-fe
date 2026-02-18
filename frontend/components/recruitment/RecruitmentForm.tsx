@@ -6,8 +6,8 @@ import LoadingSpinner from "@/components/common/LoadingSpinner";
 interface RecruitmentFormProps {
   onSubmit: (data: {
     year: number;
-    startDate: number;
-    endDate: number;
+    startDate: string;
+    endDate: string;
   }) => void;
   isLoading: boolean;
 }
@@ -24,23 +24,14 @@ export function RecruitmentForm({ onSubmit, isLoading }: RecruitmentFormProps) {
       alert("모든 필드를 입력해주세요.");
       return;
     }
-    console.log(typeof startDate, typeof endDate);
-
-    try {
-      const startTimestamp = new Date(startDate).getTime();
-      const endTimestamp = new Date(endDate).getTime();
-
-      onSubmit({
-        year: Number(generation),
-        startDate: startTimestamp,
-        endDate: endTimestamp,
-      });
-      setGeneration("");
-      setStartDate("");
-      setEndDate("");
-    } catch (error) {
-      alert("날짜 형식이 올바르지 않습니다.");
-    }
+    onSubmit({
+      year: Number(generation),
+      startDate: startDate + ":00",
+      endDate: endDate + ":00",
+    });
+    setGeneration("");
+    setStartDate("");
+    setEndDate("");
   };
 
   return (
