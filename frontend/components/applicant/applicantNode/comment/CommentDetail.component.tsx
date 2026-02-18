@@ -42,6 +42,7 @@ interface ApplicantCommentReq {
   isLike: boolean;
   likeCount: number;
   canEdit: boolean;
+  isBlurred: boolean;
 }
 
 interface ApplicantCommentDetailProps {
@@ -85,22 +86,30 @@ const ApplicantCommentDetail = ({
           </span>
         </button>
       </div>
-      <ApplicantCommentEditorOrViewer
-        isEdit={isEdit}
-        content={comment.content}
-        commentId={comment.id}
-        setIsEdit={setIsEdit}
-      />
-      {comment.canEdit && (
-        <div className="flex text-sm gap-2 text-secondary-200 items-center">
-          <button onClick={() => setIsEdit((prev) => !prev)}>수정</button>
-          <div className="border-x-[0.5px] h-4 !w-0 border-secondary-200"></div>
-          <CommentDeleteButton
-            commentId={comment.id}
-            cardId={cardId}
-            generation={generation}
-          />
+      {comment.isBlurred ? (
+        <div className="relative select-none">
+          <div className="blur-sm text-sm">자신의 댓글만 조회할 수 있습니다.</div>
         </div>
+      ) : (
+        <>
+          <ApplicantCommentEditorOrViewer
+            isEdit={isEdit}
+            content={comment.content}
+            commentId={comment.id}
+            setIsEdit={setIsEdit}
+          />
+          {comment.canEdit && (
+            <div className="flex text-sm gap-2 text-secondary-200 items-center">
+              <button onClick={() => setIsEdit((prev) => !prev)}>수정</button>
+              <div className="border-x-[0.5px] h-4 !w-0 border-secondary-200"></div>
+              <CommentDeleteButton
+                commentId={comment.id}
+                cardId={cardId}
+                generation={generation}
+              />
+            </div>
+          )}
+        </>
       )}
     </div>
   );
