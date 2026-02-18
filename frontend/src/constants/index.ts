@@ -1,4 +1,4 @@
-export const CURRENT_GENERATION = 30;
+export const CURRENT_GENERATION = 31;
 
 export const MAIN_MENU = [
   {
