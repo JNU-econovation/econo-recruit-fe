@@ -80,7 +80,11 @@ const ApplicantCommentDetail = ({
             {new Date(+comment.createdAt).toLocaleDateString()}
           </div>
         </div>
-        <button onClick={() => heartToggle()} className="flex gap-2 items-end">
+        <button
+          onClick={() => heartToggle()}
+          className="flex gap-2 items-end"
+          disabled={comment.isBlurred}
+        >
           <Icon icon={comment.isLike ? "faceSmilingFill" : "faceSmiling"} />
           <span className="text-xs text-secondary-200">
             {comment.likeCount}
