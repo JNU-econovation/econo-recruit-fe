@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "node database.js && next start",
+    "start:no-db": "next start",
     "lint": "next lint",
     "cy:open": "cypress open"
   },
