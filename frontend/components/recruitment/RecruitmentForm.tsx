@@ -60,6 +60,7 @@ export function RecruitmentForm({ onSubmit, isLoading }: RecruitmentFormProps) {
             <input
               id="startDate"
               type="datetime-local"
+              step="60"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               className="text-sm px-2 border boder-[#D1D5DB] rounded-md h-8"
@@ -72,6 +73,7 @@ export function RecruitmentForm({ onSubmit, isLoading }: RecruitmentFormProps) {
             <input
               id="endDate"
               type="datetime-local"
+              step="60"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
               className="text-sm px-2 border boder-[#D1D5DB] rounded-md h-8"
