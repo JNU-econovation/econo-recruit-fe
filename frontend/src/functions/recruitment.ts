@@ -87,5 +87,5 @@ export const extractYear = (date: string | Date): number => {
  * "2026-02-14T23:38:45" → "2026-02-14T23:38:45"
  */
 export const formatToLocalISOString = (datetimeLocal: string): string => {
-  return datetimeLocal.length === 16 ? datetimeLocal + ":00" : datetimeLocal.slice(0, 19);
+  return datetimeLocal.split(":").length === 2 ? datetimeLocal + ":00" : datetimeLocal.slice(0, 19);
 };
