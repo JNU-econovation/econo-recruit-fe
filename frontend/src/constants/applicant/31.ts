@@ -45,12 +45,6 @@ const APPLICANT: ApplicantNode[] = [
 
 export type ScoreKeyword = "열정" | "협업" | "에코노베이션";
 
-// type ScoreKeywordName =
-//   | "passion"
-//   | "clubInvolvement"
-//   | "collaboration"
-//   | "devotion";
-
 export const ScoreSequence: {
   [key: number]: ScoreKeyword;
 } = {
@@ -63,18 +57,6 @@ export type Score = {
   fieldName: ScoreKeyword;
   score: number | "";
 };
-
-// type ScoreKeywordType = {
-//   title: ScoreKeyword;
-//   name: ScoreKeywordName;
-// };
-
-// const INTERVIEW_SCORE_KEYWORD: ScoreKeywordType[] = [
-//   { title: "실천력", name: "passion" },
-//   { title: "동아리 활동의지", name: "clubInvolvement" },
-//   { title: "협업", name: "collaboration" },
-//   { title: "베풀려는 마음", name: "devotion" },
-// ];
 
 const FIELD_NAME: ScoreKeyword[] = Object.values(ScoreSequence);
 
