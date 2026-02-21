@@ -38,14 +38,14 @@ export const APPLICANT_DESIGNER = [
     title:
       "무언가에 깊게 빠지거나 파고 들어본 적이 있나요? 좋아하는 것을 위해서 주변에서 인정할 정도로 깊게 빠져본 적이 있다면 서술해주세요.",
     type: "textarea",
-    value: { name: "failure" },
+    value: { name: "deep" },
   } as ApplicantTextareaNode,
   {
     id: 11,
     title:
       "어떤 일에 도전하고 실패해 본 경험이 있나요? 그 실패를 어떻게 극복했는지 서술해 주세요.\nIT 관련 경험이 아니어도 좋습니다.",
     type: "textarea",
-    value: { name: "drain" },
+    value: { name: "failure" },
   } as ApplicantTextareaNode,
   {
     id: 12,

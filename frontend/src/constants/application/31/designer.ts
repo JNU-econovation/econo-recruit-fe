@@ -84,7 +84,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
     direction: "horizontal",
     nodes: [
       {
-        name: "drain",
+        name: "deep",
         require: true,
         type: "textarea",
         errorMessages: "깊게 빠져본 경험을 입력해주세요.",
@@ -282,7 +282,7 @@ export const APPLICATION_NAVBAR_DESIGN = [
   {
     id: 12,
     title:
-      "협업(프로젝트, 팀 활동)에 있어서 가장 중요하다고 생각되는 것은 무엇인지 그 이유와 함께 서술해주세요. ",
+      "협업(프로젝트, 팀 활동)에 있어서 가장 중요하다고 생각되는 것은 무엇인지 그 이유와 함께 서술해주세요.",
   },
   {
     id: 13,
