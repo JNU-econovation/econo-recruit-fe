@@ -71,7 +71,7 @@ export const APPLICATION_DEVELOPER: ApplicationQuestion[] = [
     require: true,
     nodes: [
       {
-        name: "restoration",
+        name: "failure",
         require: true,
         type: "textarea",
         errorMessages: "도전하고 실패해 본 경험을 입력해주세요.",

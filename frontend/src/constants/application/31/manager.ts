@@ -87,10 +87,10 @@ export const APPLICATION_MANAGER: ApplicationQuestion[] = [
     direction: "horizontal",
     nodes: [
       {
-        name: "failual",
+        name: "deep",
         require: true,
         type: "textarea",
-        errorMessages: "도전하고 실패해 본 경험을 입력해주세요.",
+        errorMessages: "깊게 빠져본 경험을 입력해주세요.",
       },
     ],
     require: true,
@@ -103,10 +103,10 @@ export const APPLICATION_MANAGER: ApplicationQuestion[] = [
     direction: "horizontal",
     nodes: [
       {
-        name: "deep",
+        name: "failure",
         require: true,
         type: "textarea",
-        errorMessages: "깊게 빠져본 경험을 입력해주세요.",
+        errorMessages: "도전하고 실패해 본 경험을 입력해주세요.",
       },
     ],
     require: true,

@@ -103,7 +103,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
         name: "failure",
         require: true,
         type: "textarea",
-        errorMessages: "협업에 있어서 중요하다고 생각되는 것을 입력해주세요.",
+        errorMessages: "도전하고 실패해 본 경험을 입력해주세요.",
       },
     ],
 
