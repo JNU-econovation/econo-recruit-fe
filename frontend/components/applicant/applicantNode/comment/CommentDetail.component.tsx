@@ -35,7 +35,7 @@ const CommentDeleteButton = ({
   return <button onClick={() => onDelete()}>삭제</button>;
 };
 
-interface ApplicantCommentReq {
+interface ApplicantCommentRes {
   id: string;
   content: string;
   createdAt: string;
@@ -47,7 +47,7 @@ interface ApplicantCommentReq {
 }
 
 interface ApplicantCommentDetailProps {
-  comment: ApplicantCommentReq;
+  comment: ApplicantCommentRes;
   cardId: number;
   generation: string;
 }
