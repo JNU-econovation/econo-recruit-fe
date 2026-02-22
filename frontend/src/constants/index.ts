@@ -1,4 +1,4 @@
-export const CURRENT_GENERATION = 30;
+export const CURRENT_GENERATION = 31;
 
 export const MAIN_MENU = [
   {
@@ -106,7 +106,7 @@ export const APPLICANT_KEYS = [
   "keyword",
   "betterment",
   "failure",
-  "drain",
+  "deep",
   "collaboration",
   "studyPlan",
   "portfolio",
@@ -119,12 +119,11 @@ export const APPLICANT_KEYS = [
   "experienceTextarea",
   "experience",
   "restoration",
-  "deep",
   "communication",
-  "failual",
   "fileUrlforPlanner",
   "generation",
   "uploadDate",
+  "military",
 ];
 
 export const managementTeam = {
