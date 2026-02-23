@@ -8,6 +8,7 @@ export interface CommentRes {
   isLike: boolean;
   likeCount: number;
   canEdit: boolean;
+  isBlurred: boolean;
 }
 
 export interface CommentReq {

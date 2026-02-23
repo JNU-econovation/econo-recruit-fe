@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ApplicantCommentEditorOrViewer from "./EditorOrViewer.component";
+import BlurredComment from "./BlurredComment.component";
 import { deleteComment } from "@/src/apis/comment";
 import { postCommentsLike } from "@/src/apis/comment";
 import Icon from "@/components/common/Icon";
@@ -34,7 +35,7 @@ const CommentDeleteButton = ({
   return <button onClick={() => onDelete()}>삭제</button>;
 };
 
-interface ApplicantCommentReq {
+interface ApplicantCommentRes {
   id: string;
   content: string;
   createdAt: string;
@@ -42,10 +43,11 @@ interface ApplicantCommentReq {
   isLike: boolean;
   likeCount: number;
   canEdit: boolean;
+  isBlurred: boolean;
 }
 
 interface ApplicantCommentDetailProps {
-  comment: ApplicantCommentReq;
+  comment: ApplicantCommentRes;
   cardId: number;
   generation: string;
 }
@@ -78,29 +80,39 @@ const ApplicantCommentDetail = ({
             {new Date(+comment.createdAt).toLocaleDateString()}
           </div>
         </div>
-        <button onClick={() => heartToggle()} className="flex gap-2 items-end">
+        <button
+          onClick={() => heartToggle()}
+          className="flex gap-2 items-end"
+          disabled={comment.isBlurred}
+        >
           <Icon icon={comment.isLike ? "faceSmilingFill" : "faceSmiling"} />
           <span className="text-xs text-secondary-200">
             {comment.likeCount}
           </span>
         </button>
       </div>
-      <ApplicantCommentEditorOrViewer
-        isEdit={isEdit}
-        content={comment.content}
-        commentId={comment.id}
-        setIsEdit={setIsEdit}
-      />
-      {comment.canEdit && (
-        <div className="flex text-sm gap-2 text-secondary-200 items-center">
-          <button onClick={() => setIsEdit((prev) => !prev)}>수정</button>
-          <div className="border-x-[0.5px] h-4 !w-0 border-secondary-200"></div>
-          <CommentDeleteButton
+      {comment.isBlurred ? (
+        <BlurredComment />
+      ) : (
+        <>
+          <ApplicantCommentEditorOrViewer
+            isEdit={isEdit}
+            content={comment.content}
             commentId={comment.id}
-            cardId={cardId}
-            generation={generation}
+            setIsEdit={setIsEdit}
           />
-        </div>
+          {comment.canEdit && (
+            <div className="flex text-sm gap-2 text-secondary-200 items-center">
+              <button onClick={() => setIsEdit((prev) => !prev)}>수정</button>
+              <div className="border-x-[0.5px] h-4 !w-0 border-secondary-200"></div>
+              <CommentDeleteButton
+                commentId={comment.id}
+                cardId={cardId}
+                generation={generation}
+              />
+            </div>
+          )}
+        </>
       )}
     </div>
   );
