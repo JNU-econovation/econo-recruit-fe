@@ -61,6 +61,7 @@ const ApplicantCommentDetail = ({
 }: ApplicantCommentDetailProps) => {
   const queryClient = useQueryClient();
   const [isEdit, setIsEdit] = useState(false);
+  const isBlurred = !isCommentDisclosed && comment.isBlurred;
 
   const { mutate: heartToggle } = useMutation(
     () => postCommentsLike(comment.id),
@@ -85,7 +86,7 @@ const ApplicantCommentDetail = ({
         <button
           onClick={() => heartToggle()}
           className="flex gap-2 items-end"
-          disabled={comment.isBlurred}
+          disabled={isBlurred}
         >
           <Icon icon={comment.isLike ? "faceSmilingFill" : "faceSmiling"} />
           <span className="text-xs text-secondary-200">
@@ -93,7 +94,7 @@ const ApplicantCommentDetail = ({
           </span>
         </button>
       </div>
-      {!isCommentDisclosed && comment.isBlurred ? (
+      {isBlurred ? (
         <BlurredComment />
       ) : (
         <>

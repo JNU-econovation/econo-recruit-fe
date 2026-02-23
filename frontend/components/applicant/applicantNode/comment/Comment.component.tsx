@@ -21,19 +21,16 @@ const ApplicantComment = ({
     () => getAllComment(cardId, postId)
   );
 
-  const { data: isCommentDisclosed } = useQuery(
+  const { data: isCommentDisclosed, isLoading: isDisclosureLoading } = useQuery(
     ["commentDisclosure"],
-    () => getCommentDisclosure(),
-    {
-      initialData: false,
-    }
+    () => getCommentDisclosure()
   );
 
-  if (!data || isLoading) {
+  if (!data || isLoading || isDisclosureLoading) {
     return <div>로딩중...</div>;
   }
 
-  if (error) {
+  if (error || isCommentDisclosed === undefined) {
     return <div>에러 발생</div>;
   }
 
