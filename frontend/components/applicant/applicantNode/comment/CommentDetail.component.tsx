@@ -50,12 +50,14 @@ interface ApplicantCommentDetailProps {
   comment: ApplicantCommentRes;
   cardId: number;
   generation: string;
+  isCommentDisclosed: boolean;
 }
 
 const ApplicantCommentDetail = ({
   comment,
   generation,
   cardId,
+  isCommentDisclosed,
 }: ApplicantCommentDetailProps) => {
   const queryClient = useQueryClient();
   const [isEdit, setIsEdit] = useState(false);
@@ -91,7 +93,7 @@ const ApplicantCommentDetail = ({
           </span>
         </button>
       </div>
-      {comment.isBlurred ? (
+      {!isCommentDisclosed && comment.isBlurred ? (
         <BlurredComment />
       ) : (
         <>

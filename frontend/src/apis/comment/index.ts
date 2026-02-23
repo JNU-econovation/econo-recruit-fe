@@ -107,3 +107,8 @@ export const getCommentsIsLike = async (commentId: string) => {
 
   return data;
 };
+
+export const getCommentDisclosure = async () => {
+  const { data } = await https.get<boolean>(`/comments/disclosure`);
+  return data;
+};

@@ -2,7 +2,7 @@
 
 import ApplicantCommentInputForm from "./InputForm.component";
 import { useQuery } from "@tanstack/react-query";
-import { getAllComment } from "@/src/apis/comment";
+import { getAllComment, getCommentDisclosure } from "@/src/apis/comment";
 import ApplicantCommentDetail from "./CommentDetail.component";
 
 interface ApplicantCommentProps {
@@ -19,6 +19,14 @@ const ApplicantComment = ({
   const { data, error, isLoading } = useQuery(
     ["applicantComment", "", cardId],
     () => getAllComment(cardId, postId)
+  );
+
+  const { data: isCommentDisclosed } = useQuery(
+    ["commentDisclosure"],
+    () => getCommentDisclosure(),
+    {
+      initialData: false,
+    }
   );
 
   if (!data || isLoading) {
@@ -44,6 +52,7 @@ const ApplicantComment = ({
             comment={comment}
             cardId={cardId}
             key={comment.id}
+            isCommentDisclosed={isCommentDisclosed}
           />
         ))}
       </div>
