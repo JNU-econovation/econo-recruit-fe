@@ -107,3 +107,16 @@ export const getCommentsIsLike = async (commentId: string) => {
 
   return data;
 };
+
+export const getCommentsDisclosure = async () => {
+  const { data } = await https.get<boolean | string>(`/comments/disclosure`);
+  return data === true || data === "true";
+};
+
+export const postCommentsDisclosure = async (isDisclosure: boolean) => {
+  const { data } = await https.post<boolean | string>(
+    `/comments/disclosure`,
+    `${isDisclosure}`
+  );
+  return data === true || data === "true";
+};
