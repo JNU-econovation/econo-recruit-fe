@@ -60,6 +60,17 @@ interface VerifyEmailReq {
   email: string;
 }
 
+export const verifySignUpEmail = async ({ email }: VerifyEmailReq) => {
+  try {
+    await https.post("/signup/verify", {
+      email,
+    });
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 export const verifyEmail = async ({ email }: VerifyEmailReq) => {
   // TODO: 서버에서 오는 에러를 핸들링해서, 컴포넌트에서 커스텀하게 사용할 수 있게 변경해야 한다.
   try {
