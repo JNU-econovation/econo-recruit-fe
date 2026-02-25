@@ -80,3 +80,12 @@ export const formatDateOnlyToKorean = (date: string | Date): string => {
 export const extractYear = (date: string | Date): number => {
   return new Date(date).getFullYear();
 };
+
+/**
+ * datetime-local input 값을 서버 형식(YYYY-MM-DDTHH:mm:ss)으로 정규화
+ * "2026-02-14T23:38"    → "2026-02-14T23:38:00"
+ * "2026-02-14T23:38:45" → "2026-02-14T23:38:45"
+ */
+export const formatToLocalISOString = (datetimeLocal: string): string => {
+  return datetimeLocal.split(":").length === 2 ? datetimeLocal + ":00" : datetimeLocal.slice(0, 19);
+};

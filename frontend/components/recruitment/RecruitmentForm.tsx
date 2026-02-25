@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
+import { formatToLocalISOString } from "@/src/functions/recruitment";
 
 interface RecruitmentFormProps {
   onSubmit: (data: {
     year: number;
-    startDate: number;
-    endDate: number;
+    startDate: string;
+    endDate: string;
   }) => void;
   isLoading: boolean;
 }
@@ -24,23 +25,14 @@ export function RecruitmentForm({ onSubmit, isLoading }: RecruitmentFormProps) {
       alert("모든 필드를 입력해주세요.");
       return;
     }
-    console.log(typeof startDate, typeof endDate);
-
-    try {
-      const startTimestamp = new Date(startDate).getTime();
-      const endTimestamp = new Date(endDate).getTime();
-
-      onSubmit({
-        year: Number(generation),
-        startDate: startTimestamp,
-        endDate: endTimestamp,
-      });
-      setGeneration("");
-      setStartDate("");
-      setEndDate("");
-    } catch (error) {
-      alert("날짜 형식이 올바르지 않습니다.");
-    }
+    onSubmit({
+      year: Number(generation),
+      startDate: formatToLocalISOString(startDate),
+      endDate: formatToLocalISOString(endDate),
+    });
+    setGeneration("");
+    setStartDate("");
+    setEndDate("");
   };
 
   return (
@@ -68,6 +60,7 @@ export function RecruitmentForm({ onSubmit, isLoading }: RecruitmentFormProps) {
             <input
               id="startDate"
               type="datetime-local"
+              step="60"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               className="text-sm px-2 border boder-[#D1D5DB] rounded-md h-8"
@@ -80,6 +73,7 @@ export function RecruitmentForm({ onSubmit, isLoading }: RecruitmentFormProps) {
             <input
               id="endDate"
               type="datetime-local"
+              step="60"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
               className="text-sm px-2 border boder-[#D1D5DB] rounded-md h-8"

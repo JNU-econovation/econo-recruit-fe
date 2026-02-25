@@ -2,8 +2,8 @@ import { https } from "../../functions/axios";
 
 export interface RecruitmentTime {
   year: number;
-  startDate: number;
-  endDate: number;
+  startDate: string;
+  endDate: string;
 }
 
 export interface RecruitmentResponse {
