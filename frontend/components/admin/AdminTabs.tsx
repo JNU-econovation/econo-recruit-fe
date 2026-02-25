@@ -14,6 +14,7 @@ export default function AdminTabs() {
   const tabs = [
     { name: "멤버 권한 변경", href: `/admin/${generation}` },
     { name: "지원서 on/off", href: `/admin/${generation}/on-off` },
+    { name: "댓글 전체 공개 on/off", href: `/admin/${generation}/comments-disclosure` },
   ];
 
   return (
