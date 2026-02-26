@@ -1,7 +1,6 @@
 "use client";
 
 import Txt from "@/components/common/Txt.component";
-import { MAX_TEXT_LENGTH } from "@/src/constants";
 import {
   ApplicationNode,
   ApplicationTextarea,
@@ -15,11 +14,11 @@ interface ApplicationTextareaProps {
 
 const ApplicationTexarea = ({ data }: ApplicationTextareaProps) => {
   const textData = data as ApplicationTextarea;
-  const maxLength = ['deep', 'restoration', 'studyPlan'].includes(textData.name) ? 500 : 800;
+  const maxLength = ['deep', 'failure', 'studyPlan'].includes(textData.name) ? 500 : 800;
   const [value, setValue] = useLocalStorage(textData.name, "");
 
   const onInput = (e: FormEvent<HTMLTextAreaElement>) => {
-    setValue(e.currentTarget.value.slice(0, MAX_TEXT_LENGTH));
+    setValue(e.currentTarget.value.slice(0, maxLength));
   };
 
   return (
