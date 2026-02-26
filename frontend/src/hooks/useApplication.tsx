@@ -30,10 +30,6 @@ export const useApplication = () => {
   const applicationData = useAtomValue(applicationDataAtom);
   const fieldData = localStorage.get<string>("field", "");
 
-  const { END_DATE } = require(
-    `@/src/constants/application/${CURRENT_GENERATION}.ts`
-  );
-
   /**
    * @param questionId 질문의 index
    * @description 해당 입력 화면의 필수 질문이 모두 작성되었는지 확인하는 함수
@@ -216,22 +212,6 @@ export const useApplication = () => {
   ) => {
     const isSend = confirm("지원서를 제출하시겠습니까?");
     if (!isSend) return false;
-
-    // 지원 기간 확인
-    if (
-      Date.now() >
-      Date.UTC(
-        END_DATE.year,
-        END_DATE.month - 1,
-        END_DATE.date,
-        END_DATE.hours - 9,
-        END_DATE.minutes,
-        END_DATE.seconds
-      )
-    ) {
-      alert("지원 기간이 종료되었습니다.");
-      return false;
-    }
 
     // 선택된 시간표
     const timeline = localStorage.get<number[]>("timeline", []);
