@@ -129,7 +129,6 @@ export const APPLICATION: ApplicationQuestion[] = [
   },
   {
     id: 3,
-
     title: "전공을 입력해주세요.",
     subtitle: "복수 전공과 부전공은 선택 입력사항입니다.",
     direction: "horizontal",
