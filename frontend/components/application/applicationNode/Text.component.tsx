@@ -28,7 +28,7 @@ const ApplicationText = ({ data }: ApplicationTextProps) => {
           <Txt typography="h6">{`${textData.title}${
             textData.require ? "*" : ""
           }`}</Txt>
-          {textData.subtitle && <Txt>{` ${textData.subtitle}`}</Txt>}
+          {textData.subtitle && <Txt className="whitespace-pre-line">{` ${textData.subtitle}`}</Txt>}
         </label>
       )}
       <input
