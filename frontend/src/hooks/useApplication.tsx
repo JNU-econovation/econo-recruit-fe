@@ -58,6 +58,14 @@ export const useApplication = () => {
         return true;
       }
 
+      // [예외] 포트폴리오 질문 확인
+      if (fieldData == "개발자" && questionId === 12) {
+        const portfolio = localStorage.get<string>("portfolio", "");
+
+        if (portfolio.length === 0) return false;
+        return true;
+      }
+
       // [예외] 필수 확인사항 질문 확인
       if (
         (fieldData == "개발자" && questionId === 13) ||
