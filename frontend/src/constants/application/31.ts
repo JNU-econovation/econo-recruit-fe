@@ -129,7 +129,6 @@ export const APPLICATION: ApplicationQuestion[] = [
   },
   {
     id: 3,
-
     title: "전공을 입력해주세요.",
     subtitle: "복수 전공과 부전공은 선택 입력사항입니다.",
     direction: "horizontal",
@@ -169,7 +168,7 @@ export const APPLICATION: ApplicationQuestion[] = [
         title:
           "학업 외에 병행하고 있거나 향후 계획 중에 있는 활동이 있으시다면 ‘꼭’ 서술해 주세요.",
         subtitle:
-          "(동아리, 연구실, 아르바이트, 스터디, 교환학생 등), 없을 경우, 없음으로 기재해 주세요. 기재하지 않고 추후 적발시 최종 합불 논의에 불이익이 있을 수 있습니다.)",
+          "(동아리, 연구실, 아르바이트, 스터디, 교환학생 등)\n 없을 경우, 없음으로 기재해 주세요. 기재하지 않고 추후 적발시 최종 합불 논의에 불이익이 있을 수 있습니다.",
       },
       {
         name: "channel",
@@ -201,16 +200,16 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
   seperate: 30,
   time: [
     {
-      startTime: new Date(2025, 8, 15, 10, 0, 0),
-      endTime: new Date(2025, 8, 15, 20, 30, 0),
+      startTime: new Date(2026, 2, 17, 10, 0, 0),
+      endTime: new Date(2026, 2, 17, 20, 30, 0),
     },
     {
-      startTime: new Date(2025, 8, 16, 10, 0, 0),
-      endTime: new Date(2025, 8, 16, 20, 30, 0),
+      startTime: new Date(2026, 2, 18, 10, 0, 0),
+      endTime: new Date(2026, 2, 18, 20, 30, 0),
     },
     {
-      startTime: new Date(2025, 8, 17, 10, 0, 0),
-      endTime: new Date(2025, 8, 17, 20, 30, 0),
+      startTime: new Date(2026, 2, 19, 10, 0, 0),
+      endTime: new Date(2026, 2, 19, 20, 30, 0),
     },
   ],
   disableTime: [],
@@ -226,8 +225,8 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
  * @property {number} seconds - 1차 모집 시작 시간(초) (0-59)
  */
 export const START_DATE = {
-  year: 2025,
-  month: 9,
+  year: 2026,
+  month: 3,
   date: 1,
   hours: 0,
   minutes: 0,
@@ -244,8 +243,8 @@ export const START_DATE = {
  * @property {number} seconds - 1차 모집 마감 시간(초) (0-59)
  */
 export const END_DATE = {
-  year: 2025,
-  month: 9,
+  year: 2026,
+  month: 3,
   date: 10,
   hours: 23,
   minutes: 59,
@@ -259,9 +258,9 @@ export const END_DATE = {
  * @property {number} date - 1차 합격자 공지 일 (1-31)
  */
 export const FIRST_NOTIFICATION_DATE = {
-  year: 2025,
-  month: 9,
-  date: 12,
+  year: 2026,
+  month: 3,
+  date: 14,
 };
 
 /**
@@ -271,7 +270,7 @@ export const FIRST_NOTIFICATION_DATE = {
  * @property {number} date - 최종 모집 마감 일 (1-31)
  */
 export const FINAL_DATE = {
-  year: 2025,
-  month: 9,
-  date: 22,
+  year: 2026,
+  month: 3,
+  date: 23,
 };

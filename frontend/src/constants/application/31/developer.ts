@@ -112,9 +112,9 @@ export const APPLICATION_DEVELOPER: ApplicationQuestion[] = [
   },
   {
     id: 12,
-    title: "자신을 어필할 수 있는 포트폴리오를 업로드해 주세요.",
+    title: "자신을 어필할 수 있는 포트폴리오를 업로드해 주세요.\n무엇이든 부담 없이 제출해 주셔도 됩니다.",
     subtitle:
-      "지원자 분의 포트폴리오 링크 접근 권한을 열어주세요. 만약 접근 권한이 없을 경우 불이익이 있을 수 있습니다.",
+      "단, 지원자 분의 포트폴리오 링크 접근 권한을 '꼭' 열어주세요. 만약 접근 권한이 없을 경우 불이익이 있을 수 있습니다.",
     alert: "최종 제출 후 포트폴리오 수정은 불가합니다.",
     direction: "horizontal",
     nodes: [
@@ -160,7 +160,7 @@ export const APPLICATION_DEVELOPER: ApplicationQuestion[] = [
       {
         id: 14,
         direction: "horizontal",
-        title: "합격여부 전달을 위하여 이메일을 입력해주세요.",
+        title: "합격 여부 전달을 위하여 이메일을 입력해주세요.",
         subtitle: "이메일을 기재하지 않을 시, 합격이 취소될 수 있습니다.",
         require: true,
         nodes: [

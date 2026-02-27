@@ -2,7 +2,7 @@
 
 import RadioGroup from "@/components/common/Radio.component";
 import Txt from "@/components/common/Txt.component";
-import { MAX_TEXT_LENGTH } from "@/src/constants";
+import { MAX_BOOLEAN_TEXT_LENGTH } from "@/src/constants";
 import type {
   ApplicationBooleanTextarea,
   ApplicationQuestion,
@@ -24,7 +24,7 @@ interface TextAreaProps {
 const TextArea = ({ node }: TextAreaProps) => {
   const [textValue, setTextValue] = useLocalStorage(node.name, "");
   const onInput = (e: FormEvent<HTMLTextAreaElement>) => {
-    setTextValue(e.currentTarget.value.slice(0, MAX_TEXT_LENGTH));
+    setTextValue(e.currentTarget.value.slice(0, MAX_BOOLEAN_TEXT_LENGTH));
   };
 
   return (
@@ -41,12 +41,12 @@ const TextArea = ({ node }: TextAreaProps) => {
         <textarea
           className="border rounded-lg px-4 py-6 w-full resize-none"
           rows={20}
-          maxLength={MAX_TEXT_LENGTH}
+          maxLength={MAX_BOOLEAN_TEXT_LENGTH}
           name={node.name}
           value={textValue}
           onInput={onInput}
         />
-        <div className="absolute bottom-3 right-4 bg-white text-sm">{`(${textValue.length}/${MAX_TEXT_LENGTH})`}</div>
+        <div className="absolute bottom-3 right-4 bg-white text-sm">{`(${textValue.length}/${MAX_BOOLEAN_TEXT_LENGTH})`}</div>
       </div>
     </div>
   );
