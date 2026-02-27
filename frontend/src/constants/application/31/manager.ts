@@ -210,7 +210,7 @@ export const APPLICATION_MANAGER: ApplicationQuestion[] = [
       {
         id: 15,
         direction: "horizontal",
-        title: "합격여부 전달을 위하여 이메일을 입력해주세요.",
+        title: "합격 여부 전달을 위하여 이메일을 입력해주세요.",
         subtitle: "이메일을 기재하지 않을 시, 합격이 취소될 수 있습니다.",
         require: true,
         nodes: [
