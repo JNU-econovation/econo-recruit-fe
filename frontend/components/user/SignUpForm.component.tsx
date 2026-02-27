@@ -6,6 +6,7 @@ const resetWarning = {
   email: false,
   password: false,
   passwordConfirm: false,
+  generation: false,
 } as const;
 
 interface SignUpProps {
@@ -61,6 +62,7 @@ const SignUpForm = ({
     email: false,
     password: false,
     passwordConfirm: false,
+    generation: false,
   });
 
   const { email, username, password, passwordConfirm, generation } = data;
@@ -69,6 +71,11 @@ const SignUpForm = ({
     e.preventDefault();
     if (!isEmail(email)) {
       setWarning({ ...resetWarning, email: true });
+      return;
+    }
+
+    if (!generation || generation.trim() === "") {
+      setWarning({ ...resetWarning, generation: true });
       return;
     }
 
@@ -141,6 +148,8 @@ const SignUpForm = ({
         type="text"
         value={generation}
         onChange={(e) => setForm({ name: "generation", value: e.target.value })}
+        isWrong={isWarning.generation}
+        wrongMessage={"기수를 입력해주세요."}
       />
       <InputFormItem
         label={"비밀번호"}
