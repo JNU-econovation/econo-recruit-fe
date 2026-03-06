@@ -52,7 +52,7 @@ export const getColums = async (navigationId: string, generation: string) => {
     })}`
   );
 
-  const startColumn = data.filter((column) => column.nextColumnsId === null);
+  const standardColumn = data.filter((column) => column.nextColumnsId === null);
 
   const locationSort = (
     column: KanbanNavigationReq[]
@@ -67,7 +67,7 @@ export const getColums = async (navigationId: string, generation: string) => {
     return locationSort([...column, ...nextColumn]);
   };
 
-  return locationSort(startColumn).reverse();
+  return locationSort(standardColumn).reverse();
 };
 
 interface addColumnReq {

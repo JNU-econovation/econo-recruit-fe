@@ -17,7 +17,7 @@ const ApplicantComment = ({
   generation,
 }: ApplicantCommentProps) => {
   const { data, error, isLoading } = useQuery(
-    ["applicantComment", "", cardId],
+    ["applicantComment", { cardId, applicantId: postId }],
     () => getAllComment(cardId, postId)
   );
 
@@ -40,6 +40,7 @@ const ApplicantComment = ({
       <div className="flex flex-col gap-8 pt-8">
         {data.map((comment) => (
           <ApplicantCommentDetail
+            applicantId={postId}
             generation={generation}
             comment={comment}
             cardId={cardId}

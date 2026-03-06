@@ -12,19 +12,21 @@ interface CommentDeleteButtonProps {
   commentId: string;
   cardId: number;
   generation: string;
+  applicantId: string;
 }
 
 const CommentDeleteButton = ({
   commentId,
   cardId,
   generation,
+  applicantId,
 }: CommentDeleteButtonProps) => {
   const queryClient = useQueryClient();
 
   const { mutate: onDelete } = useMutation(() => deleteComment(commentId), {
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ["applicantComment", "", cardId],
+        queryKey: ["applicantComment", { cardId, applicantId }],
       });
       queryClient.invalidateQueries({
         queryKey: ["kanbanDataArray", generation],
@@ -50,12 +52,14 @@ interface ApplicantCommentDetailProps {
   comment: ApplicantCommentRes;
   cardId: number;
   generation: string;
+  applicantId: string;
 }
 
 const ApplicantCommentDetail = ({
   comment,
   generation,
   cardId,
+  applicantId,
 }: ApplicantCommentDetailProps) => {
   const queryClient = useQueryClient();
   const [isEdit, setIsEdit] = useState(false);
@@ -65,7 +69,7 @@ const ApplicantCommentDetail = ({
     {
       onSettled: () => {
         queryClient.invalidateQueries({
-          queryKey: ["applicantComment", "", cardId],
+          queryKey: ["applicantComment", { cardId, applicantId }],
         });
       },
     }
@@ -106,6 +110,7 @@ const ApplicantCommentDetail = ({
               <button onClick={() => setIsEdit((prev) => !prev)}>수정</button>
               <div className="border-x-[0.5px] h-4 !w-0 border-secondary-200"></div>
               <CommentDeleteButton
+                applicantId={applicantId}
                 commentId={comment.id}
                 cardId={cardId}
                 generation={generation}
