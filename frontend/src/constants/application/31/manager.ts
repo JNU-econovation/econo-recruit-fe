@@ -103,7 +103,7 @@ export const APPLICATION_MANAGER: ApplicationQuestion[] = [
     direction: "horizontal",
     nodes: [
       {
-        name: "failure",
+        name: "restoration",
         require: true,
         type: "textarea",
         errorMessages: "도전하고 실패해 본 경험을 입력해주세요.",
@@ -144,7 +144,8 @@ export const APPLICATION_MANAGER: ApplicationQuestion[] = [
   },
   {
     id: 13,
-    title: "자신을 어필할 수 있는 포트폴리오를 업로드해 주세요.\n무엇이든 부담 없이 제출해 주셔도 됩니다.",
+    title:
+      "자신을 어필할 수 있는 포트폴리오를 업로드해 주세요.\n무엇이든 부담 없이 제출해 주셔도 됩니다.",
     subtitle:
       "단, 지원자 분의 포트폴리오 링크 접근 권한을 '꼭' 열어주세요. 만약 접근 권한이 없을 경우 불이익이 있을 수 있습니다.",
     alert: "최종 제출 후 포트폴리오 수정은 불가합니다.",

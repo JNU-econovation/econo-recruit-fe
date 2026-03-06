@@ -31,7 +31,7 @@ export const APPLICANT_DEVELOPER = [
     title:
       "어떤 일에 도전하고 실패해 본 경험이 있나요? 그 실패를 어떻게 극복했는지 서술해 주세요.",
     type: "textarea",
-    value: { name: "failure" },
+    value: { name: "restoration" },
   } as ApplicantTextareaNode,
   {
     id: 10,
