@@ -14,7 +14,9 @@ interface ApplicationTextareaProps {
 
 const ApplicationTexarea = ({ data }: ApplicationTextareaProps) => {
   const textData = data as ApplicationTextarea;
-  const maxLength = ['deep', 'failure', 'studyPlan'].includes(textData.name) ? 500 : 800;
+  const maxLength = ["deep", "restoration", "studyPlan"].includes(textData.name)
+    ? 500
+    : 800;
   const [value, setValue] = useLocalStorage(textData.name, "");
 
   const onInput = (e: FormEvent<HTMLTextAreaElement>) => {
