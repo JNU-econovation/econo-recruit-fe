@@ -24,7 +24,7 @@ const CommentDeleteButton = ({
   const { mutate: onDelete } = useMutation(() => deleteComment(commentId), {
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ["applicantComment", "", cardId],
+        queryKey: , "", cardId],
       });
       queryClient.invalidateQueries({
         queryKey: ["kanbanDataArray", generation],
@@ -50,12 +50,14 @@ interface ApplicantCommentDetailProps {
   comment: ApplicantCommentRes;
   cardId: number;
   generation: string;
+  applicantId: string;
 }
 
 const ApplicantCommentDetail = ({
   comment,
   generation,
   cardId,
+  applicantId,
 }: ApplicantCommentDetailProps) => {
   const queryClient = useQueryClient();
   const [isEdit, setIsEdit] = useState(false);
@@ -65,7 +67,7 @@ const ApplicantCommentDetail = ({
     {
       onSettled: () => {
         queryClient.invalidateQueries({
-          queryKey: ["applicantComment", "", cardId],
+          queryKey: ["applicantComment", { cardId, applicantId }],
         });
       },
     }
