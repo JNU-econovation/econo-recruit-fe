@@ -100,7 +100,7 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
     direction: "horizontal",
     nodes: [
       {
-        name: "restoration",
+        name: "failure",
         require: true,
         type: "textarea",
         errorMessages: "도전하고 실패해 본 경험을 입력해주세요.",
