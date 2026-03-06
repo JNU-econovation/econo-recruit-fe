@@ -142,7 +142,8 @@ export const APPLICATION_DESIGN: ApplicationQuestion[] = [
   },
   {
     id: 14,
-    title: "자신을 어필할 수 있는 포트폴리오를 업로드해 주세요.\n무엇이든 부담 없이 제출해 주셔도 됩니다.",
+    title:
+      "자신을 어필할 수 있는 포트폴리오를 업로드해 주세요.\n무엇이든 부담 없이 제출해 주셔도 됩니다.",
     direction: "horizontal",
     subtitle:
       "단, 지원자 분의 포트폴리오 링크 접근 권한을 '꼭' 열어주세요. 만약 접근 권한이 없을 경우 불이익이 있을 수 있습니다.",
