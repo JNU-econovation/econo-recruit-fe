@@ -27,7 +27,7 @@ function sortApplicantsByField1(applicants: Answer[]) {
     GAME: 3,
   };
 
-  return applicants.sort((a, b) => {
+  return [...applicants].sort((a, b) => {
     if (
       passStateOrder[a.state.passState] !== passStateOrder[b.state.passState]
     ) {
@@ -58,30 +58,29 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
     // isLoading: isUpdatingApplicantPassState,
   } = useOptimisticApplicantPassUpdate(selectedGeneration);
 
-  {
-    if (+selectedGeneration !== CURRENT_GENERATION) {
-      return <div>현재 지원중인 기수만 확인 가능합니다.</div>;
-    }
+  if (+selectedGeneration !== CURRENT_GENERATION) {
+    return <div>현재 지원중인 기수만 확인 가능합니다.</div>;
+  }
 
-    if (isLoading) {
-      return <div>Loading...</div>;
-    }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-    if (isError) {
-      return <div>Error</div>;
-    }
+  if (isError) {
+    return <div>Error</div>;
+  }
 
-    if (!allApplicants) {
-      return <div>아직은 지원자가 없습니다 🥲</div>;
-    }
+  if (!allApplicants) {
+    return <div>아직은 지원자가 없습니다 🥲</div>;
   }
 
   const onChangeApplicantsPassState = (
     applicantName: string,
     params: PatchApplicantPassStateParams
   ) => {
+    const stateLabel = params.afterState === "pass" ? "합격" : "불합격";
     const ok = confirm(
-      `${applicantName}님을 ${params.afterState} 처리하시겠습니까?`
+      `${applicantName}님을 ${stateLabel} 처리하시겠습니까?`
     );
     if (!ok) return;
     updateApplicantPassState(params);
