@@ -153,7 +153,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
           ({ state: { passState }, field, field1, field2, id, name }) => (
             <li
               key={id}
-              className="grid grid-cols-[8fr_8fr_4fr_3fr] gap-4 items-center"
+              className="grid grid-cols-[8fr_8fr_4fr_3fr_3fr] gap-4 items-center"
             >
               <Txt typography="h6" className="text-left truncate">
                 {`[${field}] ${name}`}

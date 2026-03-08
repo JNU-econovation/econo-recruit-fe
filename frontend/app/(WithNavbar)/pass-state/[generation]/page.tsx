@@ -26,7 +26,7 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
           <div className="mt-8" />
         </Link>
       )}
-      <div className="grid grid-cols-[8fr_8fr_4fr_3fr] gap-4">
+      <div className="grid grid-cols-[8fr_8fr_4fr_3fr_3fr] gap-4">
         <Txt typography="h6" className="text-left text-secondary-100">
           지원자 이름
         </Txt>
@@ -48,6 +48,12 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
         </Link>
         <Txt typography="h6" className="text-left text-secondary-100">
           합격 상태
+        </Txt>
+        <Txt typography="h6" className="text-left text-secondary-100">
+          합격/불합격
+        </Txt>
+        <Txt typography="h6" className="text-left text-secondary-100">
+          이메일 발송
         </Txt>
       </div>
       <div className="mt-2" />
