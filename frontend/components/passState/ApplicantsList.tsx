@@ -1,11 +1,16 @@
 "use client";
 
-import { getAllApplicantsWithPassState } from "@/src/apis/passState";
+import {
+  getAllApplicantsWithPassState,
+  sendEmailToApplicant,
+  sendEmailToAll,
+  type EmailState,
+} from "@/src/apis/passState";
 import { CURRENT_GENERATION } from "@/src/constants";
 import { usePathname } from "next/navigation";
 import Txt from "../common/Txt.component";
 import { getApplicantPassState } from "@/src/functions/formatter";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import type {
   PatchApplicantPassStateParams,
   Answer,
@@ -58,6 +63,29 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
     // isLoading: isUpdatingApplicantPassState,
   } = useOptimisticApplicantPassUpdate(selectedGeneration);
 
+  const { mutate: sendEmail } = useMutation(sendEmailToApplicant);
+  const { mutate: sendEmailAll } = useMutation(sendEmailToAll);
+
+  const onSendEmail = (name: string, applicantId: string) => {
+    const ok = confirm(`${name}님에게 결과 이메일을 발송하시겠습니까?`);
+    if (!ok) return;
+    sendEmail(applicantId);
+  };
+
+  const onSendEmailAll = (state: EmailState) => {
+    const labelMap: Record<EmailState, string> = {
+      "first-passed": "1차 합격자",
+      "first-failed": "1차 불합격자",
+      "final-passed": "최종 합격자",
+      "final-failed": "최종 불합격자",
+    };
+    const ok = confirm(
+      `${labelMap[state]} 전체에게 결과 이메일을 발송하시겠습니까?`
+    );
+    if (!ok) return;
+    sendEmailAll({ year: Number(selectedGeneration), state });
+  };
+
   if (+selectedGeneration !== CURRENT_GENERATION) {
     return <div>현재 지원중인 기수만 확인 가능합니다.</div>;
   }
@@ -92,62 +120,101 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
       : allApplicants;
 
   return (
-    <ul className="flex flex-col gap-4">
-      {applicants.map(
-        ({ state: { passState }, field, field1, field2, id, name }) => (
-          <li
-            key={id}
-            className="grid grid-cols-[8fr_8fr_4fr_3fr] gap-4 items-center"
+    <>
+      <div className="flex gap-2 mb-4 flex-wrap">
+        {(
+          [
+            "first-passed",
+            "first-failed",
+            "final-passed",
+            "final-failed",
+          ] as EmailState[]
+        ).map((state) => (
+          <button
+            key={state}
+            type="button"
+            className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100"
+            onClick={() => onSendEmailAll(state)}
           >
-            <Txt typography="h6" className="text-left truncate">
-              {`[${field}] ${name}`}
-            </Txt>
-            <Txt
-              className="text-left truncate"
-              color="gray"
-            >{`${field1}/${field2}`}</Txt>
-            <Txt
-              className="text-left truncate"
-              color={
-                passState === "non-passed"
-                  ? "red"
-                  : passState === "final-passed"
-                  ? "blue"
-                  : "black"
-              }
+            {
+              {
+                "first-passed": "1차 합격자",
+                "first-failed": "1차 불합격자",
+                "final-passed": "최종 합격자",
+                "final-failed": "최종 불합격자",
+              }[state]
+            }{" "}
+            일괄 발송
+          </button>
+        ))}
+      </div>
+      <ul className="flex flex-col gap-4">
+        {applicants.map(
+          ({ state: { passState }, field, field1, field2, id, name }) => (
+            <li
+              key={id}
+              className="grid grid-cols-[8fr_8fr_4fr_3fr] gap-4 items-center"
             >
-              {getApplicantPassState(passState)}
-            </Txt>
-            <div className="flex justify-between">
-              <button
-                disabled={passState === "final-passed"}
-                className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
-                onClick={() =>
-                  onChangeApplicantsPassState(name, {
-                    applicantId: id,
-                    afterState: "pass",
-                  })
+              <Txt typography="h6" className="text-left truncate">
+                {`[${field}] ${name}`}
+              </Txt>
+              <Txt
+                className="text-left truncate"
+                color="gray"
+              >{`${field1}/${field2}`}</Txt>
+              <Txt
+                className="text-left truncate"
+                color={
+                  passState === "non-passed"
+                    ? "red"
+                    : passState === "final-passed"
+                    ? "blue"
+                    : "black"
                 }
               >
-                합격
-              </button>
+                {getApplicantPassState(passState)}
+              </Txt>
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  disabled={passState === "final-passed"}
+                  className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
+                  onClick={() =>
+                    onChangeApplicantsPassState(name, {
+                      applicantId: id,
+                      afterState: "pass",
+                    })
+                  }
+                >
+                  합격
+                </button>
+                <button
+                  type="button"
+                  disabled={passState === "non-passed"}
+                  className="border px-4 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
+                  onClick={() =>
+                    onChangeApplicantsPassState(name, {
+                      applicantId: id,
+                      afterState: "non-pass",
+                    })
+                  }
+                >
+                  불합격
+                </button>
+              </div>
               <button
-                disabled={passState === "non-passed"}
-                className="border px-4 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
-                onClick={() =>
-                  onChangeApplicantsPassState(name, {
-                    applicantId: id,
-                    afterState: "non-pass",
-                  })
-                }
+                type="button"
+                disabled={passState === "non-processed"}
+                className="border px-4 py-2 rounded-lg hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
+                onClick={() => onSendEmail(name, id)}
               >
-                불합격
+                발송
               </button>
-            </div>
-          </li>
-        )
-      )}
-    </ul>
+            </li>
+          )
+        )}
+      </ul>
+    </>
   );
 };
 
