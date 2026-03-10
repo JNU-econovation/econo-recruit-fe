@@ -17,6 +17,13 @@ import type {
 } from "@/src/apis/passState";
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
 
+const EMAIL_STATE_LABEL_MAP: Record<EmailState, string> = {
+  "first-passed": "1차 합격자",
+  "first-failed": "1차 불합격자",
+  "final-passed": "최종 합격자",
+  "final-failed": "최종 불합격자",
+};
+
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
     "final-passed": 0,
@@ -73,14 +80,8 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
   };
 
   const onSendEmailAll = (state: EmailState) => {
-    const labelMap: Record<EmailState, string> = {
-      "first-passed": "1차 합격자",
-      "first-failed": "1차 불합격자",
-      "final-passed": "최종 합격자",
-      "final-failed": "최종 불합격자",
-    };
     const ok = confirm(
-      `${labelMap[state]} 전체에게 결과 이메일을 발송하시겠습니까?`
+      `${EMAIL_STATE_LABEL_MAP[state]} 전체에게 결과 이메일을 발송하시겠습니까?`
     );
     if (!ok) return;
     sendEmailAll({ year: Number(selectedGeneration), state });
@@ -136,14 +137,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
             className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100"
             onClick={() => onSendEmailAll(state)}
           >
-            {
-              {
-                "first-passed": "1차 합격자",
-                "first-failed": "1차 불합격자",
-                "final-passed": "최종 합격자",
-                "final-failed": "최종 불합격자",
-              }[state]
-            }{" "}
+            {EMAIL_STATE_LABEL_MAP[state]}{" "}
             일괄 발송
           </button>
         ))}
