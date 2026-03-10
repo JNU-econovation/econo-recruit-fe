@@ -134,7 +134,7 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
           <button
             key={state}
             type="button"
-            className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100"
+            className="border px-4 py-2 rounded-lg hover:bg-primary-100"
             onClick={() => onSendEmailAll(state)}
           >
             {EMAIL_STATE_LABEL_MAP[state]}{" "}
