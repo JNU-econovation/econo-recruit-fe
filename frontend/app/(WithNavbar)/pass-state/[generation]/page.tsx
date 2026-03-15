@@ -1,5 +1,6 @@
 import Txt from "@/components/common/Txt.component";
 import ApplicantsList from "@/components/passState/ApplicantsList";
+import BulkEmailButtons from "@/components/passState/BulkEmailButtons";
 import { CURRENT_GENERATION } from "@/src/constants";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,6 +19,8 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
         {CURRENT_GENERATION}기 지원자 합격 상태 관리 페이지
       </Txt>
       <div className="mt-8" />
+      <BulkEmailButtons />
+      <div className="mt-4" />
       {sortedBy === "field" && (
         <Link href={`/pass-state/${CURRENT_GENERATION}`}>
           <Txt typography="h5" className="text-secondary-200">
