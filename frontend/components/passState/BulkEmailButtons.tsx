@@ -33,7 +33,7 @@ const BulkEmailButtons = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <h6 className="text-sm font-semibold text-secondary-100">일괄 발송</h6>
+      <h6 className="text-base font-bold text-secondary-100">일괄 발송</h6>
       <div className="flex gap-2 flex-wrap">
         {EMAIL_STATES.map((state) => (
           <button
