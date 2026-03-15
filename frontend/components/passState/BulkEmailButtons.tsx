@@ -11,6 +11,8 @@ const EMAIL_STATE_LABEL_MAP: Record<EmailState, string> = {
   "final-failed": "최종 불합격자",
 };
 
+const EMAIL_STATES = Object.keys(EMAIL_STATE_LABEL_MAP) as EmailState[];
+
 const BulkEmailButtons = () => {
   const selectedGeneration = usePathname().split("/")[2];
   const { mutate: sendEmailAll } = useMutation(sendEmailToAll);
@@ -25,14 +27,7 @@ const BulkEmailButtons = () => {
 
   return (
     <div className="flex gap-2 flex-wrap">
-      {(
-        [
-          "first-passed",
-          "first-failed",
-          "final-passed",
-          "final-failed",
-        ] as EmailState[]
-      ).map((state) => (
+      {EMAIL_STATES.map((state) => (
         <button
           key={state}
           type="button"
