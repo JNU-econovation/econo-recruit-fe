@@ -20,7 +20,7 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
       </Txt>
       <div className="mt-8" />
       <BulkEmailButtons />
-      <div className="mt-4" />
+      <div className="mt-10" />
       {sortedBy === "field" && (
         <Link href={`/pass-state/${CURRENT_GENERATION}`}>
           <Txt typography="h5" className="text-secondary-200">
