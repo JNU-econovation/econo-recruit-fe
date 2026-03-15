@@ -22,21 +22,30 @@ const BulkEmailButtons = () => {
       `${EMAIL_STATE_LABEL_MAP[state]} 전체에게 결과 이메일을 발송하시겠습니까?`
     );
     if (!ok) return;
-    sendEmailAll({ year: Number(selectedGeneration), state });
+    sendEmailAll(
+      { year: Number(selectedGeneration), state },
+      {
+        onSuccess: () => alert(`${EMAIL_STATE_LABEL_MAP[state]} 이메일 발송이 완료되었습니다.`),
+        onError: () => alert(`이메일 발송 중 오류가 발생했습니다. 다시 시도해주세요.`),
+      }
+    );
   };
 
   return (
-    <div className="flex gap-2 flex-wrap">
-      {EMAIL_STATES.map((state) => (
-        <button
-          key={state}
-          type="button"
-          className="border px-4 py-2 rounded-lg hover:bg-primary-100"
-          onClick={() => onSendEmailAll(state)}
-        >
-          {EMAIL_STATE_LABEL_MAP[state]} 일괄 발송
-        </button>
-      ))}
+    <div className="flex flex-col gap-2">
+      <h6 className="text-sm font-semibold text-secondary-100">일괄 발송</h6>
+      <div className="flex gap-2 flex-wrap">
+        {EMAIL_STATES.map((state) => (
+          <button
+            key={state}
+            type="button"
+            className="border px-4 py-2 rounded-lg hover:bg-primary-100"
+            onClick={() => onSendEmailAll(state)}
+          >
+            {EMAIL_STATE_LABEL_MAP[state]} 일괄 발송
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
