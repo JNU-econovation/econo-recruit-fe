@@ -1,5 +1,6 @@
 import Txt from "@/components/common/Txt.component";
 import ApplicantsList from "@/components/passState/ApplicantsList";
+import BulkEmailButtons from "@/components/passState/BulkEmailButtons";
 import { CURRENT_GENERATION } from "@/src/constants";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,6 +19,8 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
         {CURRENT_GENERATION}기 지원자 합격 상태 관리 페이지
       </Txt>
       <div className="mt-8" />
+      <BulkEmailButtons />
+      <div className="mt-10" />
       {sortedBy === "field" && (
         <Link href={`/pass-state/${CURRENT_GENERATION}`}>
           <Txt typography="h5" className="text-secondary-200">
@@ -26,7 +29,7 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
           <div className="mt-8" />
         </Link>
       )}
-      <div className="grid grid-cols-[8fr_8fr_4fr_3fr] gap-4">
+      <div className="grid grid-cols-[8fr_8fr_4fr_3fr_3fr] gap-4">
         <Txt typography="h6" className="text-left text-secondary-100">
           지원자 이름
         </Txt>
@@ -48,6 +51,12 @@ const PassStatePage = ({ searchParams: { sortedBy } }: PassStatePageProps) => {
         </Link>
         <Txt typography="h6" className="text-left text-secondary-100">
           합격 상태
+        </Txt>
+        <Txt typography="h6" className="text-left text-secondary-100">
+          합격/불합격
+        </Txt>
+        <Txt typography="h6" className="text-left text-secondary-100">
+          이메일 발송
         </Txt>
       </div>
       <div className="mt-2" />

@@ -1,16 +1,20 @@
 "use client";
 
-import { getAllApplicantsWithPassState } from "@/src/apis/passState";
+import {
+  getAllApplicantsWithPassState,
+  sendEmailToApplicant,
+} from "@/src/apis/passState";
 import { CURRENT_GENERATION } from "@/src/constants";
 import { usePathname } from "next/navigation";
 import Txt from "../common/Txt.component";
 import { getApplicantPassState } from "@/src/functions/formatter";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import type {
   PatchApplicantPassStateParams,
   Answer,
 } from "@/src/apis/passState";
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
+
 
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
@@ -27,7 +31,7 @@ function sortApplicantsByField1(applicants: Answer[]) {
     GAME: 3,
   };
 
-  return applicants.sort((a, b) => {
+  return [...applicants].sort((a, b) => {
     if (
       passStateOrder[a.state.passState] !== passStateOrder[b.state.passState]
     ) {
@@ -58,30 +62,37 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
     // isLoading: isUpdatingApplicantPassState,
   } = useOptimisticApplicantPassUpdate(selectedGeneration);
 
-  {
-    if (+selectedGeneration !== CURRENT_GENERATION) {
-      return <div>현재 지원중인 기수만 확인 가능합니다.</div>;
-    }
+  const { mutate: sendEmail } = useMutation(sendEmailToApplicant);
 
-    if (isLoading) {
-      return <div>Loading...</div>;
-    }
+  const onSendEmail = (name: string, applicantId: string) => {
+    const ok = confirm(`${name}님에게 결과 이메일을 발송하시겠습니까?`);
+    if (!ok) return;
+    sendEmail(applicantId);
+  };
 
-    if (isError) {
-      return <div>Error</div>;
-    }
+  if (+selectedGeneration !== CURRENT_GENERATION) {
+    return <div>현재 지원중인 기수만 확인 가능합니다.</div>;
+  }
 
-    if (!allApplicants) {
-      return <div>아직은 지원자가 없습니다 🥲</div>;
-    }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error</div>;
+  }
+
+  if (!allApplicants) {
+    return <div>아직은 지원자가 없습니다 🥲</div>;
   }
 
   const onChangeApplicantsPassState = (
     applicantName: string,
     params: PatchApplicantPassStateParams
   ) => {
+    const stateLabel = params.afterState === "pass" ? "합격" : "불합격";
     const ok = confirm(
-      `${applicantName}님을 ${params.afterState} 처리하시겠습니까?`
+      `${applicantName}님을 ${stateLabel} 처리하시겠습니까?`
     );
     if (!ok) return;
     updateApplicantPassState(params);
@@ -93,62 +104,74 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
       : allApplicants;
 
   return (
-    <ul className="flex flex-col gap-4">
-      {applicants.map(
-        ({ state: { passState }, field, field1, field2, id, name }) => (
-          <li
-            key={id}
-            className="grid grid-cols-[8fr_8fr_4fr_3fr] gap-4 items-center"
-          >
-            <Txt typography="h6" className="text-left truncate">
-              {`[${field}] ${name}`}
-            </Txt>
-            <Txt
-              className="text-left truncate"
-              color="gray"
-            >{`${field1}/${field2}`}</Txt>
-            <Txt
-              className="text-left truncate"
-              color={
-                passState === "non-passed"
-                  ? "red"
-                  : passState === "final-passed"
-                  ? "blue"
-                  : "black"
-              }
+    <>
+      <ul className="flex flex-col gap-4">
+        {applicants.map(
+          ({ state: { passState }, field, field1, field2, id, name }) => (
+            <li
+              key={id}
+              className="grid grid-cols-[8fr_8fr_4fr_3fr_3fr] gap-4 items-center"
             >
-              {getApplicantPassState(passState)}
-            </Txt>
-            <div className="flex justify-between">
-              <button
-                disabled={passState === "final-passed"}
-                className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
-                onClick={() =>
-                  onChangeApplicantsPassState(name, {
-                    applicantId: id,
-                    afterState: "pass",
-                  })
+              <Txt typography="h6" className="text-left truncate">
+                {`[${field}] ${name}`}
+              </Txt>
+              <Txt
+                className="text-left truncate"
+                color="gray"
+              >{`${field1}/${field2}`}</Txt>
+              <Txt
+                className="text-left truncate"
+                color={
+                  passState === "non-passed"
+                    ? "red"
+                    : passState === "final-passed"
+                    ? "blue"
+                    : "black"
                 }
               >
-                합격
-              </button>
+                {getApplicantPassState(passState)}
+              </Txt>
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  disabled={passState === "final-passed"}
+                  className="border px-4 py-2 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
+                  onClick={() =>
+                    onChangeApplicantsPassState(name, {
+                      applicantId: id,
+                      afterState: "pass",
+                    })
+                  }
+                >
+                  합격
+                </button>
+                <button
+                  type="button"
+                  disabled={passState === "non-passed"}
+                  className="border px-4 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
+                  onClick={() =>
+                    onChangeApplicantsPassState(name, {
+                      applicantId: id,
+                      afterState: "non-pass",
+                    })
+                  }
+                >
+                  불합격
+                </button>
+              </div>
               <button
-                disabled={passState === "non-passed"}
-                className="border px-4 rounded-lg truncate hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
-                onClick={() =>
-                  onChangeApplicantsPassState(name, {
-                    applicantId: id,
-                    afterState: "non-pass",
-                  })
-                }
+                type="button"
+                disabled={passState === "non-processed"}
+                className="border px-4 py-2 rounded-lg hover:bg-primary-100 disabled:bg-primary-100 disabled:cursor-not-allowed"
+                onClick={() => onSendEmail(name, id)}
               >
-                불합격
+                발송
               </button>
-            </div>
-          </li>
-        )
-      )}
-    </ul>
+            </li>
+          )
+        )}
+      </ul>
+    </>
   );
 };
 
