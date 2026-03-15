@@ -3,8 +3,6 @@
 import {
   getAllApplicantsWithPassState,
   sendEmailToApplicant,
-  sendEmailToAll,
-  type EmailState,
 } from "@/src/apis/passState";
 import { CURRENT_GENERATION } from "@/src/constants";
 import { usePathname } from "next/navigation";
@@ -17,12 +15,6 @@ import type {
 } from "@/src/apis/passState";
 import { useOptimisticApplicantPassUpdate } from "@/src/hooks/applicant/useOptimisticApplicantPassUpdate";
 
-const EMAIL_STATE_LABEL_MAP: Record<EmailState, string> = {
-  "first-passed": "1차 합격자",
-  "first-failed": "1차 불합격자",
-  "final-passed": "최종 합격자",
-  "final-failed": "최종 불합격자",
-};
 
 function sortApplicantsByField1(applicants: Answer[]) {
   const passStateOrder = {
@@ -71,20 +63,11 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
   } = useOptimisticApplicantPassUpdate(selectedGeneration);
 
   const { mutate: sendEmail } = useMutation(sendEmailToApplicant);
-  const { mutate: sendEmailAll } = useMutation(sendEmailToAll);
 
   const onSendEmail = (name: string, applicantId: string) => {
     const ok = confirm(`${name}님에게 결과 이메일을 발송하시겠습니까?`);
     if (!ok) return;
     sendEmail(applicantId);
-  };
-
-  const onSendEmailAll = (state: EmailState) => {
-    const ok = confirm(
-      `${EMAIL_STATE_LABEL_MAP[state]} 전체에게 결과 이메일을 발송하시겠습니까?`
-    );
-    if (!ok) return;
-    sendEmailAll({ year: Number(selectedGeneration), state });
   };
 
   if (+selectedGeneration !== CURRENT_GENERATION) {
@@ -122,26 +105,6 @@ const ApplicantsList = ({ sortedBy }: ApplicantsListProps) => {
 
   return (
     <>
-      <div className="flex gap-2 mb-4 flex-wrap">
-        {(
-          [
-            "first-passed",
-            "first-failed",
-            "final-passed",
-            "final-failed",
-          ] as EmailState[]
-        ).map((state) => (
-          <button
-            key={state}
-            type="button"
-            className="border px-4 py-2 rounded-lg hover:bg-primary-100"
-            onClick={() => onSendEmailAll(state)}
-          >
-            {EMAIL_STATE_LABEL_MAP[state]}{" "}
-            일괄 발송
-          </button>
-        ))}
-      </div>
       <ul className="flex flex-col gap-4">
         {applicants.map(
           ({ state: { passState }, field, field1, field2, id, name }) => (
