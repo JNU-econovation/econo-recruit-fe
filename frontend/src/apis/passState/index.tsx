@@ -34,3 +34,23 @@ export const patchApplicantPassState = async ({
     `/applicants/${applicantId}/state?afterState=${afterState}`
   );
 };
+
+export const sendEmailToApplicant = async (applicantId: string) => {
+  await https.post<void>(`/emails/${applicantId}`);
+};
+
+export type EmailState =
+  | "first-passed"
+  | "first-failed"
+  | "final-passed"
+  | "final-failed";
+
+export interface SendEmailToAllParams {
+  year: number;
+  state: EmailState;
+}
+export const sendEmailToAll = async ({ year, state }: SendEmailToAllParams) => {
+  await https.post<void>(`/emails/all`, undefined, {
+    params: { year, state },
+  });
+};

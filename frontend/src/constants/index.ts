@@ -174,6 +174,7 @@ export const needValidatePath = [
   "/applicant",
   "/interview",
   "/kanban",
+  "/pass-state",
 ];
 
 export const MAX_BOOLEAN_TEXT_LENGTH = 800;
