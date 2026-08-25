@@ -6,15 +6,15 @@ import { CURRENT_GENERATION } from "@/src/constants";
 import {
   APPLICATION_DESIGN,
   APPLICATION_NAVBAR_DESIGN,
-} from "@/src/constants/application/31/designer";
+} from "@/src/constants/application/32/designer";
 import {
   APPLICATION_DEVELOPER,
   APPLICATION_NAVBAR_DEVELOPER,
-} from "@/src/constants/application/31/developer";
+} from "@/src/constants/application/32/developer";
 import {
   APPLICATION_MANAGER,
   APPLICATION_NAVBAR_MANAGER,
-} from "@/src/constants/application/31/manager";
+} from "@/src/constants/application/32/manager";
 import { localStorage } from "@/src/functions/localstorage";
 import {
   applicationDataAtom,
