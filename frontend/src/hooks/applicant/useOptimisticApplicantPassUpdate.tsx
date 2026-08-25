@@ -23,39 +23,32 @@ export const useOptimisticApplicantPassUpdate = (generation: string) => {
   return useMutation({
     mutationFn: (params: PatchApplicantPassStateParams) =>
       patchApplicantPassState(params),
-    onMutate: async (params) => {
-      await queryClient.cancelQueries({
-        queryKey: ["allApplicantsWithPassState", generation],
-      });
-
-      const previousData = queryClient.getQueryData([
-        "allApplicantsWithPassState",
-        generation,
-      ]);
-
-      queryClient.setQueryData(
+    onSuccess: ({ passState }, params) => {
+      queryClient.setQueryData<ApplicantPartialRes[]>(
         ["allApplicantsWithPassState", generation],
-        (oldData: ApplicantPartialRes[] | undefined) => {
+        (oldData) => {
           if (!oldData) return oldData;
-          return oldData.map((applicant: ApplicantPartialRes) =>
+
+          return oldData.map((applicant) =>
             applicant.id === params.applicantId
-              ? { ...applicant, passState: params.afterState }
+              ? {
+                  ...applicant,
+                  state: {
+                    ...applicant.state,
+                    passState,
+                  },
+                }
               : applicant
           );
         }
-      );
-
-      return { previousData };
-    },
-    onError: (err, variables, context) => {
-      queryClient.setQueryData(
-        ["allApplicantsWithPassState", generation],
-        context?.previousData
       );
     },
     onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: ["allApplicantsWithPassState", generation],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["kanbanDataArray"],
       });
     },
   });
