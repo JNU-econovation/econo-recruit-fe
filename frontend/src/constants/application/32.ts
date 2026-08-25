@@ -226,8 +226,8 @@ export const APPLICATION_TIMELINE: ApplicationTimeline = {
  */
 export const START_DATE = {
   year: 2026,
-  month: 3,
-  date: 1,
+  month: 8,
+  date: 28,
   hours: 0,
   minutes: 0,
   seconds: 0,
@@ -244,8 +244,8 @@ export const START_DATE = {
  */
 export const END_DATE = {
   year: 2026,
-  month: 3,
-  date: 10,
+  month: 9,
+  date: 9,
   hours: 23,
   minutes: 59,
   seconds: 59,
@@ -259,18 +259,18 @@ export const END_DATE = {
  */
 export const FIRST_NOTIFICATION_DATE = {
   year: 2026,
-  month: 3,
+  month: 9,
   date: 14,
 };
 
 /**
- * @description 개인정보 수집에 대한 최종 마감일 상수 데이터
- * @property {number} year - 최종 모집 마감 연도
- * @property {number} month - 최종 모집 마감 월 (1-12)
- * @property {number} date - 최종 모집 마감 일 (1-31)
+ * @description 개인정보 수집에 대한 최종 선발 완료일 상수 데이터
+ * @property {number} year - 최종 선발 완료 연도
+ * @property {number} month - 최종 선발 완료 월 (1-12)
+ * @property {number} date - 최종 선발 완료 일 (1-31)
  */
 export const FINAL_DATE = {
   year: 2026,
-  month: 3,
-  date: 23,
+  month: 9,
+  date: 21,
 };
