@@ -34,8 +34,6 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.js ./next.config.js
 COPY --from=builder /app/.env.production ./.env.production
-COPY --from=builder /app/database.js ./database.js
-COPY --from=builder /app/database ./database
 
 EXPOSE 3000
 CMD ["pnpm", "run", "start"]
