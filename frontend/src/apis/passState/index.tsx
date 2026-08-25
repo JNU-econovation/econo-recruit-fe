@@ -26,13 +26,20 @@ export interface PatchApplicantPassStateParams {
   applicantId: string;
   afterState: "non-pass" | "pass";
 }
+
+export interface PatchApplicantPassStateResponse {
+  passState: ApplicantPassState;
+}
+
 export const patchApplicantPassState = async ({
   afterState,
   applicantId,
 }: PatchApplicantPassStateParams) => {
-  await https.patch(
+  const { data } = await https.patch<PatchApplicantPassStateResponse>(
     `/applicants/${applicantId}/state?afterState=${afterState}`
   );
+
+  return data;
 };
 
 export const sendEmailToApplicant = async (applicantId: string) => {
