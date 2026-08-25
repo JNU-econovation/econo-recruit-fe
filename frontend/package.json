@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "node database.js && next start",
-    "start:no-db": "next start",
+    "start": "next start",
     "lint": "next lint",
     "cy:open": "cypress open"
   },
@@ -46,8 +45,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-modal": "^3.16.1",
-    "sqlite": "^5.0.1",
-    "sqlite3": "^5.1.6",
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6",

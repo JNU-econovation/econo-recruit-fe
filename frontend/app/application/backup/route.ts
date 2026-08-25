@@ -1,20 +1,10 @@
-import { Database } from "sqlite";
 import { NextRequest, NextResponse } from "next/server";
-import { getDB } from "@/database/accecer";
 import { HmacSHA256 } from "crypto-js";
 import Base64 from "crypto-js/enc-base64";
 import axios from "axios";
 
-let db: Database;
-
 export const POST = async (req: NextRequest) => {
-  if (!db) {
-    db = await getDB();
-  }
   const body = (await req.json()) as { name: string; answer: string }[];
-
-  const queryString = "INSERT INTO applicant (applicant_data) VALUES(?)";
-  await db.run(queryString, JSON.stringify(body));
 
   await sendSms({
     name: body.find((value) => value.name === "name")?.answer ?? "",
